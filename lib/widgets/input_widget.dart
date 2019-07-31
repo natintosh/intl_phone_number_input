@@ -207,7 +207,7 @@ class _InternationalPhoneNumberInputState
   InputDecoration _getInputDecoration(InputDecoration decoration) {
     return decoration ??
         InputDecoration(
-          border: widget.inputBorder ?? OutlineInputBorder(),
+          border: widget.inputBorder ?? UnderlineInputBorder(),
           hintText: widget.hintText,
           errorText: _isNotValid ? widget.errorMessage : null,
         );
@@ -225,6 +225,7 @@ class _InternationalPhoneNumberInputState
                   Image.asset(
                     country.flagUri,
                     width: 32.0,
+                    package: 'intl_phone_number_input',
                   ),
                   SizedBox(width: 12.0),
                   Text(
