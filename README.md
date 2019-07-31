@@ -1,4 +1,4 @@
-# intl_phone_number_input
+# Intl Phone Number Input
 
 A new Flutter package.
 
