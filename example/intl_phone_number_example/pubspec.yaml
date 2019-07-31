@@ -25,7 +25,7 @@ dependencies:
   cupertino_icons: ^0.1.2
 
 
-  intl_phone_number_input: ^0.0.1
+  intl_phone_number_input: ^0.0.2
 
 dev_dependencies:
   flutter_test:
