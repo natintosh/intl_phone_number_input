@@ -1,7 +1,8 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl_phone_number_input/models/country_model.dart';
-import 'package:intl_phone_number_input/providers/country_provider.dart';
 import 'package:intl_phone_number_input/utils/phone_input_formatter.dart';
 import 'package:intl_phone_number_input/utils/util.dart';
 import 'package:libphonenumber/libphonenumber.dart';
@@ -99,14 +100,20 @@ class _InternationalPhoneNumberInputState
   }
 
   _loadCountries(BuildContext context) async {
-    CountryProvider provider = CountryProvider();
-    List<Country> data =
-        await provider.getCountriesDataFromJsonFile(context: context);
+    List<Country> data = await _getCountriesDataFromJsonFile();
     setState(() {
       _countries = data;
       _selectedCountry = Utils.getInitialSelectedCountry(
           _countries, widget.initialCountry2LetterCode);
     });
+  }
+
+  Future<List<Country>> _getCountriesDataFromJsonFile() async {
+    var list = await DefaultAssetBundle.of(context)
+        .loadString('packages/intl_phone_number_input/models/countries.json');
+    List jsonList = jsonDecode(list);
+
+    return jsonList.map((country) => Country.fromJson(country)).toList();
   }
 
   void _phoneNumberControllerListener() {
@@ -119,13 +126,17 @@ class _InternationalPhoneNumberInputState
               parsedPhoneNumberString, _selectedCountry.countryCode)
           .then((phoneNumber) {
         if (phoneNumber == null) {
-          widget.onInputValidated(false);
+          if (widget.onInputValidated != null) {
+            widget.onInputValidated(false);
+          }
           setState(() {
             _isNotValid = true;
           });
         } else {
           widget.onInputChange(phoneNumber);
-          widget.onInputValidated(true);
+          if (widget.onInputValidated != null) {
+            widget.onInputValidated(true);
+          }
           setState(() {
             _isNotValid = false;
           });
@@ -158,9 +169,9 @@ class _InternationalPhoneNumberInputState
 
   @override
   void initState() {
+    Future.delayed(Duration.zero, () => _loadCountries(context));
     _controller = TextEditingController();
     _controller.addListener(_phoneNumberControllerListener);
-    _loadCountries(context);
     super.initState();
   }
 

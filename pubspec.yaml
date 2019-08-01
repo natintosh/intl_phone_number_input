@@ -1,6 +1,6 @@
 name: intl_phone_number_input
 description: A simple and customizable flutter package on International Phone Number Input.
-version: 0.0.2
+version: 0.0.6
 author: Ogunye Nathaniel Oluwatobiloba <oluwatobilobaogunye@gmail.com>
 homepage: https://github.com/natintosh/intl-phone-number-input
 
@@ -26,4 +26,4 @@ flutter:
 
   assets:
     - assets/flags/
-    - assets/countries.json
+    - packages/intl_phone_number_input/models/countries.json
