@@ -1,8 +1,7 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl_phone_number_input/models/country_model.dart';
+import 'package:intl_phone_number_input/providers/country_provider.dart';
 import 'package:intl_phone_number_input/utils/phone_input_formatter.dart';
 import 'package:intl_phone_number_input/utils/util.dart';
 import 'package:libphonenumber/libphonenumber.dart';
@@ -16,7 +15,8 @@ class InternationalPhoneNumberInput extends StatefulWidget {
   final String errorMessage;
 
   final bool formatInput;
-  final bool shouldValidateAndParse;
+  final bool shouldParse;
+  final bool shouldValidate;
 
   final InputBorder inputBorder;
   final InputDecoration inputDecoration;
@@ -29,7 +29,8 @@ class InternationalPhoneNumberInput extends StatefulWidget {
       this.inputDecoration,
       this.initialCountry2LetterCode = 'NG',
       this.hintText = '(800) 000-0001 23',
-      this.shouldValidateAndParse = true,
+      this.shouldParse = true,
+      this.shouldValidate = true,
       this.formatInput = true,
       this.errorMessage = 'Invalid phone number'})
       : super(key: key);
@@ -40,7 +41,8 @@ class InternationalPhoneNumberInput extends StatefulWidget {
     @required InputDecoration inputDecoration,
     String initialCountry2LetterCode = 'NG',
     bool formatInput = true,
-    bool shouldValidateAndParse = true,
+    bool shouldParse = true,
+    bool shouldValidate = true,
   }) {
     return InternationalPhoneNumberInput(
       onInputChange: onInputChange,
@@ -48,7 +50,8 @@ class InternationalPhoneNumberInput extends StatefulWidget {
       inputDecoration: inputDecoration,
       initialCountry2LetterCode: initialCountry2LetterCode,
       formatInput: formatInput,
-      shouldValidateAndParse: shouldValidateAndParse,
+      shouldParse: shouldParse,
+      shouldValidate: shouldValidate,
     );
   }
 
@@ -59,7 +62,8 @@ class InternationalPhoneNumberInput extends StatefulWidget {
     String initialCountry2LetterCode = 'NG',
     String errorMessage = 'Invalid phone number',
     bool formatInput = true,
-    bool shouldValidateAndParse = true,
+    bool shouldParse = true,
+    bool shouldValidate = true,
   }) {
     return InternationalPhoneNumberInput(
       onInputChange: onInputChange,
@@ -68,7 +72,8 @@ class InternationalPhoneNumberInput extends StatefulWidget {
       initialCountry2LetterCode: initialCountry2LetterCode,
       errorMessage: errorMessage,
       formatInput: formatInput,
-      shouldValidateAndParse: shouldValidateAndParse,
+      shouldParse: shouldParse,
+      shouldValidate: shouldValidate,
     );
   }
 
@@ -100,7 +105,7 @@ class _InternationalPhoneNumberInputState
   }
 
   _loadCountries(BuildContext context) async {
-    List<Country> data = await _getCountriesDataFromJsonFile();
+    List<Country> data = await _getCountriesDataFromJsonFile(context: context);
     setState(() {
       _countries = data;
       _selectedCountry = Utils.getInitialSelectedCountry(
@@ -108,12 +113,11 @@ class _InternationalPhoneNumberInputState
     });
   }
 
-  Future<List<Country>> _getCountriesDataFromJsonFile() async {
-    var list = await DefaultAssetBundle.of(context)
-        .loadString('packages/intl_phone_number_input/models/countries.json');
-    List jsonList = jsonDecode(list);
-
-    return jsonList.map((country) => Country.fromJson(country)).toList();
+  Future<List<Country>> _getCountriesDataFromJsonFile(
+      {@required BuildContext context}) async {
+    var list =
+        await CountryProvider.getCountriesDataFromJsonFile(context: context);
+    return list;
   }
 
   void _phoneNumberControllerListener() {
@@ -121,7 +125,7 @@ class _InternationalPhoneNumberInputState
     String parsedPhoneNumberString =
         _controller.text.replaceAll(RegExp(r'([\(\1\)\1\s\-])'), '');
 
-    if (widget.shouldValidateAndParse) {
+    if (widget.shouldParse) {
       getParsedPhoneNumber(
               parsedPhoneNumberString, _selectedCountry.countryCode)
           .then((phoneNumber) {
@@ -129,17 +133,21 @@ class _InternationalPhoneNumberInputState
           if (widget.onInputValidated != null) {
             widget.onInputValidated(false);
           }
-          setState(() {
-            _isNotValid = true;
-          });
+          if (widget.shouldValidate) {
+            setState(() {
+              _isNotValid = true;
+            });
+          }
         } else {
           widget.onInputChange(phoneNumber);
           if (widget.onInputValidated != null) {
             widget.onInputValidated(true);
           }
-          setState(() {
-            _isNotValid = false;
-          });
+          if (widget.shouldValidate) {
+            setState(() {
+              _isNotValid = false;
+            });
+          }
         }
       });
     } else {
@@ -195,6 +203,7 @@ class _InternationalPhoneNumberInputState
                 setState(() {
                   _selectedCountry = value;
                 });
+                _phoneNumberControllerListener();
               },
             ),
           ),
