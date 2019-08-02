@@ -27,7 +27,7 @@ A single and customizable flutter package for internation phone number input
       this.shouldParse = true,
       this.shouldValidate = true,
       this.formatInput = true,
-      this.errorMessage = 'Invalid phone number'}
+      this.errorMessage = 'Invalid phone number'
 ```
 
 | Parameter	   		| Datatype          | Initial Value |    Default [1]     |   Decoration [2]   |  CustomBorder [3]  |
@@ -51,7 +51,6 @@ A single and customizable flutter package for internation phone number input
 | formatInput    		| boolean	    | null          | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
 |-------------------------------|-------------------|---------------|--------------------|--------------------|--------------------|
 | errorMessage    		| String	    | null          | :heavy_check_mark: |        :x:         | :heavy_check_mark: |
-|-------------------------------|-------------------|---------------|--------------------|--------------------|--------------------|
 
 
 # Examples
