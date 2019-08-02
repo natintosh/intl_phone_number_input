@@ -9,11 +9,8 @@ A single and customizable flutter package for internation phone number input
 | s/n | Constructor						|
 | --- | ------------------------------------------------------- |
 |  1  | InternationalPhoneNumberInput				|
-| --- | ------------------------------------------------------- |
 |  2  | InternationalPhoneNumberInput.withCustomDecoration	|
-| --- | ------------------------------------------------------- |
 |  3  | InternationalPhoneNumberInput.withCustomBorder		|
-| --- | ------------------------------------------------------- |
 
 ## Available Parameters
 
