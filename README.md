@@ -33,12 +33,12 @@ A single and customizable flutter package for internation phone number input
 | onInputValidated 		| function(string)  | null          | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
 | inputBorder      		| InputBorder       | null          | :heavy_check_mark: | 	  :x:         | :heavy_check_mark: |
 | inputDecoration  		| InputDecoration   | null          | :heavy_check_mark: | :heavy_check_mark: |        :x:	   |
-| initialCountry2LetterCode     | String	    | null          | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
-| hintText       		| String	    | null          | :heavy_check_mark: |        :x:         | :heavy_check_mark: |
-| shouldParse    		| boolean	    | null          | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
-| shouldValidate    		| boolean           | null          | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
-| formatInput    		| boolean	    | null          | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
-| errorMessage    		| String	    | null          | :heavy_check_mark: |        :x:         | :heavy_check_mark: |
+| initialCountry2LetterCode     | String	    | NG            | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
+| hintText       		| String	    | (800) 000-0001 23          | :heavy_check_mark: |        :x:         | :heavy_check_mark: |
+| shouldParse    		| boolean	    | true          | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
+| shouldValidate    		| boolean           | true          | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
+| formatInput    		| boolean	    | true          | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
+| errorMessage    		| String	    | Invalid phone number          | :heavy_check_mark: |        :x:         | :heavy_check_mark: |
 
 
 # Examples
