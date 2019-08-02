@@ -7,11 +7,11 @@ A single and customizable flutter package for internation phone number input
 ## Constructors
 
 | s/n | Constructor						|
-|---------------------------------------------------------------|
+|-----| --------------------------------------------------------|
 |  1  | InternationalPhoneNumberInput				|
 |---------------------------------------------------------------|
 |  2  | InternationalPhoneNumberInput.withCustomDecoration	|
-|---------------------------------------------------------------|
+|-----|---------------------------------------------------------|
 |  3  | InternationalPhoneNumberInput.withCustomBorder		|
 |---------------------------------------------------------------|
 
@@ -27,20 +27,31 @@ A single and customizable flutter package for internation phone number input
       this.shouldParse = true,
       this.shouldValidate = true,
       this.formatInput = true,
-      this.errorMessage = 'Invalid phone number'
+      this.errorMessage = 'Invalid phone number'}
 ```
 
 | Parameter	   		| Datatype          | Initial Value |    Default [1]     |   Decoration [2]   |  CustomBorder [3]  |
+|-------------------------------|-------------------|---------------|--------------------|--------------------|--------------------|
 | onInputChange    		| function(string)  | null          | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
+|-------------------------------|-------------------|---------------|--------------------|--------------------|--------------------|
 | onInputValidated 		| function(string)  | null          | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
+|-------------------------------|-------------------|---------------|--------------------|--------------------|--------------------|
 | inputBorder      		| InputBorder       | null          | :heavy_check_mark: | 	  :x:         | :heavy_check_mark: |
+|-------------------------------|-------------------|---------------|--------------------|--------------------|--------------------|
 | inputDecoration  		| InputDecoration   | null          | :heavy_check_mark: | :heavy_check_mark: |        :x:	   |
+|-------------------------------|-------------------|---------------|--------------------|--------------------|--------------------|
 | initialCountry2LetterCode     | String	    | null          | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
+|-------------------------------|-------------------|---------------|--------------------|--------------------|--------------------|
 | hintText       		| String	    | null          | :heavy_check_mark: |        :x:         | :heavy_check_mark: |
+|-------------------------------|-------------------|---------------|--------------------|--------------------|--------------------|
 | shouldParse    		| boolean	    | null          | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
+|-------------------------------|-------------------|---------------|--------------------|--------------------|--------------------|
 | shouldValidate    		| boolean           | null          | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
+|-------------------------------|-------------------|---------------|--------------------|--------------------|--------------------|
 | formatInput    		| boolean	    | null          | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
+|-------------------------------|-------------------|---------------|--------------------|--------------------|--------------------|
 | errorMessage    		| String	    | null          | :heavy_check_mark: |        :x:         | :heavy_check_mark: |
+|-------------------------------|-------------------|---------------|--------------------|--------------------|--------------------|
 
 
 # Examples
