@@ -80,7 +80,7 @@ InternationalPhoneNumberInput.withCustomBorder(
   hintText: '(100) 123-4567 8901',
   initialCountry2LetterCode: 'US',
   errorMessage: 'Wrong number',
-)
+);
 ```
 ()[]
 
