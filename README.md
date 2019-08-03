@@ -48,7 +48,7 @@ InternationalPhoneNumberInput(
  onInputChange: onPhoneNumberChanged,
 );
 ```
-()[]
+(Media 1)[https://raw.githubusercontent.com/natintosh/intl-phone-number-input/master/media/media_1.gif]
 
 
 ```dart
@@ -57,7 +57,7 @@ InternationalPhoneNumberInput(
   shouldParse: false,
   );
 ```
-()[]
+(Media 2)[https://raw.githubusercontent.com/natintosh/intl-phone-number-input/master/media/media_2.gif]
 
 
 ```dart
@@ -70,7 +70,7 @@ InternationalPhoneNumberInput(
   );
 ```
     
-()[]
+(Media 3)[https://raw.githubusercontent.com/natintosh/intl-phone-number-input/master/media/media_3.gif]
 
 
 ```dart
@@ -82,7 +82,7 @@ InternationalPhoneNumberInput.withCustomBorder(
   errorMessage: 'Wrong number',
 );
 ```
-()[]
+(Media 4)[https://raw.githubusercontent.com/natintosh/intl-phone-number-input/master/media/media_4.gif]
 
 
 ```dart
@@ -98,7 +98,7 @@ InternationalPhoneNumberInput.withCustomDecoration(
   ),
 );
 ```
-()[]
+(Media 4)[https://raw.githubusercontent.com/natintosh/intl-phone-number-input/master/media/media_5.gif]
 
 
 ```dart
@@ -117,9 +117,11 @@ InternationalPhoneNumberInput.withCustomDecoration(
   ),
 );
 ```
-()[]
+(Media 6)[https://raw.githubusercontent.com/natintosh/intl-phone-number-input/master/media/media_6.gif]
 
+# Dependencies
 
+*     (libphonenumber)[https://pub.dev/packages/libphonenumber]
 
 # Credits
 
