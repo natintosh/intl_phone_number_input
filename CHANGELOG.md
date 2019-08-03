@@ -1,4 +1,10 @@
 
+## [0.0.10]
+ - Minor changes to the source file
+ 
+## [0.0.9]
+ - Critical bug fixed caused by changing source files and packages
+ 
 ## [0.0.8]
  - Minor changes to the source file
  - Added example
