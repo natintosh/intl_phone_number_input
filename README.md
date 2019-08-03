@@ -121,7 +121,6 @@ InternationalPhoneNumberInput.withCustomDecoration(
 
 # Dependencies
 
-* 
 * [libphonenumber](https://pub.dev/packages/libphonenumber)
 
 # Credits
