@@ -48,7 +48,7 @@ InternationalPhoneNumberInput(
  onInputChange: onPhoneNumberChanged,
 );
 ```
-![Media 1](https://raw.githubusercontent.com/natintosh/intl-phone-number-input/master/media/media_1.gif)
+![Media 1](https://raw.githubusercontent.com/natintosh/intl-phone-number-input/master/media/media_1.gif | width=100)
 
 
 ```dart
