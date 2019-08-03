@@ -7,7 +7,7 @@ import 'package:intl_phone_number_input/utils/util.dart';
 import 'package:libphonenumber/libphonenumber.dart';
 
 class InternationalPhoneNumberInput extends StatefulWidget {
-  final ValueChanged<String> onInputChange;
+  final ValueChanged<String> onInputChanged;
   final ValueChanged<bool> onInputValidated;
 
   final String initialCountry2LetterCode;
@@ -23,7 +23,7 @@ class InternationalPhoneNumberInput extends StatefulWidget {
 
   const InternationalPhoneNumberInput(
       {Key key,
-      @required this.onInputChange,
+      @required this.onInputChanged,
       this.onInputValidated,
       this.inputBorder,
       this.inputDecoration,
@@ -36,7 +36,7 @@ class InternationalPhoneNumberInput extends StatefulWidget {
       : super(key: key);
 
   factory InternationalPhoneNumberInput.withCustomDecoration({
-    @required ValueChanged<String> onInputChange,
+    @required ValueChanged<String> onInputChanged,
     ValueChanged<bool> onInputValidated,
     @required InputDecoration inputDecoration,
     String initialCountry2LetterCode = 'NG',
@@ -45,7 +45,7 @@ class InternationalPhoneNumberInput extends StatefulWidget {
     bool shouldValidate = true,
   }) {
     return InternationalPhoneNumberInput(
-      onInputChange: onInputChange,
+      onInputChanged: onInputChanged,
       onInputValidated: onInputValidated,
       inputDecoration: inputDecoration,
       initialCountry2LetterCode: initialCountry2LetterCode,
@@ -56,7 +56,8 @@ class InternationalPhoneNumberInput extends StatefulWidget {
   }
 
   factory InternationalPhoneNumberInput.withCustomBorder({
-    @required ValueChanged<String> onInputChange,
+    @required ValueChanged<String> onInputChanged,
+    @required ValueChanged<String> onInputValidated,
     @required InputBorder inputBorder,
     @required String hintText,
     String initialCountry2LetterCode = 'NG',
@@ -66,7 +67,7 @@ class InternationalPhoneNumberInput extends StatefulWidget {
     bool shouldValidate = true,
   }) {
     return InternationalPhoneNumberInput(
-      onInputChange: onInputChange,
+      onInputChanged: onInputChanged,
       inputBorder: inputBorder,
       hintText: hintText,
       initialCountry2LetterCode: initialCountry2LetterCode,
@@ -139,7 +140,7 @@ class _InternationalPhoneNumberInputState
             });
           }
         } else {
-          widget.onInputChange(phoneNumber);
+          widget.onInputChanged(phoneNumber);
           if (widget.onInputValidated != null) {
             widget.onInputValidated(true);
           }
@@ -153,7 +154,7 @@ class _InternationalPhoneNumberInputState
     } else {
       String phoneNumber =
           '${_selectedCountry.dialCode}$parsedPhoneNumberString';
-      widget.onInputChange(phoneNumber);
+      widget.onInputChanged(phoneNumber);
     }
   }
 
