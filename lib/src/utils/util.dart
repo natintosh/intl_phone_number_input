@@ -1,4 +1,4 @@
-import 'package:intl_phone_number_input/models/country_model.dart';
+import 'package:intl_phone_number_input/src/models/country_model.dart';
 
 class Utils {
   static Country getInitialSelectedCountry(

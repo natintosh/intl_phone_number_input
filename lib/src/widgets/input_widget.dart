@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:intl_phone_number_input/models/country_model.dart';
-import 'package:intl_phone_number_input/providers/country_provider.dart';
-import 'package:intl_phone_number_input/utils/phone_input_formatter.dart';
-import 'package:intl_phone_number_input/utils/util.dart';
+import 'package:intl_phone_number_input/src/models/country_model.dart';
+import 'package:intl_phone_number_input/src/providers/country_provider.dart';
+import 'package:intl_phone_number_input/src/utils/phone_input_formatter.dart';
+import 'package:intl_phone_number_input/src/utils/util.dart';
 import 'package:libphonenumber/libphonenumber.dart';
 
 class InternationalPhoneNumberInput extends StatefulWidget {
