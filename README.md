@@ -121,8 +121,8 @@ InternationalPhoneNumberInput.withCustomDecoration(
 
 # Dependencies
 
-*     [libphonenumber](https://pub.dev/packages/libphonenumber)
+*     (libphonenumber)[https://pub.dev/packages/libphonenumber]
 
 # Credits
 
-A special thanks to [niinyarko](https://github.com/niinyarko/flutter-international-phone-input) for the inspiration
+A special thanks to [niinyarko](https://github.com/niinyarko/flutter-international-phone-input)
