@@ -1,3 +1,9 @@
+## [0.1.0]
+ - Minor bug fixed
+ - #### What's new
+    * Added focus node
+    * Custom list of countries e.g. ['NG', 'GH', 'BJ' 'TG', 'CI']
+    * Country Flag and Logo now formatted
 
 ## [0.0.10]
  - Minor changes to the source file

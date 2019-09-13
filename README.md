@@ -2,9 +2,9 @@
 
 A single and customizable flutter package for international phone number input
 
-### what's new
+### What's new
     * Added focus node
-    * Custom list of countrie e.g. ['NG', 'GH', 'BJ' 'TG', 'CI']
+    * Custom list of countries e.g. ['NG', 'GH', 'BJ' 'TG', 'CI']
     * Country Flag and Logo now formatted
 
 # Usage
