@@ -67,7 +67,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
               InternationalPhoneNumberInput(
-                onInputChange: onPhoneNumberChanged,
+                onInputChanged: onPhoneNumberChanged,
               ),
               Container(
                 padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 8.0),
@@ -80,7 +80,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
               InternationalPhoneNumberInput(
-                onInputChange: onPhoneNumberChanged,
+                onInputChanged: onPhoneNumberChanged,
                 shouldParse: false,
               ),
               Container(
@@ -94,7 +94,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
               InternationalPhoneNumberInput(
-                onInputChange: onPhoneNumberChanged,
+                onInputChanged: onPhoneNumberChanged,
                 shouldParse: true,
                 shouldValidate: true,
                 initialCountry2LetterCode: 'US',
@@ -111,7 +111,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
               InternationalPhoneNumberInput.withCustomBorder(
-                onInputChange: onPhoneNumberChanged,
+                onInputChanged: onPhoneNumberChanged,
                 inputBorder: OutlineInputBorder(),
                 hintText: '(100) 123-4567 8901',
                 initialCountry2LetterCode: 'US',
@@ -128,7 +128,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
               InternationalPhoneNumberInput.withCustomDecoration(
-                onInputChange: onPhoneNumberChanged,
+                onInputChanged: onPhoneNumberChanged,
                 initialCountry2LetterCode: 'US',
                 inputDecoration: InputDecoration(
                   border: OutlineInputBorder(
@@ -149,19 +149,18 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
               InternationalPhoneNumberInput.withCustomDecoration(
-                onInputChange: onPhoneNumberChanged,
-                onInputValidated: onInputChanged,
-                initialCountry2LetterCode: 'US',
-                inputDecoration: InputDecoration(
-                  hintText: 'Enter phone number',
-                  errorText: valid ? null : 'Invalid',
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(40),
+                  onInputChanged: onPhoneNumberChanged,
+                  onInputValidated: onInputChanged,
+                  initialCountry2LetterCode: 'US',
+                  inputDecoration: InputDecoration(
+                    hintText: 'Enter phone number',
+                    errorText: valid ? null : 'Invalid',
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(40),
+                      ),
                     ),
-                  ),
-                ),
-              ),
+                  )),
             ],
           ),
         ),
