@@ -21,6 +21,8 @@ class InternationalPhoneNumberInput extends StatefulWidget {
   final InputBorder inputBorder;
   final InputDecoration inputDecoration;
 
+  final FocusNode focusNode;
+
   const InternationalPhoneNumberInput(
       {Key key,
       @required this.onInputChanged,
@@ -32,6 +34,7 @@ class InternationalPhoneNumberInput extends StatefulWidget {
       this.shouldParse = true,
       this.shouldValidate = true,
       this.formatInput = true,
+      this.focusNode,
       this.errorMessage = 'Invalid phone number'})
       : super(key: key);
 
@@ -197,20 +200,30 @@ class _InternationalPhoneNumberInputState
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
           DropdownButtonHideUnderline(
-            child: DropdownButton<Country>(
-              value: _selectedCountry,
-              items: _mapCountryToDropdownItem(_countries),
-              onChanged: (value) {
-                setState(() {
-                  _selectedCountry = value;
-                });
-                _phoneNumberControllerListener();
-              },
+            child: Theme(
+              data: Theme.of(context).copyWith(
+                canvasColor: Color(0XFF29314B),
+              ),
+              child: DropdownButton<Country>(
+                style: TextStyle(
+                  color: Colors.white,
+                ),
+                value: _selectedCountry,
+                items: _mapCountryToDropdownItem(_countries),
+                onChanged: (value) {
+                  setState(() {
+                    _selectedCountry = value;
+                  });
+                  _phoneNumberControllerListener();
+                },
+              ),
             ),
           ),
           Expanded(
             flex: 7,
             child: TextField(
+              focusNode: widget.focusNode,
+              style: TextStyle(color: Colors.white, fontSize: 20),
               controller: _controller,
               keyboardType: TextInputType.phone,
               inputFormatters: _buildInputFormatter(),
@@ -230,6 +243,7 @@ class _InternationalPhoneNumberInputState
         InputDecoration(
           border: widget.inputBorder ?? UnderlineInputBorder(),
           hintText: widget.hintText,
+          hintStyle: TextStyle(fontSize: 20.0, color: Colors.white),
           errorText: _isNotValid ? widget.errorMessage : null,
         );
   }
@@ -241,7 +255,7 @@ class _InternationalPhoneNumberInputState
             (country) => DropdownMenuItem<Country>(
               value: country,
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
                   Image.asset(
                     country.flagUri,
@@ -251,6 +265,7 @@ class _InternationalPhoneNumberInputState
                   SizedBox(width: 12.0),
                   Text(
                     country.dialCode,
+                    // style: TextStyle(color: Colors.white),
                   )
                 ],
               ),
