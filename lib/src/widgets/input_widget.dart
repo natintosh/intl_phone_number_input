@@ -23,10 +23,14 @@ class InternationalPhoneNumberInput extends StatefulWidget {
 
   final FocusNode focusNode;
 
+  final List<String> countries;
+
   const InternationalPhoneNumberInput(
       {Key key,
       @required this.onInputChanged,
       this.onInputValidated,
+      this.focusNode,
+      this.countries,
       this.inputBorder,
       this.inputDecoration,
       this.initialCountry2LetterCode = 'NG',
@@ -34,13 +38,14 @@ class InternationalPhoneNumberInput extends StatefulWidget {
       this.shouldParse = true,
       this.shouldValidate = true,
       this.formatInput = true,
-      this.focusNode,
       this.errorMessage = 'Invalid phone number'})
       : super(key: key);
 
   factory InternationalPhoneNumberInput.withCustomDecoration({
     @required ValueChanged<String> onInputChanged,
     ValueChanged<bool> onInputValidated,
+    FocusNode focusNode,
+    List<String> countries,
     @required InputDecoration inputDecoration,
     String initialCountry2LetterCode = 'NG',
     bool formatInput = true,
@@ -50,6 +55,8 @@ class InternationalPhoneNumberInput extends StatefulWidget {
     return InternationalPhoneNumberInput(
       onInputChanged: onInputChanged,
       onInputValidated: onInputValidated,
+      focusNode: focusNode,
+      countries: countries,
       inputDecoration: inputDecoration,
       initialCountry2LetterCode: initialCountry2LetterCode,
       formatInput: formatInput,
@@ -60,7 +67,9 @@ class InternationalPhoneNumberInput extends StatefulWidget {
 
   factory InternationalPhoneNumberInput.withCustomBorder({
     @required ValueChanged<String> onInputChanged,
-    @required ValueChanged<String> onInputValidated,
+    @required ValueChanged<bool> onInputValidated,
+    FocusNode focusNode,
+    List<String> countries,
     @required InputBorder inputBorder,
     @required String hintText,
     String initialCountry2LetterCode = 'NG',
@@ -71,6 +80,9 @@ class InternationalPhoneNumberInput extends StatefulWidget {
   }) {
     return InternationalPhoneNumberInput(
       onInputChanged: onInputChanged,
+      onInputValidated: onInputValidated,
+      focusNode: focusNode,
+      countries: countries,
       inputBorder: inputBorder,
       hintText: hintText,
       initialCountry2LetterCode: initialCountry2LetterCode,
@@ -109,7 +121,8 @@ class _InternationalPhoneNumberInputState
   }
 
   _loadCountries(BuildContext context) async {
-    List<Country> data = await _getCountriesDataFromJsonFile(context: context);
+    List<Country> data = await _getCountriesDataFromJsonFile(
+        context: context, countries: widget.countries);
     setState(() {
       _countries = data;
       _selectedCountry = Utils.getInitialSelectedCountry(
@@ -118,9 +131,10 @@ class _InternationalPhoneNumberInputState
   }
 
   Future<List<Country>> _getCountriesDataFromJsonFile(
-      {@required BuildContext context}) async {
-    var list =
-        await CountryProvider.getCountriesDataFromJsonFile(context: context);
+      {@required BuildContext context,
+      @required List<String> countries}) async {
+    var list = await CountryProvider.getCountriesDataFromJsonFile(
+        context: context, countries: countries);
     return list;
   }
 
@@ -200,31 +214,21 @@ class _InternationalPhoneNumberInputState
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
           DropdownButtonHideUnderline(
-            child: Theme(
-              data: Theme.of(context).copyWith(
-                canvasColor: Color(0XFF29314B),
-              ),
-              child: DropdownButton<Country>(
-                style: TextStyle(
-                  color: Colors.white,
-                ),
-                value: _selectedCountry,
-                items: _mapCountryToDropdownItem(_countries),
-                onChanged: (value) {
-                  setState(() {
-                    _selectedCountry = value;
-                  });
-                  _phoneNumberControllerListener();
-                },
-              ),
+            child: DropdownButton<Country>(
+              value: _selectedCountry,
+              items: _mapCountryToDropdownItem(_countries),
+              onChanged: (value) {
+                setState(() {
+                  _selectedCountry = value;
+                });
+                _phoneNumberControllerListener();
+              },
             ),
           ),
-          Expanded(
-            flex: 7,
+          Flexible(
             child: TextField(
-              focusNode: widget.focusNode,
-              style: TextStyle(color: Colors.white, fontSize: 20),
               controller: _controller,
+              focusNode: widget.focusNode,
               keyboardType: TextInputType.phone,
               inputFormatters: _buildInputFormatter(),
               onChanged: (text) {
@@ -243,7 +247,6 @@ class _InternationalPhoneNumberInputState
         InputDecoration(
           border: widget.inputBorder ?? UnderlineInputBorder(),
           hintText: widget.hintText,
-          hintStyle: TextStyle(fontSize: 20.0, color: Colors.white),
           errorText: _isNotValid ? widget.errorMessage : null,
         );
   }
@@ -265,7 +268,6 @@ class _InternationalPhoneNumberInputState
                   SizedBox(width: 12.0),
                   Text(
                     country.dialCode,
-                    // style: TextStyle(color: Colors.white),
                   )
                 ],
               ),
