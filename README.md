@@ -1,7 +1,11 @@
 # Intl Phone Number Input
 
-A single and customizable flutter package for internation phone number input
+A single and customizable flutter package for international phone number input
 
+### what's new
+    * Added focus node
+    * Custom list of countrie e.g. ['NG', 'GH', 'BJ' 'TG', 'CI']
+    * Country Flag and Logo now formatted
 
 # Usage
 ## Constructors
@@ -18,6 +22,8 @@ A single and customizable flutter package for internation phone number input
 InternationalPhoneNumberInput({
 @required onInputChange,
       onInputValidated,
+      focusNode,
+      countries,
       inputBorder,
       inputDecoration,
       initialCountry2LetterCode = 'NG',
@@ -32,6 +38,8 @@ InternationalPhoneNumberInput({
 |-------------------------------|-------------------|----------------------|--------------------|--------------------|--------------------|
 | onInputChange                 | function(string)  |        null          | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
 | onInputValidated              | function(string)  |        null          | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
+| focusNode                     | FocusNode         |        null          | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
+| countries                     | List<string>      |        null          | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
 | inputBorder                   | InputBorder       |        null          | :heavy_check_mark: |        :x:         | :heavy_check_mark: |
 | inputDecoration               | InputDecoration   |        null          | :heavy_check_mark: | :heavy_check_mark: |        :x:         |
 | initialCountry2LetterCode     | String            |         NG           | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
@@ -45,7 +53,7 @@ InternationalPhoneNumberInput({
 # Examples
 ```dart
 InternationalPhoneNumberInput(
- onInputChange: onPhoneNumberChanged,
+ onInputChanged: onPhoneNumberChanged,
 );
 ```
 ![Media 1|100x200,20%](https://raw.githubusercontent.com/natintosh/intl-phone-number-input/master/media/media_1.gif)
@@ -53,7 +61,7 @@ InternationalPhoneNumberInput(
 
 ```dart
 InternationalPhoneNumberInput(
-  onInputChange: onPhoneNumberChanged,
+  onInputChanged: onPhoneNumberChanged,
   shouldParse: false,
   );
 ```
@@ -62,7 +70,7 @@ InternationalPhoneNumberInput(
 
 ```dart
 InternationalPhoneNumberInput(
-  onInputChange: onPhoneNumberChanged,
+  onInputChanged: onPhoneNumberChanged,
   shouldParse: true,
   shouldValidate: true,
   initialCountry2LetterCode: 'US',
@@ -75,7 +83,7 @@ InternationalPhoneNumberInput(
 
 ```dart
 InternationalPhoneNumberInput.withCustomBorder(
-  onInputChange: onPhoneNumberChanged,
+  onInputChanged: onPhoneNumberChanged,
   inputBorder: OutlineInputBorder(),
   hintText: '(100) 123-4567 8901',
   initialCountry2LetterCode: 'US',
@@ -87,7 +95,7 @@ InternationalPhoneNumberInput.withCustomBorder(
 
 ```dart
 InternationalPhoneNumberInput.withCustomDecoration(
-  onInputChange: onPhoneNumberChanged,
+  onInputChanged: onPhoneNumberChanged,
   initialCountry2LetterCode: 'US',
   inputDecoration: InputDecoration(
     border: OutlineInputBorder(
@@ -103,7 +111,7 @@ InternationalPhoneNumberInput.withCustomDecoration(
 
 ```dart
 InternationalPhoneNumberInput.withCustomDecoration(
-  onInputChange: onPhoneNumberChanged,
+  onInputChanged: onPhoneNumberChanged,
   onInputValidated: onInputChanged,
   initialCountry2LetterCode: 'US',
   inputDecoration: InputDecoration(
