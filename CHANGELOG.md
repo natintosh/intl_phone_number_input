@@ -3,7 +3,6 @@
   - Added Keyboard Action Type
   - Added callback that listens to keyboard action 
 
-
 ## [0.1.0]
  - Minor bug fixed
  - #### What's new
