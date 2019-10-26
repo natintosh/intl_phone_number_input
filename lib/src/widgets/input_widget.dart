@@ -10,6 +10,10 @@ class InternationalPhoneNumberInput extends StatefulWidget {
   final ValueChanged<String> onInputChanged;
   final ValueChanged<bool> onInputValidated;
 
+  final VoidCallback onSubmit;
+  final TextEditingController textFieldController;
+  final TextInputAction keyboardAction;
+
   final String initialCountry2LetterCode;
   final String hintText;
   final String errorMessage;
@@ -25,26 +29,32 @@ class InternationalPhoneNumberInput extends StatefulWidget {
 
   final List<String> countries;
 
-  const InternationalPhoneNumberInput(
-      {Key key,
-      @required this.onInputChanged,
-      this.onInputValidated,
-      this.focusNode,
-      this.countries,
-      this.inputBorder,
-      this.inputDecoration,
-      this.initialCountry2LetterCode = 'NG',
-      this.hintText = '(800) 000-0001 23',
-      this.shouldParse = true,
-      this.shouldValidate = true,
-      this.formatInput = true,
-      this.errorMessage = 'Invalid phone number'})
-      : super(key: key);
+  const InternationalPhoneNumberInput({
+    Key key,
+    @required this.onInputChanged,
+    this.onInputValidated,
+    this.focusNode,
+    this.textFieldController,
+    this.onSubmit,
+    this.keyboardAction,
+    this.countries,
+    this.inputBorder,
+    this.inputDecoration,
+    this.initialCountry2LetterCode = 'NG',
+    this.hintText = '(800) 000-0001 23',
+    this.shouldParse = true,
+    this.shouldValidate = true,
+    this.formatInput = true,
+    this.errorMessage = 'Invalid phone number',
+  }) : super(key: key);
 
   factory InternationalPhoneNumberInput.withCustomDecoration({
     @required ValueChanged<String> onInputChanged,
     ValueChanged<bool> onInputValidated,
     FocusNode focusNode,
+    TextEditingController textFieldController,
+    VoidCallback onSubmit,
+    TextInputAction keyboardAction,
     List<String> countries,
     @required InputDecoration inputDecoration,
     String initialCountry2LetterCode = 'NG',
@@ -56,6 +66,9 @@ class InternationalPhoneNumberInput extends StatefulWidget {
       onInputChanged: onInputChanged,
       onInputValidated: onInputValidated,
       focusNode: focusNode,
+      textFieldController: textFieldController,
+      onSubmit: onSubmit,
+      keyboardAction: keyboardAction,
       countries: countries,
       inputDecoration: inputDecoration,
       initialCountry2LetterCode: initialCountry2LetterCode,
@@ -69,6 +82,9 @@ class InternationalPhoneNumberInput extends StatefulWidget {
     @required ValueChanged<String> onInputChanged,
     @required ValueChanged<bool> onInputValidated,
     FocusNode focusNode,
+    TextEditingController textFieldController,
+    VoidCallback onSubmit,
+    TextInputAction keyboardAction,
     List<String> countries,
     @required InputBorder inputBorder,
     @required String hintText,
@@ -82,6 +98,9 @@ class InternationalPhoneNumberInput extends StatefulWidget {
       onInputChanged: onInputChanged,
       onInputValidated: onInputValidated,
       focusNode: focusNode,
+      textFieldController: textFieldController,
+      onSubmit: onSubmit,
+      keyboardAction: keyboardAction,
       countries: countries,
       inputBorder: inputBorder,
       hintText: hintText,
@@ -196,7 +215,7 @@ class _InternationalPhoneNumberInputState
   @override
   void initState() {
     Future.delayed(Duration.zero, () => _loadCountries(context));
-    _controller = TextEditingController();
+    _controller = widget.textFieldController ?? TextEditingController();
     _controller.addListener(_phoneNumberControllerListener);
     super.initState();
   }
@@ -230,7 +249,9 @@ class _InternationalPhoneNumberInputState
               controller: _controller,
               focusNode: widget.focusNode,
               keyboardType: TextInputType.phone,
+              textInputAction: widget.keyboardAction,
               inputFormatters: _buildInputFormatter(),
+              onEditingComplete: widget.onSubmit,
               onChanged: (text) {
                 _phoneNumberControllerListener();
               },
