@@ -3,9 +3,12 @@
 A single and customizable flutter package for international phone number input
 
 ### What's new
-    * Added focus node
+    * Added TextEditingController
+    * TextField formats on TextEditingController Text change
+    * Added KeyboardActionType
+    * Callback that listens to Keyboard Action
+    * Added FocusNode
     * Custom list of countries e.g. ['NG', 'GH', 'BJ' 'TG', 'CI']
-    * Country Flag and Logo now formatted
 
 # Usage
 ## Constructors
@@ -20,18 +23,22 @@ A single and customizable flutter package for international phone number input
 
 ```dart
 InternationalPhoneNumberInput({
-@required onInputChange,
-      onInputValidated,
-      focusNode,
-      countries,
-      inputBorder,
-      inputDecoration,
-      initialCountry2LetterCode = 'NG',
-      hintText = '(800) 000-0001 23',
-      shouldParse = true,
-      shouldValidate = true,
-      formatInput = true,
-      errorMessage = 'Invalid phone number'});
+    @required this.onInputChanged,
+    this.onInputValidated,
+    this.focusNode,
+    this.textFieldController,
+    this.onSubmit,
+    this.keyboardAction,
+    this.countries,
+    this.inputBorder,
+    this.inputDecoration,
+    this.initialCountry2LetterCode = 'NG',
+    this.hintText = '(800) 000-0001 23',
+    this.shouldParse = true,
+    this.shouldValidate = true,
+    this.formatInput = true,
+    this.errorMessage = 'Invalid phone number',
+    });
 ```
 
 | Parameter                     | Datatype          |    Initial Value     |    Default [1]     |   Decoration [2]   |  CustomBorder [3]  |
@@ -39,6 +46,9 @@ InternationalPhoneNumberInput({
 | onInputChange                 | function(string)  |        null          | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
 | onInputValidated              | function(string)  |        null          | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
 | focusNode                     | FocusNode         |        null          | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
+| textFieldController   | TextEditingController  |   TextEditingController() | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
+| onSubmit              | Function()         |        null          | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
+| keyboardAction      | TextInputAction  |        null          | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
 | countries                     | List<string>      |        null          | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
 | inputBorder                   | InputBorder       |        null          | :heavy_check_mark: |        :x:         | :heavy_check_mark: |
 | inputDecoration               | InputDecoration   |        null          | :heavy_check_mark: | :heavy_check_mark: |        :x:         |

@@ -212,11 +212,24 @@ class _InternationalPhoneNumberInputState
     return null;
   }
 
+  void _formatTextField() {
+    bool isFormatted = _controller.text.contains(RegExp(r'([\(\1\)\1\s\-])'));
+    bool isNotEmpty = _controller.text.isNotEmpty;
+    if (!isFormatted && isNotEmpty) {
+      TextEditingValue textEditingValue =
+          TextEditingValue(text: _controller.text);
+      textEditingValue = _kPhoneInputFormatter.formatEditUpdate(
+          _controller.value, textEditingValue);
+      _controller.text = textEditingValue.text;
+    }
+  }
+
   @override
   void initState() {
     Future.delayed(Duration.zero, () => _loadCountries(context));
     _controller = widget.textFieldController ?? TextEditingController();
     _controller.addListener(_phoneNumberControllerListener);
+    _controller.addListener(_formatTextField);
     super.initState();
   }
 

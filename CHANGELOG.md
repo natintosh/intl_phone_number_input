@@ -1,6 +1,9 @@
+## [0.1.2]
+  - TextField now formats whenever TextEditingController Text is changed
+
 ## [0.1.1]
   - Added TextEditingController
-  - Added Keyboard Action Type
+  - Added KeyboardActionType
   - Added callback that listens to keyboard action 
 
 ## [0.1.0]
