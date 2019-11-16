@@ -215,7 +215,7 @@ class _InternationalPhoneNumberInputState
   void _formatTextField() {
     bool isFormatted = _controller.text.contains(RegExp(r'([\(\1\)\1\s\-])'));
     bool isNotEmpty = _controller.text.isNotEmpty;
-    if (!isFormatted && isNotEmpty) {
+    if (!isFormatted && isNotEmpty && widget.formatInput) {
       TextEditingValue textEditingValue =
           TextEditingValue(text: _controller.text);
       textEditingValue = _kPhoneInputFormatter.formatEditUpdate(
