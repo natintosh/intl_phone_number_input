@@ -1,4 +1,7 @@
-## [0.1.2]
+## [0.1.2+2]
+  - Bug Fix
+  
+  ## [0.1.2]
   - TextField now formats whenever TextEditingController Text is changed
 
 ## [0.1.1]
