@@ -3,11 +3,12 @@ import 'package:flutter/services.dart';
 import 'package:intl_phone_number_input/src/models/country_model.dart';
 import 'package:intl_phone_number_input/src/providers/country_provider.dart';
 import 'package:intl_phone_number_input/src/utils/phone_input_formatter.dart';
+import 'package:intl_phone_number_input/src/utils/phone_number.dart';
 import 'package:intl_phone_number_input/src/utils/util.dart';
 import 'package:libphonenumber/libphonenumber.dart';
 
 class InternationalPhoneNumberInput extends StatefulWidget {
-  final ValueChanged<String> onInputChanged;
+  final ValueChanged<PhoneNumber> onInputChanged;
   final ValueChanged<bool> onInputValidated;
 
   final VoidCallback onSubmit;
@@ -49,7 +50,7 @@ class InternationalPhoneNumberInput extends StatefulWidget {
   }) : super(key: key);
 
   factory InternationalPhoneNumberInput.withCustomDecoration({
-    @required ValueChanged<String> onInputChanged,
+    @required ValueChanged<PhoneNumber> onInputChanged,
     ValueChanged<bool> onInputValidated,
     FocusNode focusNode,
     TextEditingController textFieldController,
@@ -79,7 +80,7 @@ class InternationalPhoneNumberInput extends StatefulWidget {
   }
 
   factory InternationalPhoneNumberInput.withCustomBorder({
-    @required ValueChanged<String> onInputChanged,
+    @required ValueChanged<PhoneNumber> onInputChanged,
     @required ValueChanged<bool> onInputValidated,
     FocusNode focusNode,
     TextEditingController textFieldController,
@@ -164,7 +165,7 @@ class _InternationalPhoneNumberInputState
 
     if (widget.shouldParse) {
       getParsedPhoneNumber(
-              parsedPhoneNumberString, _selectedCountry.countryCode)
+              parsedPhoneNumberString, _selectedCountry?.countryCode)
           .then((phoneNumber) {
         if (phoneNumber == null) {
           if (widget.onInputValidated != null) {
@@ -176,7 +177,10 @@ class _InternationalPhoneNumberInputState
             });
           }
         } else {
-          widget.onInputChanged(phoneNumber);
+          widget.onInputChanged(new PhoneNumber(
+              phoneNumber: phoneNumber,
+              isoCode: _selectedCountry?.countryCode,
+              dialCode: _selectedCountry?.dialCode));
           if (widget.onInputValidated != null) {
             widget.onInputValidated(true);
           }
@@ -190,13 +194,16 @@ class _InternationalPhoneNumberInputState
     } else {
       String phoneNumber =
           '${_selectedCountry.dialCode}$parsedPhoneNumberString';
-      widget.onInputChanged(phoneNumber);
+      widget.onInputChanged(new PhoneNumber(
+          phoneNumber: phoneNumber,
+          isoCode: _selectedCountry?.countryCode,
+          dialCode: _selectedCountry?.dialCode));
     }
   }
 
   static Future<String> getParsedPhoneNumber(
       String phoneNumber, String iso) async {
-    if (phoneNumber.isNotEmpty) {
+    if (phoneNumber.isNotEmpty && iso != null) {
       try {
         bool isValidPhoneNumber = await PhoneNumberUtil.isValidPhoneNumber(
             phoneNumber: phoneNumber, isoCode: iso);
