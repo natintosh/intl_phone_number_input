@@ -1,20 +1,12 @@
-<<<<<<< HEAD
-## [0.1.2+2]
-  - Bug Fix
-  
-  ## [0.1.2]
-=======
 ## [0.1.3]
   -  onInputChanged now returns a new PhoneNumber Model
   -  You can create a PhoneNumber object from PhoneNumber.getRegionInfoFromPhoneNumber(String phoneNumber, [String isoCode]); 
   -  You can now parse phoneNumber by calling   PhoneNumber.getParsableNumber(String phoneNumber, String isoCode) or `PhoneNumber Reference`.parseNumber()
 
-
 ## [0.1.2+2]
   - Bug fixed
 
 ## [0.1.2]
->>>>>>> develop
   - TextField now formats whenever TextEditingController Text is changed
 
 ## [0.1.1]
