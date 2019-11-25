@@ -1,6 +1,6 @@
 # Intl Phone Number Input
 
-A single and customizable flutter package for international phone number input
+A simple and customizable flutter package for international phone number input
 
 ### What's new
     * onInputChanged now returns a new PhoneNumber Model
@@ -14,6 +14,10 @@ A single and customizable flutter package for international phone number input
     String parsableNumber = number.parseNumber();
     `controller reference`.text = parsableNumber
 ```    
+
+> ### Note
+> ```PhoneNumber.getRegionInfoFromPhoneNumber(String phoneNumber, [String isoCode])````
+> Could throw an Exception if the phoneNUmber isn't recognised its a good pattern to pass the country's isoCode or have '+' ahead of the phoneNumber 
 
 # Usage
 ## Constructors
