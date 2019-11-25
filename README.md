@@ -1,14 +1,25 @@
 # Intl Phone Number Input
 
-A single and customizable flutter package for international phone number input
+A simple and customizable flutter package for international phone number input
 
 ### What's new
-    * Added TextEditingController
-    * TextField formats on TextEditingController Text change
-    * Added KeyboardActionType
-    * Callback that listens to Keyboard Action
-    * Added FocusNode
+    * onInputChanged now returns a new PhoneNumber Model
+    * You can create a PhoneNumber object from PhoneNumber.getRegionInfoFromPhoneNumber(String phoneNumber, [String isoCode]); 
+    * You can now parse phoneNumber by calling   PhoneNumber.getParsableNumber(String phoneNumber, String isoCode) or `PhoneNumber Reference`.parseNumber()
     * Custom list of countries e.g. ['NG', 'GH', 'BJ' 'TG', 'CI']
+    
+```dart
+    String phoneNumber =  '+234 500 500 5005';
+    PhoneNumber number = await PhoneNumber.getRegionInfoFromPhoneNumber(phoneNumber);
+    String parsableNumber = number.parseNumber();
+    `controller reference`.text = parsableNumber
+```    
+
+### Note
+``` dart
+    PhoneNumber.getRegionInfoFromPhoneNumber(String phoneNumber, [String isoCode])
+```
+> Could throw an Exception if the phoneNumber isn't recognised its a good pattern to pass the country's isoCode or have '+' at the beginning of the string
 
 # Usage
 ## Constructors
@@ -43,7 +54,7 @@ InternationalPhoneNumberInput({
 
 | Parameter                     | Datatype          |    Initial Value     |    Default [1]     |   Decoration [2]   |  CustomBorder [3]  |
 |-------------------------------|-------------------|----------------------|--------------------|--------------------|--------------------|
-| onInputChange                 | function(string)  |        null          | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
+| onInputChange                 | function(PhoneNumber)  |        null          | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
 | onInputValidated              | function(string)  |        null          | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
 | focusNode                     | FocusNode         |        null          | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
 | textFieldController   | TextEditingController  |   TextEditingController() | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
