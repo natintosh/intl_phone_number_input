@@ -17,7 +17,7 @@ A simple and customizable flutter package for international phone number input
 
 ### Note
 ``` dart
-PhoneNumber.getRegionInfoFromPhoneNumber(String phoneNumber, [String isoCode])
+    PhoneNumber.getRegionInfoFromPhoneNumber(String phoneNumber, [String isoCode])
 ```
 > Could throw an Exception if the phoneNUmber isn't recognised its a good pattern to pass the country's isoCode or have '+' ahead of the phoneNumber 
 
