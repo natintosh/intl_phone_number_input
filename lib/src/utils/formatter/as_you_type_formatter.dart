@@ -39,11 +39,14 @@ class AsYouTypeFormatter extends TextInputFormatter {
 
           try {
             if (separatorChars.hasMatch(parsedText[offset])) {
-              offset += 2;
+              offset += 3;
             } else {
               offset += 1;
             }
           } on RangeError {}
+
+          if (parsedText.length < newValueText.length)
+            offset = parsedText.length;
 
           if (separatorChars.hasMatch(parsedText))
             this.onInputFormatted(
