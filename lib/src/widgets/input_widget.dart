@@ -25,6 +25,12 @@ class InternationalPhoneNumberInput extends StatelessWidget {
   final bool shouldParse;
   final bool shouldValidate;
 
+  /// The style to use for the text being edited.
+  ///
+  /// This text style is also used as the base style for the [decoration].
+  ///
+  /// If null, defaults to the `subhead` text style from the current [Theme].
+  final TextStyle textStyle;
   final InputBorder inputBorder;
   final InputDecoration inputDecoration;
 
@@ -41,10 +47,11 @@ class InternationalPhoneNumberInput extends StatelessWidget {
     this.onSubmit,
     this.keyboardAction,
     this.countries,
+    this.textStyle,
     this.inputBorder,
     this.inputDecoration,
     this.initialCountry2LetterCode = 'NG',
-    this.hintText = '(800) 000-0001 23',
+    this.hintText = 'Phone Number',
     this.shouldParse = true,
     this.shouldValidate = true,
     this.formatInput = true,
@@ -59,6 +66,7 @@ class InternationalPhoneNumberInput extends StatelessWidget {
     VoidCallback onSubmit,
     TextInputAction keyboardAction,
     List<String> countries,
+    TextStyle textStyle,
     @required InputDecoration inputDecoration,
     String initialCountry2LetterCode = 'NG',
     bool formatInput = true,
@@ -73,6 +81,7 @@ class InternationalPhoneNumberInput extends StatelessWidget {
       onSubmit: onSubmit,
       keyboardAction: keyboardAction,
       countries: countries,
+      textStyle: textStyle,
       inputDecoration: inputDecoration,
       initialCountry2LetterCode: initialCountry2LetterCode,
       formatInput: formatInput,
@@ -89,6 +98,7 @@ class InternationalPhoneNumberInput extends StatelessWidget {
     VoidCallback onSubmit,
     TextInputAction keyboardAction,
     List<String> countries,
+    TextStyle textStyle,
     @required InputBorder inputBorder,
     @required String hintText,
     String initialCountry2LetterCode = 'NG',
@@ -105,6 +115,7 @@ class InternationalPhoneNumberInput extends StatelessWidget {
       onSubmit: onSubmit,
       keyboardAction: keyboardAction,
       countries: countries,
+      textStyle: textStyle,
       inputBorder: inputBorder,
       hintText: hintText,
       initialCountry2LetterCode: initialCountry2LetterCode,
@@ -134,6 +145,7 @@ class InternationalPhoneNumberInput extends StatelessWidget {
         formatInput: formatInput,
         shouldParse: shouldParse,
         shouldValidate: shouldValidate,
+        textStyle: textStyle,
         inputBorder: inputBorder,
         inputDecoration: inputDecoration,
         countries: countries,
@@ -158,6 +170,12 @@ class _InputWidget extends StatefulWidget {
   final bool shouldParse;
   final bool shouldValidate;
 
+  /// The style to use for the text being edited.
+  ///
+  /// This text style is also used as the base style for the [decoration].
+  ///
+  /// If null, defaults to the `subhead` text style from the current [Theme].
+  final TextStyle textStyle;
   final InputBorder inputBorder;
   final InputDecoration inputDecoration;
 
@@ -174,10 +192,11 @@ class _InputWidget extends StatefulWidget {
     this.onSubmit,
     this.keyboardAction,
     this.countries,
+    this.textStyle,
     this.inputBorder,
     this.inputDecoration,
     this.initialCountry2LetterCode = 'NG',
-    this.hintText = '(800) 000-0001 23',
+    this.hintText = 'Phone Number',
     this.shouldParse = true,
     this.shouldValidate = true,
     this.formatInput = true,
@@ -189,8 +208,6 @@ class _InputWidget extends StatefulWidget {
 }
 
 class _InputWidgetState extends State<_InputWidget> {
-  bool isNotValid = false;
-
   TextEditingController controller;
 
   _loadCountries(BuildContext context) async {
@@ -205,7 +222,7 @@ class _InputWidgetState extends State<_InputWidget> {
 
   void _phoneNumberControllerListener() {
     InputProvider provider = Provider.of<InputProvider>(context);
-    isNotValid = false;
+    provider.isNotValid = false;
     String parsedPhoneNumberString =
         controller.text.replaceAll(RegExp(r'[^\d+]'), '');
 
@@ -217,11 +234,7 @@ class _InputWidgetState extends State<_InputWidget> {
           if (widget.onInputValidated != null) {
             widget.onInputValidated(false);
           }
-          if (widget.shouldValidate) {
-            setState(() {
-              isNotValid = true;
-            });
-          }
+          provider.isNotValid = true;
         } else {
           widget.onInputChanged(new PhoneNumber(
               phoneNumber: phoneNumber,
@@ -230,11 +243,7 @@ class _InputWidgetState extends State<_InputWidget> {
           if (widget.onInputValidated != null) {
             widget.onInputValidated(true);
           }
-          if (widget.shouldValidate) {
-            setState(() {
-              isNotValid = false;
-            });
-          }
+          provider.isNotValid = false;
         }
       });
     } else {
@@ -286,6 +295,7 @@ class _InputWidgetState extends State<_InputWidget> {
     return Container(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           DropdownButtonHideUnderline(
             child: DropdownButton<Country>(
@@ -298,13 +308,19 @@ class _InputWidgetState extends State<_InputWidget> {
             ),
           ),
           Flexible(
-            child: TextField(
+            child: TextFormField(
               controller: controller,
               focusNode: widget.focusNode,
               keyboardType: TextInputType.phone,
               textInputAction: widget.keyboardAction,
+              style: widget.textStyle,
+              decoration: _getInputDecoration(widget.inputDecoration),
+              onEditingComplete: widget.onSubmit,
+              validator: (String value) {
+                return provider.isNotValid ? widget.errorMessage : null;
+              },
               inputFormatters: [
-                LengthLimitingTextInputFormatter(20),
+                LengthLimitingTextInputFormatter(15),
                 AsYouTypeFormatter(
                   isoCode: provider.country?.countryCode ?? '',
                   dialCode: provider.country?.dialCode ?? '',
@@ -315,11 +331,9 @@ class _InputWidgetState extends State<_InputWidget> {
                   },
                 ),
               ],
-              onEditingComplete: widget.onSubmit,
               onChanged: (text) {
                 _phoneNumberControllerListener();
               },
-              decoration: _getInputDecoration(widget.inputDecoration),
             ),
           )
         ],
@@ -328,11 +342,14 @@ class _InputWidgetState extends State<_InputWidget> {
   }
 
   InputDecoration _getInputDecoration(InputDecoration decoration) {
+    InputProvider provider = Provider.of<InputProvider>(context);
     return decoration ??
         InputDecoration(
           border: widget.inputBorder ?? UnderlineInputBorder(),
           hintText: widget.hintText,
-          errorText: isNotValid ? widget.errorMessage : null,
+          errorText: widget.shouldValidate
+              ? (provider.isNotValid ? widget.errorMessage : null)
+              : null,
         );
   }
 
