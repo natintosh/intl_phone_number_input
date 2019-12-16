@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl_phone_number_input/src/models/country_model.dart';
 import 'package:intl_phone_number_input/src/providers/country_provider.dart';
-import 'package:intl_phone_number_input/src/utils/phone_input_formatter.dart';
+import 'package:intl_phone_number_input/src/utils/formatter/as_you_type_formatter.dart';
 import 'package:intl_phone_number_input/src/utils/phone_number.dart';
 import 'package:intl_phone_number_input/src/utils/util.dart';
 import 'package:libphonenumber/libphonenumber.dart';
@@ -119,7 +119,7 @@ class InternationalPhoneNumberInput extends StatefulWidget {
 
 class _InternationalPhoneNumberInputState
     extends State<InternationalPhoneNumberInput> {
-  final PhoneInputFormatter _kPhoneInputFormatter = PhoneInputFormatter();
+//  final PhoneInputFormatter _kPhoneInputFormatter = PhoneInputFormatter();
 
   bool _isNotValid = false;
 
@@ -127,18 +127,6 @@ class _InternationalPhoneNumberInputState
   Country _selectedCountry;
 
   TextEditingController _controller;
-
-  List<TextInputFormatter> _buildInputFormatter() {
-    List<TextInputFormatter> formatter = [
-      LengthLimitingTextInputFormatter(20),
-      WhitelistingTextInputFormatter.digitsOnly,
-    ];
-    if (widget.formatInput) {
-      formatter.add(_kPhoneInputFormatter);
-    }
-
-    return formatter;
-  }
 
   _loadCountries(BuildContext context) async {
     List<Country> data = await _getCountriesDataFromJsonFile(
@@ -161,7 +149,7 @@ class _InternationalPhoneNumberInputState
   void _phoneNumberControllerListener() {
     _isNotValid = false;
     String parsedPhoneNumberString =
-        _controller.text.replaceAll(RegExp(r'([\(\1\)\1\s\-])'), '');
+        _controller.text.replaceAll(RegExp(r'[^\d+]'), '');
 
     if (widget.shouldParse) {
       getParsedPhoneNumber(
@@ -219,24 +207,11 @@ class _InternationalPhoneNumberInputState
     return null;
   }
 
-  void _formatTextField() {
-    bool isFormatted = _controller.text.contains(RegExp(r'([\(\1\)\1\s\-])'));
-    bool isNotEmpty = _controller.text.isNotEmpty;
-    if (!isFormatted && isNotEmpty && widget.formatInput) {
-      TextEditingValue textEditingValue =
-          TextEditingValue(text: _controller.text);
-      textEditingValue = _kPhoneInputFormatter.formatEditUpdate(
-          _controller.value, textEditingValue);
-      _controller.text = textEditingValue.text;
-    }
-  }
-
   @override
   void initState() {
     Future.delayed(Duration.zero, () => _loadCountries(context));
     _controller = widget.textFieldController ?? TextEditingController();
     _controller.addListener(_phoneNumberControllerListener);
-    _controller.addListener(_formatTextField);
     super.initState();
   }
 
@@ -270,7 +245,18 @@ class _InternationalPhoneNumberInputState
               focusNode: widget.focusNode,
               keyboardType: TextInputType.phone,
               textInputAction: widget.keyboardAction,
-              inputFormatters: _buildInputFormatter(),
+              inputFormatters: [
+                LengthLimitingTextInputFormatter(20),
+                AsYouTypeFormatter(
+                  isoCode: 'NG',
+                  dialCode: '+234',
+                  onInputFormatted: (TextEditingValue value) {
+                    setState(() {
+                      _controller.value = value;
+                    });
+                  },
+                ),
+              ],
               onEditingComplete: widget.onSubmit,
               onChanged: (text) {
                 _phoneNumberControllerListener();

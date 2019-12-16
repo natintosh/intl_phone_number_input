@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
  *
 **/
 
+@deprecated
 class PhoneInputFormatter extends TextInputFormatter {
   @override
   TextEditingValue formatEditUpdate(
