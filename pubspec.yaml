@@ -11,6 +11,7 @@ dependencies:
   flutter:
     sdk: flutter
 
+  provider: ^3.2.0
   libphonenumber:
     git:
       url: 'https://github.com/emostar/flutter-libphonenumber.git'
