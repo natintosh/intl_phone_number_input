@@ -77,6 +77,9 @@ InternationalPhoneNumberInput({
 | errorMessage                  | String            | Invalid phone number | :heavy_check_mark: |        :x:         | :heavy_check_mark: |
 
 
+# Contribution 
+If you encounter any problems feel free to open an issue. If you feel the library is missing a feature, please raise a ticket on the Repo and I'll look into it. Pull request are also welcome.
+
 # Dependencies
 
 * [libphonenumber](https://pub.dev/packages/libphonenumber)
