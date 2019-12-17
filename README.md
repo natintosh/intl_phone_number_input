@@ -3,6 +3,10 @@
 A simple and customizable flutter package for international phone number input
 
 ### What's new
+    * As You Type Formatter: The Package now formats the input to it's selected national format
+    * Replaced TextField with 
+    * AutoValidate
+    * TextStyle
     * onInputChanged now returns a new PhoneNumber Model
     * You can create a PhoneNumber object from PhoneNumber.getRegionInfoFromPhoneNumber(String phoneNumber, [String isoCode]); 
     * You can now parse phoneNumber by calling   PhoneNumber.getParsableNumber(String phoneNumber, String isoCode) or `PhoneNumber Reference`.parseNumber()
@@ -34,6 +38,7 @@ A simple and customizable flutter package for international phone number input
 
 ```dart
 InternationalPhoneNumberInput({
+    Key key,
     @required this.onInputChanged,
     this.onInputValidated,
     this.focusNode,
@@ -41,12 +46,12 @@ InternationalPhoneNumberInput({
     this.onSubmit,
     this.keyboardAction,
     this.countries,
+    this.textStyle,
     this.inputBorder,
     this.inputDecoration,
     this.initialCountry2LetterCode = 'NG',
-    this.hintText = '(800) 000-0001 23',
-    this.shouldParse = true,
-    this.autoValidate = true,
+    this.hintText = 'Phone Number',
+    this.autoValidate = false,
     this.formatInput = true,
     this.errorMessage = 'Invalid phone number',
     });
@@ -61,92 +66,15 @@ InternationalPhoneNumberInput({
 | onSubmit              | Function()         |        null          | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
 | keyboardAction      | TextInputAction  |        null          | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
 | countries                     | List<string>      |        null          | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
+| textStyle                     | TextStyle      |        null          | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
 | inputBorder                   | InputBorder       |        null          | :heavy_check_mark: |        :x:         | :heavy_check_mark: |
 | inputDecoration               | InputDecoration   |        null          | :heavy_check_mark: | :heavy_check_mark: |        :x:         |
 | initialCountry2LetterCode     | String            |         NG           | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
-| hintText                      | String            |  (800) 000-0001 23   | :heavy_check_mark: |        :x:         | :heavy_check_mark: |
-| shouldParse                   | boolean           |        true          | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
+| hintText                      | String            |  Phone Number   | :heavy_check_mark: |        :x:         | :heavy_check_mark: |
 | autoValidate                | boolean           |        true          | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
 | formatInput                   | boolean           |        true          | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
 | errorMessage                  | String            | Invalid phone number | :heavy_check_mark: |        :x:         | :heavy_check_mark: |
 
-
-# Examples
-```dart
-InternationalPhoneNumberInput(
- onInputChanged: onPhoneNumberChanged,
-);
-```
-![Media 1|100x200,20%](https://raw.githubusercontent.com/natintosh/intl-phone-number-input/master/media/media_1.gif)
-
-
-```dart
-InternationalPhoneNumberInput(
-  onInputChanged: onPhoneNumberChanged,
-  shouldParse: false,
-  );
-```
-![Media 2](https://raw.githubusercontent.com/natintosh/intl-phone-number-input/master/media/media_2.gif)
-
-
-```dart
-InternationalPhoneNumberInput(
-  onInputChanged: onPhoneNumberChanged,
-  shouldParse: true,
-  autoValidate: true,
-  initialCountry2LetterCode: 'US',
-  hintText: 'Insert phone number',
-  );
-```
-    
-![Media 3](https://raw.githubusercontent.com/natintosh/intl-phone-number-input/master/media/media_3.gif)
-
-
-```dart
-InternationalPhoneNumberInput.withCustomBorder(
-  onInputChanged: onPhoneNumberChanged,
-  inputBorder: OutlineInputBorder(),
-  hintText: '(100) 123-4567 8901',
-  initialCountry2LetterCode: 'US',
-  errorMessage: 'Wrong number',
-);
-```
-![Media 4](https://raw.githubusercontent.com/natintosh/intl-phone-number-input/master/media/media_4.gif)
-
-
-```dart
-InternationalPhoneNumberInput.withCustomDecoration(
-  onInputChanged: onPhoneNumberChanged,
-  initialCountry2LetterCode: 'US',
-  inputDecoration: InputDecoration(
-    border: OutlineInputBorder(
-    borderRadius: BorderRadius.all(
-      Radius.circular(40),
-      ),
-    ),
-  ),
-);
-```
-![Media 4](https://raw.githubusercontent.com/natintosh/intl-phone-number-input/master/media/media_5.gif)
-
-
-```dart
-InternationalPhoneNumberInput.withCustomDecoration(
-  onInputChanged: onPhoneNumberChanged,
-  onInputValidated: onInputChanged,
-  initialCountry2LetterCode: 'US',
-  inputDecoration: InputDecoration(
-    hintText: 'Enter phone number',
-    errorText: valid ? null : 'Invalid',
-    border: OutlineInputBorder(
-      borderRadius: BorderRadius.all(
-        Radius.circular(40),
-      ),
-    ),
-  ),
-);
-```
-![Media 6](https://raw.githubusercontent.com/natintosh/intl-phone-number-input/master/media/media_6.gif)
 
 # Dependencies
 

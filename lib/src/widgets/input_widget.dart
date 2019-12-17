@@ -51,7 +51,7 @@ class InternationalPhoneNumberInput extends StatelessWidget {
     this.inputDecoration,
     this.initialCountry2LetterCode = 'NG',
     this.hintText = 'Phone Number',
-    this.autoValidate = true,
+    this.autoValidate = false,
     this.formatInput = true,
     this.errorMessage = 'Invalid phone number',
   }) : super(key: key);
@@ -68,7 +68,7 @@ class InternationalPhoneNumberInput extends StatelessWidget {
     @required InputDecoration inputDecoration,
     String initialCountry2LetterCode = 'NG',
     bool formatInput = true,
-    bool autoValidate = true,
+    bool autoValidate = false,
   }) {
     return InternationalPhoneNumberInput(
       onInputChanged: onInputChanged,
@@ -100,7 +100,7 @@ class InternationalPhoneNumberInput extends StatelessWidget {
     String initialCountry2LetterCode = 'NG',
     String errorMessage = 'Invalid phone number',
     bool formatInput = true,
-    bool autoValidate = true,
+    bool autoValidate = false,
   }) {
     return InternationalPhoneNumberInput(
       onInputChanged: onInputChanged,
@@ -189,7 +189,7 @@ class _InputWidget extends StatefulWidget {
     this.inputDecoration,
     this.initialCountry2LetterCode = 'NG',
     this.hintText = 'Phone Number',
-    this.autoValidate = true,
+    this.autoValidate = false,
     this.autoFormatInput = true,
     this.errorMessage = 'Invalid phone number',
   }) : super(key: key);
@@ -303,6 +303,7 @@ class _InputWidgetState extends State<_InputWidget> {
               style: widget.textStyle,
               decoration: _getInputDecoration(widget.inputDecoration),
               onEditingComplete: widget.onSubmit,
+              autovalidate: widget.autoValidate,
               validator: (String value) {
                 return provider.isNotValid ? widget.errorMessage : null;
               },
@@ -331,14 +332,10 @@ class _InputWidgetState extends State<_InputWidget> {
   }
 
   InputDecoration _getInputDecoration(InputDecoration decoration) {
-    InputProvider provider = Provider.of<InputProvider>(context);
     return decoration ??
         InputDecoration(
           border: widget.inputBorder ?? UnderlineInputBorder(),
           hintText: widget.hintText,
-          errorText: widget.autoValidate
-              ? (provider.isNotValid ? widget.errorMessage : null)
-              : null,
         );
   }
 
