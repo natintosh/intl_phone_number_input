@@ -22,8 +22,7 @@ class InternationalPhoneNumberInput extends StatelessWidget {
   final String errorMessage;
 
   final bool formatInput;
-  final bool shouldParse;
-  final bool shouldValidate;
+  final bool autoValidate;
 
   /// The style to use for the text being edited.
   ///
@@ -52,8 +51,7 @@ class InternationalPhoneNumberInput extends StatelessWidget {
     this.inputDecoration,
     this.initialCountry2LetterCode = 'NG',
     this.hintText = 'Phone Number',
-    this.shouldParse = true,
-    this.shouldValidate = true,
+    this.autoValidate = true,
     this.formatInput = true,
     this.errorMessage = 'Invalid phone number',
   }) : super(key: key);
@@ -70,8 +68,7 @@ class InternationalPhoneNumberInput extends StatelessWidget {
     @required InputDecoration inputDecoration,
     String initialCountry2LetterCode = 'NG',
     bool formatInput = true,
-    bool shouldParse = true,
-    bool shouldValidate = true,
+    bool autoValidate = true,
   }) {
     return InternationalPhoneNumberInput(
       onInputChanged: onInputChanged,
@@ -85,8 +82,7 @@ class InternationalPhoneNumberInput extends StatelessWidget {
       inputDecoration: inputDecoration,
       initialCountry2LetterCode: initialCountry2LetterCode,
       formatInput: formatInput,
-      shouldParse: shouldParse,
-      shouldValidate: shouldValidate,
+      autoValidate: autoValidate,
     );
   }
 
@@ -104,8 +100,7 @@ class InternationalPhoneNumberInput extends StatelessWidget {
     String initialCountry2LetterCode = 'NG',
     String errorMessage = 'Invalid phone number',
     bool formatInput = true,
-    bool shouldParse = true,
-    bool shouldValidate = true,
+    bool autoValidate = true,
   }) {
     return InternationalPhoneNumberInput(
       onInputChanged: onInputChanged,
@@ -121,8 +116,7 @@ class InternationalPhoneNumberInput extends StatelessWidget {
       initialCountry2LetterCode: initialCountry2LetterCode,
       errorMessage: errorMessage,
       formatInput: formatInput,
-      shouldParse: shouldParse,
-      shouldValidate: shouldValidate,
+      autoValidate: autoValidate,
     );
   }
 
@@ -142,9 +136,8 @@ class InternationalPhoneNumberInput extends StatelessWidget {
         initialCountry2LetterCode: initialCountry2LetterCode,
         hintText: hintText,
         errorMessage: errorMessage,
-        formatInput: formatInput,
-        shouldParse: shouldParse,
-        shouldValidate: shouldValidate,
+        autoFormatInput: formatInput,
+        autoValidate: autoValidate,
         textStyle: textStyle,
         inputBorder: inputBorder,
         inputDecoration: inputDecoration,
@@ -166,9 +159,8 @@ class _InputWidget extends StatefulWidget {
   final String hintText;
   final String errorMessage;
 
-  final bool formatInput;
-  final bool shouldParse;
-  final bool shouldValidate;
+  final bool autoFormatInput;
+  final bool autoValidate;
 
   /// The style to use for the text being edited.
   ///
@@ -197,9 +189,8 @@ class _InputWidget extends StatefulWidget {
     this.inputDecoration,
     this.initialCountry2LetterCode = 'NG',
     this.hintText = 'Phone Number',
-    this.shouldParse = true,
-    this.shouldValidate = true,
-    this.formatInput = true,
+    this.autoValidate = true,
+    this.autoFormatInput = true,
     this.errorMessage = 'Invalid phone number',
   }) : super(key: key);
 
@@ -226,34 +217,30 @@ class _InputWidgetState extends State<_InputWidget> {
     String parsedPhoneNumberString =
         controller.text.replaceAll(RegExp(r'[^\d+]'), '');
 
-    if (widget.shouldParse) {
-      getParsedPhoneNumber(
-              parsedPhoneNumberString, provider.country?.countryCode)
-          .then((phoneNumber) {
-        if (phoneNumber == null) {
-          if (widget.onInputValidated != null) {
-            widget.onInputValidated(false);
-          }
-          provider.isNotValid = true;
-        } else {
-          widget.onInputChanged(new PhoneNumber(
-              phoneNumber: phoneNumber,
-              isoCode: provider.country?.countryCode,
-              dialCode: provider.country?.dialCode));
-          if (widget.onInputValidated != null) {
-            widget.onInputValidated(true);
-          }
-          provider.isNotValid = false;
+    getParsedPhoneNumber(parsedPhoneNumberString, provider.country?.countryCode)
+        .then((phoneNumber) {
+      if (phoneNumber == null) {
+        String phoneNumber =
+            '${provider.country.dialCode}$parsedPhoneNumberString';
+        widget.onInputChanged(new PhoneNumber(
+            phoneNumber: phoneNumber,
+            isoCode: provider.country?.countryCode,
+            dialCode: provider.country?.dialCode));
+        if (widget.onInputValidated != null) {
+          widget.onInputValidated(false);
         }
-      });
-    } else {
-      String phoneNumber =
-          '${provider.country.dialCode}$parsedPhoneNumberString';
-      widget.onInputChanged(new PhoneNumber(
-          phoneNumber: phoneNumber,
-          isoCode: provider.country?.countryCode,
-          dialCode: provider.country?.dialCode));
-    }
+        provider.isNotValid = true;
+      } else {
+        widget.onInputChanged(new PhoneNumber(
+            phoneNumber: phoneNumber,
+            isoCode: provider.country?.countryCode,
+            dialCode: provider.country?.dialCode));
+        if (widget.onInputValidated != null) {
+          widget.onInputValidated(true);
+        }
+        provider.isNotValid = false;
+      }
+    });
   }
 
   static Future<String> getParsedPhoneNumber(
@@ -321,15 +308,17 @@ class _InputWidgetState extends State<_InputWidget> {
               },
               inputFormatters: [
                 LengthLimitingTextInputFormatter(15),
-                AsYouTypeFormatter(
-                  isoCode: provider.country?.countryCode ?? '',
-                  dialCode: provider.country?.dialCode ?? '',
-                  onInputFormatted: (TextEditingValue value) {
-                    setState(() {
-                      controller.value = value;
-                    });
-                  },
-                ),
+                widget.autoFormatInput
+                    ? AsYouTypeFormatter(
+                        isoCode: provider.country?.countryCode ?? '',
+                        dialCode: provider.country?.dialCode ?? '',
+                        onInputFormatted: (TextEditingValue value) {
+                          setState(() {
+                            controller.value = value;
+                          });
+                        },
+                      )
+                    : WhitelistingTextInputFormatter.digitsOnly,
               ],
               onChanged: (text) {
                 _phoneNumberControllerListener();
@@ -347,7 +336,7 @@ class _InputWidgetState extends State<_InputWidget> {
         InputDecoration(
           border: widget.inputBorder ?? UnderlineInputBorder(),
           hintText: widget.hintText,
-          errorText: widget.shouldValidate
+          errorText: widget.autoValidate
               ? (provider.isNotValid ? widget.errorMessage : null)
               : null,
         );

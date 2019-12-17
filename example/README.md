@@ -97,7 +97,7 @@ class _MyHomePageState extends State<MyHomePage> {
               InternationalPhoneNumberInput(
                 onInputChanged: onPhoneNumberChanged,
                 shouldParse: true,
-                shouldValidate: true,
+                autoValidate: true,
                 initialCountry2LetterCode: 'US',
                 hintText: 'Insert phone number',
               ),

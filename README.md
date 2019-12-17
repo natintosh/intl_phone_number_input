@@ -46,7 +46,7 @@ InternationalPhoneNumberInput({
     this.initialCountry2LetterCode = 'NG',
     this.hintText = '(800) 000-0001 23',
     this.shouldParse = true,
-    this.shouldValidate = true,
+    this.autoValidate = true,
     this.formatInput = true,
     this.errorMessage = 'Invalid phone number',
     });
@@ -66,7 +66,7 @@ InternationalPhoneNumberInput({
 | initialCountry2LetterCode     | String            |         NG           | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
 | hintText                      | String            |  (800) 000-0001 23   | :heavy_check_mark: |        :x:         | :heavy_check_mark: |
 | shouldParse                   | boolean           |        true          | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
-| shouldValidate                | boolean           |        true          | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
+| autoValidate                | boolean           |        true          | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
 | formatInput                   | boolean           |        true          | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
 | errorMessage                  | String            | Invalid phone number | :heavy_check_mark: |        :x:         | :heavy_check_mark: |
 
@@ -93,7 +93,7 @@ InternationalPhoneNumberInput(
 InternationalPhoneNumberInput(
   onInputChanged: onPhoneNumberChanged,
   shouldParse: true,
-  shouldValidate: true,
+  autoValidate: true,
   initialCountry2LetterCode: 'US',
   hintText: 'Insert phone number',
   );
