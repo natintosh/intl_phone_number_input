@@ -21,6 +21,7 @@ class InternationalPhoneNumberInput extends StatelessWidget {
   final String hintText;
   final String errorMessage;
 
+  final bool isEnabled;
   final bool formatInput;
   final bool autoValidate;
 
@@ -51,6 +52,7 @@ class InternationalPhoneNumberInput extends StatelessWidget {
     this.inputDecoration,
     this.initialCountry2LetterCode = 'NG',
     this.hintText = 'Phone Number',
+    this.isEnabled = true,
     this.autoValidate = false,
     this.formatInput = true,
     this.errorMessage = 'Invalid phone number',
@@ -67,6 +69,7 @@ class InternationalPhoneNumberInput extends StatelessWidget {
     TextStyle textStyle,
     @required InputDecoration inputDecoration,
     String initialCountry2LetterCode = 'NG',
+    bool isEnabled = true,
     bool formatInput = true,
     bool autoValidate = false,
   }) {
@@ -81,6 +84,7 @@ class InternationalPhoneNumberInput extends StatelessWidget {
       textStyle: textStyle,
       inputDecoration: inputDecoration,
       initialCountry2LetterCode: initialCountry2LetterCode,
+      isEnabled: isEnabled,
       formatInput: formatInput,
       autoValidate: autoValidate,
     );
@@ -99,6 +103,7 @@ class InternationalPhoneNumberInput extends StatelessWidget {
     @required String hintText,
     String initialCountry2LetterCode = 'NG',
     String errorMessage = 'Invalid phone number',
+    bool isEnabled = true,
     bool formatInput = true,
     bool autoValidate = false,
   }) {
@@ -116,6 +121,7 @@ class InternationalPhoneNumberInput extends StatelessWidget {
       initialCountry2LetterCode: initialCountry2LetterCode,
       errorMessage: errorMessage,
       formatInput: formatInput,
+      isEnabled: isEnabled,
       autoValidate: autoValidate,
     );
   }
@@ -138,6 +144,7 @@ class InternationalPhoneNumberInput extends StatelessWidget {
         errorMessage: errorMessage,
         autoFormatInput: formatInput,
         autoValidate: autoValidate,
+        isEnabled: isEnabled,
         textStyle: textStyle,
         inputBorder: inputBorder,
         inputDecoration: inputDecoration,
@@ -159,6 +166,7 @@ class _InputWidget extends StatefulWidget {
   final String hintText;
   final String errorMessage;
 
+  final bool isEnabled;
   final bool autoFormatInput;
   final bool autoValidate;
 
@@ -189,6 +197,7 @@ class _InputWidget extends StatefulWidget {
     this.inputDecoration,
     this.initialCountry2LetterCode = 'NG',
     this.hintText = 'Phone Number',
+    this.isEnabled = true,
     this.autoValidate = false,
     this.autoFormatInput = true,
     this.errorMessage = 'Invalid phone number',
@@ -286,18 +295,24 @@ class _InputWidgetState extends State<_InputWidget> {
         children: <Widget>[
           DropdownButtonHideUnderline(
             child: DropdownButton<Country>(
+              hint: _Item(
+                country: provider.country,
+              ),
               value: provider.country,
               items: _mapCountryToDropdownItem(provider.countries),
-              onChanged: (value) {
-                provider.country = value;
-                _phoneNumberControllerListener();
-              },
+              onChanged: widget.isEnabled
+                  ? (value) {
+                      provider.country = value;
+                      _phoneNumberControllerListener();
+                    }
+                  : null,
             ),
           ),
           Flexible(
             child: TextFormField(
               controller: controller,
               focusNode: widget.focusNode,
+              enabled: widget.isEnabled,
               keyboardType: TextInputType.phone,
               textInputAction: widget.keyboardAction,
               style: widget.textStyle,
@@ -341,26 +356,41 @@ class _InputWidgetState extends State<_InputWidget> {
 
   List<DropdownMenuItem<Country>> _mapCountryToDropdownItem(
       List<Country> countries) {
-    return countries
-        .map(
-          (country) => DropdownMenuItem<Country>(
-            value: country,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: <Widget>[
-                Image.asset(
-                  country.flagUri,
+    return countries.map((country) {
+      return DropdownMenuItem<Country>(
+        value: country,
+        child: _Item(
+          country: country,
+        ),
+      );
+    }).toList();
+  }
+}
+
+class _Item extends StatelessWidget {
+  final Country country;
+
+  const _Item({Key key, this.country}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: <Widget>[
+          country?.flagUri != null
+              ? Image.asset(
+                  country?.flagUri,
                   width: 32.0,
                   package: 'intl_phone_number_input',
-                ),
-                SizedBox(width: 12.0),
-                Text(
-                  country.dialCode,
                 )
-              ],
-            ),
-          ),
-        )
-        .toList();
+              : SizedBox.shrink(),
+          SizedBox(width: 12.0),
+          Text(
+            country?.dialCode ?? '',
+          )
+        ],
+      ),
+    );
   }
 }
