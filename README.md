@@ -4,6 +4,7 @@ A simple and customizable flutter package for international phone number input
 
 ### What's new
     * As You Type Formatter: The Package now formats the input to it's selected national format
+    * You can now disable input formatting by setting inputFormat to false
     * Replaced TextField with 
     * AutoValidate
     * TextStyle
