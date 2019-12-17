@@ -1,3 +1,10 @@
+## [0.2.0-dev]
+  - As You Type Formatter: The Package now formats the input to it's selected national format
+  - You can now disable input formatting by setting inputFormat to false
+  - Replaced TextField with 
+  - AutoValidate
+  - TextStyle
+
 ## [0.1.3]
   -  onInputChanged now returns a new PhoneNumber Model
   -  You can create a PhoneNumber object from PhoneNumber.getRegionInfoFromPhoneNumber(String phoneNumber, [String isoCode]); 
