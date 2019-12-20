@@ -96,7 +96,7 @@ class InternationalPhoneNumberInput extends StatelessWidget {
 
   factory InternationalPhoneNumberInput.withCustomBorder({
     @required ValueChanged<PhoneNumber> onInputChanged,
-    @required ValueChanged<bool> onInputValidated,
+    ValueChanged<bool> onInputValidated,
     FocusNode focusNode,
     TextEditingController textFieldController,
     VoidCallback onSubmit,
