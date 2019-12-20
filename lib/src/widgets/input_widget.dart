@@ -24,6 +24,7 @@ class InternationalPhoneNumberInput extends StatelessWidget {
   final bool isEnabled;
   final bool formatInput;
   final bool autoValidate;
+  final bool ignoreBlank;
 
   /// The style to use for the text being edited.
   ///
@@ -54,6 +55,7 @@ class InternationalPhoneNumberInput extends StatelessWidget {
     this.hintText = 'Phone Number',
     this.isEnabled = true,
     this.autoValidate = false,
+    this.ignoreBlank = false,
     this.formatInput = true,
     this.errorMessage = 'Invalid phone number',
   }) : super(key: key);
@@ -72,6 +74,7 @@ class InternationalPhoneNumberInput extends StatelessWidget {
     bool isEnabled = true,
     bool formatInput = true,
     bool autoValidate = false,
+    bool ignoreBlank = false,
   }) {
     return InternationalPhoneNumberInput(
       onInputChanged: onInputChanged,
@@ -87,6 +90,7 @@ class InternationalPhoneNumberInput extends StatelessWidget {
       isEnabled: isEnabled,
       formatInput: formatInput,
       autoValidate: autoValidate,
+      ignoreBlank: ignoreBlank,
     );
   }
 
@@ -106,6 +110,7 @@ class InternationalPhoneNumberInput extends StatelessWidget {
     bool isEnabled = true,
     bool formatInput = true,
     bool autoValidate = false,
+    bool ignoreBlank = false,
   }) {
     return InternationalPhoneNumberInput(
       onInputChanged: onInputChanged,
@@ -123,6 +128,7 @@ class InternationalPhoneNumberInput extends StatelessWidget {
       formatInput: formatInput,
       isEnabled: isEnabled,
       autoValidate: autoValidate,
+      ignoreBlank: ignoreBlank,
     );
   }
 
@@ -144,6 +150,7 @@ class InternationalPhoneNumberInput extends StatelessWidget {
         errorMessage: errorMessage,
         autoFormatInput: formatInput,
         autoValidate: autoValidate,
+        ignoreBlank: ignoreBlank,
         isEnabled: isEnabled,
         textStyle: textStyle,
         inputBorder: inputBorder,
@@ -169,6 +176,7 @@ class _InputWidget extends StatefulWidget {
   final bool isEnabled;
   final bool autoFormatInput;
   final bool autoValidate;
+  final bool ignoreBlank;
 
   /// The style to use for the text being edited.
   ///
@@ -199,6 +207,7 @@ class _InputWidget extends StatefulWidget {
     this.hintText = 'Phone Number',
     this.isEnabled = true,
     this.autoValidate = false,
+    this.ignoreBlank = false,
     this.autoFormatInput = true,
     this.errorMessage = 'Invalid phone number',
   }) : super(key: key);
@@ -228,6 +237,7 @@ class _InputWidgetState extends State<_InputWidget> {
 
     getParsedPhoneNumber(parsedPhoneNumberString, provider.country?.countryCode)
         .then((phoneNumber) {
+          print(phoneNumber);
       if (phoneNumber == null) {
         String phoneNumber =
             '${provider.country.dialCode}$parsedPhoneNumberString';
@@ -238,7 +248,11 @@ class _InputWidgetState extends State<_InputWidget> {
         if (widget.onInputValidated != null) {
           widget.onInputValidated(false);
         }
-        provider.isNotValid = true;
+        if (widget.ignoreBlank) {
+          provider.country.dialCode == phoneNumber ? provider.isNotValid = false : provider.isNotValid = true;
+        } else {
+          provider.isNotValid = true;
+        }
       } else {
         widget.onInputChanged(new PhoneNumber(
             phoneNumber: phoneNumber,
