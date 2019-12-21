@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
+import 'package:equatable/equatable.dart';
 
-class Country {
+class Country extends Equatable{
   final String name;
   final String countryCode;
   final String dialCode;
@@ -19,4 +20,7 @@ class Country {
         dialCode: data['dial_code'],
         flagUri: 'assets/flags/${data['alpha_2_code'].toLowerCase()}.png');
   }
+
+  @override
+  List<Object> get props => [countryCode];
 }

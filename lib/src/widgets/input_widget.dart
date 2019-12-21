@@ -37,7 +37,7 @@ class InternationalPhoneNumberInput extends StatelessWidget {
 
   final FocusNode focusNode;
 
-  final List<String> countries;
+  final List<Country> countries;
 
   const InternationalPhoneNumberInput({
     Key key,
@@ -67,7 +67,7 @@ class InternationalPhoneNumberInput extends StatelessWidget {
     TextEditingController textFieldController,
     VoidCallback onSubmit,
     TextInputAction keyboardAction,
-    List<String> countries,
+    List<Country> countries,
     TextStyle textStyle,
     @required InputDecoration inputDecoration,
     String initialCountry2LetterCode = 'NG',
@@ -101,7 +101,7 @@ class InternationalPhoneNumberInput extends StatelessWidget {
     TextEditingController textFieldController,
     VoidCallback onSubmit,
     TextInputAction keyboardAction,
-    List<String> countries,
+    List<Country> countries,
     TextStyle textStyle,
     @required InputBorder inputBorder,
     @required String hintText,
@@ -189,7 +189,7 @@ class _InputWidget extends StatefulWidget {
 
   final FocusNode focusNode;
 
-  final List<String> countries;
+  final List<Country> countries;
 
   const _InputWidget({
     Key key,
@@ -307,21 +307,32 @@ class _InputWidgetState extends State<_InputWidget> {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          DropdownButtonHideUnderline(
-            child: DropdownButton<Country>(
-              hint: _Item(
-                country: provider.country,
-              ),
-              value: provider.country,
-              items: _mapCountryToDropdownItem(provider.countries),
-              onChanged: widget.isEnabled
-                  ? (value) {
-                      provider.country = value;
-                      _phoneNumberControllerListener();
-                    }
-                  : null,
-            ),
-          ),
+          provider.countries != null && provider.countries.isNotEmpty
+          ? FutureBuilder<List<DropdownMenuItem<Country>>>(
+              future: CountryProvider.getDropdownItemsFromList(provider.countries),
+              builder: (context, snapshot) {
+                if (snapshot.hasError) {
+                  return Text('Error loading countries');
+                } else if (snapshot.hasData) {
+                  return DropdownButtonHideUnderline(
+                    child: DropdownButton<Country>(
+                      items: snapshot.data,
+                      value: provider.country,
+                      onChanged: widget.isEnabled
+                      ? (value) {
+                          print(value);
+                          provider.country = value;
+                          _phoneNumberControllerListener();
+                        }
+                      : SizedBox(width: 114, height: 24),
+                    ),
+                  );
+                } else {
+                  return SizedBox(width: 114, height: 24);
+                }
+              },
+            )
+          : SizedBox(width: 114, height: 24),
           Flexible(
             child: TextFormField(
               controller: controller,
@@ -368,52 +379,32 @@ class _InputWidgetState extends State<_InputWidget> {
         );
   }
 
-  List<DropdownMenuItem<Country>> _mapCountryToDropdownItem(List<Country> countries) {
-    return countries.map((country) {
-      return DropdownMenuItem<Country>(
-        value: country,
-        child: _Item(
-          country: country,
-        ),
-      );
-    }).toList();
-  }
-}
+  Widget _buildFuture(BuildContext context) {
+    InputProvider provider = Provider.of<InputProvider>(context);
 
-class _Item extends StatelessWidget {
-  final Country country;
-
-  const _Item({Key key, this.country}) : super(key: key);
-
-  Future<Image> _loadImage() async {
-    return Image.asset(
-      country?.flagUri,
-      width: 32.0,
-      package: 'intl_phone_number_input'
-    );
-
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: <Widget>[
-          country?.flagUri != null
-              ? FutureBuilder(
-                  future: _loadImage(),
-                  builder: (BuildContext context, AsyncSnapshot<Image> image) {
-                    return image.hasData ? image.data : SizedBox.shrink();
-                  }
-                )
-              : SizedBox.shrink(),
-          SizedBox(width: 12.0),
-          Text(
-            country?.dialCode ?? '',
-          )
-        ],
-      ),
+    return FutureBuilder<List<DropdownMenuItem<Country>>>(
+      future: CountryProvider.getDropdownItemsFromList(provider.countries),
+      builder: (context, snapshot) {
+        if (snapshot.hasError) {
+          return Text('Error loading countries');
+        } else if (snapshot.hasData) {
+          return DropdownButtonHideUnderline(
+            child: DropdownButton<Country>(
+              items: snapshot.data,
+              value: provider.country,
+              onChanged: widget.isEnabled
+              ? (value) {
+                  provider.country = value;
+                  _phoneNumberControllerListener();
+                }
+              : null,
+              
+            ),
+          );
+        } else {
+          return Center(child: CircularProgressIndicator());
+        }
+      },
     );
   }
 
