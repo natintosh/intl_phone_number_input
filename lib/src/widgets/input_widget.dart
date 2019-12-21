@@ -368,8 +368,7 @@ class _InputWidgetState extends State<_InputWidget> {
         );
   }
 
-  List<DropdownMenuItem<Country>> _mapCountryToDropdownItem(
-      List<Country> countries) {
+  List<DropdownMenuItem<Country>> _mapCountryToDropdownItem(List<Country> countries) {
     return countries.map((country) {
       return DropdownMenuItem<Country>(
         value: country,
@@ -386,6 +385,15 @@ class _Item extends StatelessWidget {
 
   const _Item({Key key, this.country}) : super(key: key);
 
+  Future<Image> _loadImage() async {
+    return Image.asset(
+      country?.flagUri,
+      width: 32.0,
+      package: 'intl_phone_number_input'
+    );
+
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -393,10 +401,11 @@ class _Item extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
           country?.flagUri != null
-              ? Image.asset(
-                  country?.flagUri,
-                  width: 32.0,
-                  package: 'intl_phone_number_input',
+              ? FutureBuilder(
+                  future: _loadImage(),
+                  builder: (BuildContext context, AsyncSnapshot<Image> image) {
+                    return image.hasData ? image.data : SizedBox.shrink();
+                  }
                 )
               : SizedBox.shrink(),
           SizedBox(width: 12.0),
@@ -407,4 +416,5 @@ class _Item extends StatelessWidget {
       ),
     );
   }
+
 }
