@@ -211,7 +211,7 @@ class _InputWidgetState extends State<_InputWidget> {
   TextEditingController controller;
 
   _loadCountries(BuildContext context) async {
-    InputProvider provider = Provider.of<InputProvider>(context);
+    InputProvider provider = Provider.of<InputProvider>(context, listen: false);
 
     provider.countries = await CountryProvider.getCountriesDataFromJsonFile(
         context: context, countries: widget.countries);
@@ -221,7 +221,7 @@ class _InputWidgetState extends State<_InputWidget> {
   }
 
   void _phoneNumberControllerListener() {
-    InputProvider provider = Provider.of<InputProvider>(context);
+    InputProvider provider = Provider.of<InputProvider>(context, listen: false);
     provider.isNotValid = false;
     String parsedPhoneNumberString =
         controller.text.replaceAll(RegExp(r'[^\d+]'), '');
