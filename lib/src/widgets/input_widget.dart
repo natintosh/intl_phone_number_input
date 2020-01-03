@@ -213,7 +213,7 @@ class _InputWidgetState extends State<_InputWidget> {
   _loadCountries(BuildContext context) async {
     InputProvider provider = Provider.of<InputProvider>(context, listen: false);
 
-    provider.countries = await CountryProvider.getCountriesDataFromJsonFile(
+    provider.countries = CountryProvider.getCountriesDataFromJsonFile(
         context: context, countries: widget.countries);
 
     provider.country = Utils.getInitialSelectedCountry(
