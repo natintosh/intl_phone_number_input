@@ -1,4 +1,8 @@
-## [0.2.0-dev]
+## [0.2.1]
+  - Bug fixes
+  - Improvement for reliability
+
+## [0.2.0]
   - As You Type Formatter: The Package now formats the input to it's selected national format
   - You can now disable input formatting by setting inputFormat to false
   - Replaced TextField with 
