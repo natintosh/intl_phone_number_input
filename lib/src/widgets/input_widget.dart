@@ -210,10 +210,10 @@ class _InputWidget extends StatefulWidget {
 class _InputWidgetState extends State<_InputWidget> {
   TextEditingController controller;
 
-  _loadCountries(BuildContext context) async {
+  _loadCountries(BuildContext context) {
     InputProvider provider = Provider.of<InputProvider>(context, listen: false);
 
-    provider.countries = await CountryProvider.getCountriesDataFromJsonFile(
+    provider.countries = CountryProvider.getCountriesData(
         context: context, countries: widget.countries);
 
     provider.country = Utils.getInitialSelectedCountry(
