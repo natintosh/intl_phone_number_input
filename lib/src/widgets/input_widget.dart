@@ -24,6 +24,7 @@ class InternationalPhoneNumberInput extends StatelessWidget {
   final bool isEnabled;
   final bool formatInput;
   final bool autoValidate;
+  final bool ignoreBlank;
 
   /// The style to use for the text being edited.
   ///
@@ -56,6 +57,7 @@ class InternationalPhoneNumberInput extends StatelessWidget {
     this.autoValidate = false,
     this.formatInput = true,
     this.errorMessage = 'Invalid phone number',
+    this.ignoreBlank = false,
   }) : super(key: key);
 
   factory InternationalPhoneNumberInput.withCustomDecoration({
@@ -67,11 +69,13 @@ class InternationalPhoneNumberInput extends StatelessWidget {
     TextInputAction keyboardAction,
     List<String> countries,
     TextStyle textStyle,
+    String errorMessage,
     @required InputDecoration inputDecoration,
     String initialCountry2LetterCode = 'NG',
     bool isEnabled = true,
     bool formatInput = true,
     bool autoValidate = false,
+    bool ignoreBlank = false,
   }) {
     return InternationalPhoneNumberInput(
       onInputChanged: onInputChanged,
@@ -87,6 +91,8 @@ class InternationalPhoneNumberInput extends StatelessWidget {
       isEnabled: isEnabled,
       formatInput: formatInput,
       autoValidate: autoValidate,
+      ignoreBlank: ignoreBlank,
+      errorMessage: errorMessage,
     );
   }
 
@@ -106,6 +112,7 @@ class InternationalPhoneNumberInput extends StatelessWidget {
     bool isEnabled = true,
     bool formatInput = true,
     bool autoValidate = false,
+    bool ignoreBlank = false,
   }) {
     return InternationalPhoneNumberInput(
       onInputChanged: onInputChanged,
@@ -123,6 +130,7 @@ class InternationalPhoneNumberInput extends StatelessWidget {
       formatInput: formatInput,
       isEnabled: isEnabled,
       autoValidate: autoValidate,
+      ignoreBlank: ignoreBlank,
     );
   }
 
@@ -149,6 +157,7 @@ class InternationalPhoneNumberInput extends StatelessWidget {
         inputBorder: inputBorder,
         inputDecoration: inputDecoration,
         countries: countries,
+        ignoreBlank: ignoreBlank,
       ),
     );
   }
@@ -169,6 +178,7 @@ class _InputWidget extends StatefulWidget {
   final bool isEnabled;
   final bool autoFormatInput;
   final bool autoValidate;
+  final bool ignoreBlank;
 
   /// The style to use for the text being edited.
   ///
@@ -201,6 +211,7 @@ class _InputWidget extends StatefulWidget {
     this.autoValidate = false,
     this.autoFormatInput = true,
     this.errorMessage = 'Invalid phone number',
+    this.ignoreBlank = false,
   }) : super(key: key);
 
   @override
@@ -224,7 +235,7 @@ class _InputWidgetState extends State<_InputWidget> {
     InputProvider provider = Provider.of<InputProvider>(context, listen: false);
     provider.isNotValid = false;
     String parsedPhoneNumberString =
-        controller.text.replaceAll(RegExp(r'[^\d+]'), '');
+    controller.text.replaceAll(RegExp(r'[^\d+]'), '');
 
     getParsedPhoneNumber(parsedPhoneNumberString, provider.country?.countryCode)
         .then((phoneNumber) {
@@ -321,20 +332,20 @@ class _InputWidgetState extends State<_InputWidget> {
               onEditingComplete: widget.onSubmit,
               autovalidate: widget.autoValidate,
               validator: (String value) {
-                return provider.isNotValid ? widget.errorMessage : null;
+                return provider.isNotValid && (value.isNotEmpty || widget.ignoreBlank == false) ? widget.errorMessage : null;
               },
               inputFormatters: [
                 LengthLimitingTextInputFormatter(15),
                 widget.autoFormatInput
                     ? AsYouTypeFormatter(
-                        isoCode: provider.country?.countryCode ?? '',
-                        dialCode: provider.country?.dialCode ?? '',
-                        onInputFormatted: (TextEditingValue value) {
-                          setState(() {
-                            controller.value = value;
-                          });
-                        },
-                      )
+                  isoCode: provider.country?.countryCode ?? '',
+                  dialCode: provider.country?.dialCode ?? '',
+                  onInputFormatted: (TextEditingValue value) {
+                    setState(() {
+                      controller.value = value;
+                    });
+                  },
+                )
                     : WhitelistingTextInputFormatter.digitsOnly,
               ],
               onChanged: (text) {
