@@ -290,26 +290,27 @@ class _InputWidgetState extends State<_InputWidget> {
 
     return Container(
       child: Row(
+        textDirection: TextDirection.ltr,
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           DropdownButtonHideUnderline(
             child: DropdownButton<Country>(
-              hint: _Item(
-                country: provider.country,
-              ),
+              hint: _Item(country: provider.country),
               value: provider.country,
               items: _mapCountryToDropdownItem(provider.countries),
               onChanged: widget.isEnabled
                   ? (value) {
-                      provider.country = value;
-                      _phoneNumberControllerListener();
-                    }
+                provider.country = value;
+                _phoneNumberControllerListener();
+              }
                   : null,
             ),
           ),
+          SizedBox(width: 12),
           Flexible(
             child: TextFormField(
+              textDirection: TextDirection.ltr,
               controller: controller,
               focusNode: widget.focusNode,
               enabled: widget.isEnabled,
@@ -376,19 +377,12 @@ class _Item extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: Row(
+        textDirection: TextDirection.ltr,
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
-          country?.flagUri != null
-              ? Image.asset(
-                  country?.flagUri,
-                  width: 32.0,
-                  package: 'intl_phone_number_input',
-                )
-              : SizedBox.shrink(),
+          country?.flagUri != null ? Image.asset(country?.flagUri, width: 32.0) : SizedBox.shrink(),
           SizedBox(width: 12.0),
-          Text(
-            country?.dialCode ?? '',
-          )
+          Text('${country?.dialCode ?? ''}', textDirection: TextDirection.ltr),
         ],
       ),
     );
