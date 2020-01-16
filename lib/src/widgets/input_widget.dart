@@ -6,10 +6,15 @@ import 'package:intl_phone_number_input/src/providers/input_provider.dart';
 import 'package:intl_phone_number_input/src/utils/formatter/as_you_type_formatter.dart';
 import 'package:intl_phone_number_input/src/utils/phone_number.dart';
 import 'package:intl_phone_number_input/src/utils/util.dart';
+import 'package:intl_phone_number_input/src/widgets/countries_search_list_widget.dart';
 import 'package:libphonenumber/libphonenumber.dart';
 import 'package:provider/provider.dart';
 
+enum PhoneInputSelectorType { DROPDOWN, BOTTOM_SHEET, DIALOG }
+
 class InternationalPhoneNumberInput extends StatelessWidget {
+  final PhoneInputSelectorType selectorType;
+
   final ValueChanged<PhoneNumber> onInputChanged;
   final ValueChanged<bool> onInputValidated;
 
@@ -26,6 +31,8 @@ class InternationalPhoneNumberInput extends StatelessWidget {
   final bool autoValidate;
   final bool ignoreBlank;
 
+  final String locale;
+
   /// The style to use for the text being edited.
   ///
   /// This text style is also used as the base style for the [decoration].
@@ -34,6 +41,7 @@ class InternationalPhoneNumberInput extends StatelessWidget {
   final TextStyle textStyle;
   final InputBorder inputBorder;
   final InputDecoration inputDecoration;
+  final InputDecoration searchBoxDecoration;
 
   final FocusNode focusNode;
 
@@ -41,6 +49,7 @@ class InternationalPhoneNumberInput extends StatelessWidget {
 
   const InternationalPhoneNumberInput({
     Key key,
+    this.selectorType,
     @required this.onInputChanged,
     this.onInputValidated,
     this.focusNode,
@@ -51,6 +60,7 @@ class InternationalPhoneNumberInput extends StatelessWidget {
     this.textStyle,
     this.inputBorder,
     this.inputDecoration,
+    this.searchBoxDecoration,
     this.initialCountry2LetterCode = 'NG',
     this.hintText = 'Phone Number',
     this.isEnabled = true,
@@ -58,9 +68,11 @@ class InternationalPhoneNumberInput extends StatelessWidget {
     this.formatInput = true,
     this.errorMessage = 'Invalid phone number',
     this.ignoreBlank = false,
+    this.locale,
   }) : super(key: key);
 
   factory InternationalPhoneNumberInput.withCustomDecoration({
+    PhoneInputSelectorType selectorType,
     @required ValueChanged<PhoneNumber> onInputChanged,
     ValueChanged<bool> onInputValidated,
     FocusNode focusNode,
@@ -71,13 +83,16 @@ class InternationalPhoneNumberInput extends StatelessWidget {
     TextStyle textStyle,
     String errorMessage,
     @required InputDecoration inputDecoration,
+    InputDecoration searchBoxDecoration,
     String initialCountry2LetterCode = 'NG',
     bool isEnabled = true,
     bool formatInput = true,
     bool autoValidate = false,
     bool ignoreBlank = false,
+    String locale,
   }) {
     return InternationalPhoneNumberInput(
+      selectorType: selectorType,
       onInputChanged: onInputChanged,
       onInputValidated: onInputValidated,
       focusNode: focusNode,
@@ -87,16 +102,19 @@ class InternationalPhoneNumberInput extends StatelessWidget {
       countries: countries,
       textStyle: textStyle,
       inputDecoration: inputDecoration,
+      searchBoxDecoration: searchBoxDecoration,
       initialCountry2LetterCode: initialCountry2LetterCode,
       isEnabled: isEnabled,
       formatInput: formatInput,
       autoValidate: autoValidate,
       ignoreBlank: ignoreBlank,
       errorMessage: errorMessage,
+      locale: locale,
     );
   }
 
   factory InternationalPhoneNumberInput.withCustomBorder({
+    PhoneInputSelectorType selectorType,
     @required ValueChanged<PhoneNumber> onInputChanged,
     @required ValueChanged<bool> onInputValidated,
     FocusNode focusNode,
@@ -113,8 +131,10 @@ class InternationalPhoneNumberInput extends StatelessWidget {
     bool formatInput = true,
     bool autoValidate = false,
     bool ignoreBlank = false,
+    String locale,
   }) {
     return InternationalPhoneNumberInput(
+      selectorType: selectorType,
       onInputChanged: onInputChanged,
       onInputValidated: onInputValidated,
       focusNode: focusNode,
@@ -131,6 +151,7 @@ class InternationalPhoneNumberInput extends StatelessWidget {
       isEnabled: isEnabled,
       autoValidate: autoValidate,
       ignoreBlank: ignoreBlank,
+      locale: locale,
     );
   }
 
@@ -141,6 +162,7 @@ class InternationalPhoneNumberInput extends StatelessWidget {
         return InputProvider();
       },
       child: _InputWidget(
+        selectorType: selectorType ?? PhoneInputSelectorType.DROPDOWN,
         onInputChanged: onInputChanged,
         onInputValidated: onInputValidated,
         onSubmit: onSubmit,
@@ -156,14 +178,18 @@ class InternationalPhoneNumberInput extends StatelessWidget {
         textStyle: textStyle,
         inputBorder: inputBorder,
         inputDecoration: inputDecoration,
+        searchBoxDecoration: searchBoxDecoration,
         countries: countries,
         ignoreBlank: ignoreBlank,
+        locale: locale,
       ),
     );
   }
 }
 
 class _InputWidget extends StatefulWidget {
+  final PhoneInputSelectorType selectorType;
+
   final ValueChanged<PhoneNumber> onInputChanged;
   final ValueChanged<bool> onInputValidated;
 
@@ -180,6 +206,8 @@ class _InputWidget extends StatefulWidget {
   final bool autoValidate;
   final bool ignoreBlank;
 
+  final String locale;
+
   /// The style to use for the text being edited.
   ///
   /// This text style is also used as the base style for the [decoration].
@@ -188,31 +216,35 @@ class _InputWidget extends StatefulWidget {
   final TextStyle textStyle;
   final InputBorder inputBorder;
   final InputDecoration inputDecoration;
+  final InputDecoration searchBoxDecoration;
 
   final FocusNode focusNode;
 
   final List<String> countries;
 
-  const _InputWidget({
-    Key key,
-    @required this.onInputChanged,
-    this.onInputValidated,
-    this.focusNode,
-    this.textFieldController,
-    this.onSubmit,
-    this.keyboardAction,
-    this.countries,
-    this.textStyle,
-    this.inputBorder,
-    this.inputDecoration,
-    this.initialCountry2LetterCode = 'NG',
-    this.hintText = 'Phone Number',
-    this.isEnabled = true,
-    this.autoValidate = false,
-    this.autoFormatInput = true,
-    this.errorMessage = 'Invalid phone number',
-    this.ignoreBlank = false,
-  }) : super(key: key);
+  const _InputWidget(
+      {Key key,
+        this.selectorType,
+        @required this.onInputChanged,
+        this.onInputValidated,
+        this.focusNode,
+        this.textFieldController,
+        this.onSubmit,
+        this.keyboardAction,
+        this.countries,
+        this.textStyle,
+        this.inputBorder,
+        this.inputDecoration,
+        this.searchBoxDecoration,
+        this.initialCountry2LetterCode = 'NG',
+        this.hintText = 'Phone Number',
+        this.isEnabled = true,
+        this.autoValidate = false,
+        this.autoFormatInput = true,
+        this.errorMessage = 'Invalid phone number',
+        this.ignoreBlank = false,
+        this.locale})
+      : super(key: key);
 
   @override
   State<StatefulWidget> createState() => _InputWidgetState();
@@ -224,37 +256,26 @@ class _InputWidgetState extends State<_InputWidget> {
   _loadCountries(BuildContext context) {
     InputProvider provider = Provider.of<InputProvider>(context, listen: false);
 
-    provider.countries = CountryProvider.getCountriesData(
-        context: context, countries: widget.countries);
+    provider.countries = CountryProvider.getCountriesData(context: context, countries: widget.countries);
 
-    provider.country = Utils.getInitialSelectedCountry(
-        provider.countries, widget.initialCountry2LetterCode);
+    provider.country = Utils.getInitialSelectedCountry(provider.countries, widget.initialCountry2LetterCode);
   }
 
   void _phoneNumberControllerListener() {
     InputProvider provider = Provider.of<InputProvider>(context, listen: false);
     provider.isNotValid = false;
-    String parsedPhoneNumberString =
-    controller.text.replaceAll(RegExp(r'[^\d+]'), '');
+    String parsedPhoneNumberString = controller.text.replaceAll(RegExp(r'[^\d+]'), '');
 
-    getParsedPhoneNumber(parsedPhoneNumberString, provider.country?.countryCode)
-        .then((phoneNumber) {
+    getParsedPhoneNumber(parsedPhoneNumberString, provider.country?.countryCode).then((phoneNumber) {
       if (phoneNumber == null) {
-        String phoneNumber =
-            '${provider.country.dialCode}$parsedPhoneNumberString';
-        widget.onInputChanged(new PhoneNumber(
-            phoneNumber: phoneNumber,
-            isoCode: provider.country?.countryCode,
-            dialCode: provider.country?.dialCode));
+        String phoneNumber = '${provider.country.dialCode}$parsedPhoneNumberString';
+        widget.onInputChanged(new PhoneNumber(phoneNumber: phoneNumber, isoCode: provider.country?.countryCode, dialCode: provider.country?.dialCode));
         if (widget.onInputValidated != null) {
           widget.onInputValidated(false);
         }
         provider.isNotValid = true;
       } else {
-        widget.onInputChanged(new PhoneNumber(
-            phoneNumber: phoneNumber,
-            isoCode: provider.country?.countryCode,
-            dialCode: provider.country?.dialCode));
+        widget.onInputChanged(new PhoneNumber(phoneNumber: phoneNumber, isoCode: provider.country?.countryCode, dialCode: provider.country?.dialCode));
         if (widget.onInputValidated != null) {
           widget.onInputValidated(true);
         }
@@ -263,16 +284,13 @@ class _InputWidgetState extends State<_InputWidget> {
     });
   }
 
-  static Future<String> getParsedPhoneNumber(
-      String phoneNumber, String iso) async {
+  static Future<String> getParsedPhoneNumber(String phoneNumber, String iso) async {
     if (phoneNumber.isNotEmpty && iso != null) {
       try {
-        bool isValidPhoneNumber = await PhoneNumberUtil.isValidPhoneNumber(
-            phoneNumber: phoneNumber, isoCode: iso);
+        bool isValidPhoneNumber = await PhoneNumberUtil.isValidPhoneNumber(phoneNumber: phoneNumber, isoCode: iso);
 
         if (isValidPhoneNumber) {
-          return await PhoneNumberUtil.normalizePhoneNumber(
-              phoneNumber: phoneNumber, isoCode: iso);
+          return await PhoneNumberUtil.normalizePhoneNumber(phoneNumber: phoneNumber, isoCode: iso);
         }
       } on Exception {
         return null;
@@ -305,7 +323,9 @@ class _InputWidgetState extends State<_InputWidget> {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          DropdownButtonHideUnderline(
+          widget.selectorType == PhoneInputSelectorType.DROPDOWN
+              ? provider.countries.isNotEmpty && provider.countries.length > 1
+              ? DropdownButtonHideUnderline(
             child: DropdownButton<Country>(
               hint: _Item(country: provider.country),
               value: provider.country,
@@ -317,6 +337,26 @@ class _InputWidgetState extends State<_InputWidget> {
               }
                   : null,
             ),
+          )
+              : _Item(country: provider.country)
+              : FlatButton(
+            padding: EdgeInsetsDirectional.only(start: 12, end: 4),
+            onPressed: provider.countries.isNotEmpty && provider.countries.length > 1
+                ? () async {
+              Country selected;
+              if (widget.selectorType == PhoneInputSelectorType.BOTTOM_SHEET) {
+                selected = await _showCountrySelectorBottomSheet(provider);
+              } else {
+                selected = await _showCountrySelectorDialog(provider);
+              }
+
+              if (selected != null) {
+                provider.country = selected;
+                _phoneNumberControllerListener();
+              }
+            }
+                : null,
+            child: _Item(country: provider.country),
           ),
           SizedBox(width: 12),
           Flexible(
@@ -366,23 +406,37 @@ class _InputWidgetState extends State<_InputWidget> {
         );
   }
 
-  List<DropdownMenuItem<Country>> _mapCountryToDropdownItem(
-      List<Country> countries) {
+  List<DropdownMenuItem<Country>> _mapCountryToDropdownItem(List<Country> countries) {
     return countries.map((country) {
       return DropdownMenuItem<Country>(
         value: country,
-        child: _Item(
-          country: country,
-        ),
+        child: _Item(country: country, withCountryNames: false),
       );
     }).toList();
+  }
+
+  Future<Country> _showCountrySelectorBottomSheet(InputProvider provider) {
+    return showModalBottomSheet(
+        context: context,
+        clipBehavior: Clip.hardEdge,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.only(topLeft: Radius.circular(12), topRight: Radius.circular(12))),
+        builder: (BuildContext context) => CountrySearchListWidget(provider.countries, widget.locale, searchBoxDecoration: widget.searchBoxDecoration));
+  }
+
+  Future<Country> _showCountrySelectorDialog(InputProvider provider) {
+    return showDialog(
+      context: context,
+      barrierDismissible: true,
+      builder: (BuildContext context) => AlertDialog(content: CountrySearchListWidget(provider.countries, widget.locale, searchBoxDecoration: widget.searchBoxDecoration)),
+    );
   }
 }
 
 class _Item extends StatelessWidget {
   final Country country;
+  final bool withCountryNames;
 
-  const _Item({Key key, this.country}) : super(key: key);
+  const _Item({Key key, this.country, this.withCountryNames = false}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
