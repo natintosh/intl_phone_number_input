@@ -445,7 +445,7 @@ class _Item extends StatelessWidget {
         textDirection: TextDirection.ltr,
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
-          country?.flagUri != null ? Image.asset(country?.flagUri, width: 32.0) : SizedBox.shrink(),
+          country?.flagUri != null ? Image.asset(country?.flagUri, width: 32.0, package: 'intl_phone_number_input') : SizedBox.shrink(),
           SizedBox(width: 12.0),
           Text('${country?.dialCode ?? ''}', textDirection: TextDirection.ltr),
         ],
