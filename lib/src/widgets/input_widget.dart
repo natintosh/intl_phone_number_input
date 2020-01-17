@@ -224,26 +224,26 @@ class _InputWidget extends StatefulWidget {
 
   const _InputWidget(
       {Key key,
-        this.selectorType,
-        @required this.onInputChanged,
-        this.onInputValidated,
-        this.focusNode,
-        this.textFieldController,
-        this.onSubmit,
-        this.keyboardAction,
-        this.countries,
-        this.textStyle,
-        this.inputBorder,
-        this.inputDecoration,
-        this.searchBoxDecoration,
-        this.initialCountry2LetterCode = 'NG',
-        this.hintText = 'Phone Number',
-        this.isEnabled = true,
-        this.autoValidate = false,
-        this.autoFormatInput = true,
-        this.errorMessage = 'Invalid phone number',
-        this.ignoreBlank = false,
-        this.locale})
+      this.selectorType,
+      @required this.onInputChanged,
+      this.onInputValidated,
+      this.focusNode,
+      this.textFieldController,
+      this.onSubmit,
+      this.keyboardAction,
+      this.countries,
+      this.textStyle,
+      this.inputBorder,
+      this.inputDecoration,
+      this.searchBoxDecoration,
+      this.initialCountry2LetterCode = 'NG',
+      this.hintText = 'Phone Number',
+      this.isEnabled = true,
+      this.autoValidate = false,
+      this.autoFormatInput = true,
+      this.errorMessage = 'Invalid phone number',
+      this.ignoreBlank = false,
+      this.locale})
       : super(key: key);
 
   @override
@@ -325,39 +325,39 @@ class _InputWidgetState extends State<_InputWidget> {
         children: <Widget>[
           widget.selectorType == PhoneInputSelectorType.DROPDOWN
               ? provider.countries.isNotEmpty && provider.countries.length > 1
-              ? DropdownButtonHideUnderline(
-            child: DropdownButton<Country>(
-              hint: _Item(country: provider.country),
-              value: provider.country,
-              items: _mapCountryToDropdownItem(provider.countries),
-              onChanged: widget.isEnabled
-                  ? (value) {
-                provider.country = value;
-                _phoneNumberControllerListener();
-              }
-                  : null,
-            ),
-          )
-              : _Item(country: provider.country)
+                  ? DropdownButtonHideUnderline(
+                      child: DropdownButton<Country>(
+                        hint: _Item(country: provider.country),
+                        value: provider.country,
+                        items: _mapCountryToDropdownItem(provider.countries),
+                        onChanged: widget.isEnabled
+                            ? (value) {
+                                provider.country = value;
+                                _phoneNumberControllerListener();
+                              }
+                            : null,
+                      ),
+                    )
+                  : _Item(country: provider.country)
               : FlatButton(
-            padding: EdgeInsetsDirectional.only(start: 12, end: 4),
-            onPressed: provider.countries.isNotEmpty && provider.countries.length > 1
-                ? () async {
-              Country selected;
-              if (widget.selectorType == PhoneInputSelectorType.BOTTOM_SHEET) {
-                selected = await _showCountrySelectorBottomSheet(provider);
-              } else {
-                selected = await _showCountrySelectorDialog(provider);
-              }
+                  padding: EdgeInsetsDirectional.only(start: 12, end: 4),
+                  onPressed: provider.countries.isNotEmpty && provider.countries.length > 1
+                      ? () async {
+                          Country selected;
+                          if (widget.selectorType == PhoneInputSelectorType.BOTTOM_SHEET) {
+                            selected = await _showCountrySelectorBottomSheet(provider);
+                          } else {
+                            selected = await _showCountrySelectorDialog(provider);
+                          }
 
-              if (selected != null) {
-                provider.country = selected;
-                _phoneNumberControllerListener();
-              }
-            }
-                : null,
-            child: _Item(country: provider.country),
-          ),
+                          if (selected != null) {
+                            provider.country = selected;
+                            _phoneNumberControllerListener();
+                          }
+                        }
+                      : null,
+                  child: _Item(country: provider.country),
+                ),
           SizedBox(width: 12),
           Flexible(
             child: TextFormField(
@@ -378,14 +378,14 @@ class _InputWidgetState extends State<_InputWidget> {
                 LengthLimitingTextInputFormatter(15),
                 widget.autoFormatInput
                     ? AsYouTypeFormatter(
-                  isoCode: provider.country?.countryCode ?? '',
-                  dialCode: provider.country?.dialCode ?? '',
-                  onInputFormatted: (TextEditingValue value) {
-                    setState(() {
-                      controller.value = value;
-                    });
-                  },
-                )
+                        isoCode: provider.country?.countryCode ?? '',
+                        dialCode: provider.country?.dialCode ?? '',
+                        onInputFormatted: (TextEditingValue value) {
+                          setState(() {
+                            controller.value = value;
+                          });
+                        },
+                      )
                     : WhitelistingTextInputFormatter.digitsOnly,
               ],
               onChanged: (text) {
@@ -427,7 +427,10 @@ class _InputWidgetState extends State<_InputWidget> {
     return showDialog(
       context: context,
       barrierDismissible: true,
-      builder: (BuildContext context) => AlertDialog(content: CountrySearchListWidget(provider.countries, widget.locale, searchBoxDecoration: widget.searchBoxDecoration)),
+      builder: (BuildContext context) => AlertDialog(
+        contentPadding: EdgeInsets.all(0),
+        content: CountrySearchListWidget(provider.countries, widget.locale, searchBoxDecoration: widget.searchBoxDecoration),
+      ),
     );
   }
 }
@@ -445,7 +448,7 @@ class _Item extends StatelessWidget {
         textDirection: TextDirection.ltr,
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
-          country?.flagUri != null ? Image.asset(country?.flagUri, width: 32.0) : SizedBox.shrink(),
+          country?.flagUri != null ? Image.asset(country?.flagUri, width: 32.0, package: 'intl_phone_number_input') : SizedBox.shrink(),
           SizedBox(width: 12.0),
           Text('${country?.dialCode ?? ''}', textDirection: TextDirection.ltr),
         ],

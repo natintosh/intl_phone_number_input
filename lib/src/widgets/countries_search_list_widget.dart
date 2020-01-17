@@ -40,7 +40,7 @@ class _CountrySearchListWidgetState extends State<CountrySearchListWidget> {
       return widget.countries
           .where(
             (Country country) => country.name.toLowerCase().contains(value.toLowerCase()) || getCountryName(country).toLowerCase().contains(value.toLowerCase()) || country.dialCode.contains(value.toLowerCase()),
-      )
+          )
           .toList();
     }
 
@@ -77,7 +77,7 @@ class _CountrySearchListWidgetState extends State<CountrySearchListWidget> {
               children: [
                 for (Country country in filteredCountries) ...[
                   ListTile(
-                    leading: CircleAvatar(backgroundImage: AssetImage(country.flagUri)),
+                    leading: CircleAvatar(backgroundImage: AssetImage(country.flagUri, package: 'intl_phone_number_input')),
                     title: Align(alignment: AlignmentDirectional.centerStart, child: Text('${getCountryName(country)}', textAlign: TextAlign.start)),
                     subtitle: Align(alignment: AlignmentDirectional.centerStart, child: Text('${country?.dialCode ?? ''}', textDirection: TextDirection.ltr, textAlign: TextAlign.start)),
                     onTap: () => Navigator.of(context).pop(country),
