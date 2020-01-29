@@ -10,7 +10,7 @@ dependencies:
   flutter:
     sdk: flutter
 
-  provider: ^4.0.1
+  provider: ^4.0.2
   libphonenumber: ^1.0.1
 
 dev_dependencies:
