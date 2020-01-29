@@ -256,26 +256,37 @@ class _InputWidgetState extends State<_InputWidget> {
   _loadCountries(BuildContext context) {
     InputProvider provider = Provider.of<InputProvider>(context, listen: false);
 
-    provider.countries = CountryProvider.getCountriesData(context: context, countries: widget.countries);
+    provider.countries = CountryProvider.getCountriesData(
+        context: context, countries: widget.countries);
 
-    provider.country = Utils.getInitialSelectedCountry(provider.countries, widget.initialCountry2LetterCode);
+    provider.country = Utils.getInitialSelectedCountry(
+        provider.countries, widget.initialCountry2LetterCode);
   }
 
   void _phoneNumberControllerListener() {
     InputProvider provider = Provider.of<InputProvider>(context, listen: false);
     provider.isNotValid = false;
-    String parsedPhoneNumberString = controller.text.replaceAll(RegExp(r'[^\d+]'), '');
+    String parsedPhoneNumberString =
+        controller.text.replaceAll(RegExp(r'[^\d+]'), '');
 
-    getParsedPhoneNumber(parsedPhoneNumberString, provider.country?.countryCode).then((phoneNumber) {
+    getParsedPhoneNumber(parsedPhoneNumberString, provider.country?.countryCode)
+        .then((phoneNumber) {
       if (phoneNumber == null) {
-        String phoneNumber = '${provider.country.dialCode}$parsedPhoneNumberString';
-        widget.onInputChanged(new PhoneNumber(phoneNumber: phoneNumber, isoCode: provider.country?.countryCode, dialCode: provider.country?.dialCode));
+        String phoneNumber =
+            '${provider.country.dialCode}$parsedPhoneNumberString';
+        widget.onInputChanged(new PhoneNumber(
+            phoneNumber: phoneNumber,
+            isoCode: provider.country?.countryCode,
+            dialCode: provider.country?.dialCode));
         if (widget.onInputValidated != null) {
           widget.onInputValidated(false);
         }
         provider.isNotValid = true;
       } else {
-        widget.onInputChanged(new PhoneNumber(phoneNumber: phoneNumber, isoCode: provider.country?.countryCode, dialCode: provider.country?.dialCode));
+        widget.onInputChanged(new PhoneNumber(
+            phoneNumber: phoneNumber,
+            isoCode: provider.country?.countryCode,
+            dialCode: provider.country?.dialCode));
         if (widget.onInputValidated != null) {
           widget.onInputValidated(true);
         }
@@ -284,13 +295,16 @@ class _InputWidgetState extends State<_InputWidget> {
     });
   }
 
-  static Future<String> getParsedPhoneNumber(String phoneNumber, String iso) async {
+  static Future<String> getParsedPhoneNumber(
+      String phoneNumber, String iso) async {
     if (phoneNumber.isNotEmpty && iso != null) {
       try {
-        bool isValidPhoneNumber = await PhoneNumberUtil.isValidPhoneNumber(phoneNumber: phoneNumber, isoCode: iso);
+        bool isValidPhoneNumber = await PhoneNumberUtil.isValidPhoneNumber(
+            phoneNumber: phoneNumber, isoCode: iso);
 
         if (isValidPhoneNumber) {
-          return await PhoneNumberUtil.normalizePhoneNumber(phoneNumber: phoneNumber, isoCode: iso);
+          return await PhoneNumberUtil.normalizePhoneNumber(
+              phoneNumber: phoneNumber, isoCode: iso);
         }
       } on Exception {
         return null;
@@ -341,13 +355,17 @@ class _InputWidgetState extends State<_InputWidget> {
                   : _Item(country: provider.country)
               : FlatButton(
                   padding: EdgeInsetsDirectional.only(start: 12, end: 4),
-                  onPressed: provider.countries.isNotEmpty && provider.countries.length > 1
+                  onPressed: provider.countries.isNotEmpty &&
+                          provider.countries.length > 1
                       ? () async {
                           Country selected;
-                          if (widget.selectorType == PhoneInputSelectorType.BOTTOM_SHEET) {
-                            selected = await _showCountrySelectorBottomSheet(provider);
+                          if (widget.selectorType ==
+                              PhoneInputSelectorType.BOTTOM_SHEET) {
+                            selected =
+                                await _showCountrySelectorBottomSheet(provider);
                           } else {
-                            selected = await _showCountrySelectorDialog(provider);
+                            selected =
+                                await _showCountrySelectorDialog(provider);
                           }
 
                           if (selected != null) {
@@ -372,7 +390,10 @@ class _InputWidgetState extends State<_InputWidget> {
               onEditingComplete: widget.onSubmit,
               autovalidate: widget.autoValidate,
               validator: (String value) {
-                return provider.isNotValid && (value.isNotEmpty || widget.ignoreBlank == false) ? widget.errorMessage : null;
+                return provider.isNotValid &&
+                        (value.isNotEmpty || widget.ignoreBlank == false)
+                    ? widget.errorMessage
+                    : null;
               },
               inputFormatters: [
                 LengthLimitingTextInputFormatter(15),
@@ -406,7 +427,8 @@ class _InputWidgetState extends State<_InputWidget> {
         );
   }
 
-  List<DropdownMenuItem<Country>> _mapCountryToDropdownItem(List<Country> countries) {
+  List<DropdownMenuItem<Country>> _mapCountryToDropdownItem(
+      List<Country> countries) {
     return countries.map((country) {
       return DropdownMenuItem<Country>(
         value: country,
@@ -417,10 +439,37 @@ class _InputWidgetState extends State<_InputWidget> {
 
   Future<Country> _showCountrySelectorBottomSheet(InputProvider provider) {
     return showModalBottomSheet(
-        context: context,
-        clipBehavior: Clip.hardEdge,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.only(topLeft: Radius.circular(12), topRight: Radius.circular(12))),
-        builder: (BuildContext context) => CountrySearchListWidget(provider.countries, widget.locale, searchBoxDecoration: widget.searchBoxDecoration));
+      context: context,
+      clipBehavior: Clip.hardEdge,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(12), topRight: Radius.circular(12))),
+      builder: (BuildContext context) {
+        return DraggableScrollableSheet(
+          builder: (BuildContext context, ScrollController controller) {
+            return Container(
+              decoration: ShapeDecoration(
+                color: Colors.white,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(12),
+                    topRight: Radius.circular(12),
+                  ),
+                ),
+              ),
+              child: CountrySearchListWidget(
+                provider.countries,
+                widget.locale,
+                searchBoxDecoration: widget.searchBoxDecoration,
+                scrollController: controller,
+              ),
+            );
+          },
+        );
+      },
+    );
   }
 
   Future<Country> _showCountrySelectorDialog(InputProvider provider) {
@@ -428,9 +477,8 @@ class _InputWidgetState extends State<_InputWidget> {
       context: context,
       barrierDismissible: true,
       builder: (BuildContext context) => AlertDialog(
-        contentPadding: EdgeInsets.all(0),
-        content: CountrySearchListWidget(provider.countries, widget.locale, searchBoxDecoration: widget.searchBoxDecoration),
-      ),
+          content: CountrySearchListWidget(provider.countries, widget.locale,
+              searchBoxDecoration: widget.searchBoxDecoration)),
     );
   }
 }
@@ -439,7 +487,8 @@ class _Item extends StatelessWidget {
   final Country country;
   final bool withCountryNames;
 
-  const _Item({Key key, this.country, this.withCountryNames = false}) : super(key: key);
+  const _Item({Key key, this.country, this.withCountryNames = false})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -448,7 +497,13 @@ class _Item extends StatelessWidget {
         textDirection: TextDirection.ltr,
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
-          country?.flagUri != null ? Image.asset(country?.flagUri, width: 32.0, package: 'intl_phone_number_input') : SizedBox.shrink(),
+          country?.flagUri != null
+              ? Image.asset(
+                  country?.flagUri,
+                  width: 32.0,
+                  package: 'intl_phone_number_input',
+                )
+              : SizedBox.shrink(),
           SizedBox(width: 12.0),
           Text('${country?.dialCode ?? ''}', textDirection: TextDirection.ltr),
         ],

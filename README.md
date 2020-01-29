@@ -3,12 +3,11 @@
 A simple and customizable flutter package for international phone number input
 
 ### What's new
+    * Improved loading time for country list
+    * Added support for RTL languages to be presented in the correct alignment
+    * Added new selector mode dropdown, bottom sheet and dialog
+    * Added ignoreBlank boolean to avoid input error message when left blank
     * As You Type Formatter: The Package now formats the input to it's selected national format
-    * You can now disable input formatting by setting inputFormat to false
-    * Replaced TextField with 
-    * AutoValidate
-    * TextStyle
-    * onInputChanged now returns a new PhoneNumber Model
     * You can create a PhoneNumber object from PhoneNumber.getRegionInfoFromPhoneNumber(String phoneNumber, [String isoCode]); 
     * You can now parse phoneNumber by calling   PhoneNumber.getParsableNumber(String phoneNumber, String isoCode) or `PhoneNumber Reference`.parseNumber()
     * Custom list of countries e.g. ['NG', 'GH', 'BJ' 'TG', 'CI']
@@ -55,6 +54,9 @@ InternationalPhoneNumberInput({
     this.autoValidate = false,
     this.formatInput = true,
     this.errorMessage = 'Invalid phone number',
+    this.selectorType,
+    this.ignoreBlank = false,
+    this.locale,
     });
 ```
 
@@ -75,6 +77,9 @@ InternationalPhoneNumberInput({
 | autoValidate                | boolean           |        true          | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
 | formatInput                   | boolean           |        true          | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
 | errorMessage                  | String            | Invalid phone number | :heavy_check_mark: |        :x:         | :heavy_check_mark: |
+| selectorType                  | PhoneInputSelectorType  | null | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
+| ignoreBlank       | boolean            | false | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
+| locale                | String            | null | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
 
 
 # Contributions
