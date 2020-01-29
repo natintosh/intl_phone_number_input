@@ -1,3 +1,4 @@
+import 'package:intl_phone_number_input/src/models/country_list.dart';
 import 'package:libphonenumber/libphonenumber.dart';
 
 class PhoneNumber {
@@ -37,5 +38,19 @@ class PhoneNumber {
     return this
         .phoneNumber
         .replaceAll(RegExp('^([\\+?${this.dialCode}\\s?]+)'), '');
+  }
+
+  ///For predefined phone number - get the initial country ISO2 code from the dial code for you to pass as the [initialCountry2LetterCode]
+  static String getISO2CodeByPrefix(String prefix) {
+    if (prefix != null && prefix.isNotEmpty) {
+      prefix = prefix.startsWith('+') ? prefix : '+$prefix';
+      var country = Countries.countryList.firstWhere(
+          (country) => country['dial_code'] == prefix,
+          orElse: () => null);
+      if (country != null && country['alpha_2_code'] != null) {
+        return country['alpha_2_code'];
+      }
+    }
+    return null;
   }
 }

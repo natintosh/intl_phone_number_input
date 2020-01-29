@@ -1,18 +1,6 @@
 class Countries {
   static get countryList => _countryList;
 
-  ///For predefined phone number - get the initial country ISO2 code from the dial code for you to pass as the [initialCountry2LetterCode]
-  static String getISO2CodeByPrefix(String prefix) {
-    if (prefix != null && prefix.isNotEmpty) {
-      prefix = prefix.startsWith('+') ? prefix : '+$prefix';
-      var country = _countryList.firstWhere((country) => country['dial_code'] == prefix, orElse: () => null);
-      if (country != null && country['alpha_2_code'] != null) {
-        return country['alpha_2_code'];
-      }
-    }
-    return null;
-  }
-
   static final List<Map<String, dynamic>> _countryList = [
     {
       "num_code": "4",

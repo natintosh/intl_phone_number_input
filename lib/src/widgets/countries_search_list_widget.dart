@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:intl_phone_number_input/src/models/country_model.dart';
 
 class CountrySearchListWidget extends StatefulWidget {
@@ -7,10 +6,12 @@ class CountrySearchListWidget extends StatefulWidget {
   final InputDecoration searchBoxDecoration;
   final String locale;
 
-  CountrySearchListWidget(this.countries, this.locale, {this.searchBoxDecoration});
+  CountrySearchListWidget(this.countries, this.locale,
+      {this.searchBoxDecoration});
 
   @override
-  _CountrySearchListWidgetState createState() => _CountrySearchListWidgetState();
+  _CountrySearchListWidgetState createState() =>
+      _CountrySearchListWidgetState();
 }
 
 class _CountrySearchListWidgetState extends State<CountrySearchListWidget> {
@@ -30,7 +31,8 @@ class _CountrySearchListWidgetState extends State<CountrySearchListWidget> {
   }
 
   InputDecoration getSearchBoxDecoration() {
-    return widget.searchBoxDecoration ?? InputDecoration(labelText: 'Search by country name or dial code');
+    return widget.searchBoxDecoration ??
+        InputDecoration(labelText: 'Search by country name or dial code');
   }
 
   List<Country> filterCountries() {
@@ -39,8 +41,13 @@ class _CountrySearchListWidgetState extends State<CountrySearchListWidget> {
     if (value.isNotEmpty) {
       return widget.countries
           .where(
-            (Country country) => country.name.toLowerCase().contains(value.toLowerCase()) || getCountryName(country).toLowerCase().contains(value.toLowerCase()) || country.dialCode.contains(value.toLowerCase()),
-      )
+            (Country country) =>
+                country.name.toLowerCase().contains(value.toLowerCase()) ||
+                getCountryName(country)
+                    .toLowerCase()
+                    .contains(value.toLowerCase()) ||
+                country.dialCode.contains(value.toLowerCase()),
+          )
           .toList();
     }
 
@@ -67,7 +74,8 @@ class _CountrySearchListWidgetState extends State<CountrySearchListWidget> {
           child: TextFormField(
             decoration: getSearchBoxDecoration(),
             controller: _searchController,
-            onChanged: (value) => setState(() => filteredCountries = filterCountries()),
+            onChanged: (value) =>
+                setState(() => filteredCountries = filterCountries()),
           ),
         ),
         Expanded(
@@ -77,9 +85,20 @@ class _CountrySearchListWidgetState extends State<CountrySearchListWidget> {
               children: [
                 for (Country country in filteredCountries) ...[
                   ListTile(
-                    leading: CircleAvatar(backgroundImage: AssetImage(country.flagUri)),
-                    title: Align(alignment: AlignmentDirectional.centerStart, child: Text('${getCountryName(country)}', textAlign: TextAlign.start)),
-                    subtitle: Align(alignment: AlignmentDirectional.centerStart, child: Text('${country?.dialCode ?? ''}', textDirection: TextDirection.ltr, textAlign: TextAlign.start)),
+                    leading: CircleAvatar(
+                        backgroundImage: AssetImage(
+                      country.flagUri,
+                      package: 'intl_phone_number_input',
+                    )),
+                    title: Align(
+                        alignment: AlignmentDirectional.centerStart,
+                        child: Text('${getCountryName(country)}',
+                            textAlign: TextAlign.start)),
+                    subtitle: Align(
+                        alignment: AlignmentDirectional.centerStart,
+                        child: Text('${country?.dialCode ?? ''}',
+                            textDirection: TextDirection.ltr,
+                            textAlign: TextAlign.start)),
                     onTap: () => Navigator.of(context).pop(country),
                   ),
                 ],
