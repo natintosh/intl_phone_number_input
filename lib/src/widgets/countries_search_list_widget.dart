@@ -5,9 +5,10 @@ class CountrySearchListWidget extends StatefulWidget {
   final List<Country> countries;
   final InputDecoration searchBoxDecoration;
   final String locale;
+  final ScrollController scrollController;
 
   CountrySearchListWidget(this.countries, this.locale,
-      {this.searchBoxDecoration});
+      {this.searchBoxDecoration, this.scrollController});
 
   @override
   _CountrySearchListWidgetState createState() =>
@@ -27,6 +28,7 @@ class _CountrySearchListWidgetState extends State<CountrySearchListWidget> {
   @override
   void dispose() {
     _searchController?.dispose();
+    widget.scrollController?.dispose();
     super.dispose();
   }
 
@@ -80,6 +82,7 @@ class _CountrySearchListWidgetState extends State<CountrySearchListWidget> {
         ),
         Expanded(
           child: SingleChildScrollView(
+            controller: widget.scrollController,
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [

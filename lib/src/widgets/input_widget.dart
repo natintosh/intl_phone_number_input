@@ -439,14 +439,26 @@ class _InputWidgetState extends State<_InputWidget> {
 
   Future<Country> _showCountrySelectorBottomSheet(InputProvider provider) {
     return showModalBottomSheet(
-        context: context,
-        clipBehavior: Clip.hardEdge,
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(12), topRight: Radius.circular(12))),
-        builder: (BuildContext context) => CountrySearchListWidget(
-            provider.countries, widget.locale,
-            searchBoxDecoration: widget.searchBoxDecoration));
+      context: context,
+      clipBehavior: Clip.hardEdge,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(12), topRight: Radius.circular(12))),
+      builder: (BuildContext context) => DraggableScrollableSheet(
+        builder: (BuildContext context, ScrollController controller) =>
+            Container(
+          color: Colors.white,
+          child: CountrySearchListWidget(
+            provider.countries,
+            widget.locale,
+            searchBoxDecoration: widget.searchBoxDecoration,
+            scrollController: controller,
+          ),
+        ),
+      ),
+    );
   }
 
   Future<Country> _showCountrySelectorDialog(InputProvider provider) {
