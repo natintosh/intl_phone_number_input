@@ -1,3 +1,16 @@
+## [0.3.0]
+  - Added support for RTL languages to be presented in the correct alignment
+  - Added new mode selection for dropdown, bottom sheet and dialog
+  - Added country names to bottom sheet and dialog country list
+  - Added search box to filter countries in the bottom sheet and country list
+  - Added For the above - an option to pass in a search box decoration
+  - Added ignoreBlank boolean to avoid input error message when left blank
+  - Added nameTranslations map to country model as preparation for future country name translation support
+  - Added Also for the above added the locale String field option (When translations will be supported this will define the requested translation language e.g. en_US, fr_FR etc.)
+  - Added function to get initial country ISO2 code when the input has pre-defined phone number (good for an "edit" input)
+  - Improved loading time for country list
+  - Changed When only one country passed in there is no need for any selector widget so a plain "Item" widget will be shown instead
+  
 ## [0.2.1]
   - Bug fixes
   - Improvement for reliability
