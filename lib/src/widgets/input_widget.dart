@@ -30,6 +30,7 @@ class InternationalPhoneNumberInput extends StatelessWidget {
   final bool formatInput;
   final bool autoValidate;
   final bool ignoreBlank;
+  final bool countrySelectorScrollControlled;
 
   final String locale;
 
@@ -47,29 +48,30 @@ class InternationalPhoneNumberInput extends StatelessWidget {
 
   final List<String> countries;
 
-  const InternationalPhoneNumberInput({
-    Key key,
-    this.selectorType,
-    @required this.onInputChanged,
-    this.onInputValidated,
-    this.focusNode,
-    this.textFieldController,
-    this.onSubmit,
-    this.keyboardAction,
-    this.countries,
-    this.textStyle,
-    this.inputBorder,
-    this.inputDecoration,
-    this.searchBoxDecoration,
-    this.initialCountry2LetterCode = 'NG',
-    this.hintText = 'Phone Number',
-    this.isEnabled = true,
-    this.autoValidate = false,
-    this.formatInput = true,
-    this.errorMessage = 'Invalid phone number',
-    this.ignoreBlank = false,
-    this.locale,
-  }) : super(key: key);
+  const InternationalPhoneNumberInput(
+      {Key key,
+      this.selectorType,
+      @required this.onInputChanged,
+      this.onInputValidated,
+      this.focusNode,
+      this.textFieldController,
+      this.onSubmit,
+      this.keyboardAction,
+      this.countries,
+      this.textStyle,
+      this.inputBorder,
+      this.inputDecoration,
+      this.searchBoxDecoration,
+      this.initialCountry2LetterCode = 'NG',
+      this.hintText = 'Phone Number',
+      this.isEnabled = true,
+      this.autoValidate = false,
+      this.formatInput = true,
+      this.errorMessage = 'Invalid phone number',
+      this.ignoreBlank = false,
+      this.locale,
+      this.countrySelectorScrollControlled = true})
+      : super(key: key);
 
   factory InternationalPhoneNumberInput.withCustomDecoration({
     PhoneInputSelectorType selectorType,
@@ -89,6 +91,7 @@ class InternationalPhoneNumberInput extends StatelessWidget {
     bool formatInput = true,
     bool autoValidate = false,
     bool ignoreBlank = false,
+    bool countrySelectorScrollControlled = true,
     String locale,
   }) {
     return InternationalPhoneNumberInput(
@@ -110,6 +113,7 @@ class InternationalPhoneNumberInput extends StatelessWidget {
       ignoreBlank: ignoreBlank,
       errorMessage: errorMessage,
       locale: locale,
+      countrySelectorScrollControlled: countrySelectorScrollControlled,
     );
   }
 
@@ -131,6 +135,7 @@ class InternationalPhoneNumberInput extends StatelessWidget {
     bool formatInput = true,
     bool autoValidate = false,
     bool ignoreBlank = false,
+    bool countrySelectorScrollControlled = true,
     String locale,
   }) {
     return InternationalPhoneNumberInput(
@@ -152,6 +157,7 @@ class InternationalPhoneNumberInput extends StatelessWidget {
       autoValidate: autoValidate,
       ignoreBlank: ignoreBlank,
       locale: locale,
+      countrySelectorScrollControlled: countrySelectorScrollControlled,
     );
   }
 
@@ -162,27 +168,27 @@ class InternationalPhoneNumberInput extends StatelessWidget {
         return InputProvider();
       },
       child: _InputWidget(
-        selectorType: selectorType ?? PhoneInputSelectorType.DROPDOWN,
-        onInputChanged: onInputChanged,
-        onInputValidated: onInputValidated,
-        onSubmit: onSubmit,
-        textFieldController: textFieldController,
-        focusNode: focusNode,
-        keyboardAction: keyboardAction,
-        initialCountry2LetterCode: initialCountry2LetterCode,
-        hintText: hintText,
-        errorMessage: errorMessage,
-        autoFormatInput: formatInput,
-        autoValidate: autoValidate,
-        isEnabled: isEnabled,
-        textStyle: textStyle,
-        inputBorder: inputBorder,
-        inputDecoration: inputDecoration,
-        searchBoxDecoration: searchBoxDecoration,
-        countries: countries,
-        ignoreBlank: ignoreBlank,
-        locale: locale,
-      ),
+          selectorType: selectorType ?? PhoneInputSelectorType.DROPDOWN,
+          onInputChanged: onInputChanged,
+          onInputValidated: onInputValidated,
+          onSubmit: onSubmit,
+          textFieldController: textFieldController,
+          focusNode: focusNode,
+          keyboardAction: keyboardAction,
+          initialCountry2LetterCode: initialCountry2LetterCode,
+          hintText: hintText,
+          errorMessage: errorMessage,
+          autoFormatInput: formatInput,
+          autoValidate: autoValidate,
+          isEnabled: isEnabled,
+          textStyle: textStyle,
+          inputBorder: inputBorder,
+          inputDecoration: inputDecoration,
+          searchBoxDecoration: searchBoxDecoration,
+          countries: countries,
+          ignoreBlank: ignoreBlank,
+          locale: locale,
+          countrySelectorScrollControlled: countrySelectorScrollControlled),
     );
   }
 }
@@ -205,6 +211,7 @@ class _InputWidget extends StatefulWidget {
   final bool autoFormatInput;
   final bool autoValidate;
   final bool ignoreBlank;
+  final bool countrySelectorScrollControlled;
 
   final String locale;
 
@@ -243,6 +250,7 @@ class _InputWidget extends StatefulWidget {
       this.autoFormatInput = true,
       this.errorMessage = 'Invalid phone number',
       this.ignoreBlank = false,
+      this.countrySelectorScrollControlled = true,
       this.locale})
       : super(key: key);
 
@@ -441,7 +449,7 @@ class _InputWidgetState extends State<_InputWidget> {
     return showModalBottomSheet(
       context: context,
       clipBehavior: Clip.hardEdge,
-      isScrollControlled: true,
+      isScrollControlled: widget.countrySelectorScrollControlled ?? true,
       backgroundColor: Colors.transparent,
       shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
