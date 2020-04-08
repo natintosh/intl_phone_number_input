@@ -331,7 +331,7 @@ class _InputWidgetState extends State<_InputWidget> {
 
   @override
   void dispose() {
-    controller?.dispose();
+    widget.textFieldController ?? controller?.dispose();
     super.dispose();
   }
 
