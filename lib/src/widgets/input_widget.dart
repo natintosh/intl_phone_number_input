@@ -343,7 +343,7 @@ class _InputWidgetState extends State<_InputWidget> {
       child: Row(
         textDirection: TextDirection.ltr,
         mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           widget.selectorType == PhoneInputSelectorType.DROPDOWN
               ? provider.countries.isNotEmpty && provider.countries.length > 1
