@@ -32,8 +32,21 @@ class PhoneNumber {
         isoCode: regionInfo.isoCode);
   }
 
-  static String getParsableNumber(String phoneNumber, String dialCode) {
-    return phoneNumber.replaceAll(RegExp('^([\\+?$dialCode\\s?]+)'), '');
+  static Future<String> getParsableNumber(PhoneNumber phoneNumber) async {
+    assert(phoneNumber != null);
+    if (phoneNumber.isoCode != null || phoneNumber.isoCode.isNotEmpty) {
+      String formattedNumber = await PhoneNumberUtil.formatAsYouType(
+        phoneNumber: phoneNumber.phoneNumber,
+        isoCode: phoneNumber.isoCode,
+      );
+      return formattedNumber.replaceAll(
+        RegExp('^([\\+?${phoneNumber.dialCode}\\s?]+)'),
+        '',
+      );
+    } else {
+      print('ISO Code is "${phoneNumber.isoCode}"');
+      return '';
+    }
   }
 
   String parseNumber() {
