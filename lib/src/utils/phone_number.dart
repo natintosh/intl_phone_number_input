@@ -22,7 +22,9 @@ class PhoneNumber {
 
     String internationalPhoneNumber =
         await PhoneNumberUtil.normalizePhoneNumber(
-            phoneNumber: phoneNumber, isoCode: regionInfo.isoCode);
+      phoneNumber: phoneNumber,
+      isoCode: regionInfo.isoCode ?? isoCode,
+    );
 
     return PhoneNumber(
         phoneNumber: internationalPhoneNumber,
