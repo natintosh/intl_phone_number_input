@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:intl_phone_number_input/src/models/country_model.dart';
 import 'package:intl_phone_number_input/src/providers/country_provider.dart';
 import 'package:intl_phone_number_input/src/providers/input_provider.dart';
 import 'package:intl_phone_number_input/src/utils/formatter/as_you_type_formatter.dart';
 import 'package:intl_phone_number_input/src/utils/phone_number.dart';
+import 'package:intl_phone_number_input/src/utils/test/test_helper.dart';
 import 'package:intl_phone_number_input/src/utils/util.dart';
 import 'package:intl_phone_number_input/src/widgets/countries_search_list_widget.dart';
 import 'package:libphonenumber/libphonenumber.dart';
@@ -349,6 +351,7 @@ class _InputWidgetState extends State<_InputWidget> {
               ? provider.countries.isNotEmpty && provider.countries.length > 1
                   ? DropdownButtonHideUnderline(
                       child: DropdownButton<Country>(
+                        key: Key(TestHelper.DropdownButtonKeyValue),
                         hint: _Item(country: provider.country),
                         value: provider.country,
                         items: _mapCountryToDropdownItem(provider.countries),
@@ -362,6 +365,7 @@ class _InputWidgetState extends State<_InputWidget> {
                     )
                   : _Item(country: provider.country)
               : FlatButton(
+                  key: Key(TestHelper.DropdownButtonKeyValue),
                   padding: EdgeInsetsDirectional.only(start: 12, end: 4),
                   onPressed: provider.countries.isNotEmpty &&
                           provider.countries.length > 1
@@ -387,6 +391,7 @@ class _InputWidgetState extends State<_InputWidget> {
           SizedBox(width: 12),
           Flexible(
             child: TextFormField(
+              key: Key(TestHelper.TextInputKeyValue),
               textDirection: TextDirection.ltr,
               controller: controller,
               focusNode: widget.focusNode,
@@ -440,7 +445,11 @@ class _InputWidgetState extends State<_InputWidget> {
     return countries.map((country) {
       return DropdownMenuItem<Country>(
         value: country,
-        child: _Item(country: country, withCountryNames: false),
+        child: _Item(
+          key: Key(TestHelper.countryItemKeyValue(country.countryCode)),
+          country: country,
+          withCountryNames: false,
+        ),
       );
     }).toList();
   }
@@ -485,8 +494,12 @@ class _InputWidgetState extends State<_InputWidget> {
       context: context,
       barrierDismissible: true,
       builder: (BuildContext context) => AlertDialog(
-          content: CountrySearchListWidget(provider.countries, widget.locale,
-              searchBoxDecoration: widget.searchBoxDecoration)),
+        content: CountrySearchListWidget(
+          provider.countries,
+          widget.locale,
+          searchBoxDecoration: widget.searchBoxDecoration,
+        ),
+      ),
     );
   }
 }

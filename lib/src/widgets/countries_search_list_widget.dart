@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl_phone_number_input/src/models/country_model.dart';
+import 'package:intl_phone_number_input/src/utils/test/test_helper.dart';
 
 class CountrySearchListWidget extends StatefulWidget {
   final List<Country> countries;
@@ -73,6 +74,7 @@ class _CountrySearchListWidgetState extends State<CountrySearchListWidget> {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
           child: TextFormField(
+            key: Key(TestHelper.CountrySearchInputKeyValue),
             decoration: getSearchBoxDecoration(),
             controller: _searchController,
             onChanged: (value) =>
@@ -87,6 +89,8 @@ class _CountrySearchListWidgetState extends State<CountrySearchListWidget> {
               children: [
                 for (Country country in filteredCountries) ...[
                   ListTile(
+                    key: Key(
+                        TestHelper.countryItemKeyValue(country.countryCode)),
                     leading: CircleAvatar(
                         backgroundImage: AssetImage(
                       country.flagUri,
