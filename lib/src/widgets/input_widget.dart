@@ -30,6 +30,7 @@ class InternationalPhoneNumberInput extends StatelessWidget {
 
   final bool isEnabled;
   final bool formatInput;
+  final bool autoFocus;
   final bool autoValidate;
   final bool ignoreBlank;
   final bool countrySelectorScrollControlled;
@@ -67,6 +68,7 @@ class InternationalPhoneNumberInput extends StatelessWidget {
       this.initialCountry2LetterCode = 'NG',
       this.hintText = 'Phone Number',
       this.isEnabled = true,
+      this.autoFocus = false,
       this.autoValidate = false,
       this.formatInput = true,
       this.errorMessage = 'Invalid phone number',
@@ -91,6 +93,7 @@ class InternationalPhoneNumberInput extends StatelessWidget {
     String initialCountry2LetterCode = 'NG',
     bool isEnabled = true,
     bool formatInput = true,
+    bool autoFocus = false,
     bool autoValidate = false,
     bool ignoreBlank = false,
     bool countrySelectorScrollControlled = true,
@@ -111,6 +114,7 @@ class InternationalPhoneNumberInput extends StatelessWidget {
       initialCountry2LetterCode: initialCountry2LetterCode,
       isEnabled: isEnabled,
       formatInput: formatInput,
+      autoFocus: autoFocus,
       autoValidate: autoValidate,
       ignoreBlank: ignoreBlank,
       errorMessage: errorMessage,
@@ -135,6 +139,7 @@ class InternationalPhoneNumberInput extends StatelessWidget {
     String errorMessage = 'Invalid phone number',
     bool isEnabled = true,
     bool formatInput = true,
+    bool autoFocus = false,
     bool autoValidate = false,
     bool ignoreBlank = false,
     bool countrySelectorScrollControlled = true,
@@ -156,6 +161,7 @@ class InternationalPhoneNumberInput extends StatelessWidget {
       errorMessage: errorMessage,
       formatInput: formatInput,
       isEnabled: isEnabled,
+      autoFocus: autoFocus,
       autoValidate: autoValidate,
       ignoreBlank: ignoreBlank,
       locale: locale,
@@ -182,6 +188,7 @@ class InternationalPhoneNumberInput extends StatelessWidget {
           hintText: hintText,
           errorMessage: errorMessage,
           autoFormatInput: formatInput,
+          autoFocus: autoFocus,
           autoValidate: autoValidate,
           isEnabled: isEnabled,
           textStyle: textStyle,
@@ -212,6 +219,7 @@ class _InputWidget extends StatefulWidget {
 
   final bool isEnabled;
   final bool autoFormatInput;
+  final bool autoFocus;
   final bool autoValidate;
   final bool ignoreBlank;
   final bool countrySelectorScrollControlled;
@@ -249,6 +257,7 @@ class _InputWidget extends StatefulWidget {
       this.initialCountry2LetterCode = 'NG',
       this.hintText = 'Phone Number',
       this.isEnabled = true,
+      this.autoFocus = false,
       this.autoValidate = false,
       this.autoFormatInput = true,
       this.errorMessage = 'Invalid phone number',
@@ -263,6 +272,7 @@ class _InputWidget extends StatefulWidget {
 
 class _InputWidgetState extends State<_InputWidget> {
   TextEditingController controller;
+  FocusNode focusNode;
 
   _loadCountries(BuildContext context) {
     InputProvider provider = Provider.of<InputProvider>(context, listen: false);
@@ -284,7 +294,7 @@ class _InputWidgetState extends State<_InputWidget> {
         .then((phoneNumber) {
       if (phoneNumber == null) {
         String phoneNumber =
-            '${provider.country.dialCode}$parsedPhoneNumberString';
+            '${provider.country?.dialCode}$parsedPhoneNumberString';
         widget.onInputChanged(new PhoneNumber(
             phoneNumber: phoneNumber,
             isoCode: provider.country?.countryCode,
@@ -328,12 +338,19 @@ class _InputWidgetState extends State<_InputWidget> {
   void initState() {
     Future.delayed(Duration.zero, () => _loadCountries(context));
     controller = widget.textFieldController ?? TextEditingController();
+    focusNode = widget.focusNode ?? FocusNode();
+    WidgetsBinding.instance.addPostFrameCallback((Duration duration) {
+      if (widget.autoFocus && !focusNode.hasFocus) {
+        FocusScope.of(context).requestFocus(focusNode);
+      }
+    });
     super.initState();
   }
 
   @override
   void dispose() {
     widget.textFieldController ?? controller?.dispose();
+    widget.focusNode ?? focusNode?.dispose();
     super.dispose();
   }
 
@@ -394,7 +411,7 @@ class _InputWidgetState extends State<_InputWidget> {
               key: Key(TestHelper.TextInputKeyValue),
               textDirection: TextDirection.ltr,
               controller: controller,
-              focusNode: widget.focusNode,
+              focusNode: focusNode,
               enabled: widget.isEnabled,
               keyboardType: TextInputType.phone,
               textInputAction: widget.keyboardAction,
