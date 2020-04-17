@@ -34,13 +34,17 @@ class PhoneNumber {
 
   static Future<String> getParsableNumber(PhoneNumber phoneNumber) async {
     assert(phoneNumber != null);
-    if (phoneNumber.isoCode != null || phoneNumber.isoCode.isNotEmpty) {
+    if (phoneNumber.isoCode != null) {
+      PhoneNumber number = await getRegionInfoFromPhoneNumber(
+        phoneNumber.phoneNumber,
+        phoneNumber.isoCode,
+      );
       String formattedNumber = await PhoneNumberUtil.formatAsYouType(
-        phoneNumber: phoneNumber.phoneNumber,
-        isoCode: phoneNumber.isoCode,
+        phoneNumber: number.phoneNumber,
+        isoCode: number.isoCode,
       );
       return formattedNumber.replaceAll(
-        RegExp('^([\\+?${phoneNumber.dialCode}\\s?]+)'),
+        RegExp('^([\\+?${number.dialCode}\\s?]+)'),
         '',
       );
     } else {

@@ -24,8 +24,7 @@ class InternationalPhoneNumberInput extends StatelessWidget {
   final TextEditingController textFieldController;
   final TextInputAction keyboardAction;
 
-  final String initialValue;
-  final String initialCountry2LetterCode;
+  final PhoneNumber initialValue;
   final String hintText;
   final String errorMessage;
 
@@ -67,7 +66,6 @@ class InternationalPhoneNumberInput extends StatelessWidget {
       this.inputDecoration,
       this.searchBoxDecoration,
       this.initialValue,
-      this.initialCountry2LetterCode = 'NG',
       this.hintText = 'Phone Number',
       this.isEnabled = true,
       this.autoFocus = false,
@@ -92,8 +90,7 @@ class InternationalPhoneNumberInput extends StatelessWidget {
     String errorMessage,
     @required InputDecoration inputDecoration,
     InputDecoration searchBoxDecoration,
-    String initialValue,
-    String initialCountry2LetterCode = 'NG',
+    PhoneNumber initialValue,
     bool isEnabled = true,
     bool formatInput = true,
     bool autoFocus = false,
@@ -115,7 +112,6 @@ class InternationalPhoneNumberInput extends StatelessWidget {
       inputDecoration: inputDecoration,
       searchBoxDecoration: searchBoxDecoration,
       initialValue: initialValue,
-      initialCountry2LetterCode: initialCountry2LetterCode,
       isEnabled: isEnabled,
       formatInput: formatInput,
       autoFocus: autoFocus,
@@ -139,8 +135,7 @@ class InternationalPhoneNumberInput extends StatelessWidget {
     TextStyle textStyle,
     @required InputBorder inputBorder,
     @required String hintText,
-    String initialValue,
-    String initialCountry2LetterCode = 'NG',
+    PhoneNumber initialValue,
     String errorMessage = 'Invalid phone number',
     bool isEnabled = true,
     bool formatInput = true,
@@ -163,7 +158,6 @@ class InternationalPhoneNumberInput extends StatelessWidget {
       inputBorder: inputBorder,
       hintText: hintText,
       initialValue: initialValue,
-      initialCountry2LetterCode: initialCountry2LetterCode,
       errorMessage: errorMessage,
       formatInput: formatInput,
       isEnabled: isEnabled,
@@ -191,7 +185,6 @@ class InternationalPhoneNumberInput extends StatelessWidget {
           focusNode: focusNode,
           keyboardAction: keyboardAction,
           initialValue: initialValue,
-          initialCountry2LetterCode: initialCountry2LetterCode,
           hintText: hintText,
           errorMessage: errorMessage,
           autoFormatInput: formatInput,
@@ -220,8 +213,7 @@ class _InputWidget extends StatefulWidget {
   final TextEditingController textFieldController;
   final TextInputAction keyboardAction;
 
-  final String initialValue;
-  final String initialCountry2LetterCode;
+  final PhoneNumber initialValue;
   final String hintText;
   final String errorMessage;
 
@@ -263,7 +255,6 @@ class _InputWidget extends StatefulWidget {
       this.inputDecoration,
       this.searchBoxDecoration,
       this.initialValue,
-      this.initialCountry2LetterCode = 'NG',
       this.hintText = 'Phone Number',
       this.isEnabled = true,
       this.autoFocus = false,
@@ -290,7 +281,9 @@ class _InputWidgetState extends State<_InputWidget> {
         context: context, countries: widget.countries);
 
     provider.country = Utils.getInitialSelectedCountry(
-        provider.countries, widget.initialCountry2LetterCode);
+      provider.countries,
+      widget.initialValue?.isoCode ?? '',
+    );
   }
 
   void _phoneNumberControllerListener() {
@@ -343,19 +336,27 @@ class _InputWidgetState extends State<_InputWidget> {
     return null;
   }
 
-  @override
-  void initState() {
-    Future.delayed(Duration.zero, () => _loadCountries(context));
-    focusNode = widget.focusNode ?? FocusNode();
-    controller = widget.textFieldController ?? TextEditingController();
+  void _initialiseWidget() async {
     if (controller.text.isEmpty && widget.initialValue != null) {
-      controller.text = widget.initialValue;
+      if (widget.initialValue.phoneNumber != null &&
+          widget.initialValue.phoneNumber.isNotEmpty) {
+        controller.text =
+            await PhoneNumber.getParsableNumber(widget.initialValue);
+      }
     }
     WidgetsBinding.instance.addPostFrameCallback((Duration duration) {
       if (widget.autoFocus && !focusNode.hasFocus) {
         FocusScope.of(context).requestFocus(focusNode);
       }
     });
+  }
+
+  @override
+  void initState() {
+    Future.delayed(Duration.zero, () => _loadCountries(context));
+    focusNode = widget.focusNode ?? FocusNode();
+    controller = widget.textFieldController ?? TextEditingController();
+    _initialiseWidget();
     super.initState();
   }
 
