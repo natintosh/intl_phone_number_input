@@ -25,7 +25,7 @@ class InputProvider extends ChangeNotifier {
   }
 
   bool get isNotValid {
-    return _isNotValid ?? false;
+    return _isNotValid ?? true;
   }
 
   set isNotValid(bool isNotValid) {

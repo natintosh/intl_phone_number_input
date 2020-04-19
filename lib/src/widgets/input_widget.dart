@@ -288,7 +288,7 @@ class _InputWidgetState extends State<_InputWidget> {
 
   void _phoneNumberControllerListener() {
     InputProvider provider = Provider.of<InputProvider>(context, listen: false);
-    provider.isNotValid = false;
+    provider.isNotValid = true;
     String parsedPhoneNumberString =
         controller.text.replaceAll(RegExp(r'[^\d+]'), '');
 
