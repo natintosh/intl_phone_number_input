@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:intl_phone_number_input/src/models/country_model.dart';
 import 'package:intl_phone_number_input/src/providers/country_provider.dart';
 import 'package:intl_phone_number_input/src/providers/input_provider.dart';
 import 'package:intl_phone_number_input/src/utils/formatter/as_you_type_formatter.dart';
 import 'package:intl_phone_number_input/src/utils/phone_number.dart';
+import 'package:intl_phone_number_input/src/utils/test/test_helper.dart';
 import 'package:intl_phone_number_input/src/utils/util.dart';
 import 'package:intl_phone_number_input/src/widgets/countries_search_list_widget.dart';
 import 'package:libphonenumber/libphonenumber.dart';
@@ -22,12 +24,13 @@ class InternationalPhoneNumberInput extends StatelessWidget {
   final TextEditingController textFieldController;
   final TextInputAction keyboardAction;
 
-  final String initialCountry2LetterCode;
+  final PhoneNumber initialValue;
   final String hintText;
   final String errorMessage;
 
   final bool isEnabled;
   final bool formatInput;
+  final bool autoFocus;
   final bool autoValidate;
   final bool ignoreBlank;
   final bool countrySelectorScrollControlled;
@@ -62,9 +65,10 @@ class InternationalPhoneNumberInput extends StatelessWidget {
       this.inputBorder,
       this.inputDecoration,
       this.searchBoxDecoration,
-      this.initialCountry2LetterCode = 'NG',
+      this.initialValue,
       this.hintText = 'Phone Number',
       this.isEnabled = true,
+      this.autoFocus = false,
       this.autoValidate = false,
       this.formatInput = true,
       this.errorMessage = 'Invalid phone number',
@@ -86,9 +90,10 @@ class InternationalPhoneNumberInput extends StatelessWidget {
     String errorMessage,
     @required InputDecoration inputDecoration,
     InputDecoration searchBoxDecoration,
-    String initialCountry2LetterCode = 'NG',
+    PhoneNumber initialValue,
     bool isEnabled = true,
     bool formatInput = true,
+    bool autoFocus = false,
     bool autoValidate = false,
     bool ignoreBlank = false,
     bool countrySelectorScrollControlled = true,
@@ -106,9 +111,10 @@ class InternationalPhoneNumberInput extends StatelessWidget {
       textStyle: textStyle,
       inputDecoration: inputDecoration,
       searchBoxDecoration: searchBoxDecoration,
-      initialCountry2LetterCode: initialCountry2LetterCode,
+      initialValue: initialValue,
       isEnabled: isEnabled,
       formatInput: formatInput,
+      autoFocus: autoFocus,
       autoValidate: autoValidate,
       ignoreBlank: ignoreBlank,
       errorMessage: errorMessage,
@@ -129,10 +135,11 @@ class InternationalPhoneNumberInput extends StatelessWidget {
     TextStyle textStyle,
     @required InputBorder inputBorder,
     @required String hintText,
-    String initialCountry2LetterCode = 'NG',
+    PhoneNumber initialValue,
     String errorMessage = 'Invalid phone number',
     bool isEnabled = true,
     bool formatInput = true,
+    bool autoFocus = false,
     bool autoValidate = false,
     bool ignoreBlank = false,
     bool countrySelectorScrollControlled = true,
@@ -150,10 +157,11 @@ class InternationalPhoneNumberInput extends StatelessWidget {
       textStyle: textStyle,
       inputBorder: inputBorder,
       hintText: hintText,
-      initialCountry2LetterCode: initialCountry2LetterCode,
+      initialValue: initialValue,
       errorMessage: errorMessage,
       formatInput: formatInput,
       isEnabled: isEnabled,
+      autoFocus: autoFocus,
       autoValidate: autoValidate,
       ignoreBlank: ignoreBlank,
       locale: locale,
@@ -168,6 +176,7 @@ class InternationalPhoneNumberInput extends StatelessWidget {
         return InputProvider();
       },
       child: _InputWidget(
+          key: UniqueKey(),
           selectorType: selectorType ?? PhoneInputSelectorType.DROPDOWN,
           onInputChanged: onInputChanged,
           onInputValidated: onInputValidated,
@@ -175,10 +184,11 @@ class InternationalPhoneNumberInput extends StatelessWidget {
           textFieldController: textFieldController,
           focusNode: focusNode,
           keyboardAction: keyboardAction,
-          initialCountry2LetterCode: initialCountry2LetterCode,
+          initialValue: initialValue,
           hintText: hintText,
           errorMessage: errorMessage,
           autoFormatInput: formatInput,
+          autoFocus: autoFocus,
           autoValidate: autoValidate,
           isEnabled: isEnabled,
           textStyle: textStyle,
@@ -203,12 +213,13 @@ class _InputWidget extends StatefulWidget {
   final TextEditingController textFieldController;
   final TextInputAction keyboardAction;
 
-  final String initialCountry2LetterCode;
+  final PhoneNumber initialValue;
   final String hintText;
   final String errorMessage;
 
   final bool isEnabled;
   final bool autoFormatInput;
+  final bool autoFocus;
   final bool autoValidate;
   final bool ignoreBlank;
   final bool countrySelectorScrollControlled;
@@ -243,9 +254,10 @@ class _InputWidget extends StatefulWidget {
       this.inputBorder,
       this.inputDecoration,
       this.searchBoxDecoration,
-      this.initialCountry2LetterCode = 'NG',
+      this.initialValue,
       this.hintText = 'Phone Number',
       this.isEnabled = true,
+      this.autoFocus = false,
       this.autoValidate = false,
       this.autoFormatInput = true,
       this.errorMessage = 'Invalid phone number',
@@ -260,6 +272,7 @@ class _InputWidget extends StatefulWidget {
 
 class _InputWidgetState extends State<_InputWidget> {
   TextEditingController controller;
+  FocusNode focusNode;
 
   _loadCountries(BuildContext context) {
     InputProvider provider = Provider.of<InputProvider>(context, listen: false);
@@ -268,12 +281,14 @@ class _InputWidgetState extends State<_InputWidget> {
         context: context, countries: widget.countries);
 
     provider.country = Utils.getInitialSelectedCountry(
-        provider.countries, widget.initialCountry2LetterCode);
+      provider.countries,
+      widget.initialValue?.isoCode ?? '',
+    );
   }
 
   void _phoneNumberControllerListener() {
     InputProvider provider = Provider.of<InputProvider>(context, listen: false);
-    provider.isNotValid = false;
+    provider.isNotValid = true;
     String parsedPhoneNumberString =
         controller.text.replaceAll(RegExp(r'[^\d+]'), '');
 
@@ -281,7 +296,7 @@ class _InputWidgetState extends State<_InputWidget> {
         .then((phoneNumber) {
       if (phoneNumber == null) {
         String phoneNumber =
-            '${provider.country.dialCode}$parsedPhoneNumberString';
+            '${provider.country?.dialCode}$parsedPhoneNumberString';
         widget.onInputChanged(new PhoneNumber(
             phoneNumber: phoneNumber,
             isoCode: provider.country?.countryCode,
@@ -321,17 +336,34 @@ class _InputWidgetState extends State<_InputWidget> {
     return null;
   }
 
+  void _initialiseWidget() async {
+    if (controller.text.isEmpty && widget.initialValue != null) {
+      if (widget.initialValue.phoneNumber != null &&
+          widget.initialValue.phoneNumber.isNotEmpty) {
+        controller.text =
+            await PhoneNumber.getParsableNumber(widget.initialValue);
+      }
+    }
+    WidgetsBinding.instance.addPostFrameCallback((Duration duration) {
+      if (widget.autoFocus && !focusNode.hasFocus) {
+        FocusScope.of(context).requestFocus(focusNode);
+      }
+    });
+  }
+
   @override
   void initState() {
     Future.delayed(Duration.zero, () => _loadCountries(context));
+    focusNode = widget.focusNode ?? FocusNode();
     controller = widget.textFieldController ?? TextEditingController();
-    controller.addListener(_phoneNumberControllerListener);
+    _initialiseWidget();
     super.initState();
   }
 
   @override
   void dispose() {
-    controller?.dispose();
+    widget.textFieldController ?? controller?.dispose();
+    widget.focusNode ?? focusNode?.dispose();
     super.dispose();
   }
 
@@ -349,6 +381,7 @@ class _InputWidgetState extends State<_InputWidget> {
               ? provider.countries.isNotEmpty && provider.countries.length > 1
                   ? DropdownButtonHideUnderline(
                       child: DropdownButton<Country>(
+                        key: Key(TestHelper.DropdownButtonKeyValue),
                         hint: _Item(country: provider.country),
                         value: provider.country,
                         items: _mapCountryToDropdownItem(provider.countries),
@@ -362,6 +395,7 @@ class _InputWidgetState extends State<_InputWidget> {
                     )
                   : _Item(country: provider.country)
               : FlatButton(
+                  key: Key(TestHelper.DropdownButtonKeyValue),
                   padding: EdgeInsetsDirectional.only(start: 12, end: 4),
                   onPressed: provider.countries.isNotEmpty &&
                           provider.countries.length > 1
@@ -387,9 +421,10 @@ class _InputWidgetState extends State<_InputWidget> {
           SizedBox(width: 12),
           Flexible(
             child: TextFormField(
+              key: Key(TestHelper.TextInputKeyValue),
               textDirection: TextDirection.ltr,
               controller: controller,
-              focusNode: widget.focusNode,
+              focusNode: focusNode,
               enabled: widget.isEnabled,
               keyboardType: TextInputType.phone,
               textInputAction: widget.keyboardAction,
@@ -440,7 +475,11 @@ class _InputWidgetState extends State<_InputWidget> {
     return countries.map((country) {
       return DropdownMenuItem<Country>(
         value: country,
-        child: _Item(country: country, withCountryNames: false),
+        child: _Item(
+          key: Key(TestHelper.countryItemKeyValue(country.countryCode)),
+          country: country,
+          withCountryNames: false,
+        ),
       );
     }).toList();
   }
@@ -485,8 +524,12 @@ class _InputWidgetState extends State<_InputWidget> {
       context: context,
       barrierDismissible: true,
       builder: (BuildContext context) => AlertDialog(
-          content: CountrySearchListWidget(provider.countries, widget.locale,
-              searchBoxDecoration: widget.searchBoxDecoration)),
+        content: CountrySearchListWidget(
+          provider.countries,
+          widget.locale,
+          searchBoxDecoration: widget.searchBoxDecoration,
+        ),
+      ),
     );
   }
 }
