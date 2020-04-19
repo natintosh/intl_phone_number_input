@@ -10,12 +10,14 @@ dependencies:
   flutter:
     sdk: flutter
 
-  provider: ^4.0.2
+  provider: ^4.0.5
   libphonenumber: ^1.0.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  test: any
+
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

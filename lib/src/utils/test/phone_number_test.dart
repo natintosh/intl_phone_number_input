@@ -1,19 +1,19 @@
 import 'package:intl_phone_number_input/src/models/country_list.dart';
 import 'package:libphonenumber/libphonenumber.dart';
 
-class PhoneNumber {
+class PhoneNumberTest {
   final String phoneNumber;
   final String dialCode;
   final String isoCode;
 
-  PhoneNumber({this.phoneNumber, this.dialCode, this.isoCode});
+  PhoneNumberTest({this.phoneNumber, this.dialCode, this.isoCode});
 
   @override
   String toString() {
     return phoneNumber;
   }
 
-  static Future<PhoneNumber> getRegionInfoFromPhoneNumber(
+  static Future<PhoneNumberTest> getRegionInfoFromPhoneNumber(
     String phoneNumber, [
     String isoCode = '',
   ]) async {
@@ -27,16 +27,16 @@ class PhoneNumber {
       isoCode: regionInfo.isoCode ?? isoCode,
     );
 
-    return PhoneNumber(
+    return PhoneNumberTest(
         phoneNumber: internationalPhoneNumber,
         dialCode: regionInfo.regionPrefix,
         isoCode: regionInfo.isoCode);
   }
 
-  static Future<String> getParsableNumber(PhoneNumber phoneNumber) async {
+  static Future<String> getParsableNumber(PhoneNumberTest phoneNumber) async {
     assert(phoneNumber != null);
     if (phoneNumber.isoCode != null) {
-      PhoneNumber number = await getRegionInfoFromPhoneNumber(
+      PhoneNumberTest number = await getRegionInfoFromPhoneNumber(
         phoneNumber.phoneNumber,
         phoneNumber.isoCode,
       );
