@@ -16,5 +16,5 @@ jobs:
     - name: Install Flutter CI
       uses: steebchen/flutter@v1.0.0 
     
-    - uses: flutter pub get
+    - run: flutter pub get
 
