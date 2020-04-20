@@ -23,7 +23,6 @@ jobs:
       with:
         profile: pixel
         api-level: 29
-        script: ./example/android/gradlew connectedCheck
         
     - run: flutter pub get
       
