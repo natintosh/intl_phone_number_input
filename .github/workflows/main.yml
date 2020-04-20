@@ -21,7 +21,6 @@ jobs:
     - name: Setup android emulator of drive test
       uses: ReactiveCircus/android-emulator-runner@v2.7.0
       with:
-        profile: pixel
         api-level: 29
         script: flutter devices
         
