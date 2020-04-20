@@ -13,7 +13,22 @@ jobs:
     
     steps:
     - uses: actions/checkout@v2
+      
     - name: Install Flutter CI
       uses: takuyaohashi/setup-flutter@v1 
+    - run: flutter doctor
+    
+    - name: Setup android emulator of drive test
+      uses: ReactiveCircus/android-emulator-runner@v2.7.0
+      with:
+        profile: Pixel 2
+        api_level: 29
+        script: ./gradlew connectedCheck
+        
     - run: flutter pub get
+      
+    - name: Run dropdown drive test
+      run: flutter drive --target=./example/test_driver/app/app.dart
+
+
 
