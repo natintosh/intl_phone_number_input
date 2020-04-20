@@ -22,7 +22,7 @@ jobs:
       uses: ReactiveCircus/android-emulator-runner@v2.7.0
       with:
         profile: Pixel 2
-        api_level: 29
+        api-level: 29
         script: ./gradlew connectedCheck
         
     - run: flutter pub get
