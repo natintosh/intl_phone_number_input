@@ -23,6 +23,7 @@ jobs:
       with:
         profile: pixel
         api-level: 29
+        script: flutter devices
         
     - run: flutter pub get
       
