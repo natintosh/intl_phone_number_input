@@ -1,0 +1,23 @@
+name: Intl CI
+
+on:
+  push:
+    branches: [ develop ]
+  pull_request:
+    branches: [ develop ]
+
+jobs:
+  test:
+
+    runs-on: macos-latest
+
+    container:
+      image:  google/dart:latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install Flutter CI
+      uses: steebchen/flutter@v1.0.0 
+    - name: Run flutter pub get
+      uses: flutter pub get
+
