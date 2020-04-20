@@ -14,7 +14,6 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Install Flutter CI
-      uses: steebchen/flutter@v1.0.0 
-    
+      uses: takuyaohashi/setup-flutter@v1 
     - run: flutter pub get
 
