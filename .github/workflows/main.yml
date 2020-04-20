@@ -21,7 +21,7 @@ jobs:
     - name: Setup android emulator of drive test
       uses: ReactiveCircus/android-emulator-runner@v2.7.0
       with:
-        profile: Pixel 2
+        profile: Pixel_2
         api-level: 29
         script: ./gradlew connectedCheck
         
