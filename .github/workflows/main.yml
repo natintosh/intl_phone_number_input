@@ -22,12 +22,11 @@ jobs:
       uses: ReactiveCircus/android-emulator-runner@v2.7.0
       with:
         api-level: 29
-        script: flutter devices
-        
-    - run: flutter pub get
-      
-    - name: Run dropdown drive test
-      run: flutter drive --target=./example/test_driver/app/app.dart
+        script:  |
+          flutter devices
+          flutter pub get
+          flutter drive --target=./example/test_driver/app/app.dart
+  
 
 
 
