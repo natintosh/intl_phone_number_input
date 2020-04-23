@@ -30,7 +30,8 @@ A simple and customizable flutter package for international phone number input
 > Could throw an Exception if the phoneNumber isn't recognised its a good pattern to pass the country's isoCode or have '+' at the beginning of the string
 
 # Usage
-## Constructors
+
+### Constructors
 
 | s/n | Constructor                                             |
 | --- | ------------------------------------------------------- |
