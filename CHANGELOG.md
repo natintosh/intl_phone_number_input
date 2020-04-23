@@ -1,3 +1,13 @@
+## [0.4.0]
+  - Added new initialValue parameter that accepts a PhoneNumber object
+  - Added autoFocus option
+  - Added Keys and Helper class for testing
+  - Updated static method getParsableNumber from PhoneNumber
+  - Removed initialCountry2letterCode parameter
+  - Fixed issue with textController calling disposed if user defines the controller
+  - Fixed issue with with country picker alignment gone wrong when a single country is set
+  - Fixed NullPointerException thrown on getRegionInfoFromPhoneNumber
+
 ## [0.3.0]
   - Added support for RTL languages to be presented in the correct alignment
   - Added new mode selection for dropdown, bottom sheet and dialog
