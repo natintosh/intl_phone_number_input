@@ -2,9 +2,14 @@
 
 A simple and customizable flutter package for international phone number input
 
+| CustomDecoration | CustomBorder | Default |
+|----------|-------------|--------|
+| <img src="https://user-images.githubusercontent.com/27495055/80114512-9544b100-857b-11ea-9292-9c9c3eaf93e0.png" width="240" height="430" alt="Screenshot_1587652933"/> | <img src="https://user-images.githubusercontent.com/27495055/80115521-beb20c80-857c-11ea-9902-41c444a3bd33.png" width="240" height="430" alt="Screenshot_1587652933"/> | <img src="https://user-images.githubusercontent.com/27495055/80116034-63344e80-857d-11ea-9922-1062b4320503.png" width="240" height="430" alt="Screenshot_1587652933"/> |
+
 ### What's new
     * Added new initialValue parameter that accepts a PhoneNumber object
     * Added autoFocus option
+    * Added support for intergation testing
     * Added Keys and Helper class for testing
     * Updated static method getParsableNumber from PhoneNumber
 
@@ -92,6 +97,15 @@ InternationalPhoneNumberInput({
 | locale                        | String            | null | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
 | searchBoxDecoration           | InputDecoration   |        null          | :heavy_check_mark: | :heavy_check_mark: | :x: |
 | countrySelectorScrollControlled | boolean           |        true          | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
+
+### Selector Types
+| DROPDOWN | BOTTOMSHEET | DIALOG |
+|----------|-------------|--------|
+| <img src="https://user-images.githubusercontent.com/27495055/80116593-10a76200-857e-11ea-9600-f2cfef5b2965.png" height="430" alt="Screenshot_1587652933"/>         | <img src="https://user-images.githubusercontent.com/27495055/80116677-261c8c00-857e-11ea-8167-a3de563287f4.png" width="240" height="430" alt="Screenshot_1587652933"/>            | <img src="https://user-images.githubusercontent.com/27495055/80116721-3896c580-857e-11ea-84da-4efe13011d50.png" width="240" height="430" alt="Screenshot_1587652933"/>   |
+
+### Testing
+Widget Key parameters and Helper classe are now available for integration testing check out this example 🎯 [Integration Testing Example](https://gist.github.com/natintosh/b7b40d75240a65fdb63942a4b36753e5)
+
 
 # Contributions
 If you encounter any problem or the library is missing a feature feel free to open an issue. Feel free to fork, improve the package and make pull request.
