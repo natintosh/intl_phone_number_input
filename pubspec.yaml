@@ -12,6 +12,7 @@ dependencies:
 
   provider: ^4.0.5
   libphonenumber: ^1.0.1
+  equatable: ^1.1.1
 
 dev_dependencies:
   flutter_test:
