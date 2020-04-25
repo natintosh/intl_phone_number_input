@@ -33,6 +33,7 @@ A simple and customizable flutter package for international phone number input
     PhoneNumber.getRegionInfoFromPhoneNumber(String phoneNumber, [String isoCode])
 ```
 > Could throw an Exception if the phoneNumber isn't recognised its a good pattern to pass the country's isoCode or have '+' at the beginning of the string
+> isoCode could be null if PhoneNumber is not recognised
 
 # Usage
 

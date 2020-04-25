@@ -342,6 +342,9 @@ class _InputWidgetState extends State<_InputWidget> {
           widget.initialValue.phoneNumber.isNotEmpty) {
         controller.text =
             await PhoneNumber.getParsableNumber(widget.initialValue);
+        if (context != null) {
+          _phoneNumberControllerListener();
+        }
       }
     }
     WidgetsBinding.instance.addPostFrameCallback((Duration duration) {
