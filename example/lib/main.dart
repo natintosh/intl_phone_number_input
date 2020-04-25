@@ -4,7 +4,6 @@ import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -12,7 +11,10 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: Scaffold(appBar: AppBar(title: Text('Demo')), body: MyHomePage()),
+      home: Scaffold(
+        appBar: AppBar(title: Text('Demo')),
+        body: MyHomePage(),
+      ),
     );
   }
 }
@@ -27,6 +29,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   final TextEditingController controller = TextEditingController();
   String initialCountry = 'NG';
+  PhoneNumber number = PhoneNumber(isoCode: 'NG');
 
   @override
   Widget build(BuildContext context) {
@@ -43,9 +46,9 @@ class _MyHomePageState extends State<MyHomePage> {
               onInputValidated: (bool value) {
                 print(value);
               },
-              ignoreBlank: true,
+              ignoreBlank: false,
               autoValidate: false,
-              initialValue: PhoneNumber(isoCode: 'NG'),
+              initialValue: number,
               textFieldController: controller,
               inputBorder: OutlineInputBorder(),
             ),
@@ -71,11 +74,8 @@ class _MyHomePageState extends State<MyHomePage> {
     PhoneNumber number =
         await PhoneNumber.getRegionInfoFromPhoneNumber(phoneNumber, 'US');
 
-    String parsableNumber = await PhoneNumber.getParsableNumber(number);
-    controller.text = parsableNumber;
-
     setState(() {
-      initialCountry = number.isoCode;
+      this.number = number;
     });
   }
 

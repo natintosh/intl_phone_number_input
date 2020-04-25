@@ -1,0 +1,32 @@
+#name: Intl CI
+#
+#on:
+#  push:
+#    branches: [ develop ]
+#  pull_request:
+#    branches: [ develop ]
+#
+#jobs:
+#  test:
+#
+#    runs-on: macos-latest
+#
+#    steps:
+#    - uses: actions/checkout@v2
+#
+#    - name: Install Flutter CI
+#      uses: takuyaohashi/setup-flutter@v1
+#    - run: flutter doctor
+#
+#    - name: Setup android emulator of drive test
+#      uses: ReactiveCircus/android-emulator-runner@v2.7.0
+#      with:
+#        api-level: 29
+#        script:  |
+#          flutter devices
+#          flutter pub get
+#          flutter drive --target=./example/test_driver/app/app.dart
+  
+
+
+
