@@ -287,35 +287,39 @@ class _InputWidgetState extends State<_InputWidget> {
   }
 
   void _phoneNumberControllerListener() {
-    InputProvider provider = Provider.of<InputProvider>(context, listen: false);
-    provider.isNotValid = true;
-    String parsedPhoneNumberString =
-        controller.text.replaceAll(RegExp(r'[^\d+]'), '');
+    if (this.mounted) {
+      InputProvider provider =
+          Provider.of<InputProvider>(context, listen: false);
+      provider.isNotValid = true;
+      String parsedPhoneNumberString =
+          controller.text.replaceAll(RegExp(r'[^\d+]'), '');
 
-    getParsedPhoneNumber(parsedPhoneNumberString, provider.country?.countryCode)
-        .then((phoneNumber) {
-      if (phoneNumber == null) {
-        String phoneNumber =
-            '${provider.country?.dialCode}$parsedPhoneNumberString';
-        widget.onInputChanged(new PhoneNumber(
-            phoneNumber: phoneNumber,
-            isoCode: provider.country?.countryCode,
-            dialCode: provider.country?.dialCode));
-        if (widget.onInputValidated != null) {
-          widget.onInputValidated(false);
+      getParsedPhoneNumber(
+              parsedPhoneNumberString, provider.country?.countryCode)
+          .then((phoneNumber) {
+        if (phoneNumber == null) {
+          String phoneNumber =
+              '${provider.country?.dialCode}$parsedPhoneNumberString';
+          widget.onInputChanged(new PhoneNumber(
+              phoneNumber: phoneNumber,
+              isoCode: provider.country?.countryCode,
+              dialCode: provider.country?.dialCode));
+          if (widget.onInputValidated != null) {
+            widget.onInputValidated(false);
+          }
+          provider.isNotValid = true;
+        } else {
+          widget.onInputChanged(new PhoneNumber(
+              phoneNumber: phoneNumber,
+              isoCode: provider.country?.countryCode,
+              dialCode: provider.country?.dialCode));
+          if (widget.onInputValidated != null) {
+            widget.onInputValidated(true);
+          }
+          provider.isNotValid = false;
         }
-        provider.isNotValid = true;
-      } else {
-        widget.onInputChanged(new PhoneNumber(
-            phoneNumber: phoneNumber,
-            isoCode: provider.country?.countryCode,
-            dialCode: provider.country?.dialCode));
-        if (widget.onInputValidated != null) {
-          widget.onInputValidated(true);
-        }
-        provider.isNotValid = false;
-      }
-    });
+      });
+    }
   }
 
   static Future<String> getParsedPhoneNumber(
@@ -342,9 +346,8 @@ class _InputWidgetState extends State<_InputWidget> {
           widget.initialValue.phoneNumber.isNotEmpty) {
         controller.text =
             await PhoneNumber.getParsableNumber(widget.initialValue);
-        if (context != null) {
-          _phoneNumberControllerListener();
-        }
+
+        _phoneNumberControllerListener();
       }
     }
     WidgetsBinding.instance.addPostFrameCallback((Duration duration) {
@@ -361,6 +364,13 @@ class _InputWidgetState extends State<_InputWidget> {
     controller = widget.textFieldController ?? TextEditingController();
     _initialiseWidget();
     super.initState();
+  }
+
+  @override
+  void setState(fn) {
+    if (this.mounted) {
+      super.setState(fn);
+    }
   }
 
   @override
