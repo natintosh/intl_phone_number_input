@@ -1,3 +1,9 @@
+## [0.4.0+2]
+  - Fixed NoSuchMethodError: The getter 'owner' was called on null
+
+## [0.4.0+1]
+  - Fixed issue with Validation error on initial value
+
 ## [0.4.0]
   - Added new initialValue parameter that accepts a PhoneNumber object
   - Added autoFocus option

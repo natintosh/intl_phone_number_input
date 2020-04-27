@@ -9,7 +9,7 @@ A simple and customizable flutter package for international phone number input
 ### What's new
     * Added new initialValue parameter that accepts a PhoneNumber object
     * Added autoFocus option
-    * Added support for intergation testing
+    * Added support for integration testing
     * Added Keys and Helper class for testing
     * Updated static method getParsableNumber from PhoneNumber
 
