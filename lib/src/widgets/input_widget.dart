@@ -537,10 +537,13 @@ class _InputWidgetState extends State<_InputWidget> {
       context: context,
       barrierDismissible: true,
       builder: (BuildContext context) => AlertDialog(
-        content: CountrySearchListWidget(
-          provider.countries,
-          widget.locale,
-          searchBoxDecoration: widget.searchBoxDecoration,
+        content: Container(
+          width: double.maxFinite,
+          child: CountrySearchListWidget(
+            provider.countries,
+            widget.locale,
+            searchBoxDecoration: widget.searchBoxDecoration,
+          ),
         ),
       ),
     );
