@@ -92,10 +92,11 @@ class _CountrySearchListWidgetState extends State<CountrySearchListWidget> {
               return ListTile(
                 key: Key(TestHelper.countryItemKeyValue(country.countryCode)),
                 leading: CircleAvatar(
-                    backgroundImage: AssetImage(
-                  country.flagUri,
-                  package: 'intl_phone_number_input',
-                )),
+                  backgroundImage: AssetImage(
+                    country.flagUri,
+                    package: 'intl_phone_number_input',
+                  ),
+                ),
                 title: Align(
                     alignment: AlignmentDirectional.centerStart,
                     child: Text('${getCountryName(country)}',
