@@ -328,7 +328,7 @@ class Countries {
       "alpha_3_code": "CYM",
       "en_short_name": "Cayman Islands",
       "nationality": "Caymanian",
-      "dial_code": "+ 345"
+      "dial_code": "+1345"
     },
     {
       "num_code": "140",
