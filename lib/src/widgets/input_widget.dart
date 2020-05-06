@@ -43,7 +43,7 @@ class InternationalPhoneNumberInput extends StatelessWidget {
   ///
   /// If null, defaults to the `subhead` text style from the current [Theme].
   final TextStyle textStyle;
-  final TextStyle codeTextSyle;
+  final TextStyle codeTextStyle;
   final InputBorder inputBorder;
   final InputDecoration inputDecoration;
   final InputDecoration searchBoxDecoration;
@@ -63,7 +63,7 @@ class InternationalPhoneNumberInput extends StatelessWidget {
       this.keyboardAction,
       this.countries,
       this.textStyle,
-      this.codeTextSyle,
+      this.codeTextStyle,
       this.inputBorder,
       this.inputDecoration,
       this.searchBoxDecoration,
@@ -89,7 +89,7 @@ class InternationalPhoneNumberInput extends StatelessWidget {
     TextInputAction keyboardAction,
     List<String> countries,
     TextStyle textStyle,
-    TextStyle codeTextSyle,
+    TextStyle codeTextStyle,
     String errorMessage,
     @required InputDecoration inputDecoration,
     InputDecoration searchBoxDecoration,
@@ -112,7 +112,7 @@ class InternationalPhoneNumberInput extends StatelessWidget {
       keyboardAction: keyboardAction,
       countries: countries,
       textStyle: textStyle,
-      codeTextSyle: codeTextSyle,
+      codeTextStyle: codeTextStyle,
       inputDecoration: inputDecoration,
       searchBoxDecoration: searchBoxDecoration,
       initialValue: initialValue,
@@ -160,7 +160,7 @@ class InternationalPhoneNumberInput extends StatelessWidget {
       keyboardAction: keyboardAction,
       countries: countries,
       textStyle: textStyle,
-      codeTextSyle: codeTextStyle,
+      codeTextStyle: codeTextStyle,
       inputBorder: inputBorder,
       hintText: hintText,
       initialValue: initialValue,
@@ -198,7 +198,7 @@ class InternationalPhoneNumberInput extends StatelessWidget {
           autoValidate: autoValidate,
           isEnabled: isEnabled,
           textStyle: textStyle,
-          codeTextStyle: codeTextSyle,
+          codeTextStyle: codeTextStyle,
           inputBorder: inputBorder,
           inputDecoration: inputDecoration,
           searchBoxDecoration: searchBoxDecoration,
