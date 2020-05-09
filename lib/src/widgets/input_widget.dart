@@ -275,15 +275,18 @@ class _InputWidgetState extends State<_InputWidget> {
   FocusNode focusNode;
 
   _loadCountries(BuildContext context) {
-    InputProvider provider = Provider.of<InputProvider>(context, listen: false);
+    if (this.mounted) {
+      InputProvider provider =
+          Provider.of<InputProvider>(context, listen: false);
 
-    provider.countries = CountryProvider.getCountriesData(
-        context: context, countries: widget.countries);
+      provider.countries = CountryProvider.getCountriesData(
+          context: context, countries: widget.countries);
 
-    provider.country = Utils.getInitialSelectedCountry(
-      provider.countries,
-      widget.initialValue?.isoCode ?? '',
-    );
+      provider.country = Utils.getInitialSelectedCountry(
+        provider.countries,
+        widget.initialValue?.isoCode ?? '',
+      );
+    }
   }
 
   void _phoneNumberControllerListener() {
