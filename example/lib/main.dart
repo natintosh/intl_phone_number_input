@@ -48,6 +48,7 @@ class _MyHomePageState extends State<MyHomePage> {
               },
               ignoreBlank: false,
               autoValidate: false,
+              codeTextStyle: TextStyle(color: Colors.red),
               initialValue: number,
               textFieldController: controller,
               inputBorder: OutlineInputBorder(),

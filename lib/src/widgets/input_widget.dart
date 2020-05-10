@@ -43,6 +43,7 @@ class InternationalPhoneNumberInput extends StatelessWidget {
   ///
   /// If null, defaults to the `subhead` text style from the current [Theme].
   final TextStyle textStyle;
+  final TextStyle codeTextStyle;
   final InputBorder inputBorder;
   final InputDecoration inputDecoration;
   final InputDecoration searchBoxDecoration;
@@ -62,6 +63,7 @@ class InternationalPhoneNumberInput extends StatelessWidget {
       this.keyboardAction,
       this.countries,
       this.textStyle,
+      this.codeTextStyle,
       this.inputBorder,
       this.inputDecoration,
       this.searchBoxDecoration,
@@ -87,6 +89,7 @@ class InternationalPhoneNumberInput extends StatelessWidget {
     TextInputAction keyboardAction,
     List<String> countries,
     TextStyle textStyle,
+    TextStyle codeTextStyle,
     String errorMessage,
     @required InputDecoration inputDecoration,
     InputDecoration searchBoxDecoration,
@@ -109,6 +112,7 @@ class InternationalPhoneNumberInput extends StatelessWidget {
       keyboardAction: keyboardAction,
       countries: countries,
       textStyle: textStyle,
+      codeTextStyle: codeTextStyle,
       inputDecoration: inputDecoration,
       searchBoxDecoration: searchBoxDecoration,
       initialValue: initialValue,
@@ -133,6 +137,7 @@ class InternationalPhoneNumberInput extends StatelessWidget {
     TextInputAction keyboardAction,
     List<String> countries,
     TextStyle textStyle,
+    TextStyle codeTextStyle,
     @required InputBorder inputBorder,
     @required String hintText,
     PhoneNumber initialValue,
@@ -155,6 +160,7 @@ class InternationalPhoneNumberInput extends StatelessWidget {
       keyboardAction: keyboardAction,
       countries: countries,
       textStyle: textStyle,
+      codeTextStyle: codeTextStyle,
       inputBorder: inputBorder,
       hintText: hintText,
       initialValue: initialValue,
@@ -192,6 +198,7 @@ class InternationalPhoneNumberInput extends StatelessWidget {
           autoValidate: autoValidate,
           isEnabled: isEnabled,
           textStyle: textStyle,
+          codeTextStyle: codeTextStyle,
           inputBorder: inputBorder,
           inputDecoration: inputDecoration,
           searchBoxDecoration: searchBoxDecoration,
@@ -232,6 +239,7 @@ class _InputWidget extends StatefulWidget {
   ///
   /// If null, defaults to the `subhead` text style from the current [Theme].
   final TextStyle textStyle;
+  final TextStyle codeTextStyle;
   final InputBorder inputBorder;
   final InputDecoration inputDecoration;
   final InputDecoration searchBoxDecoration;
@@ -251,6 +259,7 @@ class _InputWidget extends StatefulWidget {
       this.keyboardAction,
       this.countries,
       this.textStyle,
+      this.codeTextStyle,
       this.inputBorder,
       this.inputDecoration,
       this.searchBoxDecoration,
@@ -398,7 +407,10 @@ class _InputWidgetState extends State<_InputWidget> {
                   ? DropdownButtonHideUnderline(
                       child: DropdownButton<Country>(
                         key: Key(TestHelper.DropdownButtonKeyValue),
-                        hint: _Item(country: provider.country),
+                        hint: _Item(
+                          country: provider.country,
+                          codeTextStyle: widget.codeTextStyle,
+                        ),
                         value: provider.country,
                         items: _mapCountryToDropdownItem(provider.countries),
                         onChanged: widget.isEnabled
@@ -409,7 +421,10 @@ class _InputWidgetState extends State<_InputWidget> {
                             : null,
                       ),
                     )
-                  : _Item(country: provider.country)
+                  : _Item(
+                      country: provider.country,
+                      codeTextStyle: widget.codeTextStyle,
+                    )
               : FlatButton(
                   key: Key(TestHelper.DropdownButtonKeyValue),
                   padding: EdgeInsetsDirectional.only(start: 12, end: 4),
@@ -432,7 +447,7 @@ class _InputWidgetState extends State<_InputWidget> {
                           }
                         }
                       : null,
-                  child: _Item(country: provider.country),
+                  child: _Item(country: provider.country, codeTextStyle: widget.codeTextStyle,),
                 ),
           SizedBox(width: 12),
           Flexible(
@@ -493,6 +508,7 @@ class _InputWidgetState extends State<_InputWidget> {
         value: country,
         child: _Item(
           key: Key(TestHelper.countryItemKeyValue(country.countryCode)),
+          codeTextStyle: widget.codeTextStyle,
           country: country,
           withCountryNames: false,
         ),
@@ -556,8 +572,13 @@ class _InputWidgetState extends State<_InputWidget> {
 class _Item extends StatelessWidget {
   final Country country;
   final bool withCountryNames;
+  final TextStyle codeTextStyle;
 
-  const _Item({Key key, this.country, this.withCountryNames = false})
+  const _Item(
+      {Key key,
+      this.country,
+      this.withCountryNames = false,
+      this.codeTextStyle})
       : super(key: key);
 
   @override
@@ -575,7 +596,11 @@ class _Item extends StatelessWidget {
                 )
               : SizedBox.shrink(),
           SizedBox(width: 12.0),
-          Text('${country?.dialCode ?? ''}', textDirection: TextDirection.ltr),
+          Text(
+            '${country?.dialCode ?? ''}',
+            textDirection: TextDirection.ltr,
+            style: codeTextStyle,
+          ),
         ],
       ),
     );
