@@ -176,7 +176,7 @@ class InternationalPhoneNumberInput extends StatelessWidget {
         return InputProvider();
       },
       child: _InputWidget(
-          key: UniqueKey(),
+          key: ObjectKey(PhoneNumber),
           selectorType: selectorType ?? PhoneInputSelectorType.DROPDOWN,
           onInputChanged: onInputChanged,
           onInputValidated: onInputValidated,
