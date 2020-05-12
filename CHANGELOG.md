@@ -1,3 +1,9 @@
+## [0.4.1]
+  - Updated Cayman Island dial code
+  - Added selectorTextStyle parameter
+  - Improve load up time
+  - Fixed NoSuchMethodError: The getter 'owner' was called on null
+
 ## [0.4.0+2]
   - Fixed NoSuchMethodError: The getter 'owner' was called on null
 
