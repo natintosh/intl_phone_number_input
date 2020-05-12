@@ -31,6 +31,13 @@ A simple and customizable flutter package for international phone number input
 ```    
 
 ### Note
+```dart 
+   onInputChanged(PhoneNumber value) {
+      setState((){});
+   }
+```
+> Calling setState inside onInputChanged and onInputValidated causes the Widget to rebuild multiple times and soft keyboard hidding after textfield is focused
+
 ``` dart
     PhoneNumber.getRegionInfoFromPhoneNumber(String phoneNumber, [String isoCode])
 ```
