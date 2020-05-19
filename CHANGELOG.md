@@ -1,3 +1,6 @@
+## [0.4.1+1]
+  - Fixed issue with PhoneInputSelectorType.DIALOG
+
 ## [0.4.1]
   - Updated Cayman Island dial code
   - Added selectorTextStyle parameter
