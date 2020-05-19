@@ -105,8 +105,8 @@ class SelectorButton extends StatelessWidget {
       context: context,
       barrierDismissible: true,
       builder: (BuildContext context) => AlertDialog(
-        scrollable: true,
         content: Container(
+          width: double.maxFinite,
           child: CountrySearchListWidget(
             provider.countries,
             locale,
