@@ -209,6 +209,15 @@ class _InputWidgetState extends State<InternationalPhoneNumberInput> {
     );
   }
 
+  @override
+  void didUpdateWidget(InternationalPhoneNumberInput oldWidget) {
+    if (oldWidget.initialValue != widget.initialValue) {
+      loadCountries(context);
+      initialiseWidget();
+    }
+    super.didUpdateWidget(oldWidget);
+  }
+
   void initialiseWidget() async {
     if (widget.initialValue != null) {
       if (widget.initialValue.phoneNumber != null &&
