@@ -1,3 +1,6 @@
+## [0.4.2]
+  - Fixed issue with keyboard and multiple rebuilds
+
 ## [0.4.1+1]
   - Fixed issue with PhoneInputSelectorType.DIALOG
 
