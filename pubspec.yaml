@@ -10,7 +10,6 @@ dependencies:
   flutter:
     sdk: flutter
 
-  provider: ^4.1.1
   libphonenumber: ^1.0.1
   equatable: ^1.1.1
 

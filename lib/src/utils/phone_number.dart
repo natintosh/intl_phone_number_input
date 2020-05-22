@@ -64,7 +64,7 @@ class PhoneNumber extends Equatable {
         .replaceAll(RegExp('^([\\+?${this.dialCode}\\s?]+)'), '');
   }
 
-  ///For predefined phone number - get the initial country ISO2 code from the dial code 
+  ///For predefined phone number - get the initial country ISO2 code from the dial code
   static String getISO2CodeByPrefix(String prefix) {
     if (prefix != null && prefix.isNotEmpty) {
       prefix = prefix.startsWith('+') ? prefix : '+$prefix';
