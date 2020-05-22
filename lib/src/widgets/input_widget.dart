@@ -15,9 +15,6 @@ enum PhoneInputSelectorType { DROPDOWN, BOTTOM_SHEET, DIALOG }
 typedef InputChanged<T> = void Function(T value);
 
 class InternationalPhoneNumberInput extends StatefulWidget {
-  final GlobalKey<_InputWidgetState> inputStateKey =
-      GlobalKey<_InputWidgetState>();
-
   final PhoneInputSelectorType selectorType;
 
   final InputChanged<PhoneNumber> onInputChanged;
