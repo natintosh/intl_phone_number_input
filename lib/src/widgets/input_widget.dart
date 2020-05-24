@@ -214,6 +214,22 @@ class _InputWidgetState extends State<InternationalPhoneNumberInput> {
     if (oldWidget.initialValue != widget.initialValue) {
       loadCountries(context);
       initialiseWidget();
+    } else {
+      if (mounted) {
+        if (widget.initialValue != null) {
+          if (widget.initialValue.phoneNumber != null) {
+            if (widget.initialValue.phoneNumber.isNotEmpty) {
+              PhoneNumber.getParsableNumber(
+                widget?.initialValue ??
+                    PhoneNumber(phoneNumber: '', isoCode: ''),
+              ).then((value) {
+                loadCountries(context);
+                initialiseWidget();
+              });
+            }
+          }
+        }
+      }
     }
     super.didUpdateWidget(oldWidget);
   }
