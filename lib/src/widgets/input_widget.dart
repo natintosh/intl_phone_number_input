@@ -343,7 +343,7 @@ class _InputWidgetState extends State<InternationalPhoneNumberInput> {
 
     String number = await PhoneNumber.getParsableNumber(PhoneNumber(
         phoneNumber: parsedPhoneNumberString, isoCode: country?.countryCode));
-update###
+
     this.controller.text = number;
   }
 }
