@@ -45,7 +45,7 @@ class PhoneNumberTest {
         isoCode: number.isoCode,
       );
       return formattedNumber.replaceAll(
-        RegExp('^([\\+?${number.dialCode}\\s?]+)'),
+        RegExp('^([\\+]?${number.dialCode}[\\s]?)'),
         '',
       );
     } else {
@@ -57,7 +57,7 @@ class PhoneNumberTest {
   String parseNumber() {
     return this
         .phoneNumber
-        .replaceAll(RegExp('^([\\+?${this.dialCode}\\s?]+)'), '');
+        .replaceAll(RegExp('^([\\+]?${this.dialCode}[\\s]?)'), '');
   }
 
   ///For predefined phone number - get the initial country ISO2 code from the dial code

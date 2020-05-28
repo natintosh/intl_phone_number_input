@@ -32,8 +32,7 @@ class AsYouTypeFormatter extends TextInputFormatter {
 
       formatAsYouType(input: textToParse).then(
         (String value) {
-          String parsedText =
-              value.replaceAll(RegExp('^([\\+?${this.dialCode}\\s?]+)'), '');
+          String parsedText = value.replaceFirst(dialCode, '').trim();
 
           int offset = newValue.selection.baseOffset;
 
