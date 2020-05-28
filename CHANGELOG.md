@@ -1,3 +1,6 @@
+## [0.4.3]
+  - Fixed issue with first digit getting removed
+
 ## [0.4.2]
   - Fixed issue with keyboard and multiple rebuilds
 
