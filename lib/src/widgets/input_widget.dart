@@ -180,7 +180,6 @@ class InternationalPhoneNumberInput extends StatefulWidget {
 
 class _InputWidgetState extends State<InternationalPhoneNumberInput> {
   TextEditingController controller;
-  FocusNode focusNode;
 
   Country country;
   List<Country> countries = [];
@@ -189,7 +188,6 @@ class _InputWidgetState extends State<InternationalPhoneNumberInput> {
   @override
   void initState() {
     Future.delayed(Duration.zero, () => loadCountries(context));
-    focusNode = widget.focusNode ?? FocusNode();
     controller = widget.textFieldController ?? TextEditingController();
     initialiseWidget();
     super.initState();
@@ -211,26 +209,26 @@ class _InputWidgetState extends State<InternationalPhoneNumberInput> {
 
   @override
   void didUpdateWidget(InternationalPhoneNumberInput oldWidget) {
-    if (oldWidget.initialValue != widget.initialValue) {
-      loadCountries(context);
-      initialiseWidget();
-    } else {
-      if (mounted) {
-        if (widget.initialValue != null) {
-          if (widget.initialValue.phoneNumber != null) {
-            if (widget.initialValue.phoneNumber.isNotEmpty) {
-              PhoneNumber.getParsableNumber(
-                widget?.initialValue ??
-                    PhoneNumber(phoneNumber: '', isoCode: ''),
-              ).then((value) {
-                loadCountries(context);
-                initialiseWidget();
-              });
-            }
-          }
-        }
-      }
-    }
+//    if (oldWidget.initialValue != widget.initialValue) {
+//      loadCountries(context);
+//      initialiseWidget();
+//    } else {
+//      if (mounted) {
+//        if (widget.initialValue != null) {
+//          if (widget.initialValue.phoneNumber != null) {
+//            if (widget.initialValue.phoneNumber.isNotEmpty) {
+//              PhoneNumber.getParsableNumber(
+//                widget?.initialValue ??
+//                    PhoneNumber(phoneNumber: '', isoCode: ''),
+//              ).then((value) {
+//                loadCountries(context);
+//                initialiseWidget();
+//              });
+//            }
+//          }
+//        }
+//      }
+//    }
     super.didUpdateWidget(oldWidget);
   }
 
@@ -244,11 +242,6 @@ class _InputWidgetState extends State<InternationalPhoneNumberInput> {
         phoneNumberControllerListener();
       }
     }
-    WidgetsBinding.instance.addPostFrameCallback((Duration duration) {
-      if (widget.autoFocus && !focusNode.hasFocus) {
-        FocusScope.of(context).requestFocus(focusNode);
-      }
-    });
   }
 
   void loadCountries(BuildContext context) {
@@ -339,8 +332,19 @@ class _InputWidgetState extends State<InternationalPhoneNumberInput> {
     setState(() {
       this.country = country;
     });
-
     phoneNumberControllerListener();
+
+    updateTextField(country);
+  }
+
+  void updateTextField(Country country) async {
+    String parsedPhoneNumberString =
+        controller.text.replaceAll(RegExp(r'[^\d+]'), '');
+
+    String number = await PhoneNumber.getParsableNumber(PhoneNumber(
+        phoneNumber: parsedPhoneNumberString, isoCode: country?.countryCode));
+update###
+    this.controller.text = number;
   }
 }
 
@@ -370,7 +374,6 @@ class _InputWidgetView
             selectorTextStyle: widget.selectorTextStyle,
             searchBoxDecoration: widget.searchBoxDecoration,
             locale: widget.locale,
-            phoneNumberControllerListener: state.phoneNumberControllerListener,
             isEnabled: widget.isEnabled,
             isScrollControlled: widget.countrySelectorScrollControlled,
           ),
@@ -380,8 +383,9 @@ class _InputWidgetView
               key: Key(TestHelper.TextInputKeyValue),
               textDirection: TextDirection.ltr,
               controller: state.controller,
-              focusNode: state.focusNode,
+              focusNode: widget.focusNode,
               enabled: widget.isEnabled,
+              autofocus: widget.autoFocus,
               keyboardType: TextInputType.phone,
               textInputAction: widget.keyboardAction,
               style: widget.textStyle,

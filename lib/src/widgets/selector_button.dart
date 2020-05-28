@@ -15,7 +15,6 @@ class SelectorButton extends StatelessWidget {
   final bool isEnabled;
   final bool isScrollControlled;
 
-  final VoidCallback phoneNumberControllerListener;
   final ValueChanged<Country> onCountryChanged;
 
   const SelectorButton({
@@ -26,7 +25,6 @@ class SelectorButton extends StatelessWidget {
     @required this.selectorTextStyle,
     @required this.searchBoxDecoration,
     @required this.locale,
-    @required this.phoneNumberControllerListener,
     @required this.onCountryChanged,
     @required this.isEnabled,
     @required this.isScrollControlled,
