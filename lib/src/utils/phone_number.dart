@@ -4,12 +4,20 @@ import 'package:equatable/equatable.dart';
 import 'package:intl_phone_number_input/src/models/country_list.dart';
 import 'package:libphonenumber/libphonenumber.dart';
 
+/// [PhoneNumber] contains detailed information about a phone number
 class PhoneNumber extends Equatable {
+  /// Either formatted or unformatted String of the phone number
   final String phoneNumber;
+
+  /// The Country [dialCode] of the phone number
   final String dialCode;
+
+  /// Country [isoCode] of the phone number
   final String isoCode;
   final int _hash;
 
+  /// Returns an integer generated after the object was initialised.
+  /// Used to compare different instances of [PhoneNumber]
   int get hash => _hash;
 
   @override
@@ -23,6 +31,8 @@ class PhoneNumber extends Equatable {
     return phoneNumber;
   }
 
+  /// Returns [PhoneNumber] which contains region information about
+  /// the [phoneNumber] and [isoCode] passed.
   static Future<PhoneNumber> getRegionInfoFromPhoneNumber(
     String phoneNumber, [
     String isoCode = '',
@@ -43,6 +53,7 @@ class PhoneNumber extends Equatable {
         isoCode: regionInfo.isoCode);
   }
 
+  /// Accepts a [PhoneNumber] object and returns a formatted phone number String
   static Future<String> getParsableNumber(PhoneNumber phoneNumber) async {
     assert(phoneNumber != null);
     if (phoneNumber.isoCode != null) {
@@ -64,13 +75,15 @@ class PhoneNumber extends Equatable {
     }
   }
 
+  /// Returns a String of [phoneNumber] without [dialCode]
   String parseNumber() {
     return this
         .phoneNumber
         .replaceAll(RegExp('^([\\+]?${this.dialCode}[\\s]?)'), '');
   }
 
-  ///For predefined phone number - get the initial country ISO2 code from the dial code
+  /// For predefined phone number returns Country's [isoCode] from the dial code,
+  /// Returns null if not found.
   static String getISO2CodeByPrefix(String prefix) {
     if (prefix != null && prefix.isNotEmpty) {
       prefix = prefix.startsWith('+') ? prefix : '+$prefix';
