@@ -7,13 +7,9 @@ A simple and customizable flutter package for international phone number input
 | <img src="https://user-images.githubusercontent.com/27495055/80114512-9544b100-857b-11ea-9292-9c9c3eaf93e0.png" width="240" height="430" alt="Screenshot_1587652933"/> | <img src="https://user-images.githubusercontent.com/27495055/80115521-beb20c80-857c-11ea-9902-41c444a3bd33.png" width="240" height="430" alt="Screenshot_1587652933"/> | <img src="https://user-images.githubusercontent.com/27495055/80116034-63344e80-857d-11ea-9922-1062b4320503.png" width="240" height="430" alt="Screenshot_1587652933"/> |
 
 ### What's new
-    * Added selectorTextStyle parameter
-    * Improve load up time
-    * Added new initialValue parameter that accepts a PhoneNumber object
-    * Added autoFocus option
-    * Added support for integration testing
-    * Added Keys and Helper class for testing
-    * Updated static method getParsableNumber from PhoneNumber
+    * Updated package documentation
+    * Added selector button padding on error
+    * Fixed issue with first digit getting removed
 
 ### Features
     * Support for RTL languages
@@ -45,8 +41,8 @@ A simple and customizable flutter package for international phone number input
 | s/n | Constructor                                             |
 | --- | ------------------------------------------------------- |
 |  1  | InternationalPhoneNumberInput                           |
-|  2  | InternationalPhoneNumberInput.withCustomDecoration      |
-|  3  | InternationalPhoneNumberInput.withCustomBorder          |
+|  2  | ~~InternationalPhoneNumberInput.withCustomDecoration~~      |
+|  3  | ~~InternationalPhoneNumberInput.withCustomBorder~~          |
 
 ## Available Parameters
 
@@ -67,6 +63,7 @@ InternationalPhoneNumberInput({
     this.inputDecoration,
     this.searchBoxDecoration,
     this.initialValue,
+    this.selectorButtonOnErrorPadding = 24,
     this.hintText = 'Phone Number',
     this.isEnabled = true,
     this.autoFocus = false,
@@ -79,7 +76,7 @@ InternationalPhoneNumberInput({
     });
 ```
 
-| Parameter                     | Datatype          |    Initial Value     |    Default [1]     |   Decoration [2]   |  CustomBorder [3]  |
+| Parameter                     | Datatype          |    Initial Value     |    Default [1]     |   ~~Decoration~~ [2]   |  ~~CustomBorder~~ [3]  |
 |-------------------------------|-------------------|----------------------|--------------------|--------------------|--------------------|
 | onInputChanged                | function(PhoneNumber)  |        null          | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
 | onInputValidated              | function(bool)    |        null          | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
@@ -94,6 +91,7 @@ InternationalPhoneNumberInput({
 | inputDecoration               | InputDecoration   |        null          | :heavy_check_mark: | :heavy_check_mark: |        :x:         |
 | initialValue                  | PhoneNumber       |        null          | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
 | hintText                      | String            |     Phone Number     | :heavy_check_mark: |        :x:         | :heavy_check_mark: |
+| selectorButtonOnErrorPadding  | integer           |        24            | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
 | isEnabled                     | boolean           |        true          | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
 | autoFocus                     | boolean           |        false         | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
 | autoValidate                  | boolean           |        false         | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
@@ -127,7 +125,7 @@ Made with [contributors-img](https://contributors-img.web.app).
 # Dependencies
 
 * [libphonenumber](https://pub.dev/packages/libphonenumber)
-* [provider](https://pub.dev/packages/provider)
+* [equatable](https://pub.dev/packages/equatable)
 
 # Credits
 

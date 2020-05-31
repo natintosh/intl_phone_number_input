@@ -1,3 +1,8 @@
+## [0.4.40
+  - Updated package documentation
+  - Added selector button padding on error
+  - Fixed issue with first digit getting removed
+
 ## [0.4.3]
   - Fixed issue with first digit getting removed
 
