@@ -338,18 +338,6 @@ class _InputWidgetState extends State<InternationalPhoneNumberInput> {
       this.country = country;
     });
     phoneNumberControllerListener();
-
-    updateTextField(country);
-  }
-
-  void updateTextField(Country country) async {
-    String parsedPhoneNumberString =
-        controller.text.replaceAll(RegExp(r'[^\d+]'), '');
-
-    String number = await PhoneNumber.getParsableNumber(PhoneNumber(
-        phoneNumber: parsedPhoneNumberString, isoCode: country?.countryCode));
-
-    this.controller.text = number;
   }
 }
 
