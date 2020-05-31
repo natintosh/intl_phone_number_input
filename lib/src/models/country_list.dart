@@ -1,4 +1,23 @@
+/// Countries contains list of all most all the countries on Earth.
 class Countries {
+  /// returns `List<Map<String, dynamic>` of countries which contains
+  ///  *  num_code
+  ///  *  alpha_2_code
+  ///  *  alpha_3_code
+  ///  *  en_short_name
+  ///  *  nationality
+  ///  *  dial_code
+  ///
+  ///   ```dart
+  ///     {
+  ///       "num_code": "566",
+  ///       "alpha_2_code": "NG",
+  ///       "alpha_3_code": "NGA",
+  ///       "en_short_name": "Nigeria",
+  ///       "nationality": "Nigerian",
+  ///       "dial_code": "+234"
+  ///     }
+  ///   ```
   static get countryList => _countryList;
 
   static final List<Map<String, dynamic>> _countryList = [
