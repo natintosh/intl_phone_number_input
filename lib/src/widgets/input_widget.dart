@@ -217,7 +217,8 @@ class _InputWidgetState extends State<InternationalPhoneNumberInput> {
 
   @override
   void didUpdateWidget(InternationalPhoneNumberInput oldWidget) {
-    if (oldWidget.initialValue != widget.initialValue) {
+    if (oldWidget.initialValue != widget.initialValue ||
+        oldWidget.initialValue.hash != widget.initialValue.hash) {
       loadCountries(context);
       initialiseWidget();
     }
@@ -318,7 +319,7 @@ class _InputWidgetState extends State<InternationalPhoneNumberInput> {
     bool isValid =
         this.isNotValid && (value.isNotEmpty || widget.ignoreBlank == false);
 
-    if (isValid) {
+    if (isValid && widget.errorMessage != null) {
       setState(() {
         this.selectorButtonBottomPadding =
             widget.selectorButtonOnErrorPadding ?? 24;

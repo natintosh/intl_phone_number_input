@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:equatable/equatable.dart';
 import 'package:intl_phone_number_input/src/models/country_list.dart';
 import 'package:libphonenumber/libphonenumber.dart';
@@ -6,11 +8,15 @@ class PhoneNumber extends Equatable {
   final String phoneNumber;
   final String dialCode;
   final String isoCode;
+  final int _hash;
+
+  int get hash => _hash;
 
   @override
   List<Object> get props => [phoneNumber, dialCode];
 
-  PhoneNumber({this.phoneNumber, this.dialCode, this.isoCode});
+  PhoneNumber({this.phoneNumber, this.dialCode, this.isoCode})
+      : _hash = 1000 + Random().nextInt(99999 - 1000);
 
   @override
   String toString() {
