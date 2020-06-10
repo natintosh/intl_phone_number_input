@@ -240,10 +240,15 @@ class _InputWidgetState extends State<InternationalPhoneNumberInput> {
   @override
   void didUpdateWidget(InternationalPhoneNumberInput oldWidget) {
     if (oldWidget.initialValue != widget.initialValue ||
-        oldWidget.initialValue.hash != widget.initialValue.hash) {
+        oldWidget.initialValue?.hash != widget.initialValue?.hash) {
       loadCountries(context);
       initialiseWidget();
     }
+
+    print(oldWidget.initialValue);
+
+    print(widget.initialValue);
+
     super.didUpdateWidget(oldWidget);
   }
 
