@@ -244,11 +244,6 @@ class _InputWidgetState extends State<InternationalPhoneNumberInput> {
       loadCountries(context);
       initialiseWidget();
     }
-
-    print(oldWidget.initialValue);
-
-    print(widget.initialValue);
-
     super.didUpdateWidget(oldWidget);
   }
 
