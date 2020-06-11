@@ -47,6 +47,7 @@ class InternationalPhoneNumberInput extends StatefulWidget {
   final String errorMessage;
 
   final double selectorButtonOnErrorPadding;
+  final int maxLength;
 
   final bool isEnabled;
   final bool formatInput;
@@ -79,6 +80,7 @@ class InternationalPhoneNumberInput extends StatefulWidget {
       this.hintText = 'Phone number',
       this.errorMessage = 'Invalid phone number',
       this.selectorButtonOnErrorPadding = 24,
+      this.maxLength = 15,
       this.isEnabled = true,
       this.formatInput = true,
       this.autoFocus = false,
@@ -111,6 +113,7 @@ class InternationalPhoneNumberInput extends StatefulWidget {
     TextStyle selectorTextStyle,
     String errorMessage = 'Invalid phone number',
     double selectorButtonOnErrorPadding = 24,
+    int maxLength = 15,
     @required InputDecoration inputDecoration,
     InputDecoration searchBoxDecoration,
     PhoneNumber initialValue,
@@ -144,6 +147,7 @@ class InternationalPhoneNumberInput extends StatefulWidget {
       ignoreBlank: ignoreBlank,
       errorMessage: errorMessage,
       selectorButtonOnErrorPadding: selectorButtonOnErrorPadding,
+      maxLength: maxLength,
       locale: locale,
       countrySelectorScrollControlled: countrySelectorScrollControlled,
     );
@@ -168,6 +172,7 @@ class InternationalPhoneNumberInput extends StatefulWidget {
     PhoneNumber initialValue,
     String errorMessage = 'Invalid phone number',
     double selectorButtonOnErrorPadding = 24,
+    int maxLength = 15,
     bool isEnabled = true,
     bool formatInput = true,
     bool autoFocus = false,
@@ -193,6 +198,7 @@ class InternationalPhoneNumberInput extends StatefulWidget {
       initialValue: initialValue,
       errorMessage: errorMessage,
       selectorButtonOnErrorPadding: selectorButtonOnErrorPadding,
+      maxLength: maxLength,
       formatInput: formatInput,
       isEnabled: isEnabled,
       autoFocus: autoFocus,
@@ -430,7 +436,7 @@ class _InputWidgetView
               autovalidate: widget.autoValidate,
               validator: state.validator,
               inputFormatters: [
-                LengthLimitingTextInputFormatter(15),
+                LengthLimitingTextInputFormatter(widget.maxLength),
                 widget.formatInput
                     ? AsYouTypeFormatter(
                         isoCode: countryCode,
