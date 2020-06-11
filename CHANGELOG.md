@@ -1,4 +1,8 @@
-## [0.4.40
+## [0.4.5]
+  - Added maxLength property to set length limit
+  - Fixed getter 'hash' was called on null.
+
+## [0.4.4]
   - Updated package documentation
   - Added selector button padding on error
   - Fixed issue with first digit getting removed

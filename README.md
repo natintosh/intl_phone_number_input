@@ -64,6 +64,7 @@ InternationalPhoneNumberInput({
     this.searchBoxDecoration,
     this.initialValue,
     this.selectorButtonOnErrorPadding = 24,
+    this.maxLength = 15,
     this.hintText = 'Phone Number',
     this.isEnabled = true,
     this.autoFocus = false,
@@ -91,7 +92,8 @@ InternationalPhoneNumberInput({
 | inputDecoration               | InputDecoration   |        null          | :heavy_check_mark: | :heavy_check_mark: |        :x:         |
 | initialValue                  | PhoneNumber       |        null          | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
 | hintText                      | String            |     Phone Number     | :heavy_check_mark: |        :x:         | :heavy_check_mark: |
-| selectorButtonOnErrorPadding  | integer           |        24            | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
+| selectorButtonOnErrorPadding  | double            |        24            | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
+| maxLength                     | integer           |        15            | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
 | isEnabled                     | boolean           |        true          | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
 | autoFocus                     | boolean           |        false         | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
 | autoValidate                  | boolean           |        false         | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
