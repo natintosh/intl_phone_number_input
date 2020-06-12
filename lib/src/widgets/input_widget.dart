@@ -296,19 +296,26 @@ class _InputWidgetState extends State<InternationalPhoneNumberInput> {
         if (phoneNumber == null) {
           String phoneNumber =
               '${this.country?.dialCode}$parsedPhoneNumberString';
-          widget.onInputChanged(PhoneNumber(
-              phoneNumber: phoneNumber,
-              isoCode: this.country?.countryCode,
-              dialCode: this.country?.dialCode));
+
+          if (widget.onInputChanged != null) {
+            widget.onInputChanged(PhoneNumber(
+                phoneNumber: phoneNumber,
+                isoCode: this.country?.countryCode,
+                dialCode: this.country?.dialCode));
+          }
+
           if (widget.onInputValidated != null) {
             widget.onInputValidated(false);
           }
           this.isNotValid = true;
         } else {
-          widget.onInputChanged(PhoneNumber(
-              phoneNumber: phoneNumber,
-              isoCode: this.country?.countryCode,
-              dialCode: this.country?.dialCode));
+          if (widget.onInputChanged != null) {
+            widget.onInputChanged(PhoneNumber(
+                phoneNumber: phoneNumber,
+                isoCode: this.country?.countryCode,
+                dialCode: this.country?.dialCode));
+          }
+
           if (widget.onInputValidated != null) {
             widget.onInputValidated(true);
           }
