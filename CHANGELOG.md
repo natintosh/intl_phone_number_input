@@ -1,3 +1,6 @@
+## [0.4.6+2]
+  - Removed selector button left padding
+
 ## [0.4.6+1]
   - Fixed setState() or markNeedsBuild called during build
 
