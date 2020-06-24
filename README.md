@@ -8,6 +8,7 @@ A simple and customizable flutter package for international phone number input
 
 ### What's new
     * Fixed incorrect cursor positioning while editing
+    * Fixed setState() or markNeedsBuild called during build
 
 ### Features
     * Support for RTL languages

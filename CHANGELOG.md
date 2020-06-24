@@ -1,3 +1,6 @@
+## [0.4.6+1]
+  - Fixed setState() or markNeedsBuild called during build
+
 ## [0.4.6]
   - Fixed incorrect cursor positioning while editing
 
