@@ -39,23 +39,22 @@ class AsYouTypeFormatter extends TextInputFormatter {
       String newValueText = newValue.text;
       String rawText = newValueText.replaceAll(separatorChars, '');
       String textToParse = dialCode + rawText;
+      final insertedDigits = newValueText
+        .substring(oldValue.selection.start, newValue.selection.end)
+        .replaceAll(separatorChars, '');
 
       formatAsYouType(input: textToParse).then(
         (String value) {
           String parsedText = value.replaceFirst(dialCode, '').trim();
 
-          int offset = newValue.selection.baseOffset;
-
-          try {
-            if (separatorChars.hasMatch(parsedText[offset])) {
-              offset += 3;
-            } else {
-              offset += 1;
+          int offset = oldValue.selection.start;
+          for (int digitIndex = 0; digitIndex < insertedDigits.length && offset < parsedText.length; ++offset) {
+            final insertedDigit = insertedDigits[digitIndex];
+            final parsedChar = parsedText[offset];
+            if (parsedChar == insertedDigit) {
+              ++digitIndex;
             }
-          } on RangeError {}
-
-          if (parsedText.length < newValueText.length)
-            offset = parsedText.length;
+          }
 
           if (separatorChars.hasMatch(parsedText))
             this.onInputFormatted(
