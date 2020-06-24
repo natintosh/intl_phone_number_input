@@ -1,3 +1,6 @@
+## [0.4.6]
+  - Fixed incorrect cursor positioning while editing
+
 ## [0.4.5]
   - Added maxLength property to set length limit
   - Fixed getter 'hash' was called on null.
