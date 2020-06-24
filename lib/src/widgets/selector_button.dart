@@ -50,9 +50,10 @@ class SelectorButton extends StatelessWidget {
                 country: country,
                 textStyle: selectorTextStyle,
               )
-        : FlatButton(
+        : MaterialButton(
             key: Key(TestHelper.DropdownButtonKeyValue),
-            padding: EdgeInsetsDirectional.only(start: 12, end: 4),
+            padding: EdgeInsets.zero,
+            minWidth: 0,
             onPressed: countries.isNotEmpty && countries.length > 1
                 ? () async {
                     Country selected;
@@ -69,9 +70,12 @@ class SelectorButton extends StatelessWidget {
                     }
                   }
                 : null,
-            child: Item(
-              country: country,
-              textStyle: selectorTextStyle,
+            child: Padding(
+              padding: const EdgeInsets.only(right: 8.0),
+              child: Item(
+                country: country,
+                textStyle: selectorTextStyle,
+              ),
             ),
           );
   }
