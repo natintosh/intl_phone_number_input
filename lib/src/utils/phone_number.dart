@@ -2,7 +2,6 @@ import 'dart:math';
 
 import 'package:equatable/equatable.dart';
 import 'package:intl_phone_number_input/src/models/country_list.dart';
-import 'package:libphonenumber/libphonenumber.dart';
 
 /// [PhoneNumber] contains detailed information about a phone number
 class PhoneNumber extends Equatable {
@@ -29,50 +28,6 @@ class PhoneNumber extends Equatable {
   @override
   String toString() {
     return phoneNumber;
-  }
-
-  /// Returns [PhoneNumber] which contains region information about
-  /// the [phoneNumber] and [isoCode] passed.
-  static Future<PhoneNumber> getRegionInfoFromPhoneNumber(
-    String phoneNumber, [
-    String isoCode = '',
-  ]) async {
-    assert(isoCode != null);
-    RegionInfo regionInfo = await PhoneNumberUtil.getRegionInfo(
-        phoneNumber: phoneNumber, isoCode: isoCode);
-
-    String internationalPhoneNumber =
-        await PhoneNumberUtil.normalizePhoneNumber(
-      phoneNumber: phoneNumber,
-      isoCode: regionInfo.isoCode ?? isoCode,
-    );
-
-    return PhoneNumber(
-        phoneNumber: internationalPhoneNumber,
-        dialCode: regionInfo.regionPrefix,
-        isoCode: regionInfo.isoCode);
-  }
-
-  /// Accepts a [PhoneNumber] object and returns a formatted phone number String
-  static Future<String> getParsableNumber(PhoneNumber phoneNumber) async {
-    assert(phoneNumber != null);
-    if (phoneNumber.isoCode != null) {
-      PhoneNumber number = await getRegionInfoFromPhoneNumber(
-        phoneNumber.phoneNumber,
-        phoneNumber.isoCode,
-      );
-      String formattedNumber = await PhoneNumberUtil.formatAsYouType(
-        phoneNumber: number.phoneNumber,
-        isoCode: number.isoCode,
-      );
-      return formattedNumber.replaceAll(
-        RegExp('^([\\+]?${number.dialCode}[\\s]?)'),
-        '',
-      );
-    } else {
-      print('ISO Code is "${phoneNumber.isoCode}"');
-      return '';
-    }
   }
 
   /// Returns a String of [phoneNumber] without [dialCode]
