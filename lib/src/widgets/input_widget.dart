@@ -23,7 +23,6 @@ import 'package:intl_phone_number_input/src/widgets/selector_button.dart';
 /// available countries to match the [countries] specified.
 class InternationalPhoneNumberInput extends StatefulWidget {
   final ValueChanged<PhoneNumber> onInputChanged;
-  final ValueChanged<bool> onInputValidated;
 
   final VoidCallback onSubmit;
   final TextEditingController textFieldController;
@@ -58,7 +57,6 @@ class InternationalPhoneNumberInput extends StatefulWidget {
   InternationalPhoneNumberInput(
       {Key key,
       this.onInputChanged,
-      this.onInputValidated,
       this.onSubmit,
       this.textFieldController,
       this.keyboardAction,
@@ -143,35 +141,11 @@ class _InputWidgetState extends State<InternationalPhoneNumberInput> {
   /// Listener that validates changes from the widget, returns a bool to
   /// the `ValueCallback` [widget.onInputValidated]
   void phoneNumberControllerListener() {
-    if (this.mounted) {
-      String parsedPhoneNumberString = controller.text.replaceAll(RegExp(r'[^\d+]'), '');
-      if (parsedPhoneNumberString == null) {
-        String phoneNumber = '${this.country?.dialCode}$parsedPhoneNumberString';
-
-        if (widget.onInputChanged != null) {
-          widget.onInputChanged(PhoneNumber(
-              phoneNumber: phoneNumber,
-              isoCode: this.country?.countryCode,
-              dialCode: this.country?.dialCode));
-        }
-
-        if (widget.onInputValidated != null) {
-          widget.onInputValidated(false);
-        }
-        this.isNotValid = true;
-      } else {
-        if (widget.onInputChanged != null) {
-          widget.onInputChanged(PhoneNumber(
-              phoneNumber: parsedPhoneNumberString,
-              isoCode: this.country?.countryCode,
-              dialCode: this.country?.dialCode));
-        }
-
-        if (widget.onInputValidated != null) {
-          widget.onInputValidated(true);
-        }
-        this.isNotValid = false;
-      }
+    if (widget.onInputChanged != null) {
+      widget.onInputChanged(PhoneNumber(
+          phoneNumber: controller.text,
+          isoCode: country?.countryCode,
+          dialCode: country?.dialCode));
     }
   }
 

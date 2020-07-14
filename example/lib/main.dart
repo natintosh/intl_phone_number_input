@@ -43,9 +43,6 @@ class _MyHomePageState extends State<MyHomePage> {
               onInputChanged: (PhoneNumber number) {
                 print(number.phoneNumber);
               },
-              onInputValidated: (bool value) {
-                print(value);
-              },
               ignoreBlank: false,
               autoValidate: false,
               selectorTextStyle: TextStyle(color: Colors.black),
