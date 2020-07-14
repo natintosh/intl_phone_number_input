@@ -83,114 +83,6 @@ class InternationalPhoneNumberInput extends StatefulWidget {
       this.countries})
       : super(key: key);
 
-  @Deprecated(
-      'Use `InternationalPhoneNumberInput` instead. will be removed in 0.5.0')
-  factory InternationalPhoneNumberInput.withCustomDecoration({
-    Key key,
-    @required ValueChanged<PhoneNumber> onInputChanged,
-    ValueChanged<bool> onInputValidated,
-    FocusNode focusNode,
-    TextEditingController textFieldController,
-    VoidCallback onSubmit,
-    TextInputAction keyboardAction,
-    List<String> countries,
-    TextStyle textStyle,
-    TextStyle selectorTextStyle,
-    String errorMessage = 'Invalid phone number',
-    double selectorButtonOnErrorPadding = 24,
-    int maxLength = 15,
-    @required InputDecoration inputDecoration,
-    InputDecoration searchBoxDecoration,
-    PhoneNumber initialValue,
-    bool isEnabled = true,
-    bool formatInput = true,
-    bool autoFocus = false,
-    bool autoValidate = false,
-    bool ignoreBlank = false,
-    bool countrySelectorScrollControlled = true,
-    String locale,
-  }) {
-    return InternationalPhoneNumberInput(
-      key: key,
-      onInputChanged: onInputChanged,
-      onInputValidated: onInputValidated,
-      focusNode: focusNode,
-      textFieldController: textFieldController,
-      onSubmit: onSubmit,
-      keyboardAction: keyboardAction,
-      countries: countries,
-      textStyle: textStyle,
-      selectorTextStyle: selectorTextStyle,
-      inputDecoration: inputDecoration,
-      searchBoxDecoration: searchBoxDecoration,
-      initialValue: initialValue,
-      isEnabled: isEnabled,
-      formatInput: formatInput,
-      autoFocus: autoFocus,
-      autoValidate: autoValidate,
-      ignoreBlank: ignoreBlank,
-      errorMessage: errorMessage,
-      selectorButtonOnErrorPadding: selectorButtonOnErrorPadding,
-      maxLength: maxLength,
-      locale: locale,
-      countrySelectorScrollControlled: countrySelectorScrollControlled,
-    );
-  }
-
-  @Deprecated(
-      'Use `InternationalPhoneNumberInput` instead. will be removed in 0.5.0')
-  factory InternationalPhoneNumberInput.withCustomBorder({
-    Key key,
-    @required ValueChanged<PhoneNumber> onInputChanged,
-    ValueChanged<bool> onInputValidated,
-    FocusNode focusNode,
-    TextEditingController textFieldController,
-    VoidCallback onSubmit,
-    TextInputAction keyboardAction,
-    List<String> countries,
-    TextStyle textStyle,
-    TextStyle selectorTextStyle,
-    @required InputBorder inputBorder,
-    String hintText = 'Phone number',
-    PhoneNumber initialValue,
-    String errorMessage = 'Invalid phone number',
-    double selectorButtonOnErrorPadding = 24,
-    int maxLength = 15,
-    bool isEnabled = true,
-    bool formatInput = true,
-    bool autoFocus = false,
-    bool autoValidate = false,
-    bool ignoreBlank = false,
-    bool countrySelectorScrollControlled = true,
-    String locale,
-  }) {
-    return InternationalPhoneNumberInput(
-      key: key,
-      onInputChanged: onInputChanged,
-      onInputValidated: onInputValidated,
-      focusNode: focusNode,
-      textFieldController: textFieldController,
-      onSubmit: onSubmit,
-      keyboardAction: keyboardAction,
-      countries: countries,
-      textStyle: textStyle,
-      selectorTextStyle: selectorTextStyle,
-      inputBorder: inputBorder,
-      hintText: hintText,
-      initialValue: initialValue,
-      errorMessage: errorMessage,
-      selectorButtonOnErrorPadding: selectorButtonOnErrorPadding,
-      maxLength: maxLength,
-      formatInput: formatInput,
-      isEnabled: isEnabled,
-      autoFocus: autoFocus,
-      autoValidate: autoValidate,
-      ignoreBlank: ignoreBlank,
-      locale: locale,
-      countrySelectorScrollControlled: countrySelectorScrollControlled,
-    );
-  }
-
   @override
   State<StatefulWidget> createState() => _InputWidgetState();
 }
@@ -226,8 +118,7 @@ class _InputWidgetState extends State<InternationalPhoneNumberInput> {
 
   @override
   void didUpdateWidget(InternationalPhoneNumberInput oldWidget) {
-    if (oldWidget.initialValue != widget.initialValue ||
-        oldWidget.initialValue?.hash != widget.initialValue?.hash) {
+    if (oldWidget.initialValue != widget.initialValue) {
       loadCountries(context);
       initialiseWidget();
     }

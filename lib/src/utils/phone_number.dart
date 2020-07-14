@@ -27,7 +27,7 @@ class PhoneNumber extends Equatable {
 
   @override
   String toString() {
-    return phoneNumber;
+    return dialCode + phoneNumber;
   }
 
   /// Returns a String of [phoneNumber] without [dialCode]
