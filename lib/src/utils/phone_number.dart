@@ -79,7 +79,7 @@ class PhoneNumber extends Equatable {
   String parseNumber() {
     return this
         .phoneNumber
-        .replaceAll(RegExp('^([\\+]?${this.dialCode}[\\s]?)'), '');
+        .replaceAll("${this.dialCode}", '');
   }
 
   /// For predefined phone number returns Country's [isoCode] from the dial code,
