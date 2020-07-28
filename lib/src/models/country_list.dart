@@ -1,4 +1,7 @@
 /// Countries contains list of all most all the countries on Earth.
+import 'dart:convert' as JSON;
+import 'package:flutter/services.dart' show rootBundle;
+
 class Countries {
   /// returns `List<Map<String, dynamic>` of countries which contains
   ///  *  num_code
@@ -7,6 +10,7 @@ class Countries {
   ///  *  en_short_name
   ///  *  nationality
   ///  *  dial_code
+  ///  *  namedTranslations
   ///
   ///   ```dart
   ///     {
@@ -15,12 +19,31 @@ class Countries {
   ///       "alpha_3_code": "NGA",
   ///       "en_short_name": "Nigeria",
   ///       "nationality": "Nigerian",
-  ///       "dial_code": "+234"
+  ///       "dial_code": "+234",
+  ///       "namedTranslations": {
+  ///         "en": "Nigeria"
+  ///       }
   ///     }
   ///   ```
-  static get countryList => _countryList;
+  ///
+  static Future<void> init() async {
+    try {
+      String countryListString = await rootBundle.loadString('assets/country_list.json');
+      if (countryListString != null && countryListString.isNotEmpty) {
+        _countryList = (JSON.jsonEncode(countryListString)) as List<Map<String, dynamic>>;
+      } else {
+        _countryList = _defaultList;
+      }
+    } on Exception {
+      _countryList = _defaultList;
+    }
+  }
 
-  static final List<Map<String, dynamic>> _countryList = [
+  static List<Map<String, dynamic>> get countryList => _countryList;
+
+  static List<Map<String, dynamic>> _countryList = [];
+
+  static List<Map<String, dynamic>> _defaultList = [
     {
       "num_code": "4",
       "alpha_2_code": "AF",
