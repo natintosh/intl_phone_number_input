@@ -10,7 +10,7 @@ class Countries {
   ///  *  en_short_name
   ///  *  nationality
   ///  *  dial_code
-  ///  *  namedTranslations
+  ///  *  nameTranslations
   ///
   ///   ```dart
   ///     {
@@ -20,7 +20,7 @@ class Countries {
   ///       "en_short_name": "Nigeria",
   ///       "nationality": "Nigerian",
   ///       "dial_code": "+234",
-  ///       "namedTranslations": {
+  ///       "nameTranslations": {
   ///         "en": "Nigeria"
   ///       }
   ///     }
@@ -30,7 +30,8 @@ class Countries {
     try {
       String countryListString = await rootBundle.loadString('assets/country_list.json');
       if (countryListString != null && countryListString.isNotEmpty) {
-        _countryList = (JSON.jsonEncode(countryListString)) as List<Map<String, dynamic>>;
+        Map<String, dynamic> countries = (JSON.jsonDecode(countryListString)) as Map<String, dynamic>;
+        _countryList = List<Map<String, dynamic>>.from(countries.values.toList());
       } else {
         _countryList = _defaultList;
       }
