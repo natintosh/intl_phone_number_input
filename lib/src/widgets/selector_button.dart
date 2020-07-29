@@ -11,6 +11,7 @@ class SelectorButton extends StatelessWidget {
   final PhoneInputSelectorType selectorType;
   final TextStyle selectorTextStyle;
   final InputDecoration searchBoxDecoration;
+  final bool autoFocusSearchField;
   final String locale;
   final bool isEnabled;
   final bool isScrollControlled;
@@ -24,6 +25,7 @@ class SelectorButton extends StatelessWidget {
     @required this.selectorType,
     @required this.selectorTextStyle,
     @required this.searchBoxDecoration,
+    this.autoFocusSearchField = false,
     @required this.locale,
     @required this.onCountryChanged,
     @required this.isEnabled,
@@ -107,6 +109,7 @@ class SelectorButton extends StatelessWidget {
             countries,
             locale,
             searchBoxDecoration: searchBoxDecoration,
+            autoFocus: autoFocusSearchField,
           ),
         ),
       ),
@@ -141,6 +144,7 @@ class SelectorButton extends StatelessWidget {
                 locale,
                 searchBoxDecoration: searchBoxDecoration,
                 scrollController: controller,
+                autoFocus: autoFocusSearchField,
               ),
             );
           },
