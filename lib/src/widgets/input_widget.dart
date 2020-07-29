@@ -52,6 +52,7 @@ class InternationalPhoneNumberInput extends StatefulWidget {
   final bool isEnabled;
   final bool formatInput;
   final bool autoFocus;
+  final bool autoFocusSearch;
   final bool autoValidate;
   final bool ignoreBlank;
   final bool countrySelectorScrollControlled;
@@ -84,6 +85,7 @@ class InternationalPhoneNumberInput extends StatefulWidget {
       this.isEnabled = true,
       this.formatInput = true,
       this.autoFocus = false,
+      this.autoFocusSearch = false,
       this.autoValidate = false,
       this.ignoreBlank = false,
       this.countrySelectorScrollControlled = true,
@@ -121,6 +123,7 @@ class InternationalPhoneNumberInput extends StatefulWidget {
     bool formatInput = true,
     bool autoFocus = false,
     bool autoValidate = false,
+    bool autoFocusSearch = false,
     bool ignoreBlank = false,
     bool countrySelectorScrollControlled = true,
     String locale,
@@ -144,6 +147,7 @@ class InternationalPhoneNumberInput extends StatefulWidget {
       formatInput: formatInput,
       autoFocus: autoFocus,
       autoValidate: autoValidate,
+      autoFocusSearch: autoFocusSearch,
       ignoreBlank: ignoreBlank,
       errorMessage: errorMessage,
       selectorButtonOnErrorPadding: selectorButtonOnErrorPadding,
@@ -177,6 +181,7 @@ class InternationalPhoneNumberInput extends StatefulWidget {
     bool formatInput = true,
     bool autoFocus = false,
     bool autoValidate = false,
+    bool autoFocusSearch = false,
     bool ignoreBlank = false,
     bool countrySelectorScrollControlled = true,
     String locale,
@@ -203,6 +208,7 @@ class InternationalPhoneNumberInput extends StatefulWidget {
       isEnabled: isEnabled,
       autoFocus: autoFocus,
       autoValidate: autoValidate,
+      autoFocusSearch: autoFocusSearch,
       ignoreBlank: ignoreBlank,
       locale: locale,
       countrySelectorScrollControlled: countrySelectorScrollControlled,
@@ -420,6 +426,7 @@ class _InputWidgetView
                 searchBoxDecoration: widget.searchBoxDecoration,
                 locale: widget.locale,
                 isEnabled: widget.isEnabled,
+                autoFocusSearchField: widget.autoFocusSearch ?? false,
                 isScrollControlled: widget.countrySelectorScrollControlled,
               ),
               SizedBox(

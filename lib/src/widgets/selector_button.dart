@@ -11,6 +11,7 @@ class SelectorButton extends StatelessWidget {
   final PhoneInputSelectorType selectorType;
   final TextStyle selectorTextStyle;
   final InputDecoration searchBoxDecoration;
+  final bool autoFocusSearchField;
   final String locale;
   final bool isEnabled;
   final bool isScrollControlled;
@@ -24,6 +25,7 @@ class SelectorButton extends StatelessWidget {
     @required this.selectorType,
     @required this.selectorTextStyle,
     @required this.searchBoxDecoration,
+    this.autoFocusSearchField = false,
     @required this.locale,
     @required this.onCountryChanged,
     @required this.isEnabled,
@@ -107,6 +109,7 @@ class SelectorButton extends StatelessWidget {
             countries,
             locale,
             searchBoxDecoration: searchBoxDecoration,
+            autoFocus: autoFocusSearchField,
           ),
         ),
       ),
@@ -124,26 +127,31 @@ class SelectorButton extends StatelessWidget {
           borderRadius: BorderRadius.only(
               topLeft: Radius.circular(12), topRight: Radius.circular(12))),
       builder: (BuildContext context) {
-        return DraggableScrollableSheet(
-          builder: (BuildContext context, ScrollController controller) {
-            return Container(
-              decoration: ShapeDecoration(
-                color: Colors.white,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(12),
-                    topRight: Radius.circular(12),
+        return AnimatedPadding(
+          padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+          duration: const Duration(milliseconds: 100),
+          child: DraggableScrollableSheet(
+            builder: (BuildContext context, ScrollController controller) {
+              return Container(
+                decoration: ShapeDecoration(
+                  color: Colors.white,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(12),
+                      topRight: Radius.circular(12),
+                    ),
                   ),
                 ),
-              ),
-              child: CountrySearchListWidget(
-                countries,
-                locale,
-                searchBoxDecoration: searchBoxDecoration,
-                scrollController: controller,
-              ),
-            );
-          },
+                child: CountrySearchListWidget(
+                  countries,
+                  locale,
+                  searchBoxDecoration: searchBoxDecoration,
+                  scrollController: controller,
+                  autoFocus: autoFocusSearchField,
+                ),
+              );
+            },
+          ),
         );
       },
     );

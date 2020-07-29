@@ -7,9 +7,10 @@ class CountrySearchListWidget extends StatefulWidget {
   final InputDecoration searchBoxDecoration;
   final String locale;
   final ScrollController scrollController;
+  final bool autoFocus;
 
   CountrySearchListWidget(this.countries, this.locale,
-      {this.searchBoxDecoration, this.scrollController});
+      {this.searchBoxDecoration, this.scrollController, this.autoFocus = false});
 
   @override
   _CountrySearchListWidgetState createState() =>
@@ -77,6 +78,7 @@ class _CountrySearchListWidgetState extends State<CountrySearchListWidget> {
             key: Key(TestHelper.CountrySearchInputKeyValue),
             decoration: getSearchBoxDecoration(),
             controller: _searchController,
+            autofocus: widget.autoFocus,
             onChanged: (value) =>
                 setState(() => filteredCountries = filterCountries()),
           ),
