@@ -1,6 +1,7 @@
 /// Countries contains list of all most all the countries on Earth.
 import 'dart:convert' as JSON;
-import 'package:flutter/services.dart' show rootBundle;
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class Countries {
   /// returns `List<Map<String, dynamic>` of countries which contains
@@ -15,27 +16,40 @@ class Countries {
   ///   ```dart
   ///     {
   ///       "num_code": "566",
-  ///       "alpha_2_code": "NG",
-  ///       "alpha_3_code": "NGA",
-  ///       "en_short_name": "Nigeria",
-  ///       "nationality": "Nigerian",
-  ///       "dial_code": "+234",
-  ///       "nameTranslations": {
-  ///         "en": "Nigeria"
-  ///       }
+  ///        "alpha_2_code": "NG",
+  ///        "alpha_3_code": "NGA",
+  ///        "en_short_name": "Nigeria",
+  ///        "nationality": "Nigerian",
+  ///        "dial_code": "+234",
+  ///        "nameTranslations": {
+  ///          "sk": "Nigéria",
+  ///          "se": "Nigeria",
+  ///          "pl": "Nigeria",
+  ///          "no": "Nigeria",
+  ///          "ja": "ナイジェリア",
+  ///          "it": "Nigeria",
+  ///          "zh": "尼日利亚",
+  ///          "nl": "Nigeria",
+  ///          "de": "Nigeria",
+  ///          "fr": "Nigéria",
+  ///          "es": "Nigeria",
+  ///          "en": "Nigeria"
+  ///        }
   ///     }
   ///   ```
   ///
   static Future<void> init() async {
     try {
-      String countryListString = await rootBundle.loadString('assets/country_list.json');
+      String countryListString = await rootBundle.loadString('assets/data/countries.json')
+          .catchError((error) => throw Exception('Unable to load countries data'));
       if (countryListString != null && countryListString.isNotEmpty) {
         Map<String, dynamic> countries = (JSON.jsonDecode(countryListString)) as Map<String, dynamic>;
         _countryList = List<Map<String, dynamic>>.from(countries.values.toList());
       } else {
         _countryList = _defaultList;
       }
-    } on Exception {
+    } catch(ex) {
+      debugPrint(ex.message);
       _countryList = _defaultList;
     }
   }

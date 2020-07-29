@@ -223,7 +223,7 @@ class _InputWidgetState extends State<InternationalPhoneNumberInput> {
 
   @override
   void initState() {
-    loadCountries(context);
+    Future.delayed(Duration.zero, () => loadCountries());
     controller = widget.textFieldController ?? TextEditingController();
     initialiseWidget();
     super.initState();
@@ -247,7 +247,7 @@ class _InputWidgetState extends State<InternationalPhoneNumberInput> {
   void didUpdateWidget(InternationalPhoneNumberInput oldWidget) {
     if (oldWidget.initialValue != widget.initialValue ||
         oldWidget.initialValue?.hash != widget.initialValue?.hash) {
-      loadCountries(context);
+      loadCountries();
       initialiseWidget();
     }
     super.didUpdateWidget(oldWidget);
@@ -267,7 +267,7 @@ class _InputWidgetState extends State<InternationalPhoneNumberInput> {
   }
 
   /// loads countries from [Countries.countryList] and selected Country
-  void loadCountries(BuildContext context) async {
+  void loadCountries() async {
     if (this.mounted) {
       List<Country> countries =
             await CountryProvider.getCountriesData(countries: widget.countries);
