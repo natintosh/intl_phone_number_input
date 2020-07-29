@@ -39,7 +39,7 @@ class PhoneNumber extends Equatable {
   ]) async {
     assert(isoCode != null);
     RegionInfo regionInfo = await PhoneNumberUtil.getRegionInfo(
-        phoneNumber: phoneNumber, isoCode: isoCode);
+        phoneNumber: phoneNumber ?? '', isoCode: isoCode);
 
     String internationalPhoneNumber =
         await PhoneNumberUtil.normalizePhoneNumber(
@@ -77,9 +77,7 @@ class PhoneNumber extends Equatable {
 
   /// Returns a String of [phoneNumber] without [dialCode]
   String parseNumber() {
-    return this
-        .phoneNumber
-        .replaceAll("${this.dialCode}", '');
+    return this.phoneNumber.replaceAll("${this.dialCode}", '');
   }
 
   /// For predefined phone number returns Country's [isoCode] from the dial code,
