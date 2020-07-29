@@ -26,3 +26,4 @@ dev_dependencies:
 flutter:
   assets:
     - assets/flags/
+    - assets/data/countries.json

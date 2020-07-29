@@ -1,4 +1,8 @@
 /// Countries contains list of all most all the countries on Earth.
+import 'dart:convert' as JSON;
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
 class Countries {
   /// returns `List<Map<String, dynamic>` of countries which contains
   ///  *  num_code
@@ -7,20 +11,54 @@ class Countries {
   ///  *  en_short_name
   ///  *  nationality
   ///  *  dial_code
+  ///  *  nameTranslations
   ///
   ///   ```dart
   ///     {
   ///       "num_code": "566",
-  ///       "alpha_2_code": "NG",
-  ///       "alpha_3_code": "NGA",
-  ///       "en_short_name": "Nigeria",
-  ///       "nationality": "Nigerian",
-  ///       "dial_code": "+234"
+  ///        "alpha_2_code": "NG",
+  ///        "alpha_3_code": "NGA",
+  ///        "en_short_name": "Nigeria",
+  ///        "nationality": "Nigerian",
+  ///        "dial_code": "+234",
+  ///        "nameTranslations": {
+  ///          "sk": "Nigéria",
+  ///          "se": "Nigeria",
+  ///          "pl": "Nigeria",
+  ///          "no": "Nigeria",
+  ///          "ja": "ナイジェリア",
+  ///          "it": "Nigeria",
+  ///          "zh": "尼日利亚",
+  ///          "nl": "Nigeria",
+  ///          "de": "Nigeria",
+  ///          "fr": "Nigéria",
+  ///          "es": "Nigeria",
+  ///          "en": "Nigeria"
+  ///        }
   ///     }
   ///   ```
-  static get countryList => _countryList;
+  ///
+  static Future<void> init() async {
+    try {
+      String countryListString = await rootBundle.loadString('assets/data/countries.json')
+          .catchError((error) => throw Exception('Unable to load countries data'));
+      if (countryListString != null && countryListString.isNotEmpty) {
+        Map<String, dynamic> countries = (JSON.jsonDecode(countryListString)) as Map<String, dynamic>;
+        _countryList = List<Map<String, dynamic>>.from(countries.values.toList());
+      } else {
+        _countryList = _defaultList;
+      }
+    } catch(ex) {
+      debugPrint(ex.message);
+      _countryList = _defaultList;
+    }
+  }
 
-  static final List<Map<String, dynamic>> _countryList = [
+  static List<Map<String, dynamic>> get countryList => _countryList;
+
+  static List<Map<String, dynamic>> _countryList = [];
+
+  static List<Map<String, dynamic>> _defaultList = [
     {
       "num_code": "4",
       "alpha_2_code": "AF",

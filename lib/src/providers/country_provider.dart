@@ -2,6 +2,8 @@ import 'package:flutter/widgets.dart';
 import 'package:intl_phone_number_input/src/models/country_list.dart';
 import 'package:intl_phone_number_input/src/models/country_model.dart';
 
+import '../models/country_list.dart';
+
 const String PropertyName = 'alpha_2_code';
 
 /// [CountryProvider] provides helper classes that involves manipulations.
@@ -14,7 +16,8 @@ class CountryProvider {
   ///  * If [countries] is `null` or empty it returns a list of all [Countries.countryList].
   ///  * If [countries] is not empty it returns a filtered list containing
   ///    counties as specified.
-  static List<Country> getCountriesData({@required List<String> countries}) {
+  static Future<List<Country>> getCountriesData({@required List<String> countries}) async {
+    await Countries.init();
     List jsonList = Countries.countryList;
 
     if (countries == null || countries.isEmpty) {
