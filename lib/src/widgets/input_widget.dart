@@ -39,6 +39,8 @@ class InternationalPhoneNumberInput extends StatefulWidget {
   final ValueChanged<bool> onInputValidated;
 
   final VoidCallback onSubmit;
+  final ValueChanged<String> onFieldSubmitted;
+
   final TextEditingController textFieldController;
   final TextInputAction keyboardAction;
 
@@ -75,6 +77,7 @@ class InternationalPhoneNumberInput extends StatefulWidget {
       this.onInputChanged,
       this.onInputValidated,
       this.onSubmit,
+      this.onFieldSubmitted,
       this.textFieldController,
       this.keyboardAction,
       this.initialValue,
@@ -109,6 +112,7 @@ class InternationalPhoneNumberInput extends StatefulWidget {
     FocusNode focusNode,
     TextEditingController textFieldController,
     VoidCallback onSubmit,
+    ValueChanged<String> onFieldSubmitted,
     TextInputAction keyboardAction,
     List<String> countries,
     TextStyle textStyle,
@@ -136,6 +140,7 @@ class InternationalPhoneNumberInput extends StatefulWidget {
       focusNode: focusNode,
       textFieldController: textFieldController,
       onSubmit: onSubmit,
+      onFieldSubmitted: onFieldSubmitted,
       keyboardAction: keyboardAction,
       countries: countries,
       textStyle: textStyle,
@@ -167,6 +172,7 @@ class InternationalPhoneNumberInput extends StatefulWidget {
     FocusNode focusNode,
     TextEditingController textFieldController,
     VoidCallback onSubmit,
+    ValueChanged<String> onFieldSubmitted,
     TextInputAction keyboardAction,
     List<String> countries,
     TextStyle textStyle,
@@ -194,6 +200,7 @@ class InternationalPhoneNumberInput extends StatefulWidget {
       focusNode: focusNode,
       textFieldController: textFieldController,
       onSubmit: onSubmit,
+      onFieldSubmitted: onFieldSubmitted,
       keyboardAction: keyboardAction,
       countries: countries,
       textStyle: textStyle,
@@ -448,6 +455,7 @@ class _InputWidgetView
               style: widget.textStyle,
               decoration: state.getInputDecoration(widget.inputDecoration),
               onEditingComplete: widget.onSubmit,
+              onFieldSubmitted: widget.onFieldSubmitted,
               autovalidate: widget.autoValidate,
               validator: state.validator,
               inputFormatters: [
