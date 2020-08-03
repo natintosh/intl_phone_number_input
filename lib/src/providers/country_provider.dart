@@ -16,8 +16,7 @@ class CountryProvider {
   ///  * If [countries] is `null` or empty it returns a list of all [Countries.countryList].
   ///  * If [countries] is not empty it returns a filtered list containing
   ///    counties as specified.
-  static Future<List<Country>> getCountriesData({@required List<String> countries}) async {
-    await Countries.init();
+  static List<Country> getCountriesData({@required List<String> countries}) {
     List jsonList = Countries.countryList;
 
     if (countries == null || countries.isEmpty) {

@@ -283,10 +283,9 @@ class _InputWidgetState extends State<InternationalPhoneNumberInput> {
   }
 
   /// loads countries from [Countries.countryList] and selected Country
-  void loadCountries() async {
+  void loadCountries() {
     if (this.mounted) {
-      List<Country> countries =
-          await CountryProvider.getCountriesData(countries: widget.countries);
+      List<Country> countries = CountryProvider.getCountriesData(countries: widget.countries);
 
       Country country = Utils.getInitialSelectedCountry(
         countries,
