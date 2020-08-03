@@ -39,6 +39,8 @@ class InternationalPhoneNumberInput extends StatefulWidget {
   final ValueChanged<bool> onInputValidated;
 
   final VoidCallback onSubmit;
+  final ValueChanged<String> onFieldSubmitted;
+
   final TextEditingController textFieldController;
   final TextInputAction keyboardAction;
 
@@ -52,6 +54,7 @@ class InternationalPhoneNumberInput extends StatefulWidget {
   final bool isEnabled;
   final bool formatInput;
   final bool autoFocus;
+  final bool autoFocusSearch;
   final bool autoValidate;
   final bool ignoreBlank;
   final bool countrySelectorScrollControlled;
@@ -74,6 +77,7 @@ class InternationalPhoneNumberInput extends StatefulWidget {
       this.onInputChanged,
       this.onInputValidated,
       this.onSubmit,
+      this.onFieldSubmitted,
       this.textFieldController,
       this.keyboardAction,
       this.initialValue,
@@ -84,6 +88,7 @@ class InternationalPhoneNumberInput extends StatefulWidget {
       this.isEnabled = true,
       this.formatInput = true,
       this.autoFocus = false,
+      this.autoFocusSearch = false,
       this.autoValidate = false,
       this.ignoreBlank = false,
       this.countrySelectorScrollControlled = true,
@@ -107,6 +112,7 @@ class InternationalPhoneNumberInput extends StatefulWidget {
     FocusNode focusNode,
     TextEditingController textFieldController,
     VoidCallback onSubmit,
+    ValueChanged<String> onFieldSubmitted,
     TextInputAction keyboardAction,
     List<String> countries,
     TextStyle textStyle,
@@ -121,6 +127,7 @@ class InternationalPhoneNumberInput extends StatefulWidget {
     bool formatInput = true,
     bool autoFocus = false,
     bool autoValidate = false,
+    bool autoFocusSearch = false,
     bool ignoreBlank = false,
     bool countrySelectorScrollControlled = true,
     String locale,
@@ -133,6 +140,7 @@ class InternationalPhoneNumberInput extends StatefulWidget {
       focusNode: focusNode,
       textFieldController: textFieldController,
       onSubmit: onSubmit,
+      onFieldSubmitted: onFieldSubmitted,
       keyboardAction: keyboardAction,
       countries: countries,
       textStyle: textStyle,
@@ -144,6 +152,7 @@ class InternationalPhoneNumberInput extends StatefulWidget {
       formatInput: formatInput,
       autoFocus: autoFocus,
       autoValidate: autoValidate,
+      autoFocusSearch: autoFocusSearch,
       ignoreBlank: ignoreBlank,
       errorMessage: errorMessage,
       selectorButtonOnErrorPadding: selectorButtonOnErrorPadding,
@@ -163,6 +172,7 @@ class InternationalPhoneNumberInput extends StatefulWidget {
     FocusNode focusNode,
     TextEditingController textFieldController,
     VoidCallback onSubmit,
+    ValueChanged<String> onFieldSubmitted,
     TextInputAction keyboardAction,
     List<String> countries,
     TextStyle textStyle,
@@ -177,6 +187,7 @@ class InternationalPhoneNumberInput extends StatefulWidget {
     bool formatInput = true,
     bool autoFocus = false,
     bool autoValidate = false,
+    bool autoFocusSearch = false,
     bool ignoreBlank = false,
     bool countrySelectorScrollControlled = true,
     String locale,
@@ -189,6 +200,7 @@ class InternationalPhoneNumberInput extends StatefulWidget {
       focusNode: focusNode,
       textFieldController: textFieldController,
       onSubmit: onSubmit,
+      onFieldSubmitted: onFieldSubmitted,
       keyboardAction: keyboardAction,
       countries: countries,
       textStyle: textStyle,
@@ -203,6 +215,7 @@ class InternationalPhoneNumberInput extends StatefulWidget {
       isEnabled: isEnabled,
       autoFocus: autoFocus,
       autoValidate: autoValidate,
+      autoFocusSearch: autoFocusSearch,
       ignoreBlank: ignoreBlank,
       locale: locale,
       countrySelectorScrollControlled: countrySelectorScrollControlled,
@@ -419,6 +432,7 @@ class _InputWidgetView
                 searchBoxDecoration: widget.searchBoxDecoration,
                 locale: widget.locale,
                 isEnabled: widget.isEnabled,
+                autoFocusSearchField: widget.autoFocusSearch ?? false,
                 isScrollControlled: widget.countrySelectorScrollControlled,
               ),
               SizedBox(
@@ -440,6 +454,7 @@ class _InputWidgetView
               style: widget.textStyle,
               decoration: state.getInputDecoration(widget.inputDecoration),
               onEditingComplete: widget.onSubmit,
+              onFieldSubmitted: widget.onFieldSubmitted,
               autovalidate: widget.autoValidate,
               validator: state.validator,
               inputFormatters: [
