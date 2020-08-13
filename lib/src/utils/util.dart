@@ -9,4 +9,14 @@ class Utils {
     return countries.firstWhere((country) => country.countryCode == countryCode,
         orElse: () => countries[0]);
   }
+
+  String generateFlagEmojiUnicode(String isoCode) {
+    final base = 127397;
+
+    return isoCode.codeUnits
+        .map((e) => String.fromCharCode(base + e))
+        .toList()
+        .reduce((value, element) => value + element)
+        .toString();
+  }
 }
