@@ -40,15 +40,17 @@ class AsYouTypeFormatter extends TextInputFormatter {
       String rawText = newValueText.replaceAll(separatorChars, '');
       String textToParse = dialCode + rawText;
       final insertedDigits = newValueText
-        .substring(oldValue.selection.start, newValue.selection.end)
-        .replaceAll(separatorChars, '');
+          .substring(oldValue.selection.start, newValue.selection.end)
+          .replaceAll(separatorChars, '');
 
       formatAsYouType(input: textToParse).then(
         (String value) {
           String parsedText = value.replaceFirst(dialCode, '').trim();
 
           int offset = oldValue.selection.start;
-          for (int digitIndex = 0; digitIndex < insertedDigits.length && offset < parsedText.length; ++offset) {
+          for (int digitIndex = 0;
+              digitIndex < insertedDigits.length && offset < parsedText.length;
+              ++offset) {
             final insertedDigit = insertedDigits[digitIndex];
             final parsedChar = parsedText[offset];
             if (parsedChar == insertedDigit) {
@@ -70,7 +72,7 @@ class AsYouTypeFormatter extends TextInputFormatter {
   }
 
   /// Accepts [input], unformatted phone number and
-  /// returns a String of the formatted phone number.
+  /// returns a [Future<String>] of the formatted phone number.
   Future<String> formatAsYouType({@required String input}) async {
     try {
       String formattedPhoneNumber = await PhoneNumberUtil.formatAsYouType(
