@@ -7,7 +7,6 @@ void main() {
 
   group('Countries are loaded test', () {
     test('Json is correctly loaded in to memory', () async {
-      await Countries.init();
       expect(Countries.countryList.length, greaterThan(0));
 
       Countries.countryList.forEach((Map<String, dynamic> data) {
