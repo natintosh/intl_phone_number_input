@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl_phone_number_input/src/models/country_model.dart';
 import 'package:intl_phone_number_input/src/utils/test/test_helper.dart';
+import 'package:intl_phone_number_input/src/utils/util.dart';
 
 class CountrySearchListWidget extends StatefulWidget {
   final List<Country> countries;
@@ -8,9 +9,15 @@ class CountrySearchListWidget extends StatefulWidget {
   final String locale;
   final ScrollController scrollController;
   final bool autoFocus;
+  final bool showFlags;
+  final bool useEmoji;
 
   CountrySearchListWidget(this.countries, this.locale,
-      {this.searchBoxDecoration, this.scrollController, this.autoFocus = false});
+      {this.searchBoxDecoration,
+      this.scrollController,
+      this.showFlags,
+      this.useEmoji,
+      this.autoFocus = false});
 
   @override
   _CountrySearchListWidgetState createState() =>
@@ -93,11 +100,10 @@ class _CountrySearchListWidgetState extends State<CountrySearchListWidget> {
               if (country == null) return null;
               return ListTile(
                 key: Key(TestHelper.countryItemKeyValue(country.countryCode)),
-                leading: CircleAvatar(
-                  backgroundImage: AssetImage(
-                    country.flagUri,
-                    package: 'intl_phone_number_input',
-                  ),
+                leading: _Flag(
+                  country: country,
+                  showFlag: widget.showFlags,
+                  useEmoji: widget.useEmoji,
                 ),
                 title: Align(
                     alignment: AlignmentDirectional.centerStart,
@@ -115,5 +121,35 @@ class _CountrySearchListWidgetState extends State<CountrySearchListWidget> {
         ),
       ],
     );
+  }
+}
+
+class _Flag extends StatelessWidget {
+  final Country country;
+  final bool showFlag;
+  final bool useEmoji;
+
+  const _Flag({Key key, this.country, this.showFlag, this.useEmoji})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return country != null && showFlag
+        ? Container(
+            child: useEmoji
+                ? Text(
+                    Utils.generateFlagEmojiUnicode(country?.countryCode ?? ''),
+                    style: Theme.of(context).textTheme.headline5,
+                  )
+                : country?.flagUri != null
+                    ? CircleAvatar(
+                        backgroundImage: AssetImage(
+                          country.flagUri,
+                          package: 'intl_phone_number_input',
+                        ),
+                      )
+                    : SizedBox.shrink(),
+          )
+        : SizedBox.shrink();
   }
 }

@@ -5,6 +5,7 @@ import 'package:intl_phone_number_input/src/models/country_model.dart';
 import 'package:intl_phone_number_input/src/providers/country_provider.dart';
 import 'package:intl_phone_number_input/src/utils/formatter/as_you_type_formatter.dart';
 import 'package:intl_phone_number_input/src/utils/phone_number.dart';
+import 'package:intl_phone_number_input/src/utils/selector_config.dart';
 import 'package:intl_phone_number_input/src/utils/test/test_helper.dart';
 import 'package:intl_phone_number_input/src/utils/util.dart';
 import 'package:intl_phone_number_input/src/utils/widget_view.dart';
@@ -33,7 +34,7 @@ enum PhoneInputSelectorType { DROPDOWN, BOTTOM_SHEET, DIALOG }
 /// [countries] accepts list of string on Country isoCode, if specified filters
 /// available countries to match the [countries] specified.
 class InternationalPhoneNumberInput extends StatefulWidget {
-  final PhoneInputSelectorType selectorType;
+  final SelectorConfig selectorConfig;
 
   final ValueChanged<PhoneNumber> onInputChanged;
   final ValueChanged<bool> onInputValidated;
@@ -75,7 +76,7 @@ class InternationalPhoneNumberInput extends StatefulWidget {
 
   InternationalPhoneNumberInput(
       {Key key,
-      this.selectorType = PhoneInputSelectorType.DROPDOWN,
+      this.selectorConfig = const SelectorConfig(),
       this.onInputChanged,
       this.onInputValidated,
       this.onSubmit,
@@ -311,12 +312,12 @@ class _InputWidgetView
                 country: state.country,
                 countries: state.countries,
                 onCountryChanged: state.onCountryChanged,
-                selectorType: widget.selectorType,
+                selectorConfig: widget.selectorConfig,
                 selectorTextStyle: widget.selectorTextStyle,
                 searchBoxDecoration: widget.searchBoxDecoration,
                 locale: widget.locale,
                 isEnabled: widget.isEnabled,
-                autoFocusSearchField: widget.autoFocusSearch ?? false,
+                autoFocusSearchField: widget.autoFocusSearch,
                 isScrollControlled: widget.countrySelectorScrollControlled,
               ),
               SizedBox(

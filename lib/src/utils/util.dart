@@ -10,10 +10,12 @@ class Utils {
         orElse: () => countries[0]);
   }
 
-  String generateFlagEmojiUnicode(String isoCode) {
+  /// Returns a [String] which will be the unicode of a Flag Emoji,
+  /// from a country [countryCode] passed as a parameter.
+  static String generateFlagEmojiUnicode(String countryCode) {
     final base = 127397;
 
-    return isoCode.codeUnits
+    return countryCode.codeUnits
         .map((e) => String.fromCharCode(base + e))
         .toList()
         .reduce((value, element) => value + element)

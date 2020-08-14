@@ -1,8 +1,3 @@
-/// Countries contains list of all most all the countries on Earth.
-import 'dart:convert' as JSON;
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-
 class Countries {
   /// returns `List<Map<String, dynamic>` of countries which contains
   ///  *  num_code

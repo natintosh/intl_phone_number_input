@@ -48,7 +48,9 @@ class _MyHomePageState extends State<MyHomePage> {
               initialValue: PhoneNumber(isoCode: 'NG'),
               textFieldController: controller,
               inputBorder: OutlineInputBorder(),
-              selectorType: PhoneInputSelectorType.DIALOG,
+              selectorConfig: SelectorConfig(
+                selectorType: PhoneInputSelectorType.DIALOG,
+              ),
             ),
             RaisedButton(
               onPressed: () {
