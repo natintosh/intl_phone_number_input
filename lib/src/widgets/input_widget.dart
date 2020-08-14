@@ -41,6 +41,8 @@ class InternationalPhoneNumberInput extends StatefulWidget {
 
   final VoidCallback onSubmit;
   final ValueChanged<String> onFieldSubmitted;
+  final String Function(String) validator;
+  final Function(String) onSaved;
 
   final TextEditingController textFieldController;
   final TextInputAction keyboardAction;
@@ -51,8 +53,6 @@ class InternationalPhoneNumberInput extends StatefulWidget {
 
   final double selectorButtonOnErrorPadding;
   final int maxLength;
-
-  final String Function(String) validator;
 
   final bool isEnabled;
   final bool formatInput;
@@ -81,9 +81,10 @@ class InternationalPhoneNumberInput extends StatefulWidget {
       this.onInputValidated,
       this.onSubmit,
       this.onFieldSubmitted,
+      this.validator,
+      this.onSaved,
       this.textFieldController,
       this.keyboardAction,
-      this.validator,
       this.initialValue,
       this.hintText = 'Phone number',
       this.errorMessage = 'Invalid phone number',
@@ -342,6 +343,7 @@ class _InputWidgetView
               onFieldSubmitted: widget.onFieldSubmitted,
               autovalidate: widget.autoValidate,
               validator: widget.validator ?? state.validator,
+              onSaved: widget.onSaved,
               inputFormatters: [
                 LengthLimitingTextInputFormatter(widget.maxLength),
                 widget.formatInput
