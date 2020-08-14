@@ -100,11 +100,9 @@ class _CountrySearchListWidgetState extends State<CountrySearchListWidget> {
               if (country == null) return null;
               return ListTile(
                 key: Key(TestHelper.countryItemKeyValue(country.countryCode)),
-                leading: _Flag(
-                  country: country,
-                  showFlag: widget.showFlags,
-                  useEmoji: widget.useEmoji,
-                ),
+                leading: widget.showFlags
+                    ? _Flag(country: country, useEmoji: widget.useEmoji)
+                    : null,
                 title: Align(
                     alignment: AlignmentDirectional.centerStart,
                     child: Text('${getCountryName(country)}',
@@ -126,15 +124,13 @@ class _CountrySearchListWidgetState extends State<CountrySearchListWidget> {
 
 class _Flag extends StatelessWidget {
   final Country country;
-  final bool showFlag;
   final bool useEmoji;
 
-  const _Flag({Key key, this.country, this.showFlag, this.useEmoji})
-      : super(key: key);
+  const _Flag({Key key, this.country, this.useEmoji}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return country != null && showFlag
+    return country != null
         ? Container(
             child: useEmoji
                 ? Text(
