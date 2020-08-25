@@ -52,6 +52,7 @@ class _MyHomePageState extends State<MyHomePage> {
               initialValue: number,
               controller: controller,
               inputBorder: OutlineInputBorder(),
+              locale: Localizations.localeOf(context).languageCode,
             ),
             RaisedButton(
               onPressed: () {

@@ -150,6 +150,11 @@ class _InputWidgetView
   Widget build(BuildContext context) {
     final countryCode = state?.country?.countryCode ?? '';
     final dialCode = state?.country?.dialCode ?? '';
+    String locale = widget.locale;
+
+    if (locale == 'nb' || locale == 'nn') {
+      locale = 'no';
+    }
 
     return Container(
       child: Row(
@@ -167,7 +172,7 @@ class _InputWidgetView
                 selectorConfig: widget.selectorConfig,
                 selectorTextStyle: widget.selectorTextStyle,
                 searchBoxDecoration: widget.searchBoxDecoration,
-                locale: widget.locale,
+                locale: locale,
                 isEnabled: widget.enabled,
                 autoFocusSearchField: widget.autofocusSearch,
                 isScrollControlled: widget.countrySelectorScrollControlled,
