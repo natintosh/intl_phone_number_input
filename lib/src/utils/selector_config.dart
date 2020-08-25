@@ -13,7 +13,7 @@ class SelectorConfig {
   final bool useEmoji;
 
   const SelectorConfig({
-    this.selectorType = PhoneInputSelectorType.DROPDOWN,
+    this.selectorType = PhoneInputSelectorType.DIALOG,
     this.showFlags = true,
     this.useEmoji = false,
   });

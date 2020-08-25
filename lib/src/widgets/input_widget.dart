@@ -1,110 +1,70 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:intl_phone_number_input/src/models/country_list.dart';
 import 'package:intl_phone_number_input/src/models/country_model.dart';
 import 'package:intl_phone_number_input/src/providers/country_provider.dart';
-import 'package:intl_phone_number_input/src/utils/formatter/as_you_type_formatter.dart';
 import 'package:intl_phone_number_input/src/utils/phone_number.dart';
-import 'package:intl_phone_number_input/src/utils/selector_config.dart';
 import 'package:intl_phone_number_input/src/utils/test/test_helper.dart';
 import 'package:intl_phone_number_input/src/utils/util.dart';
 import 'package:intl_phone_number_input/src/utils/widget_view.dart';
 import 'package:intl_phone_number_input/src/widgets/selector_button.dart';
-import 'package:libphonenumber/libphonenumber.dart';
 
-/// Enum for [SelectorButton] types.
-///
-/// Available type includes:
-///   * [PhoneInputSelectorType.DROPDOWN]
-///   * [PhoneInputSelectorType.BOTTOM_SHEET]
-///   * [PhoneInputSelectorType.DIALOG]
+import '../../intl_phone_number_input.dart';
+
 enum PhoneInputSelectorType { DROPDOWN, BOTTOM_SHEET, DIALOG }
 
-/// A [TextFormField] for [InternationalPhoneNumberInput].
-///
-/// [initialValue] accepts a [PhoneNumber] this is used to set initial values
-/// for phone the input field and the selector button
-///
-/// [selectorButtonOnErrorPadding] is a double which is used to align the selector
-/// button with the input field when an error occurs
-///
-/// [locale] accepts a country locale which will be used to translation, if the
-/// translation exist
-///
-/// [countries] accepts list of string on Country isoCode, if specified filters
-/// available countries to match the [countries] specified.
 class InternationalPhoneNumberInput extends StatefulWidget {
   final SelectorConfig selectorConfig;
-
-  final ValueChanged<PhoneNumber> onInputChanged;
+  final ValueChanged<PhoneNumber> onChanged;
   final ValueChanged<bool> onInputValidated;
-
-  final VoidCallback onSubmit;
   final ValueChanged<String> onFieldSubmitted;
-
-  final TextEditingController textFieldController;
-  final TextInputAction keyboardAction;
-
+  final TextEditingController controller;
+  final TextInputAction textInputAction;
   final PhoneNumber initialValue;
-  final String hintText;
-  final String errorMessage;
-
+  final InputDecoration decoration;
   final double selectorButtonOnErrorPadding;
   final int maxLength;
-
-  final String Function(String) validator;
-
-  final bool isEnabled;
-  final bool formatInput;
-  final bool autoFocus;
-  final bool autoFocusSearch;
-  final bool autoValidate;
+  final bool enabled;
+  final bool autofocus;
+  final bool autofocusSearch;
+  final bool autovalidate;
   final bool ignoreBlank;
   final bool countrySelectorScrollControlled;
-
   final String locale;
-
-  final TextStyle textStyle;
+  final TextStyle style;
   final TextStyle selectorTextStyle;
+  final FormFieldValidator<String> validator;
   final InputBorder inputBorder;
-  final InputDecoration inputDecoration;
   final InputDecoration searchBoxDecoration;
-
   final FocusNode focusNode;
-
   final List<String> countries;
 
-  InternationalPhoneNumberInput(
-      {Key key,
-      this.selectorConfig = const SelectorConfig(),
-      this.onInputChanged,
-      this.onInputValidated,
-      this.onSubmit,
-      this.onFieldSubmitted,
-      this.textFieldController,
-      this.keyboardAction,
-      this.validator,
-      this.initialValue,
-      this.hintText = 'Phone number',
-      this.errorMessage = 'Invalid phone number',
-      this.selectorButtonOnErrorPadding = 24,
-      this.maxLength = 15,
-      this.isEnabled = true,
-      this.formatInput = true,
-      this.autoFocus = false,
-      this.autoFocusSearch = false,
-      this.autoValidate = false,
-      this.ignoreBlank = false,
-      this.countrySelectorScrollControlled = true,
-      this.locale,
-      this.textStyle,
-      this.selectorTextStyle,
-      this.inputBorder,
-      this.inputDecoration,
-      this.searchBoxDecoration,
-      this.focusNode,
-      this.countries})
-      : super(key: key);
+  InternationalPhoneNumberInput({
+    Key key,
+    this.selectorConfig = const SelectorConfig(),
+    this.onChanged,
+    this.onInputValidated,
+    this.onFieldSubmitted,
+    this.controller,
+    this.textInputAction,
+    this.initialValue,
+    this.decoration,
+    this.selectorButtonOnErrorPadding = 24,
+    this.maxLength = 15,
+    this.enabled = true,
+    this.autofocus = false,
+    this.autofocusSearch = false,
+    this.autovalidate = false,
+    this.ignoreBlank = false,
+    this.countrySelectorScrollControlled = true,
+    this.locale,
+    this.style,
+    this.selectorTextStyle,
+    this.validator,
+    this.inputBorder,
+    this.searchBoxDecoration,
+    this.focusNode,
+    this.countries,
+  }) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => _InputWidgetState();
@@ -116,13 +76,12 @@ class _InputWidgetState extends State<InternationalPhoneNumberInput> {
 
   Country country;
   List<Country> countries = [];
-  bool isNotValid = true;
 
   @override
   void initState() {
-    Future.delayed(Duration.zero, () => loadCountries());
-    controller = widget.textFieldController ?? TextEditingController();
-    initialiseWidget();
+    Future.delayed(Duration.zero, () => loadCountries(context));
+    controller = widget.controller ?? TextEditingController();
+    controller.text = widget.initialValue?.phoneNumber;
     super.initState();
   }
 
@@ -144,27 +103,12 @@ class _InputWidgetState extends State<InternationalPhoneNumberInput> {
   void didUpdateWidget(InternationalPhoneNumberInput oldWidget) {
     if (oldWidget.initialValue != widget.initialValue ||
         oldWidget.initialValue?.hash != widget.initialValue?.hash) {
-      loadCountries();
-      initialiseWidget();
+      loadCountries(context);
     }
     super.didUpdateWidget(oldWidget);
   }
 
-  /// [initialiseWidget] sets initial values of the widget
-  void initialiseWidget() async {
-    if (widget.initialValue != null) {
-      if (widget.initialValue.phoneNumber != null &&
-          widget.initialValue.phoneNumber.isNotEmpty) {
-        controller.text =
-            await PhoneNumber.getParsableNumber(widget.initialValue);
-
-        phoneNumberControllerListener();
-      }
-    }
-  }
-
-  /// loads countries from [Countries.countryList] and selected Country
-  void loadCountries() {
+  void loadCountries(BuildContext context) {
     if (this.mounted) {
       List<Country> countries =
           CountryProvider.getCountriesData(countries: widget.countries);
@@ -181,109 +125,17 @@ class _InputWidgetState extends State<InternationalPhoneNumberInput> {
     }
   }
 
-  /// Listener that validates changes from the widget, returns a bool to
-  /// the `ValueCallback` [widget.onInputValidated]
-  void phoneNumberControllerListener() {
-    if (this.mounted) {
-      String parsedPhoneNumberString =
-          controller.text.replaceAll(RegExp(r'[^\d+]'), '');
-
-      getParsedPhoneNumber(parsedPhoneNumberString, this.country?.countryCode)
-          .then((phoneNumber) {
-        if (phoneNumber == null) {
-          String phoneNumber =
-              '${this.country?.dialCode}$parsedPhoneNumberString';
-
-          if (widget.onInputChanged != null) {
-            widget.onInputChanged(PhoneNumber(
-                phoneNumber: phoneNumber,
-                isoCode: this.country?.countryCode,
-                dialCode: this.country?.dialCode));
-          }
-
-          if (widget.onInputValidated != null) {
-            widget.onInputValidated(false);
-          }
-          this.isNotValid = true;
-        } else {
-          if (widget.onInputChanged != null) {
-            widget.onInputChanged(PhoneNumber(
-                phoneNumber: phoneNumber,
-                isoCode: this.country?.countryCode,
-                dialCode: this.country?.dialCode));
-          }
-
-          if (widget.onInputValidated != null) {
-            widget.onInputValidated(true);
-          }
-          this.isNotValid = false;
-        }
-      });
-    }
-  }
-
-  /// Returns a formatted String of [phoneNumber] with [isoCode], returns `null`
-  /// if [phoneNumber] is not valid or if an [Exception] is caught.
-  Future<String> getParsedPhoneNumber(
-      String phoneNumber, String isoCode) async {
-    if (phoneNumber.isNotEmpty && isoCode != null) {
-      try {
-        bool isValidPhoneNumber = await PhoneNumberUtil.isValidPhoneNumber(
-            phoneNumber: phoneNumber, isoCode: isoCode);
-
-        if (isValidPhoneNumber) {
-          return await PhoneNumberUtil.normalizePhoneNumber(
-              phoneNumber: phoneNumber, isoCode: isoCode);
-        }
-      } on Exception {
-        return null;
-      }
-    }
-    return null;
-  }
-
-  /// Creates or Select [InputDecoration]
-  InputDecoration getInputDecoration(InputDecoration decoration) {
-    return decoration ??
-        InputDecoration(
-          border: widget.inputBorder ?? UnderlineInputBorder(),
-          hintText: widget.hintText,
-        );
-  }
-
-  /// Validate the phone number when a change occurs
-  void onChanged(String value) {
-    phoneNumberControllerListener();
-  }
-
-  /// Validate and returns a validation error when [FormState] validate is called.
-  ///
-  /// Also updates [selectorButtonBottomPadding]
-  String validator(String value) {
-    bool isValid =
-        this.isNotValid && (value.isNotEmpty || widget.ignoreBlank == false);
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      if (isValid && widget.errorMessage != null) {
-        setState(() {
-          this.selectorButtonBottomPadding =
-              widget.selectorButtonOnErrorPadding ?? 24;
-        });
-      } else {
-        setState(() {
-          this.selectorButtonBottomPadding = 0;
-        });
-      }
-    });
-
-    return isValid ? widget.errorMessage : null;
-  }
-
-  /// Changes Selector Button Country and Validate Change.
   void onCountryChanged(Country country) {
     setState(() {
       this.country = country;
+      widget.onChanged(
+        PhoneNumber(
+          phoneNumber: controller.text,
+          dialCode: country.dialCode,
+          isoCode: country.countryCode,
+        ),
+      );
     });
-    phoneNumberControllerListener();
   }
 }
 
@@ -316,8 +168,8 @@ class _InputWidgetView
                 selectorTextStyle: widget.selectorTextStyle,
                 searchBoxDecoration: widget.searchBoxDecoration,
                 locale: widget.locale,
-                isEnabled: widget.isEnabled,
-                autoFocusSearchField: widget.autoFocusSearch,
+                isEnabled: widget.enabled,
+                autoFocusSearchField: widget.autofocusSearch,
                 isScrollControlled: widget.countrySelectorScrollControlled,
               ),
               SizedBox(
@@ -327,34 +179,40 @@ class _InputWidgetView
           ),
           SizedBox(width: 12),
           Flexible(
-            child: TextFormField(
-              key: Key(TestHelper.TextInputKeyValue),
-              textDirection: TextDirection.ltr,
-              controller: state.controller,
-              focusNode: widget.focusNode,
-              enabled: widget.isEnabled,
-              autofocus: widget.autoFocus,
-              keyboardType: TextInputType.phone,
-              textInputAction: widget.keyboardAction,
-              style: widget.textStyle,
-              decoration: state.getInputDecoration(widget.inputDecoration),
-              onEditingComplete: widget.onSubmit,
-              onFieldSubmitted: widget.onFieldSubmitted,
-              autovalidate: widget.autoValidate,
-              validator: widget.validator ?? state.validator,
-              inputFormatters: [
-                LengthLimitingTextInputFormatter(widget.maxLength),
-                widget.formatInput
-                    ? AsYouTypeFormatter(
-                        isoCode: countryCode,
-                        dialCode: dialCode,
-                        onInputFormatted: (TextEditingValue value) {
-                          state.controller.value = value;
-                        },
-                      )
-                    : WhitelistingTextInputFormatter.digitsOnly,
-              ],
-              onChanged: state.onChanged,
+            child: Container(
+              height: 70,
+              child: TextFormField(
+                key: Key(TestHelper.TextInputKeyValue),
+                textDirection: TextDirection.ltr,
+                controller: state.controller,
+                focusNode: widget.focusNode,
+                enabled: widget.enabled,
+                autofocus: widget.autofocus,
+                keyboardType: TextInputType.phone,
+                textInputAction: widget.textInputAction,
+                style: widget.style,
+                decoration: widget.decoration,
+                onEditingComplete: () {
+                  widget.onFieldSubmitted(state.controller.text);
+                },
+                onFieldSubmitted: widget.onFieldSubmitted,
+                autovalidate: widget.autovalidate,
+                validator: widget.validator,
+                inputFormatters: [
+                  LengthLimitingTextInputFormatter(widget.maxLength),
+                  FilteringTextInputFormatter.digitsOnly,
+                ],
+                onChanged: (String value) {
+                  widget.onChanged(
+                    PhoneNumber(
+                      phoneNumber: value,
+                      dialCode: dialCode,
+                      isoCode: countryCode,
+                    ),
+                  );
+                },
+                maxLength: widget.maxLength,
+              ),
             ),
           )
         ],
