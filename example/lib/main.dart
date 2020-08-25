@@ -40,17 +40,17 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             InternationalPhoneNumberInput(
-              onInputChanged: (PhoneNumber number) {
+              onChanged: (PhoneNumber number) {
                 print(number.phoneNumber);
               },
               onInputValidated: (bool value) {
                 print(value);
               },
               ignoreBlank: false,
-              autoValidate: false,
+              autovalidate: false,
               selectorTextStyle: TextStyle(color: Colors.black),
               initialValue: number,
-              textFieldController: controller,
+              controller: controller,
               inputBorder: OutlineInputBorder(),
             ),
             RaisedButton(
