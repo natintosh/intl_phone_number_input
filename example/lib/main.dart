@@ -33,6 +33,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final String locale = Localizations.localeOf(context).languageCode;
+
     return Form(
       key: formKey,
       child: Container(

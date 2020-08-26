@@ -16,7 +16,7 @@ class InternationalPhoneNumberInput extends StatefulWidget {
   final SelectorConfig selectorConfig;
   final ValueChanged<PhoneNumber> onChanged;
   final ValueChanged<bool> onInputValidated;
-  final ValueChanged<String> onFieldSubmitted;
+  final ValueChanged<PhoneNumber> onFieldSubmitted;
   final TextEditingController controller;
   final TextInputAction textInputAction;
   final PhoneNumber initialValue;
@@ -198,9 +198,19 @@ class _InputWidgetView
                 style: widget.style,
                 decoration: widget.decoration,
                 onEditingComplete: () {
-                  widget.onFieldSubmitted(state.controller.text);
+                  widget.onFieldSubmitted(PhoneNumber(
+                    phoneNumber: widget.controller?.text,
+                    dialCode: dialCode,
+                    isoCode: countryCode,
+                  ));
                 },
-                onFieldSubmitted: widget.onFieldSubmitted,
+                onFieldSubmitted: (String value) {
+                  widget.onFieldSubmitted(PhoneNumber(
+                    phoneNumber: value,
+                    dialCode: dialCode,
+                    isoCode: countryCode,
+                  ));
+                },
                 autovalidate: widget.autovalidate,
                 validator: widget.validator,
                 inputFormatters: [
