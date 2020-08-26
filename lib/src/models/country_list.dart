@@ -28,7 +28,8 @@ class Countries {
   ///          "de": "Nigeria",
   ///          "fr": "Nigéria",
   ///          "es": "Nigeria",
-  ///          "en": "Nigeria"
+  ///          "en": "Nigeria",
+  ///          "pt_BR": "Nigéria"
   ///        }
   ///     }
   ///   ```
@@ -55,7 +56,8 @@ class Countries {
         "de": "Afghanistan",
         "fr": "Afghanistan",
         "es": "Afganistán",
-        "en": "Afghanistan"
+        "en": "Afghanistan",
+        "pt_BR": "Afeganistão",
       }
     },
     {
@@ -77,7 +79,8 @@ class Countries {
         "de": "Ålandinseln",
         "fr": "Îles Åland",
         "es": "Islas Åland",
-        "en": "Åland Islands"
+        "en": "Åland Islands",
+        "pt_BR": "Ilhas Aland",
       }
     },
     {
@@ -99,7 +102,8 @@ class Countries {
         "de": "Albanien",
         "fr": "Albanie",
         "es": "Albania",
-        "en": "Albania"
+        "en": "Albania",
+        "pt_BR": "Albânia",
       }
     },
     {
@@ -121,7 +125,8 @@ class Countries {
         "de": "Algerien",
         "fr": "Algérie",
         "es": "Argelia",
-        "en": "Algeria"
+        "en": "Algeria",
+        "pt_BR": "Argélia",
       }
     },
     {
@@ -143,7 +148,8 @@ class Countries {
         "de": "Amerikanisch-Samoa",
         "fr": "Samoa américaines",
         "es": "Samoa Americana",
-        "en": "American Samoa"
+        "en": "American Samoa",
+        "pt_BR": "Samoa Americana",
       }
     },
     {
@@ -165,7 +171,8 @@ class Countries {
         "de": "Andorra",
         "fr": "Andorre",
         "es": "Andorra",
-        "en": "Andorra"
+        "en": "Andorra",
+        "pt_BR": "Andorra",
       }
     },
     {
@@ -187,7 +194,8 @@ class Countries {
         "de": "Angola",
         "fr": "Angola",
         "es": "Angola",
-        "en": "Angola"
+        "en": "Angola",
+        "pt_BR": "Angola",
       }
     },
     {
@@ -209,7 +217,8 @@ class Countries {
         "de": "Anguilla",
         "fr": "Anguilla",
         "es": "Anguila",
-        "en": "Anguilla"
+        "en": "Anguilla",
+        "pt_BR": "Anguilla",
       }
     },
     {
@@ -231,7 +240,8 @@ class Countries {
         "de": "Antarktis",
         "fr": "Antarctique",
         "es": "Antártida",
-        "en": "Antarctica"
+        "en": "Antarctica",
+        "pt_BR": "Antártica",
       }
     },
     {
@@ -253,7 +263,8 @@ class Countries {
         "de": "Antigua und Barbuda",
         "fr": "Antigua-et-Barbuda",
         "es": "Antigua y Barbuda",
-        "en": "Antigua & Barbuda"
+        "en": "Antigua & Barbuda",
+        "pt_BR": "Antigua e Barbuda",
       }
     },
     {
@@ -275,7 +286,8 @@ class Countries {
         "de": "Argentinien",
         "fr": "Argentine",
         "es": "Argentina",
-        "en": "Argentina"
+        "en": "Argentina",
+        "pt_BR": "Argentina",
       }
     },
     {
@@ -297,7 +309,8 @@ class Countries {
         "de": "Armenien",
         "fr": "Arménie",
         "es": "Armenia",
-        "en": "Armenia"
+        "en": "Armenia",
+        "pt_BR": "Armênia",
       }
     },
     {
@@ -319,7 +332,8 @@ class Countries {
         "de": "Aruba",
         "fr": "Aruba",
         "es": "Aruba",
-        "en": "Aruba"
+        "en": "Aruba",
+        "pt_BR": "Aruba",
       }
     },
     {
@@ -341,7 +355,8 @@ class Countries {
         "de": "Australien",
         "fr": "Australie",
         "es": "Australia",
-        "en": "Australia"
+        "en": "Australia",
+        "pt_BR": "Austrália",
       }
     },
     {
@@ -363,7 +378,8 @@ class Countries {
         "de": "Österreich",
         "fr": "Autriche",
         "es": "Austria",
-        "en": "Austria"
+        "en": "Austria",
+        "pt_BR": "Áustria",
       }
     },
     {
@@ -385,7 +401,8 @@ class Countries {
         "de": "Aserbaidschan",
         "fr": "Azerbaïdjan",
         "es": "Azerbaiyán",
-        "en": "Azerbaijan"
+        "en": "Azerbaijan",
+        "pt_BR": "Azerbaijão",
       }
     },
     {
@@ -407,7 +424,8 @@ class Countries {
         "de": "Bahamas",
         "fr": "Bahamas",
         "es": "Bahamas",
-        "en": "Bahamas"
+        "en": "Bahamas",
+        "pt_BR": "Bahamas",
       }
     },
     {
@@ -429,7 +447,8 @@ class Countries {
         "de": "Bahrain",
         "fr": "Bahreïn",
         "es": "Baréin",
-        "en": "Bahrain"
+        "en": "Bahrain",
+        "pt_BR": "Bahrain",
       }
     },
     {
@@ -451,7 +470,8 @@ class Countries {
         "de": "Bangladesch",
         "fr": "Bangladesh",
         "es": "Bangladés",
-        "en": "Bangladesh"
+        "en": "Bangladesh",
+        "pt_BR": "Bangladesh",
       }
     },
     {
@@ -473,7 +493,8 @@ class Countries {
         "de": "Barbados",
         "fr": "Barbade",
         "es": "Barbados",
-        "en": "Barbados"
+        "en": "Barbados",
+        "pt_BR": "Barbados",
       }
     },
     {
@@ -495,7 +516,8 @@ class Countries {
         "de": "Belarus",
         "fr": "Biélorussie",
         "es": "Bielorrusia",
-        "en": "Belarus"
+        "en": "Belarus",
+        "pt_BR": "Bielo-Rússia",
       }
     },
     {
@@ -517,7 +539,8 @@ class Countries {
         "de": "Belgien",
         "fr": "Belgique",
         "es": "Bélgica",
-        "en": "Belgium"
+        "en": "Belgium",
+        "pt_BR": "Bélgica",
       }
     },
     {
@@ -539,7 +562,8 @@ class Countries {
         "de": "Belize",
         "fr": "Belize",
         "es": "Belice",
-        "en": "Belize"
+        "en": "Belize",
+        "pt_BR": "Belize",
       }
     },
     {
@@ -561,7 +585,8 @@ class Countries {
         "de": "Benin",
         "fr": "Bénin",
         "es": "Benín",
-        "en": "Benin"
+        "en": "Benin",
+        "pt_BR": "Benin",
       }
     },
     {
@@ -583,7 +608,8 @@ class Countries {
         "de": "Bermuda",
         "fr": "Bermudes",
         "es": "Bermudas",
-        "en": "Bermuda"
+        "en": "Bermuda",
+        "pt_BR": "Bermudas",
       }
     },
     {
@@ -605,7 +631,8 @@ class Countries {
         "de": "Bhutan",
         "fr": "Bhoutan",
         "es": "Bután",
-        "en": "Bhutan"
+        "en": "Bhutan",
+        "pt_BR": "Butão",
       }
     },
     {
@@ -627,7 +654,8 @@ class Countries {
         "de": "Bolivien",
         "fr": "Bolivie",
         "es": "Bolivia",
-        "en": "Bolivia"
+        "en": "Bolivia",
+        "pt_BR": "Bolívia",
       }
     },
     {
@@ -649,7 +677,8 @@ class Countries {
         "de": "Bosnien und Herzegowina",
         "fr": "Bosnie-Herzégovine",
         "es": "Bosnia y Herzegovina",
-        "en": "Bosnia & Herzegovina"
+        "en": "Bosnia & Herzegovina",
+        "pt_BR": "Bósnia e Herzegovina",
       }
     },
     {
@@ -671,7 +700,8 @@ class Countries {
         "de": "Botsuana",
         "fr": "Botswana",
         "es": "Botsuana",
-        "en": "Botswana"
+        "en": "Botswana",
+        "pt_BR": "Botswana",
       }
     },
     {
@@ -693,7 +723,8 @@ class Countries {
         "de": "Bouvetinsel",
         "fr": "Île Bouvet",
         "es": "Isla Bouvet",
-        "en": "Bouvet Island"
+        "en": "Bouvet Island",
+        "pt_BR": "Ilha Bouvet",
       }
     },
     {
@@ -715,7 +746,8 @@ class Countries {
         "de": "Brasilien",
         "fr": "Brésil",
         "es": "Brasil",
-        "en": "Brazil"
+        "en": "Brazil",
+        "pt_BR": "Brasil",
       }
     },
     {
@@ -737,7 +769,8 @@ class Countries {
         "de": "Britisches Territorium im Indischen Ozean",
         "fr": "Territoire britannique de l’océan Indien",
         "es": "Territorio Británico del Océano Índico",
-        "en": "British Indian Ocean Territory"
+        "en": "British Indian Ocean Territory",
+        "pt_BR": "Território Britânico do Oceano Índico",
       }
     },
     {
@@ -759,7 +792,8 @@ class Countries {
         "de": "Brunei Darussalam",
         "fr": "Brunéi Darussalam",
         "es": "Brunéi",
-        "en": "Brunei"
+        "en": "Brunei",
+        "pt_BR": "Brunei",
       }
     },
     {
@@ -781,7 +815,8 @@ class Countries {
         "de": "Bulgarien",
         "fr": "Bulgarie",
         "es": "Bulgaria",
-        "en": "Bulgaria"
+        "en": "Bulgaria",
+        "pt_BR": "Bulgária",
       }
     },
     {
@@ -803,7 +838,8 @@ class Countries {
         "de": "Burkina Faso",
         "fr": "Burkina Faso",
         "es": "Burkina Faso",
-        "en": "Burkina Faso"
+        "en": "Burkina Faso",
+        "pt_BR": "Burkina Faso",
       }
     },
     {
@@ -825,7 +861,8 @@ class Countries {
         "de": "Burundi",
         "fr": "Burundi",
         "es": "Burundi",
-        "en": "Burundi"
+        "en": "Burundi",
+        "pt_BR": "Burundi",
       }
     },
     {
@@ -847,7 +884,8 @@ class Countries {
         "de": "Cabo Verde",
         "fr": "Cap-Vert",
         "es": "Cabo Verde",
-        "en": "Cape Verde"
+        "en": "Cape Verde",
+        "pt_BR": "cabo Verde",
       }
     },
     {
@@ -869,7 +907,8 @@ class Countries {
         "de": "Kambodscha",
         "fr": "Cambodge",
         "es": "Camboya",
-        "en": "Cambodia"
+        "en": "Cambodia",
+        "pt_BR": "Camboja",
       }
     },
     {
@@ -891,7 +930,8 @@ class Countries {
         "de": "Kamerun",
         "fr": "Cameroun",
         "es": "Camerún",
-        "en": "Cameroon"
+        "en": "Cameroon",
+        "pt_BR": "Camarões",
       }
     },
     {
@@ -913,7 +953,8 @@ class Countries {
         "de": "Kanada",
         "fr": "Canada",
         "es": "Canadá",
-        "en": "Canada"
+        "en": "Canada",
+        "pt_BR": "Canadá",
       }
     },
     {
@@ -935,7 +976,8 @@ class Countries {
         "de": "Kaimaninseln",
         "fr": "Îles Caïmans",
         "es": "Islas Caimán",
-        "en": "Cayman Islands"
+        "en": "Cayman Islands",
+        "pt_BR": "Ilhas Cayman",
       }
     },
     {
@@ -957,7 +999,8 @@ class Countries {
         "de": "Zentralafrikanische Republik",
         "fr": "République centrafricaine",
         "es": "República Centroafricana",
-        "en": "Central African Republic"
+        "en": "Central African Republic",
+        "pt_BR": "República Centro-Africana",
       }
     },
     {
@@ -979,7 +1022,8 @@ class Countries {
         "de": "Tschad",
         "fr": "Tchad",
         "es": "Chad",
-        "en": "Chad"
+        "en": "Chad",
+        "pt_BR": "Chade",
       }
     },
     {
@@ -1001,7 +1045,8 @@ class Countries {
         "de": "Chile",
         "fr": "Chili",
         "es": "Chile",
-        "en": "Chile"
+        "en": "Chile",
+        "pt_BR": "Chile",
       }
     },
     {
@@ -1023,7 +1068,8 @@ class Countries {
         "de": "China",
         "fr": "Chine",
         "es": "China",
-        "en": "China"
+        "en": "China",
+        "pt_BR": "China",
       }
     },
     {
@@ -1045,7 +1091,8 @@ class Countries {
         "de": "Weihnachtsinsel",
         "fr": "Île Christmas",
         "es": "Isla de Navidad",
-        "en": "Christmas Island"
+        "en": "Christmas Island",
+        "pt_BR": "Ilha do Natal",
       }
     },
     {
@@ -1067,7 +1114,8 @@ class Countries {
         "de": "Kokosinseln",
         "fr": "Îles Cocos",
         "es": "Islas Cocos",
-        "en": "Cocos (Keeling) Islands"
+        "en": "Cocos (Keeling) Islands",
+        "pt_BR": "Ilhas Cocos (Keeling)",
       }
     },
     {
@@ -1089,7 +1137,8 @@ class Countries {
         "de": "Kolumbien",
         "fr": "Colombie",
         "es": "Colombia",
-        "en": "Colombia"
+        "en": "Colombia",
+        "pt_BR": "Colômbia",
       }
     },
     {
@@ -1111,7 +1160,8 @@ class Countries {
         "de": "Komoren",
         "fr": "Comores",
         "es": "Comoras",
-        "en": "Comoros"
+        "en": "Comoros",
+        "pt_BR": "Comores",
       }
     },
     {
@@ -1133,7 +1183,8 @@ class Countries {
         "de": "Kongo-Brazzaville",
         "fr": "Congo-Brazzaville",
         "es": "Congo",
-        "en": "Congo - Brazzaville"
+        "en": "Congo - Brazzaville",
+        "pt_BR": "Congo - Brazzaville",
       }
     },
     {
@@ -1155,7 +1206,8 @@ class Countries {
         "de": "Kongo-Kinshasa",
         "fr": "Congo-Kinshasa",
         "es": "República Democrática del Congo",
-        "en": "Congo - Kinshasa"
+        "en": "Congo - Kinshasa",
+        "pt_BR": "Congo - Kinshasa",
       }
     },
     {
@@ -1177,7 +1229,8 @@ class Countries {
         "de": "Cookinseln",
         "fr": "Îles Cook",
         "es": "Islas Cook",
-        "en": "Cook Islands"
+        "en": "Cook Islands",
+        "pt_BR": "Ilhas Cook",
       }
     },
     {
@@ -1199,7 +1252,8 @@ class Countries {
         "de": "Costa Rica",
         "fr": "Costa Rica",
         "es": "Costa Rica",
-        "en": "Costa Rica"
+        "en": "Costa Rica",
+        "pt_BR": "Costa Rica",
       }
     },
     {
@@ -1221,7 +1275,8 @@ class Countries {
         "de": "Côte d’Ivoire",
         "fr": "Côte d’Ivoire",
         "es": "Côte d’Ivoire",
-        "en": "Côte d’Ivoire"
+        "en": "Côte d’Ivoire",
+        "pt_BR": "Côte d’Ivoire",
       }
     },
     {
@@ -1243,7 +1298,8 @@ class Countries {
         "de": "Kroatien",
         "fr": "Croatie",
         "es": "Croacia",
-        "en": "Croatia"
+        "en": "Croatia",
+        "pt_BR": "Croácia",
       }
     },
     {
@@ -1265,7 +1321,8 @@ class Countries {
         "de": "Kuba",
         "fr": "Cuba",
         "es": "Cuba",
-        "en": "Cuba"
+        "en": "Cuba",
+        "pt_BR": "Cuba",
       }
     },
     {
@@ -1287,7 +1344,8 @@ class Countries {
         "de": "Zypern",
         "fr": "Chypre",
         "es": "Chipre",
-        "en": "Cyprus"
+        "en": "Cyprus",
+        "pt_BR": "Chipre",
       }
     },
     {
@@ -1309,7 +1367,8 @@ class Countries {
         "de": "Tschechien",
         "fr": "Tchéquie",
         "es": "Chequia",
-        "en": "Czechia"
+        "en": "Czechia",
+        "pt_BR": "Czechia",
       }
     },
     {
@@ -1331,7 +1390,8 @@ class Countries {
         "de": "Dänemark",
         "fr": "Danemark",
         "es": "Dinamarca",
-        "en": "Denmark"
+        "en": "Denmark",
+        "pt_BR": "Dinamarca",
       }
     },
     {
@@ -1353,7 +1413,8 @@ class Countries {
         "de": "Dschibuti",
         "fr": "Djibouti",
         "es": "Yibuti",
-        "en": "Djibouti"
+        "en": "Djibouti",
+        "pt_BR": "Djibouti",
       }
     },
     {
@@ -1375,7 +1436,8 @@ class Countries {
         "de": "Dominica",
         "fr": "Dominique",
         "es": "Dominica",
-        "en": "Dominica"
+        "en": "Dominica",
+        "pt_BR": "Dominica",
       }
     },
     {
@@ -1397,7 +1459,8 @@ class Countries {
         "de": "Dominikanische Republik",
         "fr": "République dominicaine",
         "es": "República Dominicana",
-        "en": "Dominican Republic"
+        "en": "Dominican Republic",
+        "pt_BR": "República Dominicana",
       }
     },
     {
@@ -1419,29 +1482,31 @@ class Countries {
         "de": "Ecuador",
         "fr": "Équateur",
         "es": "Ecuador",
-        "en": "Ecuador"
+        "en": "Ecuador",
+        "pt_BR": "Equador",
       }
     },
     {
       "num_code": "818",
       "alpha_2_code": "EG",
       "alpha_3_code": "EGY",
-      "en_short_name": "Egypt",
-      "nationality": "Egyptian",
+      "en_short_name": "Egypt_BR",
+      "nationality": "Egypt_BRian",
       "dial_code": "+20",
       "nameTranslations": {
-        "sk": "Egypt",
-        "se": "Egypta",
-        "pl": "Egipt",
-        "no": "Egypt",
+        "sk": "Egypt_BR",
+        "se": "Egypt_BRa",
+        "pl": "Egipt_BR",
+        "no": "Egypt_BR",
         "ja": "エジプト",
         "it": "Egitto",
         "zh": "埃及",
-        "nl": "Egypte",
-        "de": "Ägypten",
-        "fr": "Égypte",
-        "es": "Egipto",
-        "en": "Egypt"
+        "nl": "Egypt_BRe",
+        "de": "Ägypt_BRen",
+        "fr": "Égypt_BRe",
+        "es": "Egipt_BRo",
+        "en": "Egypt_BR",
+        "pt_BR": "Egito",
       }
     },
     {
@@ -1463,7 +1528,8 @@ class Countries {
         "de": "El Salvador",
         "fr": "Salvador",
         "es": "El Salvador",
-        "en": "El Salvador"
+        "en": "El Salvador",
+        "pt_BR": "El Salvador",
       }
     },
     {
@@ -1485,7 +1551,8 @@ class Countries {
         "de": "Äquatorialguinea",
         "fr": "Guinée équatoriale",
         "es": "Guinea Ecuatorial",
-        "en": "Equatorial Guinea"
+        "en": "Equatorial Guinea",
+        "pt_BR": "Guiné Equatorial",
       }
     },
     {
@@ -1507,7 +1574,8 @@ class Countries {
         "de": "Eritrea",
         "fr": "Érythrée",
         "es": "Eritrea",
-        "en": "Eritrea"
+        "en": "Eritrea",
+        "pt_BR": "Eritreia",
       }
     },
     {
@@ -1529,7 +1597,8 @@ class Countries {
         "de": "Estland",
         "fr": "Estonie",
         "es": "Estonia",
-        "en": "Estonia"
+        "en": "Estonia",
+        "pt_BR": "Estônia",
       }
     },
     {
@@ -1551,7 +1620,8 @@ class Countries {
         "de": "Äthiopien",
         "fr": "Éthiopie",
         "es": "Etiopía",
-        "en": "Ethiopia"
+        "en": "Ethiopia",
+        "pt_BR": "Etiópia",
       }
     },
     {
@@ -1573,7 +1643,8 @@ class Countries {
         "de": "Falklandinseln",
         "fr": "Îles Malouines",
         "es": "Islas Malvinas",
-        "en": "Falkland Islands"
+        "en": "Falkland Islands",
+        "pt_BR": "Ilhas Falkland",
       }
     },
     {
@@ -1595,7 +1666,8 @@ class Countries {
         "de": "Färöer",
         "fr": "Îles Féroé",
         "es": "Islas Feroe",
-        "en": "Faroe Islands"
+        "en": "Faroe Islands",
+        "pt_BR": "ilhas Faroe",
       }
     },
     {
@@ -1617,7 +1689,8 @@ class Countries {
         "de": "Fidschi",
         "fr": "Fidji",
         "es": "Fiyi",
-        "en": "Fiji"
+        "en": "Fiji",
+        "pt_BR": "Fiji",
       }
     },
     {
@@ -1639,7 +1712,8 @@ class Countries {
         "de": "Finnland",
         "fr": "Finlande",
         "es": "Finlandia",
-        "en": "Finland"
+        "en": "Finland",
+        "pt_BR": "Finlândia",
       }
     },
     {
@@ -1661,7 +1735,8 @@ class Countries {
         "de": "Frankreich",
         "fr": "France",
         "es": "Francia",
-        "en": "France"
+        "en": "France",
+        "pt_BR": "França",
       }
     },
     {
@@ -1683,7 +1758,8 @@ class Countries {
         "de": "Französisch-Guayana",
         "fr": "Guyane française",
         "es": "Guayana Francesa",
-        "en": "French Guiana"
+        "en": "French Guiana",
+        "pt_BR": "Guiana Francesa",
       }
     },
     {
@@ -1705,7 +1781,8 @@ class Countries {
         "de": "Französisch-Polynesien",
         "fr": "Polynésie française",
         "es": "Polinesia Francesa",
-        "en": "French Polynesia"
+        "en": "French Polynesia",
+        "pt_BR": "Polinésia Francesa",
       }
     },
     {
@@ -1727,7 +1804,8 @@ class Countries {
         "de": "Französische Süd- und Antarktisgebiete",
         "fr": "Terres australes françaises",
         "es": "Territorios Australes Franceses",
-        "en": "French Southern Territories"
+        "en": "French Southern Territories",
+        "pt_BR": "Territórios Franceses do Sul",
       }
     },
     {
@@ -1749,7 +1827,8 @@ class Countries {
         "de": "Gabun",
         "fr": "Gabon",
         "es": "Gabón",
-        "en": "Gabon"
+        "en": "Gabon",
+        "pt_BR": "Gabão",
       }
     },
     {
@@ -1771,7 +1850,8 @@ class Countries {
         "de": "Gambia",
         "fr": "Gambie",
         "es": "Gambia",
-        "en": "Gambia"
+        "en": "Gambia",
+        "pt_BR": "Gâmbia",
       }
     },
     {
@@ -1793,7 +1873,8 @@ class Countries {
         "de": "Georgien",
         "fr": "Géorgie",
         "es": "Georgia",
-        "en": "Georgia"
+        "en": "Georgia",
+        "pt_BR": "Georgia",
       }
     },
     {
@@ -1815,7 +1896,8 @@ class Countries {
         "de": "Deutschland",
         "fr": "Allemagne",
         "es": "Alemania",
-        "en": "Germany"
+        "en": "Germany",
+        "pt_BR": "Alemanha",
       }
     },
     {
@@ -1837,7 +1919,8 @@ class Countries {
         "de": "Ghana",
         "fr": "Ghana",
         "es": "Ghana",
-        "en": "Ghana"
+        "en": "Ghana",
+        "pt_BR": "Gana",
       }
     },
     {
@@ -1859,7 +1942,8 @@ class Countries {
         "de": "Gibraltar",
         "fr": "Gibraltar",
         "es": "Gibraltar",
-        "en": "Gibraltar"
+        "en": "Gibraltar",
+        "pt_BR": "Gibraltar",
       }
     },
     {
@@ -1881,7 +1965,8 @@ class Countries {
         "de": "Griechenland",
         "fr": "Grèce",
         "es": "Grecia",
-        "en": "Greece"
+        "en": "Greece",
+        "pt_BR": "Grécia",
       }
     },
     {
@@ -1903,7 +1988,8 @@ class Countries {
         "de": "Grönland",
         "fr": "Groenland",
         "es": "Groenlandia",
-        "en": "Greenland"
+        "en": "Greenland",
+        "pt_BR": "Groenlândia",
       }
     },
     {
@@ -1925,7 +2011,8 @@ class Countries {
         "de": "Grenada",
         "fr": "Grenade",
         "es": "Granada",
-        "en": "Grenada"
+        "en": "Grenada",
+        "pt_BR": "Grenada",
       }
     },
     {
@@ -1947,7 +2034,8 @@ class Countries {
         "de": "Guadeloupe",
         "fr": "Guadeloupe",
         "es": "Guadalupe",
-        "en": "Guadeloupe"
+        "en": "Guadeloupe",
+        "pt_BR": "Guadalupe",
       }
     },
     {
@@ -1969,7 +2057,8 @@ class Countries {
         "de": "Guam",
         "fr": "Guam",
         "es": "Guam",
-        "en": "Guam"
+        "en": "Guam",
+        "pt_BR": "Guam",
       }
     },
     {
@@ -1991,7 +2080,8 @@ class Countries {
         "de": "Guatemala",
         "fr": "Guatemala",
         "es": "Guatemala",
-        "en": "Guatemala"
+        "en": "Guatemala",
+        "pt_BR": "Guatemala",
       }
     },
     {
@@ -2013,7 +2103,8 @@ class Countries {
         "de": "Guernsey",
         "fr": "Guernesey",
         "es": "Guernsey",
-        "en": "Guernsey"
+        "en": "Guernsey",
+        "pt_BR": "Guernsey",
       }
     },
     {
@@ -2035,7 +2126,8 @@ class Countries {
         "de": "Guinea",
         "fr": "Guinée",
         "es": "Guinea",
-        "en": "Guinea"
+        "en": "Guinea",
+        "pt_BR": "Guiné",
       }
     },
     {
@@ -2057,7 +2149,8 @@ class Countries {
         "de": "Guinea-Bissau",
         "fr": "Guinée-Bissau",
         "es": "Guinea-Bisáu",
-        "en": "Guinea-Bissau"
+        "en": "Guinea-Bissau",
+        "pt_BR": "Guiné-bissau",
       }
     },
     {
@@ -2079,7 +2172,8 @@ class Countries {
         "de": "Guyana",
         "fr": "Guyana",
         "es": "Guyana",
-        "en": "Guyana"
+        "en": "Guyana",
+        "pt_BR": "Guiana",
       }
     },
     {
@@ -2101,7 +2195,8 @@ class Countries {
         "de": "Haiti",
         "fr": "Haïti",
         "es": "Haití",
-        "en": "Haiti"
+        "en": "Haiti",
+        "pt_BR": "Haiti",
       }
     },
     {
@@ -2123,7 +2218,8 @@ class Countries {
         "de": "Heard und McDonaldinseln",
         "fr": "Îles Heard et McDonald",
         "es": "Islas Heard y McDonald",
-        "en": "Heard & McDonald Islands"
+        "en": "Heard & McDonald Islands",
+        "pt_BR": "Ilhas Heard e McDonald",
       }
     },
     {
@@ -2145,7 +2241,8 @@ class Countries {
         "de": "Vatikanstadt",
         "fr": "État de la Cité du Vatican",
         "es": "Ciudad del Vaticano",
-        "en": "Vatican City"
+        "en": "Vatican City",
+        "pt_BR": "Cidade do Vaticano",
       }
     },
     {
@@ -2167,7 +2264,8 @@ class Countries {
         "de": "Honduras",
         "fr": "Honduras",
         "es": "Honduras",
-        "en": "Honduras"
+        "en": "Honduras",
+        "pt_BR": "Honduras",
       }
     },
     {
@@ -2189,7 +2287,8 @@ class Countries {
         "de": "Sonderverwaltungsregion Hongkong",
         "fr": "R.A.S. chinoise de Hong Kong",
         "es": "RAE de Hong Kong (China)",
-        "en": "Hong Kong SAR China"
+        "en": "Hong Kong SAR China",
+        "pt_BR": "RAE de Hong Kong China",
       }
     },
     {
@@ -2211,7 +2310,8 @@ class Countries {
         "de": "Ungarn",
         "fr": "Hongrie",
         "es": "Hungría",
-        "en": "Hungary"
+        "en": "Hungary",
+        "pt_BR": "Hungria",
       }
     },
     {
@@ -2233,7 +2333,8 @@ class Countries {
         "de": "Island",
         "fr": "Islande",
         "es": "Islandia",
-        "en": "Iceland"
+        "en": "Iceland",
+        "pt_BR": "Islândia",
       }
     },
     {
@@ -2255,7 +2356,8 @@ class Countries {
         "de": "Indien",
         "fr": "Inde",
         "es": "India",
-        "en": "India"
+        "en": "India",
+        "pt_BR": "Índia",
       }
     },
     {
@@ -2277,7 +2379,8 @@ class Countries {
         "de": "Indonesien",
         "fr": "Indonésie",
         "es": "Indonesia",
-        "en": "Indonesia"
+        "en": "Indonesia",
+        "pt_BR": "Indonésia",
       }
     },
     {
@@ -2299,7 +2402,8 @@ class Countries {
         "de": "Iran",
         "fr": "Iran",
         "es": "Irán",
-        "en": "Iran"
+        "en": "Iran",
+        "pt_BR": "Irã",
       }
     },
     {
@@ -2321,7 +2425,8 @@ class Countries {
         "de": "Irak",
         "fr": "Irak",
         "es": "Irak",
-        "en": "Iraq"
+        "en": "Iraq",
+        "pt_BR": "Iraque",
       }
     },
     {
@@ -2343,7 +2448,8 @@ class Countries {
         "de": "Irland",
         "fr": "Irlande",
         "es": "Irlanda",
-        "en": "Ireland"
+        "en": "Ireland",
+        "pt_BR": "Irlanda",
       }
     },
     {
@@ -2365,7 +2471,8 @@ class Countries {
         "de": "Isle of Man",
         "fr": "Île de Man",
         "es": "Isla de Man",
-        "en": "Isle of Man"
+        "en": "Isle of Man",
+        "pt_BR": "Ilha de Man",
       }
     },
     {
@@ -2387,7 +2494,8 @@ class Countries {
         "de": "Israel",
         "fr": "Israël",
         "es": "Israel",
-        "en": "Israel"
+        "en": "Israel",
+        "pt_BR": "Israel",
       }
     },
     {
@@ -2409,7 +2517,8 @@ class Countries {
         "de": "Italien",
         "fr": "Italie",
         "es": "Italia",
-        "en": "Italy"
+        "en": "Italy",
+        "pt_BR": "Itália",
       }
     },
     {
@@ -2431,7 +2540,8 @@ class Countries {
         "de": "Jamaika",
         "fr": "Jamaïque",
         "es": "Jamaica",
-        "en": "Jamaica"
+        "en": "Jamaica",
+        "pt_BR": "Jamaica",
       }
     },
     {
@@ -2453,7 +2563,8 @@ class Countries {
         "de": "Japan",
         "fr": "Japon",
         "es": "Japón",
-        "en": "Japan"
+        "en": "Japan",
+        "pt_BR": "Japão",
       }
     },
     {
@@ -2475,7 +2586,8 @@ class Countries {
         "de": "Jersey",
         "fr": "Jersey",
         "es": "Jersey",
-        "en": "Jersey"
+        "en": "Jersey",
+        "pt_BR": "Jersey",
       }
     },
     {
@@ -2497,7 +2609,8 @@ class Countries {
         "de": "Jordanien",
         "fr": "Jordanie",
         "es": "Jordania",
-        "en": "Jordan"
+        "en": "Jordan",
+        "pt_BR": "Jordânia",
       }
     },
     {
@@ -2519,7 +2632,8 @@ class Countries {
         "de": "Kasachstan",
         "fr": "Kazakhstan",
         "es": "Kazajistán",
-        "en": "Kazakhstan"
+        "en": "Kazakhstan",
+        "pt_BR": "Cazaquistão",
       }
     },
     {
@@ -2541,7 +2655,8 @@ class Countries {
         "de": "Kenia",
         "fr": "Kenya",
         "es": "Kenia",
-        "en": "Kenya"
+        "en": "Kenya",
+        "pt_BR": "Quênia",
       }
     },
     {
@@ -2563,7 +2678,8 @@ class Countries {
         "de": "Kiribati",
         "fr": "Kiribati",
         "es": "Kiribati",
-        "en": "Kiribati"
+        "en": "Kiribati",
+        "pt_BR": "Kiribati",
       }
     },
     {
@@ -2585,7 +2701,8 @@ class Countries {
         "de": "Nordkorea",
         "fr": "Corée du Nord",
         "es": "Corea del Norte",
-        "en": "North Korea"
+        "en": "North Korea",
+        "pt_BR": "Coreia do Norte",
       }
     },
     {
@@ -2607,7 +2724,8 @@ class Countries {
         "de": "Südkorea",
         "fr": "Corée du Sud",
         "es": "Corea del Sur",
-        "en": "South Korea"
+        "en": "South Korea",
+        "pt_BR": "Coreia do Sul",
       }
     },
     {
@@ -2629,7 +2747,8 @@ class Countries {
         "de": "Kuwait",
         "fr": "Koweït",
         "es": "Kuwait",
-        "en": "Kuwait"
+        "en": "Kuwait",
+        "pt_BR": "Kuwait",
       }
     },
     {
@@ -2651,7 +2770,8 @@ class Countries {
         "de": "Kirgisistan",
         "fr": "Kirghizistan",
         "es": "Kirguistán",
-        "en": "Kyrgyzstan"
+        "en": "Kyrgyzstan",
+        "pt_BR": "Quirguistão",
       }
     },
     {
@@ -2673,7 +2793,8 @@ class Countries {
         "de": "Laos",
         "fr": "Laos",
         "es": "Laos",
-        "en": "Laos"
+        "en": "Laos",
+        "pt_BR": "Laos",
       }
     },
     {
@@ -2695,7 +2816,8 @@ class Countries {
         "de": "Lettland",
         "fr": "Lettonie",
         "es": "Letonia",
-        "en": "Latvia"
+        "en": "Latvia",
+        "pt_BR": "Letônia",
       }
     },
     {
@@ -2717,7 +2839,8 @@ class Countries {
         "de": "Libanon",
         "fr": "Liban",
         "es": "Líbano",
-        "en": "Lebanon"
+        "en": "Lebanon",
+        "pt_BR": "Líbano",
       }
     },
     {
@@ -2739,7 +2862,8 @@ class Countries {
         "de": "Lesotho",
         "fr": "Lesotho",
         "es": "Lesoto",
-        "en": "Lesotho"
+        "en": "Lesotho",
+        "pt_BR": "Lesoto",
       }
     },
     {
@@ -2761,7 +2885,8 @@ class Countries {
         "de": "Liberia",
         "fr": "Libéria",
         "es": "Liberia",
-        "en": "Liberia"
+        "en": "Liberia",
+        "pt_BR": "Libéria",
       }
     },
     {
@@ -2783,7 +2908,8 @@ class Countries {
         "de": "Libyen",
         "fr": "Libye",
         "es": "Libia",
-        "en": "Libya"
+        "en": "Libya",
+        "pt_BR": "Líbia",
       }
     },
     {
@@ -2805,7 +2931,8 @@ class Countries {
         "de": "Liechtenstein",
         "fr": "Liechtenstein",
         "es": "Liechtenstein",
-        "en": "Liechtenstein"
+        "en": "Liechtenstein",
+        "pt_BR": "Liechtenstein",
       }
     },
     {
@@ -2827,7 +2954,8 @@ class Countries {
         "de": "Litauen",
         "fr": "Lituanie",
         "es": "Lituania",
-        "en": "Lithuania"
+        "en": "Lithuania",
+        "pt_BR": "Lituânia",
       }
     },
     {
@@ -2849,7 +2977,8 @@ class Countries {
         "de": "Luxemburg",
         "fr": "Luxembourg",
         "es": "Luxemburgo",
-        "en": "Luxembourg"
+        "en": "Luxembourg",
+        "pt_BR": "Luxemburgo",
       }
     },
     {
@@ -2871,7 +3000,8 @@ class Countries {
         "de": "Sonderverwaltungsregion Macau",
         "fr": "R.A.S. chinoise de Macao",
         "es": "RAE de Macao (China)",
-        "en": "Macao SAR China"
+        "en": "Macao SAR China",
+        "pt_BR": "RAE de Macau China",
       }
     },
     {
@@ -2893,7 +3023,8 @@ class Countries {
         "de": "Nordmazedonien",
         "fr": "Macédoine du Nord",
         "es": "Macedonia del Norte",
-        "en": "North Macedonia"
+        "en": "North Macedonia",
+        "pt_BR": "Macedônia do Norte",
       }
     },
     {
@@ -2915,7 +3046,8 @@ class Countries {
         "de": "Madagaskar",
         "fr": "Madagascar",
         "es": "Madagascar",
-        "en": "Madagascar"
+        "en": "Madagascar",
+        "pt_BR": "Madagáscar",
       }
     },
     {
@@ -2937,7 +3069,8 @@ class Countries {
         "de": "Malawi",
         "fr": "Malawi",
         "es": "Malaui",
-        "en": "Malawi"
+        "en": "Malawi",
+        "pt_BR": "Malawi",
       }
     },
     {
@@ -2959,7 +3092,8 @@ class Countries {
         "de": "Malaysia",
         "fr": "Malaisie",
         "es": "Malasia",
-        "en": "Malaysia"
+        "en": "Malaysia",
+        "pt_BR": "Malásia",
       }
     },
     {
@@ -2981,7 +3115,8 @@ class Countries {
         "de": "Malediven",
         "fr": "Maldives",
         "es": "Maldivas",
-        "en": "Maldives"
+        "en": "Maldives",
+        "pt_BR": "Maldivas",
       }
     },
     {
@@ -3003,7 +3138,8 @@ class Countries {
         "de": "Mali",
         "fr": "Mali",
         "es": "Mali",
-        "en": "Mali"
+        "en": "Mali",
+        "pt_BR": "Mali",
       }
     },
     {
@@ -3025,7 +3161,8 @@ class Countries {
         "de": "Malta",
         "fr": "Malte",
         "es": "Malta",
-        "en": "Malta"
+        "en": "Malta",
+        "pt_BR": "Malta",
       }
     },
     {
@@ -3047,7 +3184,8 @@ class Countries {
         "de": "Marshallinseln",
         "fr": "Îles Marshall",
         "es": "Islas Marshall",
-        "en": "Marshall Islands"
+        "en": "Marshall Islands",
+        "pt_BR": "Ilhas Marshall",
       }
     },
     {
@@ -3069,7 +3207,8 @@ class Countries {
         "de": "Martinique",
         "fr": "Martinique",
         "es": "Martinica",
-        "en": "Martinique"
+        "en": "Martinique",
+        "pt_BR": "Martinica",
       }
     },
     {
@@ -3091,7 +3230,8 @@ class Countries {
         "de": "Mauretanien",
         "fr": "Mauritanie",
         "es": "Mauritania",
-        "en": "Mauritania"
+        "en": "Mauritania",
+        "pt_BR": "Mauritânia",
       }
     },
     {
@@ -3113,7 +3253,8 @@ class Countries {
         "de": "Mauritius",
         "fr": "Maurice",
         "es": "Mauricio",
-        "en": "Mauritius"
+        "en": "Mauritius",
+        "pt_BR": "Maurício",
       }
     },
     {
@@ -3135,7 +3276,8 @@ class Countries {
         "de": "Mayotte",
         "fr": "Mayotte",
         "es": "Mayotte",
-        "en": "Mayotte"
+        "en": "Mayotte",
+        "pt_BR": "Mayotte",
       }
     },
     {
@@ -3157,7 +3299,8 @@ class Countries {
         "de": "Mexiko",
         "fr": "Mexique",
         "es": "México",
-        "en": "Mexico"
+        "en": "Mexico",
+        "pt_BR": "México",
       }
     },
     {
@@ -3179,7 +3322,8 @@ class Countries {
         "de": "Mikronesien",
         "fr": "États fédérés de Micronésie",
         "es": "Micronesia",
-        "en": "Micronesia"
+        "en": "Micronesia",
+        "pt_BR": "Micronésia",
       }
     },
     {
@@ -3201,7 +3345,8 @@ class Countries {
         "de": "Republik Moldau",
         "fr": "Moldavie",
         "es": "Moldavia",
-        "en": "Moldova"
+        "en": "Moldova",
+        "pt_BR": "Moldova",
       }
     },
     {
@@ -3223,7 +3368,8 @@ class Countries {
         "de": "Monaco",
         "fr": "Monaco",
         "es": "Mónaco",
-        "en": "Monaco"
+        "en": "Monaco",
+        "pt_BR": "Mônaco",
       }
     },
     {
@@ -3245,7 +3391,8 @@ class Countries {
         "de": "Mongolei",
         "fr": "Mongolie",
         "es": "Mongolia",
-        "en": "Mongolia"
+        "en": "Mongolia",
+        "pt_BR": "Mongólia",
       }
     },
     {
@@ -3267,7 +3414,8 @@ class Countries {
         "de": "Montenegro",
         "fr": "Monténégro",
         "es": "Montenegro",
-        "en": "Montenegro"
+        "en": "Montenegro",
+        "pt_BR": "Montenegro",
       }
     },
     {
@@ -3289,7 +3437,8 @@ class Countries {
         "de": "Montserrat",
         "fr": "Montserrat",
         "es": "Montserrat",
-        "en": "Montserrat"
+        "en": "Montserrat",
+        "pt_BR": "Montserrat",
       }
     },
     {
@@ -3311,7 +3460,8 @@ class Countries {
         "de": "Marokko",
         "fr": "Maroc",
         "es": "Marruecos",
-        "en": "Morocco"
+        "en": "Morocco",
+        "pt_BR": "Marrocos",
       }
     },
     {
@@ -3333,7 +3483,8 @@ class Countries {
         "de": "Mosambik",
         "fr": "Mozambique",
         "es": "Mozambique",
-        "en": "Mozambique"
+        "en": "Mozambique",
+        "pt_BR": "Moçambique",
       }
     },
     {
@@ -3355,7 +3506,8 @@ class Countries {
         "de": "Myanmar",
         "fr": "Myanmar (Birmanie)",
         "es": "Myanmar (Birmania)",
-        "en": "Myanmar (Burma)"
+        "en": "Myanmar (Burma)",
+        "pt_BR": "Mianmar (Birmânia)",
       }
     },
     {
@@ -3377,7 +3529,8 @@ class Countries {
         "de": "Namibia",
         "fr": "Namibie",
         "es": "Namibia",
-        "en": "Namibia"
+        "en": "Namibia",
+        "pt_BR": "Namibia",
       }
     },
     {
@@ -3399,7 +3552,8 @@ class Countries {
         "de": "Nauru",
         "fr": "Nauru",
         "es": "Nauru",
-        "en": "Nauru"
+        "en": "Nauru",
+        "pt_BR": "Nauru",
       }
     },
     {
@@ -3421,7 +3575,8 @@ class Countries {
         "de": "Nepal",
         "fr": "Népal",
         "es": "Nepal",
-        "en": "Nepal"
+        "en": "Nepal",
+        "pt_BR": "Nepal",
       }
     },
     {
@@ -3443,7 +3598,8 @@ class Countries {
         "de": "Niederlande",
         "fr": "Pays-Bas",
         "es": "Países Bajos",
-        "en": "Netherlands"
+        "en": "Netherlands",
+        "pt_BR": "Países Baixos",
       }
     },
     {
@@ -3465,7 +3621,8 @@ class Countries {
         "de": "Neukaledonien",
         "fr": "Nouvelle-Calédonie",
         "es": "Nueva Caledonia",
-        "en": "New Caledonia"
+        "en": "New Caledonia",
+        "pt_BR": "Nova Caledônia",
       }
     },
     {
@@ -3487,7 +3644,8 @@ class Countries {
         "de": "Neuseeland",
         "fr": "Nouvelle-Zélande",
         "es": "Nueva Zelanda",
-        "en": "New Zealand"
+        "en": "New Zealand",
+        "pt_BR": "Nova Zelândia",
       }
     },
     {
@@ -3509,7 +3667,8 @@ class Countries {
         "de": "Nicaragua",
         "fr": "Nicaragua",
         "es": "Nicaragua",
-        "en": "Nicaragua"
+        "en": "Nicaragua",
+        "pt_BR": "Nicarágua",
       }
     },
     {
@@ -3531,7 +3690,8 @@ class Countries {
         "de": "Niger",
         "fr": "Niger",
         "es": "Níger",
-        "en": "Niger"
+        "en": "Niger",
+        "pt_BR": "Níger",
       }
     },
     {
@@ -3553,7 +3713,8 @@ class Countries {
         "de": "Nigeria",
         "fr": "Nigéria",
         "es": "Nigeria",
-        "en": "Nigeria"
+        "en": "Nigeria",
+        "pt_BR": "Nigéria",
       }
     },
     {
@@ -3575,7 +3736,8 @@ class Countries {
         "de": "Niue",
         "fr": "Niue",
         "es": "Niue",
-        "en": "Niue"
+        "en": "Niue",
+        "pt_BR": "Niue",
       }
     },
     {
@@ -3597,7 +3759,8 @@ class Countries {
         "de": "Norfolkinsel",
         "fr": "Île Norfolk",
         "es": "Isla Norfolk",
-        "en": "Norfolk Island"
+        "en": "Norfolk Island",
+        "pt_BR": "Ilha Norfolk",
       }
     },
     {
@@ -3619,7 +3782,8 @@ class Countries {
         "de": "Nördliche Marianen",
         "fr": "Îles Mariannes du Nord",
         "es": "Islas Marianas del Norte",
-        "en": "Northern Mariana Islands"
+        "en": "Northern Mariana Islands",
+        "pt_BR": "Ilhas Marianas do Norte",
       }
     },
     {
@@ -3641,7 +3805,8 @@ class Countries {
         "de": "Norwegen",
         "fr": "Norvège",
         "es": "Noruega",
-        "en": "Norway"
+        "en": "Norway",
+        "pt_BR": "Noruega",
       }
     },
     {
@@ -3663,7 +3828,8 @@ class Countries {
         "de": "Oman",
         "fr": "Oman",
         "es": "Omán",
-        "en": "Oman"
+        "en": "Oman",
+        "pt_BR": "Omã",
       }
     },
     {
@@ -3685,7 +3851,8 @@ class Countries {
         "de": "Pakistan",
         "fr": "Pakistan",
         "es": "Pakistán",
-        "en": "Pakistan"
+        "en": "Pakistan",
+        "pt_BR": "Paquistão",
       }
     },
     {
@@ -3707,7 +3874,8 @@ class Countries {
         "de": "Palau",
         "fr": "Palaos",
         "es": "Palaos",
-        "en": "Palau"
+        "en": "Palau",
+        "pt_BR": "Palau",
       }
     },
     {
@@ -3729,7 +3897,8 @@ class Countries {
         "de": "Palästinensische Autonomiegebiete",
         "fr": "Territoires palestiniens",
         "es": "Territorios Palestinos",
-        "en": "Palestinian Territories"
+        "en": "Palestinian Territories",
+        "pt_BR": "Territórios Palestinos",
       }
     },
     {
@@ -3751,7 +3920,8 @@ class Countries {
         "de": "Panama",
         "fr": "Panama",
         "es": "Panamá",
-        "en": "Panama"
+        "en": "Panama",
+        "pt_BR": "Panamá",
       }
     },
     {
@@ -3773,7 +3943,8 @@ class Countries {
         "de": "Papua-Neuguinea",
         "fr": "Papouasie-Nouvelle-Guinée",
         "es": "Papúa Nueva Guinea",
-        "en": "Papua New Guinea"
+        "en": "Papua New Guinea",
+        "pt_BR": "Papua Nova Guiné",
       }
     },
     {
@@ -3795,7 +3966,8 @@ class Countries {
         "de": "Paraguay",
         "fr": "Paraguay",
         "es": "Paraguay",
-        "en": "Paraguay"
+        "en": "Paraguay",
+        "pt_BR": "Paraguai",
       }
     },
     {
@@ -3817,7 +3989,8 @@ class Countries {
         "de": "Peru",
         "fr": "Pérou",
         "es": "Perú",
-        "en": "Peru"
+        "en": "Peru",
+        "pt_BR": "Peru",
       }
     },
     {
@@ -3839,7 +4012,8 @@ class Countries {
         "de": "Philippinen",
         "fr": "Philippines",
         "es": "Filipinas",
-        "en": "Philippines"
+        "en": "Philippines",
+        "pt_BR": "Filipinas",
       }
     },
     {
@@ -3861,7 +4035,8 @@ class Countries {
         "de": "Pitcairninseln",
         "fr": "Îles Pitcairn",
         "es": "Islas Pitcairn",
-        "en": "Pitcairn Islands"
+        "en": "Pitcairn Islands",
+        "pt_BR": "Ilhas Pitcairn",
       }
     },
     {
@@ -3883,12 +4058,13 @@ class Countries {
         "de": "Polen",
         "fr": "Pologne",
         "es": "Polonia",
-        "en": "Poland"
+        "en": "Poland",
+        "pt_BR": "Polônia",
       }
     },
     {
       "num_code": "620",
-      "alpha_2_code": "PT",
+      "alpha_2_code": "pt_BR",
       "alpha_3_code": "PRT",
       "en_short_name": "Portugal",
       "nationality": "Portuguese",
@@ -3905,7 +4081,8 @@ class Countries {
         "de": "Portugal",
         "fr": "Portugal",
         "es": "Portugal",
-        "en": "Portugal"
+        "en": "Portugal",
+        "pt_BR": "Portugal",
       }
     },
     {
@@ -3927,7 +4104,8 @@ class Countries {
         "de": "Puerto Rico",
         "fr": "Porto Rico",
         "es": "Puerto Rico",
-        "en": "Puerto Rico"
+        "en": "Puerto Rico",
+        "pt_BR": "Porto Rico",
       }
     },
     {
@@ -3949,7 +4127,8 @@ class Countries {
         "de": "Katar",
         "fr": "Qatar",
         "es": "Catar",
-        "en": "Qatar"
+        "en": "Qatar",
+        "pt_BR": "Catar",
       }
     },
     {
@@ -3971,7 +4150,8 @@ class Countries {
         "de": "Réunion",
         "fr": "La Réunion",
         "es": "Reunión",
-        "en": "Réunion"
+        "en": "Réunion",
+        "pt_BR": "Reunião",
       }
     },
     {
@@ -3993,7 +4173,8 @@ class Countries {
         "de": "Rumänien",
         "fr": "Roumanie",
         "es": "Rumanía",
-        "en": "Romania"
+        "en": "Romania",
+        "pt_BR": "Romênia",
       }
     },
     {
@@ -4015,7 +4196,8 @@ class Countries {
         "de": "Russland",
         "fr": "Russie",
         "es": "Rusia",
-        "en": "Russia"
+        "en": "Russia",
+        "pt_BR": "Rússia",
       }
     },
     {
@@ -4037,7 +4219,8 @@ class Countries {
         "de": "Ruanda",
         "fr": "Rwanda",
         "es": "Ruanda",
-        "en": "Rwanda"
+        "en": "Rwanda",
+        "pt_BR": "Ruanda",
       }
     },
     {
@@ -4059,7 +4242,8 @@ class Countries {
         "de": "St. Barthélemy",
         "fr": "Saint-Barthélemy",
         "es": "San Bartolomé",
-        "en": "St. Barthélemy"
+        "en": "St. Barthélemy",
+        "pt_BR": "São Bartolomeu",
       }
     },
     {
@@ -4081,7 +4265,8 @@ class Countries {
         "de": "St. Helena",
         "fr": "Sainte-Hélène",
         "es": "Santa Elena",
-        "en": "St. Helena"
+        "en": "St. Helena",
+        "pt_BR": "Santa Helena",
       }
     },
     {
@@ -4103,7 +4288,8 @@ class Countries {
         "de": "St. Kitts und Nevis",
         "fr": "Saint-Christophe-et-Niévès",
         "es": "San Cristóbal y Nieves",
-        "en": "St. Kitts & Nevis"
+        "en": "St. Kitts & Nevis",
+        "pt_BR": "São Cristóvão e Nevis",
       }
     },
     {
@@ -4125,7 +4311,8 @@ class Countries {
         "de": "St. Lucia",
         "fr": "Sainte-Lucie",
         "es": "Santa Lucía",
-        "en": "St. Lucia"
+        "en": "St. Lucia",
+        "pt_BR": "Santa Lúcia",
       }
     },
     {
@@ -4147,7 +4334,8 @@ class Countries {
         "de": "St. Martin",
         "fr": "Saint-Martin",
         "es": "San Martín",
-        "en": "St. Martin"
+        "en": "St. Martin",
+        "pt_BR": "São Martinho",
       }
     },
     {
@@ -4169,7 +4357,8 @@ class Countries {
         "de": "St. Pierre und Miquelon",
         "fr": "Saint-Pierre-et-Miquelon",
         "es": "San Pedro y Miquelón",
-        "en": "St. Pierre & Miquelon"
+        "en": "St. Pierre & Miquelon",
+        "pt_BR": "São Pedro e Miquelon",
       }
     },
     {
@@ -4191,7 +4380,8 @@ class Countries {
         "de": "St. Vincent und die Grenadinen",
         "fr": "Saint-Vincent-et-les-Grenadines",
         "es": "San Vicente y las Granadinas",
-        "en": "St. Vincent & Grenadines"
+        "en": "St. Vincent & Grenadines",
+        "pt_BR": "São Vicente e Granadinas",
       }
     },
     {
@@ -4213,7 +4403,8 @@ class Countries {
         "de": "Samoa",
         "fr": "Samoa",
         "es": "Samoa",
-        "en": "Samoa"
+        "en": "Samoa",
+        "pt_BR": "Samoa",
       }
     },
     {
@@ -4235,7 +4426,8 @@ class Countries {
         "de": "San Marino",
         "fr": "Saint-Marin",
         "es": "San Marino",
-        "en": "San Marino"
+        "en": "San Marino",
+        "pt_BR": "San Marino",
       }
     },
     {
@@ -4257,7 +4449,8 @@ class Countries {
         "de": "São Tomé und Príncipe",
         "fr": "Sao Tomé-et-Principe",
         "es": "Santo Tomé y Príncipe",
-        "en": "São Tomé & Príncipe"
+        "en": "São Tomé & Príncipe",
+        "pt_BR": "São Tomé e Príncipe",
       }
     },
     {
@@ -4279,7 +4472,8 @@ class Countries {
         "de": "Saudi-Arabien",
         "fr": "Arabie saoudite",
         "es": "Arabia Saudí",
-        "en": "Saudi Arabia"
+        "en": "Saudi Arabia",
+        "pt_BR": "Arábia Saudita",
       }
     },
     {
@@ -4301,7 +4495,8 @@ class Countries {
         "de": "Senegal",
         "fr": "Sénégal",
         "es": "Senegal",
-        "en": "Senegal"
+        "en": "Senegal",
+        "pt_BR": "Senegal",
       }
     },
     {
@@ -4323,7 +4518,8 @@ class Countries {
         "de": "Serbien",
         "fr": "Serbie",
         "es": "Serbia",
-        "en": "Serbia"
+        "en": "Serbia",
+        "pt_BR": "Sérvia",
       }
     },
     {
@@ -4345,7 +4541,8 @@ class Countries {
         "de": "Seychellen",
         "fr": "Seychelles",
         "es": "Seychelles",
-        "en": "Seychelles"
+        "en": "Seychelles",
+        "pt_BR": "Seychelles",
       }
     },
     {
@@ -4367,7 +4564,8 @@ class Countries {
         "de": "Sierra Leone",
         "fr": "Sierra Leone",
         "es": "Sierra Leona",
-        "en": "Sierra Leone"
+        "en": "Sierra Leone",
+        "pt_BR": "Serra Leoa",
       }
     },
     {
@@ -4389,7 +4587,8 @@ class Countries {
         "de": "Singapur",
         "fr": "Singapour",
         "es": "Singapur",
-        "en": "Singapore"
+        "en": "Singapore",
+        "pt_BR": "Cingapura",
       }
     },
     {
@@ -4411,7 +4610,8 @@ class Countries {
         "de": "Slowakei",
         "fr": "Slovaquie",
         "es": "Eslovaquia",
-        "en": "Slovakia"
+        "en": "Slovakia",
+        "pt_BR": "Eslováquia",
       }
     },
     {
@@ -4433,7 +4633,8 @@ class Countries {
         "de": "Slowenien",
         "fr": "Slovénie",
         "es": "Eslovenia",
-        "en": "Slovenia"
+        "en": "Slovenia",
+        "pt_BR": "Eslovênia",
       }
     },
     {
@@ -4455,7 +4656,8 @@ class Countries {
         "de": "Salomonen",
         "fr": "Îles Salomon",
         "es": "Islas Salomón",
-        "en": "Solomon Islands"
+        "en": "Solomon Islands",
+        "pt_BR": "Ilhas Salomão",
       }
     },
     {
@@ -4477,7 +4679,8 @@ class Countries {
         "de": "Somalia",
         "fr": "Somalie",
         "es": "Somalia",
-        "en": "Somalia"
+        "en": "Somalia",
+        "pt_BR": "Somália",
       }
     },
     {
@@ -4499,7 +4702,8 @@ class Countries {
         "de": "Südafrika",
         "fr": "Afrique du Sud",
         "es": "Sudáfrica",
-        "en": "South Africa"
+        "en": "South Africa",
+        "pt_BR": "África do Sul",
       }
     },
     {
@@ -4521,7 +4725,8 @@ class Countries {
         "de": "Südgeorgien und die Südlichen Sandwichinseln",
         "fr": "Géorgie du Sud et îles Sandwich du Sud",
         "es": "Islas Georgia del Sur y Sandwich del Sur",
-        "en": "South Georgia & South Sandwich Islands"
+        "en": "South Georgia & South Sandwich Islands",
+        "pt_BR": "Geórgia do Sul e Ilhas Sandwich do Sul",
       }
     },
     {
@@ -4543,7 +4748,8 @@ class Countries {
         "de": "Südsudan",
         "fr": "Soudan du Sud",
         "es": "Sudán del Sur",
-        "en": "South Sudan"
+        "en": "South Sudan",
+        "pt_BR": "Sudão do Sul",
       }
     },
     {
@@ -4565,7 +4771,8 @@ class Countries {
         "de": "Spanien",
         "fr": "Espagne",
         "es": "España",
-        "en": "Spain"
+        "en": "Spain",
+        "pt_BR": "Espanha",
       }
     },
     {
@@ -4587,7 +4794,8 @@ class Countries {
         "de": "Sri Lanka",
         "fr": "Sri Lanka",
         "es": "Sri Lanka",
-        "en": "Sri Lanka"
+        "en": "Sri Lanka",
+        "pt_BR": "Sri Lanka",
       }
     },
     {
@@ -4609,7 +4817,8 @@ class Countries {
         "de": "Sudan",
         "fr": "Soudan",
         "es": "Sudán",
-        "en": "Sudan"
+        "en": "Sudan",
+        "pt_BR": "Sudão",
       }
     },
     {
@@ -4631,7 +4840,8 @@ class Countries {
         "de": "Suriname",
         "fr": "Suriname",
         "es": "Surinam",
-        "en": "Suriname"
+        "en": "Suriname",
+        "pt_BR": "Suriname",
       }
     },
     {
@@ -4653,7 +4863,8 @@ class Countries {
         "de": "Spitzbergen und Jan Mayen",
         "fr": "Svalbard et Jan Mayen",
         "es": "Svalbard y Jan Mayen",
-        "en": "Svalbard & Jan Mayen"
+        "en": "Svalbard & Jan Mayen",
+        "pt_BR": "Svalbard e Jan Mayen",
       }
     },
     {
@@ -4675,7 +4886,8 @@ class Countries {
         "de": "Eswatini",
         "fr": "Eswatini",
         "es": "Esuatini",
-        "en": "Eswatini"
+        "en": "Eswatini",
+        "pt_BR": "Eswatini",
       }
     },
     {
@@ -4697,7 +4909,8 @@ class Countries {
         "de": "Schweden",
         "fr": "Suède",
         "es": "Suecia",
-        "en": "Sweden"
+        "en": "Sweden",
+        "pt_BR": "Suécia",
       }
     },
     {
@@ -4719,7 +4932,8 @@ class Countries {
         "de": "Schweiz",
         "fr": "Suisse",
         "es": "Suiza",
-        "en": "Switzerland"
+        "en": "Switzerland",
+        "pt_BR": "Suíça",
       }
     },
     {
@@ -4741,7 +4955,8 @@ class Countries {
         "de": "Syrien",
         "fr": "Syrie",
         "es": "Siria",
-        "en": "Syria"
+        "en": "Syria",
+        "pt_BR": "Síria",
       }
     },
     {
@@ -4763,7 +4978,8 @@ class Countries {
         "de": "Taiwan",
         "fr": "Taïwan",
         "es": "Taiwán",
-        "en": "Taiwan"
+        "en": "Taiwan",
+        "pt_BR": "Taiwan",
       }
     },
     {
@@ -4785,7 +5001,8 @@ class Countries {
         "de": "Tadschikistan",
         "fr": "Tadjikistan",
         "es": "Tayikistán",
-        "en": "Tajikistan"
+        "en": "Tajikistan",
+        "pt_BR": "Tajiquistão",
       }
     },
     {
@@ -4807,7 +5024,8 @@ class Countries {
         "de": "Tansania",
         "fr": "Tanzanie",
         "es": "Tanzania",
-        "en": "Tanzania"
+        "en": "Tanzania",
+        "pt_BR": "Tanzânia",
       }
     },
     {
@@ -4829,7 +5047,8 @@ class Countries {
         "de": "Thailand",
         "fr": "Thaïlande",
         "es": "Tailandia",
-        "en": "Thailand"
+        "en": "Thailand",
+        "pt_BR": "Tailândia",
       }
     },
     {
@@ -4851,7 +5070,8 @@ class Countries {
         "de": "Timor-Leste",
         "fr": "Timor oriental",
         "es": "Timor-Leste",
-        "en": "Timor-Leste"
+        "en": "Timor-Leste",
+        "pt_BR": "Timor-Leste",
       }
     },
     {
@@ -4873,7 +5093,8 @@ class Countries {
         "de": "Togo",
         "fr": "Togo",
         "es": "Togo",
-        "en": "Togo"
+        "en": "Togo",
+        "pt_BR": "Ir",
       }
     },
     {
@@ -4895,7 +5116,8 @@ class Countries {
         "de": "Tokelau",
         "fr": "Tokelau",
         "es": "Tokelau",
-        "en": "Tokelau"
+        "en": "Tokelau",
+        "pt_BR": "Tokelau",
       }
     },
     {
@@ -4917,7 +5139,8 @@ class Countries {
         "de": "Tonga",
         "fr": "Tonga",
         "es": "Tonga",
-        "en": "Tonga"
+        "en": "Tonga",
+        "pt_BR": "Tonga",
       }
     },
     {
@@ -4939,7 +5162,8 @@ class Countries {
         "de": "Trinidad und Tobago",
         "fr": "Trinité-et-Tobago",
         "es": "Trinidad y Tobago",
-        "en": "Trinidad & Tobago"
+        "en": "Trinidad & Tobago",
+        "pt_BR": "Trinidad e Tobago",
       }
     },
     {
@@ -4961,7 +5185,8 @@ class Countries {
         "de": "Tunesien",
         "fr": "Tunisie",
         "es": "Túnez",
-        "en": "Tunisia"
+        "en": "Tunisia",
+        "pt_BR": "Tunísia",
       }
     },
     {
@@ -4983,7 +5208,8 @@ class Countries {
         "de": "Türkei",
         "fr": "Turquie",
         "es": "Turquía",
-        "en": "Turkey"
+        "en": "Turkey",
+        "pt_BR": "Peru",
       }
     },
     {
@@ -5005,7 +5231,8 @@ class Countries {
         "de": "Turkmenistan",
         "fr": "Turkménistan",
         "es": "Turkmenistán",
-        "en": "Turkmenistan"
+        "en": "Turkmenistan",
+        "pt_BR": "Turcomenistão",
       }
     },
     {
@@ -5027,7 +5254,8 @@ class Countries {
         "de": "Turks- und Caicosinseln",
         "fr": "Îles Turques-et-Caïques",
         "es": "Islas Turcas y Caicos",
-        "en": "Turks & Caicos Islands"
+        "en": "Turks & Caicos Islands",
+        "pt_BR": "Ilhas Turks e Caicos",
       }
     },
     {
@@ -5049,7 +5277,8 @@ class Countries {
         "de": "Tuvalu",
         "fr": "Tuvalu",
         "es": "Tuvalu",
-        "en": "Tuvalu"
+        "en": "Tuvalu",
+        "pt_BR": "Tuvalu",
       }
     },
     {
@@ -5071,7 +5300,8 @@ class Countries {
         "de": "Uganda",
         "fr": "Ouganda",
         "es": "Uganda",
-        "en": "Uganda"
+        "en": "Uganda",
+        "pt_BR": "Uganda",
       }
     },
     {
@@ -5093,7 +5323,8 @@ class Countries {
         "de": "Ukraine",
         "fr": "Ukraine",
         "es": "Ucrania",
-        "en": "Ukraine"
+        "en": "Ukraine",
+        "pt_BR": "Ucrânia",
       }
     },
     {
@@ -5115,7 +5346,8 @@ class Countries {
         "de": "Vereinigte Arabische Emirate",
         "fr": "Émirats arabes unis",
         "es": "Emiratos Árabes Unidos",
-        "en": "United Arab Emirates"
+        "en": "United Arab Emirates",
+        "pt_BR": "Emirados Árabes Unidos",
       }
     },
     {
@@ -5137,7 +5369,8 @@ class Countries {
         "de": "Vereinigtes Königreich",
         "fr": "Royaume-Uni",
         "es": "Reino Unido",
-        "en": "United Kingdom"
+        "en": "United Kingdom",
+        "pt_BR": "Reino Unido",
       }
     },
     {
@@ -5159,7 +5392,8 @@ class Countries {
         "de": "Vereinigte Staaten",
         "fr": "États-Unis",
         "es": "Estados Unidos",
-        "en": "United States"
+        "en": "United States",
+        "pt_BR": "Estados Unidos",
       }
     },
     {
@@ -5181,7 +5415,8 @@ class Countries {
         "de": "Uruguay",
         "fr": "Uruguay",
         "es": "Uruguay",
-        "en": "Uruguay"
+        "en": "Uruguay",
+        "pt_BR": "Uruguai",
       }
     },
     {
@@ -5203,7 +5438,8 @@ class Countries {
         "de": "Usbekistan",
         "fr": "Ouzbékistan",
         "es": "Uzbekistán",
-        "en": "Uzbekistan"
+        "en": "Uzbekistan",
+        "pt_BR": "Uzbequistão",
       }
     },
     {
@@ -5225,7 +5461,8 @@ class Countries {
         "de": "Vanuatu",
         "fr": "Vanuatu",
         "es": "Vanuatu",
-        "en": "Vanuatu"
+        "en": "Vanuatu",
+        "pt_BR": "Vanuatu",
       }
     },
     {
@@ -5247,7 +5484,8 @@ class Countries {
         "de": "Venezuela",
         "fr": "Venezuela",
         "es": "Venezuela",
-        "en": "Venezuela"
+        "en": "Venezuela",
+        "pt_BR": "Venezuela",
       }
     },
     {
@@ -5269,7 +5507,8 @@ class Countries {
         "de": "Vietnam",
         "fr": "Vietnam",
         "es": "Vietnam",
-        "en": "Vietnam"
+        "en": "Vietnam",
+        "pt_BR": "Vietnã",
       }
     },
     {
@@ -5291,7 +5530,8 @@ class Countries {
         "de": "Britische Jungferninseln",
         "fr": "Îles Vierges britanniques",
         "es": "Islas Vírgenes Británicas",
-        "en": "British Virgin Islands"
+        "en": "British Virgin Islands",
+        "pt_BR": "Ilhas Virgens Britânicas",
       }
     },
     {
@@ -5313,7 +5553,8 @@ class Countries {
         "de": "Amerikanische Jungferninseln",
         "fr": "Îles Vierges des États-Unis",
         "es": "Islas Vírgenes de EE. UU.",
-        "en": "U.S. Virgin Islands"
+        "en": "U.S. Virgin Islands",
+        "pt_BR": "Ilhas Virgens Americanas",
       }
     },
     {
@@ -5335,7 +5576,8 @@ class Countries {
         "de": "Wallis und Futuna",
         "fr": "Wallis-et-Futuna",
         "es": "Wallis y Futuna",
-        "en": "Wallis & Futuna"
+        "en": "Wallis & Futuna",
+        "pt_BR": "Wallis e Futuna",
       }
     },
     {
@@ -5357,7 +5599,8 @@ class Countries {
         "de": "Jemen",
         "fr": "Yémen",
         "es": "Yemen",
-        "en": "Yemen"
+        "en": "Yemen",
+        "pt_BR": "Iémen",
       }
     },
     {
@@ -5379,7 +5622,8 @@ class Countries {
         "de": "Sambia",
         "fr": "Zambie",
         "es": "Zambia",
-        "en": "Zambia"
+        "en": "Zambia",
+        "pt_BR": "Zâmbia",
       }
     },
     {
@@ -5401,7 +5645,8 @@ class Countries {
         "de": "Simbabwe",
         "fr": "Zimbabwe",
         "es": "Zimbabue",
-        "en": "Zimbabwe"
+        "en": "Zimbabwe",
+        "pt_BR": "Zimbábue",
       }
     }
   ];
