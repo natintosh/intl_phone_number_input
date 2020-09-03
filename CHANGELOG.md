@@ -1,7 +1,7 @@
 ## [0.5.0]
   - Fixed issue with text input autoFocus when formatInput is set to false
   - Added new locale translations for ["sk" "se" "pl" "no" "ja" "it" "zh" "nl" "de" "fr" "es" "en" "pt_BR"]
-     * This feature was made possible by [@SimonFM](https://github.com/SimonFM) and [@diefferson](https://github.com/diefferson)
+     * Made possible by [@SimonFM](https://github.com/SimonFM) and [@diefferson](https://github.com/diefferson)
   - Added selector configuration `selectorConfig` parameter which enables you to
      * Add emoji flag support
      * Add option to turn off flags

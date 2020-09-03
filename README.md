@@ -7,24 +7,24 @@ A simple and customizable flutter package for international phone number input
 | <img src="https://user-images.githubusercontent.com/27495055/80114512-9544b100-857b-11ea-9292-9c9c3eaf93e0.png" width="240" height="430" alt="Screenshot_1587652933"/> | <img src="https://user-images.githubusercontent.com/27495055/80115521-beb20c80-857c-11ea-9902-41c444a3bd33.png" width="240" height="430" alt="Screenshot_1587652933"/> | <img src="https://user-images.githubusercontent.com/27495055/80116034-63344e80-857d-11ea-9922-1062b4320503.png" width="240" height="430" alt="Screenshot_1587652933"/> |
 
 ### What's new
-    - Fixed issue with text input autoFocus when formatInput is set to false
-    - Added new locale translations for ["sk" "se" "pl" "no" "ja" "it" "zh" "nl" "de" "fr" "es" "en" "pt_BR"]
-         - This feature was made possible by [@SimonFM](https://github.com/SimonFM) and [@diefferson](https://github.com/diefferson)
-    - Added selector configuration `selectorConfig` parameter which enables you to
-         - Add emoji flag support
-         - Add option to turn off flags
-    - <b>Breaking Change</b> `selectorType` has been moved to `selectorConfig`
-    - Fixed autoFocus search search field
-    - Fixed keyboard covers bottom sheet while search
-    - <b>Breaking Change</b> Removed factory constructors `withCustomBorder` and `withCustomDecoration`
+  - Fixed issue with text input autoFocus when formatInput is set to false
+  - Added new locale translations for ["sk" "se" "pl" "no" "ja" "it" "zh" "nl" "de" "fr" "es" "en" "pt_BR"]
+    - Made possible by [@SimonFM](https://github.com/SimonFM) and [@diefferson](https://github.com/diefferson)
+  - Added selector configuration `selectorConfig` parameter which enables you to
+    - Add emoji flag support
+    - Add option to turn off flags
+  - <b>Breaking Change</b> `selectorType` has been moved to `selectorConfig`
+  - Fixed autoFocus search search field
+  - Fixed keyboard covers bottom sheet while search
+  - <b>Breaking Change</b> Removed factory constructors `withCustomBorder` and `withCustomDecoration`
 
 ### Features
-    - Support for RTL languages
-    - Selector mode dropdown, bottom sheet and dialog
-    - As You Type Formatter: formats inputs to its selected international format
-    - Get Region Info with PhoneNumber.getRegionInfoFromPhoneNumber(String phoneNumber, [String isoCode]);
-    - Format PhoneNumber with PhoneNumber.getParsableNumber(String phoneNumber, String isoCode) or `PhoneNumber Reference`.parseNumber()
-    - Custom list of countries e.g. ['NG', 'GH', 'BJ' 'TG', 'CI']
+  - Support for RTL languages
+  - Selector mode dropdown, bottom sheet and dialog
+  - As You Type Formatter: formats inputs to its selected international format
+  - Get Region Info with PhoneNumber.getRegionInfoFromPhoneNumber(String phoneNumber, [String isoCode]);
+  - Format PhoneNumber with PhoneNumber.getParsableNumber(String phoneNumber, String isoCode) or `PhoneNumber Reference`.parseNumber()
+  - Custom list of countries e.g. ['NG', 'GH', 'BJ' 'TG', 'CI']
     
 ```dart
     String phoneNumber =  '+234 500 500 5005';
