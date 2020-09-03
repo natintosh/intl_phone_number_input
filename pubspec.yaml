@@ -1,6 +1,6 @@
 name: intl_phone_number_input
 description: A simple and customizable flutter package on International Phone Number Input.
-version: 0.4.6+2
+version: 0.5.0
 homepage: https://github.com/natintosh/intl-phone-number-input
 
 environment:
@@ -11,7 +11,7 @@ dependencies:
     sdk: flutter
 
   libphonenumber: ^1.0.1
-  equatable: ^1.2.0
+  equatable: ^1.2.4
 
 dev_dependencies:
   flutter_test:
