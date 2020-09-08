@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:intl_phone_number_input/src/widgets/input_widget.dart';
 
 /// [SelectorConfig] contains selector button configurations
@@ -12,9 +13,12 @@ class SelectorConfig {
   /// [useEmoji], uses emoji flags instead of png assets
   final bool useEmoji;
 
+  final Color backgroundColor;
+
   const SelectorConfig({
     this.selectorType = PhoneInputSelectorType.DROPDOWN,
     this.showFlags = true,
     this.useEmoji = false,
+    this.backgroundColor = Colors.white,
   });
 }
