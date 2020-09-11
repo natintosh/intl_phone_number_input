@@ -1,3 +1,6 @@
+## [0.5.1]
+  - Fixed issue with pt_br.png asset not loading
+
 ## [0.5.0]
   - Fixed issue with text input autoFocus when formatInput is set to false
   - Added new locale translations for ["sk" "se" "pl" "no" "ja" "it" "zh" "nl" "de" "fr" "es" "en" "pt_BR"]

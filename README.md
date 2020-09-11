@@ -54,61 +54,73 @@ A simple and customizable flutter package for international phone number input
 ```dart
 InternationalPhoneNumberInput({
     Key key,
-    this.selectorType,
+    this.selectorType = const SelectorConfig(),
     @required this.onInputChanged,
     this.onInputValidated,
-    this.focusNode,
-    this.textFieldController,
     this.onSubmit,
+    this.onFieldSubmitted,
+    this.validator,
+    this.onSaved,
+    this.textFieldController,
     this.keyboardAction,
-    this.countries,
+    this.initialValue,
+    this.hintText = 'Phone number',
+    this.errorMessage = 'Invalid phone number',
+    this.selectorButtonOnErrorPadding = 24,
+    this.maxLength = 15,
+    this.isEnabled = true,
+    this.formatInput = true,
+    this.autoFocus = false,
+    this.autoFocusSearch = false,
+    this.autoValidate = false,
+    this.ignoreBlank = false,
+    this.countrySelectorScrollControlled = true,
+    this.locale,
     this.textStyle,
     this.selectorTextStyle,
     this.inputBorder,
     this.inputDecoration,
     this.searchBoxDecoration,
-    this.initialValue,
-    this.selectorButtonOnErrorPadding = 24,
-    this.maxLength = 15,
-    this.hintText = 'Phone Number',
-    this.isEnabled = true,
-    this.autoFocus = false,
-    this.autoValidate = false,
-    this.formatInput = true,
-    this.errorMessage = 'Invalid phone number',
-    this.ignoreBlank = false,
-    this.locale,
-    this.countrySelectorScrollControlled = true,
+    this.focusNode,
+    this.countries
     });
+```|
+
+```dart
+SelectorConfig({
+    this.selectorType = PhoneInputSelectorType.DROPDOWN,
+    this.showFlags = true,
+    this.useEmoji = false,
+});
 ```
 
-| Parameter                     | Datatype          |    Initial Value     |    Default [1]     |
-|-------------------------------|-------------------|----------------------|--------------------|
-| onInputChanged                | function(PhoneNumber)  |        null          | :heavy_check_mark: |
-| onInputValidated              | function(bool)    |        null          | :heavy_check_mark: |
-| focusNode                     | FocusNode         |        null          | :heavy_check_mark: |
-| textFieldController           | TextEditingController  |   TextEditingController() | :heavy_check_mark: |
-| onSubmit                      | Function()        |        null          | :heavy_check_mark: |
-| keyboardAction                | TextInputAction   |        null          | :heavy_check_mark: |
-| countries                     | List<string>      |        null          | :heavy_check_mark: |
-| textStyle                     | TextStyle         |        null          | :heavy_check_mark: |
-| selectorTextStyle             | TextStyle         |        null          | :heavy_check_mark: |
-| inputBorder                   | InputBorder       |        null          | :heavy_check_mark: |
-| inputDecoration               | InputDecoration   |        null          | :heavy_check_mark: |
-| initialValue                  | PhoneNumber       |        null          | :heavy_check_mark: |
-| hintText                      | String            |     Phone Number     | :heavy_check_mark: |
-| selectorButtonOnErrorPadding  | double            |        24            | :heavy_check_mark: |
-| maxLength                     | integer           |        15            | :heavy_check_mark: |
-| isEnabled                     | boolean           |        true          | :heavy_check_mark: |
-| autoFocus                     | boolean           |        false         | :heavy_check_mark: |
-| autoValidate                  | boolean           |        false         | :heavy_check_mark: |
-| formatInput                   | boolean           |        true          | :heavy_check_mark: |
-| errorMessage                  | String            | Invalid phone number | :heavy_check_mark: |
-| selectorConfig                  | SelectorConfig  | PhoneInputSelectorType.DROPDOWN | :heavy_check_mark: |
-| ignoreBlank                   | boolean           |       false          | :heavy_check_mark: |
-| locale                        | String            |       null           | :heavy_check_mark: |
-| searchBoxDecoration           | InputDecoration   |        null          | :heavy_check_mark: |
-| countrySelectorScrollControlled | boolean           |        true          | :heavy_check_mark: |
+| Parameter                     | Datatype          |    Initial Value     |
+|-------------------------------|-------------------|----------------------|
+| onInputChanged                | function(PhoneNumber)  |        null          |
+| onInputValidated              | function(bool)    |        null          |
+| focusNode                     | FocusNode         |        null          |
+| textFieldController           | TextEditingController  |   TextEditingController() |
+| onSubmit                      | Function()        |        null          |
+| keyboardAction                | TextInputAction   |        null          |
+| countries                     | List<string>      |        null          |
+| textStyle                     | TextStyle         |        null          |
+| selectorTextStyle             | TextStyle         |        null          |
+| inputBorder                   | InputBorder       |        null          |
+| inputDecoration               | InputDecoration   |        null          |
+| initialValue                  | PhoneNumber       |        null          |
+| hintText                      | String            |     Phone Number     |
+| selectorButtonOnErrorPadding  | double            |        24            |
+| maxLength                     | integer           |        15            |
+| isEnabled                     | boolean           |        true          |
+| autoFocus                     | boolean           |        false         |
+| autoValidate                  | boolean           |        false         |
+| formatInput                   | boolean           |        true          |
+| errorMessage                  | String            | Invalid phone number |
+| selectorConfig                | SelectorConfig  | PhoneInputSelectorType.DROPDOWN |
+| ignoreBlank                   | boolean           |       false          |
+| locale                        | String            |       null           |
+| searchBoxDecoration           | InputDecoration   |        null          |
+| countrySelectorScrollControlled | boolean           |        true          |
 
 ### Selector Types
 | DROPDOWN | BOTTOMSHEET | DIALOG |

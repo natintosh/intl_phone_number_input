@@ -77,7 +77,7 @@ class InternationalPhoneNumberInput extends StatefulWidget {
   InternationalPhoneNumberInput(
       {Key key,
       this.selectorConfig = const SelectorConfig(),
-      this.onInputChanged,
+      @required this.onInputChanged,
       this.onInputValidated,
       this.onSubmit,
       this.onFieldSubmitted,
