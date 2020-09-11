@@ -4064,7 +4064,7 @@ class Countries {
     },
     {
       "num_code": "620",
-      "alpha_2_code": "pt_BR",
+      "alpha_2_code": "PT",
       "alpha_3_code": "PRT",
       "en_short_name": "Portugal",
       "nationality": "Portuguese",
