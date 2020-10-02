@@ -56,7 +56,7 @@ class _Flag extends StatelessWidget {
         ? Container(
             child: useEmoji
                 ? Text(
-                    Utils.generateFlagEmojiUnicode(country?.countryCode ?? ''),
+                    Utils.generateFlagEmojiUnicode(country?.alpha2Code ?? ''),
                     style: Theme.of(context).textTheme.headline5,
                   )
                 : country?.flagUri != null

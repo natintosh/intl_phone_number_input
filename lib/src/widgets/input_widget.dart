@@ -189,7 +189,7 @@ class _InputWidgetState extends State<InternationalPhoneNumberInput> {
       String parsedPhoneNumberString =
           controller.text.replaceAll(RegExp(r'[^\d+]'), '');
 
-      getParsedPhoneNumber(parsedPhoneNumberString, this.country?.countryCode)
+      getParsedPhoneNumber(parsedPhoneNumberString, this.country?.alpha2Code)
           .then((phoneNumber) {
         if (phoneNumber == null) {
           String phoneNumber =
@@ -198,7 +198,7 @@ class _InputWidgetState extends State<InternationalPhoneNumberInput> {
           if (widget.onInputChanged != null) {
             widget.onInputChanged(PhoneNumber(
                 phoneNumber: phoneNumber,
-                isoCode: this.country?.countryCode,
+                isoCode: this.country?.alpha2Code,
                 dialCode: this.country?.dialCode));
           }
 
@@ -210,7 +210,7 @@ class _InputWidgetState extends State<InternationalPhoneNumberInput> {
           if (widget.onInputChanged != null) {
             widget.onInputChanged(PhoneNumber(
                 phoneNumber: phoneNumber,
-                isoCode: this.country?.countryCode,
+                isoCode: this.country?.alpha2Code,
                 dialCode: this.country?.dialCode));
           }
 
@@ -297,7 +297,7 @@ class _InputWidgetView
 
   @override
   Widget build(BuildContext context) {
-    final countryCode = state?.country?.countryCode ?? '';
+    final countryCode = state?.country?.alpha2Code ?? '';
     final dialCode = state?.country?.dialCode ?? '';
 
     return Container(
