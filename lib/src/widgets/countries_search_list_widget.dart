@@ -52,6 +52,9 @@ class _CountrySearchListWidgetState extends State<CountrySearchListWidget> {
       return widget.countries
           .where(
             (Country country) =>
+                country.alpha3Code
+                    .toLowerCase()
+                    .startsWith(value.toLowerCase()) ||
                 country.name.toLowerCase().contains(value.toLowerCase()) ||
                 getCountryName(country)
                     .toLowerCase()
@@ -99,7 +102,7 @@ class _CountrySearchListWidgetState extends State<CountrySearchListWidget> {
               Country country = filteredCountries[index];
               if (country == null) return null;
               return ListTile(
-                key: Key(TestHelper.countryItemKeyValue(country.countryCode)),
+                key: Key(TestHelper.countryItemKeyValue(country.alpha2Code)),
                 leading: widget.showFlags
                     ? _Flag(country: country, useEmoji: widget.useEmoji)
                     : null,
@@ -134,7 +137,7 @@ class _Flag extends StatelessWidget {
         ? Container(
             child: useEmoji
                 ? Text(
-                    Utils.generateFlagEmojiUnicode(country?.countryCode ?? ''),
+                    Utils.generateFlagEmojiUnicode(country?.alpha2Code ?? ''),
                     style: Theme.of(context).textTheme.headline5,
                   )
                 : country?.flagUri != null
