@@ -1,5 +1,4 @@
-import 'package:flutter/foundation.dart';
-import 'package:intl_phone_number_input/src/models/country_list.dart';
+import 'package:meta/meta.dart';
 
 /// A [Country] model represents an instance of a country which contains
 /// information about the country
