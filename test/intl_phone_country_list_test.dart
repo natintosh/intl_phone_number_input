@@ -29,7 +29,8 @@ void main() {
         Country country = Country.fromJson(data);
 
         expect(country.name.length, greaterThan(0));
-        expect(country.countryCode.length, greaterThan(0));
+        expect(country.alpha2Code.length, greaterThan(0));
+        expect(country.alpha3Code.length, greaterThan(0));
         expect(country.dialCode.length, greaterThan(0));
         expect(country.flagUri.length, greaterThan(0));
         expect(country.nameTranslations.length,

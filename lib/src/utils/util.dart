@@ -6,7 +6,7 @@ class Utils {
   ///  Returns the first [Country] in the list if no match is available.
   static Country getInitialSelectedCountry(
       List<Country> countries, String countryCode) {
-    return countries.firstWhere((country) => country.countryCode == countryCode,
+    return countries.firstWhere((country) => country.alpha2Code == countryCode,
         orElse: () => countries[0]);
   }
 
