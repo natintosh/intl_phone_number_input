@@ -1,3 +1,7 @@
+## [0.5.2+2]
+## [0.5.2+1]
+  - Fixed issue with pub.dev analysis
+
 ## [0.5.2]
   - Updated dependencies
   - <b>Breaking Change</b> Changed autoValidate to autoValidateMode

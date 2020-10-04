@@ -20,6 +20,7 @@ class SelectorConfig {
   final bool useEmoji;
 
   final Color backgroundColor;
+
   /// [countryComparator], sort the country list according to the comparator.
   ///
   /// Sorting is disabled by default
