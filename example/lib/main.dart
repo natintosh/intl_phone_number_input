@@ -6,8 +6,12 @@ void main() => runApp(MyApp());
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    var darkTheme = ThemeData.dark().copyWith(primaryColor: Colors.blue);
+
     return MaterialApp(
       title: 'Demo',
+      themeMode: ThemeMode.dark,
+      darkTheme: darkTheme,
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
@@ -46,6 +50,10 @@ class _MyHomePageState extends State<MyHomePage> {
               onInputValidated: (bool value) {
                 print(value);
               },
+              selectorConfig: SelectorConfig(
+                selectorType: PhoneInputSelectorType.BOTTOM_SHEET,
+                backgroundColor: Colors.black,
+              ),
               ignoreBlank: false,
               autoValidateMode: AutovalidateMode.disabled,
               selectorTextStyle: TextStyle(color: Colors.black),
