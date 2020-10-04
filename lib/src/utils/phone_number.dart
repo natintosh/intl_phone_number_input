@@ -3,6 +3,22 @@ import 'dart:math';
 import 'package:equatable/equatable.dart';
 import 'package:intl_phone_number_input/src/models/country_list.dart';
 import 'package:libphonenumber/libphonenumber.dart';
+import 'package:libphonenumber/libphonenumber.dart' as lib;
+
+enum PhoneNumberType {
+  FIXED_LINE,
+  MOBILE,
+  FIXED_LINE_OR_PHONE_NUMBER,
+  TOLL_FREE,
+  PREMIUM_RATE,
+  SHARED_COST,
+  VOIP,
+  PERSONAL_NUMBER,
+  PAGER,
+  UAN,
+  VOICE_MALE,
+  UNKNOWN
+}
 
 /// [PhoneNumber] contains detailed information about a phone number
 class PhoneNumber extends Equatable {
@@ -14,6 +30,8 @@ class PhoneNumber extends Equatable {
 
   /// Country [isoCode] of the phone number
   final String isoCode;
+
+  /// [_hash] is used to compare instances of [PhoneNumber] object.
   final int _hash;
 
   /// Returns an integer generated after the object was initialised.
@@ -23,8 +41,11 @@ class PhoneNumber extends Equatable {
   @override
   List<Object> get props => [phoneNumber, dialCode];
 
-  PhoneNumber({this.phoneNumber, this.dialCode, this.isoCode})
-      : _hash = 1000 + Random().nextInt(99999 - 1000);
+  PhoneNumber({
+    this.phoneNumber,
+    this.dialCode,
+    this.isoCode,
+  }) : _hash = 1000 + Random().nextInt(99999 - 1000);
 
   @override
   String toString() {
@@ -48,9 +69,10 @@ class PhoneNumber extends Equatable {
     );
 
     return PhoneNumber(
-        phoneNumber: internationalPhoneNumber,
-        dialCode: regionInfo.regionPrefix,
-        isoCode: regionInfo.isoCode);
+      phoneNumber: internationalPhoneNumber,
+      dialCode: regionInfo.regionPrefix,
+      isoCode: regionInfo.isoCode,
+    );
   }
 
   /// Accepts a [PhoneNumber] object and returns a formatted phone number String
@@ -93,5 +115,16 @@ class PhoneNumber extends Equatable {
       }
     }
     return null;
+  }
+
+  /// Returns [PhoneNumberType] which is the type of phone number
+  /// Accepts [phoneNumber] and [isoCode] and r
+  static Future<PhoneNumberType> getPhoneNumberType(
+      String phoneNumber, String isoCode) async {
+    int index = lib.PhoneNumberType.values.indexOf(
+        await lib.PhoneNumberUtil.getNumberType(
+            phoneNumber: phoneNumber, isoCode: isoCode));
+
+    return PhoneNumberType.values[index];
   }
 }

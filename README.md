@@ -13,10 +13,15 @@ A simple and customizable flutter package for international phone number input
   - Added selector configuration `selectorConfig` parameter which enables you to
     - Add emoji flag support
     - Add option to turn off flags
-  - <b>Breaking Change</b> `selectorType` has been moved to `selectorConfig`
-  - Fixed autoFocus search search field
-  - Fixed keyboard covers bottom sheet while search
-  - <b>Breaking Change</b> Removed factory constructors `withCustomBorder` and `withCustomDecoration`
+  - <b>Breaking Change</b> Changed autoValidate to autoValidateMode
+  - Added getPhoneNumberType static method to PhoneNumber.
+  - Added bottomSheet background color property to SelectorConfig
+  - Updated Egypt country name
+  - Enable alpha 3 code in country search criteria
+  - Added country comparator to SelectorConfig to sort Country on initial load
+   ```dart
+        // Should return -1 if A precedes B, 0 if A is equal to B and 1 if B precedes A
+   ```
 
 ### Features
   - Support for RTL languages

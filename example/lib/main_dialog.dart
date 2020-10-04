@@ -44,7 +44,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 print(value);
               },
               ignoreBlank: true,
-              autoValidate: false,
+              autoValidateMode: AutovalidateMode.disabled,
               initialValue: PhoneNumber(isoCode: 'NG'),
               textFieldController: controller,
               inputBorder: OutlineInputBorder(),

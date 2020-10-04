@@ -10,7 +10,7 @@ dependencies:
   flutter:
     sdk: flutter
 
-  libphonenumber: ^1.0.1
+  libphonenumber: ^1.0.2
   equatable: ^1.2.5
 
 dev_dependencies:

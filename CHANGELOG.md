@@ -1,3 +1,15 @@
+## [0.5.2]
+  - Updated dependencies
+  - <b>Breaking Change</b> Changed autoValidate to autoValidateMode
+  - Added getPhoneNumberType static method to PhoneNumber.
+  - Added bottomSheet background color property to SelectorConfig
+  - Updated Egypt country name
+  - Enable alpha 3 code in country search criteria
+  - Added country comparator to SelectorConfig to sort Country on initial load
+   ```dart
+        // Should return -1 if A precedes B, 0 if A is equal to B and 1 if B precedes A
+   ```
+
 ## [0.5.1]
   - Fixed issue with pt_br.png asset not loading
 
