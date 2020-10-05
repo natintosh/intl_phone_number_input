@@ -47,6 +47,8 @@ class InternationalPhoneNumberInput extends StatefulWidget {
   final TextEditingController textFieldController;
   final TextInputAction keyboardAction;
 
+  final TextEditingController controller;
+
   final PhoneNumber initialValue;
   final String hintText;
   final String errorMessage;
@@ -74,38 +76,39 @@ class InternationalPhoneNumberInput extends StatefulWidget {
 
   final List<String> countries;
 
-  InternationalPhoneNumberInput(
-      {Key key,
-      this.selectorConfig = const SelectorConfig(),
-      @required this.onInputChanged,
-      this.onInputValidated,
-      this.onSubmit,
-      this.onFieldSubmitted,
-      this.validator,
-      this.onSaved,
-      this.textFieldController,
-      this.keyboardAction,
-      this.initialValue,
-      this.hintText = 'Phone number',
-      this.errorMessage = 'Invalid phone number',
-      this.selectorButtonOnErrorPadding = 24,
-      this.maxLength = 15,
-      this.isEnabled = true,
-      this.formatInput = true,
-      this.autoFocus = false,
-      this.autoFocusSearch = false,
-      this.autoValidateMode = AutovalidateMode.disabled,
-      this.ignoreBlank = false,
-      this.countrySelectorScrollControlled = true,
-      this.locale,
-      this.textStyle,
-      this.selectorTextStyle,
-      this.inputBorder,
-      this.inputDecoration,
-      this.searchBoxDecoration,
-      this.focusNode,
-      this.countries})
-      : super(key: key);
+  InternationalPhoneNumberInput({
+    Key key,
+    this.selectorConfig = const SelectorConfig(),
+    @required this.onInputChanged,
+    this.onInputValidated,
+    this.onSubmit,
+    this.onFieldSubmitted,
+    this.validator,
+    this.onSaved,
+    this.textFieldController,
+    this.keyboardAction,
+    this.initialValue,
+    this.hintText = 'Phone number',
+    this.errorMessage = 'Invalid phone number',
+    this.selectorButtonOnErrorPadding = 24,
+    this.maxLength = 15,
+    this.isEnabled = true,
+    this.formatInput = true,
+    this.autoFocus = false,
+    this.autoFocusSearch = false,
+    this.autoValidateMode = AutovalidateMode.disabled,
+    this.ignoreBlank = false,
+    this.countrySelectorScrollControlled = true,
+    this.locale,
+    this.textStyle,
+    this.selectorTextStyle,
+    this.inputBorder,
+    this.inputDecoration,
+    this.searchBoxDecoration,
+    this.focusNode,
+    this.countries,
+    this.controller,
+  }) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => _InputWidgetState();
@@ -200,33 +203,23 @@ class _InputWidgetState extends State<InternationalPhoneNumberInput> {
 
       getParsedPhoneNumber(parsedPhoneNumberString, this.country?.alpha2Code)
           .then((phoneNumber) {
+        this.isNotValid = false;
         if (phoneNumber == null) {
-          String phoneNumber =
-              '${this.country?.dialCode}$parsedPhoneNumberString';
-
-          if (widget.onInputChanged != null) {
-            widget.onInputChanged(PhoneNumber(
-                phoneNumber: phoneNumber,
-                isoCode: this.country?.alpha2Code,
-                dialCode: this.country?.dialCode));
-          }
-
-          if (widget.onInputValidated != null) {
-            widget.onInputValidated(false);
-          }
+          phoneNumber = '${this.country?.dialCode}$parsedPhoneNumberString';
           this.isNotValid = true;
-        } else {
-          if (widget.onInputChanged != null) {
-            widget.onInputChanged(PhoneNumber(
-                phoneNumber: phoneNumber,
-                isoCode: this.country?.alpha2Code,
-                dialCode: this.country?.dialCode));
-          }
+        }
+        final phone = PhoneNumber(
+          phoneNumber: phoneNumber,
+          isoCode: this.country?.alpha2Code,
+          dialCode: this.country?.dialCode,
+        );
+        widget.controller?.text = phone.phoneNumber;
+        if (widget.onInputChanged != null) {
+          widget.onInputChanged(phone);
+        }
 
-          if (widget.onInputValidated != null) {
-            widget.onInputValidated(true);
-          }
-          this.isNotValid = false;
+        if (widget.onInputValidated != null) {
+          widget.onInputValidated(!this.isNotValid);
         }
       });
     }
