@@ -32,6 +32,7 @@ class _MyHomePageState extends State<MyHomePage> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   final TextEditingController controller = TextEditingController();
+  final TextEditingController textFieldController = TextEditingController();
   String initialCountry = 'NG';
   PhoneNumber number = PhoneNumber(isoCode: 'NG');
 
@@ -44,8 +45,10 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             InternationalPhoneNumberInput(
+              controller: controller,
               onInputChanged: (PhoneNumber number) {
-                print(number.phoneNumber);
+                print('Input changed: ${number.phoneNumber}');
+                print('Controller Value: ${controller.text}');
               },
               onInputValidated: (bool value) {
                 print(value);
@@ -58,7 +61,7 @@ class _MyHomePageState extends State<MyHomePage> {
               autoValidateMode: AutovalidateMode.disabled,
               selectorTextStyle: TextStyle(color: Colors.black),
               initialValue: number,
-              textFieldController: controller,
+              textFieldController: textFieldController,
               inputBorder: OutlineInputBorder(),
             ),
             RaisedButton(
@@ -90,7 +93,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   void dispose() {
-    controller?.dispose();
+    controller.dispose();
+    textFieldController.dispose();
     super.dispose();
   }
 }
