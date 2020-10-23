@@ -79,10 +79,14 @@ class _InputWidgetState extends State<InternationalPhoneNumberInput> {
 
   @override
   void initState() {
-    Future.delayed(Duration.zero, () => loadCountries(context));
+    super.initState();
+
     controller = widget.controller ?? TextEditingController();
     controller.text = widget.initialValue?.phoneNumber;
-    super.initState();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      loadCountries();
+    });
   }
 
   @override
@@ -103,12 +107,12 @@ class _InputWidgetState extends State<InternationalPhoneNumberInput> {
   void didUpdateWidget(InternationalPhoneNumberInput oldWidget) {
     if (oldWidget.initialValue != widget.initialValue ||
         oldWidget.initialValue?.hash != widget.initialValue?.hash) {
-      loadCountries(context);
+      loadCountries();
     }
     super.didUpdateWidget(oldWidget);
   }
 
-  void loadCountries(BuildContext context) {
+  void loadCountries() {
     if (this.mounted) {
       List<Country> countries =
           CountryProvider.getCountriesData(countries: widget.countries);
