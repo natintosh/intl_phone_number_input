@@ -83,6 +83,13 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   @override
+  void setState(fn) {
+    if (this.mounted) {
+      super.setState(fn);
+    }
+  }
+
+  @override
   void dispose() {
     controller?.dispose();
     super.dispose();
