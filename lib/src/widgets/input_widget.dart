@@ -71,6 +71,7 @@ class InternationalPhoneNumberInput extends StatefulWidget {
   final InputDecoration searchBoxDecoration;
 
   final FocusNode focusNode;
+  final Iterable<String> autofillHints;
 
   final List<String> countries;
 
@@ -104,6 +105,7 @@ class InternationalPhoneNumberInput extends StatefulWidget {
       this.inputDecoration,
       this.searchBoxDecoration,
       this.focusNode,
+      this.autofillHints = const [AutofillHints.telephoneNumber],
       this.countries})
       : super(key: key);
 
@@ -351,6 +353,7 @@ class _InputWidgetView
               onEditingComplete: widget.onSubmit,
               onFieldSubmitted: widget.onFieldSubmitted,
               autovalidateMode: widget.autoValidateMode,
+              autofillHints: widget.autofillHints,
               validator: widget.validator ?? state.validator,
               onSaved: widget.onSaved,
               inputFormatters: [
