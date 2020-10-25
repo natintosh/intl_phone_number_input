@@ -105,7 +105,7 @@ class InternationalPhoneNumberInput extends StatefulWidget {
       this.inputDecoration,
       this.searchBoxDecoration,
       this.focusNode,
-      this.autofillHints = const [AutofillHints.telephoneNumber],
+      this.autofillHints,
       this.countries})
       : super(key: key);
 
