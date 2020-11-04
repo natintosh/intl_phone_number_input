@@ -315,27 +315,6 @@ class _InputWidgetView
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-          Column(
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              SelectorButton(
-                country: state.country,
-                countries: state.countries,
-                onCountryChanged: state.onCountryChanged,
-                selectorConfig: widget.selectorConfig,
-                selectorTextStyle: widget.selectorTextStyle,
-                searchBoxDecoration: widget.searchBoxDecoration,
-                locale: widget.locale,
-                isEnabled: widget.isEnabled,
-                autoFocusSearchField: widget.autoFocusSearch,
-                isScrollControlled: widget.countrySelectorScrollControlled,
-              ),
-              SizedBox(
-                height: state.selectorButtonBottomPadding,
-              ),
-            ],
-          ),
-          SizedBox(width: 12),
           Flexible(
             child: TextFormField(
               key: Key(TestHelper.TextInputKeyValue),
@@ -347,7 +326,22 @@ class _InputWidgetView
               keyboardType: TextInputType.phone,
               textInputAction: widget.keyboardAction,
               style: widget.textStyle,
-              decoration: state.getInputDecoration(widget.inputDecoration),
+              decoration:
+                  state.getInputDecoration(widget.inputDecoration).copyWith(
+                        prefixIcon: SelectorButton(
+                          country: state.country,
+                          countries: state.countries,
+                          onCountryChanged: state.onCountryChanged,
+                          selectorConfig: widget.selectorConfig,
+                          selectorTextStyle: widget.selectorTextStyle,
+                          searchBoxDecoration: widget.searchBoxDecoration,
+                          locale: widget.locale,
+                          isEnabled: widget.isEnabled,
+                          autoFocusSearchField: widget.autoFocusSearch,
+                          isScrollControlled:
+                              widget.countrySelectorScrollControlled,
+                        ),
+                      ),
               onEditingComplete: widget.onSubmit,
               onFieldSubmitted: widget.onFieldSubmitted,
               autovalidateMode: widget.autoValidateMode,

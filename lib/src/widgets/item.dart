@@ -24,7 +24,9 @@ class Item extends StatelessWidget {
       child: Row(
         textDirection: TextDirection.ltr,
         mainAxisAlignment: MainAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
         children: <Widget>[
+          SizedBox(width: 12.0),
           _Flag(
             country: country,
             showFlag: showFlag,
