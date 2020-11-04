@@ -105,7 +105,8 @@ class InternationalPhoneNumberInput extends StatefulWidget {
       this.searchBoxDecoration,
       this.focusNode,
       this.countries})
-      : super(key: key);
+      : assert(inputDecoration?.prefixIcon == null),
+        super(key: key);
 
   @override
   State<StatefulWidget> createState() => _InputWidgetState();
