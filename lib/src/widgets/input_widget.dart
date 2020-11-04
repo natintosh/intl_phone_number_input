@@ -69,8 +69,8 @@ class InternationalPhoneNumberInput extends StatefulWidget {
   final InputBorder inputBorder;
   final InputDecoration inputDecoration;
   final InputDecoration searchBoxDecoration;
-
   final FocusNode focusNode;
+  final Color cursorColor;
 
   final List<String> countries;
 
@@ -104,6 +104,7 @@ class InternationalPhoneNumberInput extends StatefulWidget {
       this.inputDecoration,
       this.searchBoxDecoration,
       this.focusNode,
+      this.cursorColor,
       this.countries})
       : assert(inputDecoration?.prefixIcon == null),
         super(key: key);
@@ -327,6 +328,7 @@ class _InputWidgetView
               keyboardType: TextInputType.phone,
               textInputAction: widget.keyboardAction,
               style: widget.textStyle,
+              cursorColor: widget.cursorColor,
               decoration:
                   state.getInputDecoration(widget.inputDecoration).copyWith(
                         prefixIcon: SelectorButton(
