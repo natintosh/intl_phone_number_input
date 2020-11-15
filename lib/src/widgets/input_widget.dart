@@ -42,7 +42,7 @@ class InternationalPhoneNumberInput extends StatefulWidget {
   final VoidCallback onSubmit;
   final ValueChanged<String> onFieldSubmitted;
   final String Function(String) validator;
-  final Function(String) onSaved;
+  final ValueChanged<PhoneNumber> onSaved;
 
   final TextEditingController textFieldController;
   final TextInputAction keyboardAction;
@@ -295,6 +295,28 @@ class _InputWidgetState extends State<InternationalPhoneNumberInput> {
     });
     phoneNumberControllerListener();
   }
+
+  void _phoneNumberSaved() {
+    if (this.mounted) {
+      String parsedPhoneNumberString =
+          controller.text.replaceAll(RegExp(r'[^\d+]'), '');
+
+      getParsedPhoneNumber(parsedPhoneNumberString, this.country?.alpha2Code)
+          .then(
+        (phoneNumber) => widget.onSaved?.call(
+          PhoneNumber(
+              phoneNumber: phoneNumber,
+              isoCode: this.country?.alpha2Code,
+              dialCode: this.country?.dialCode),
+        ),
+      );
+    }
+  }
+
+  /// Saved the phone number when form is saved
+  void onSaved(String value) {
+    _phoneNumberSaved();
+  }
 }
 
 class _InputWidgetView
@@ -352,7 +374,7 @@ class _InputWidgetView
               onFieldSubmitted: widget.onFieldSubmitted,
               autovalidateMode: widget.autoValidateMode,
               validator: widget.validator ?? state.validator,
-              onSaved: widget.onSaved,
+              onSaved: state.onSaved,
               inputFormatters: [
                 LengthLimitingTextInputFormatter(widget.maxLength),
                 widget.formatInput
