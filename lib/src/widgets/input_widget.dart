@@ -189,7 +189,7 @@ class _InputWidgetView
           SizedBox(width: 12),
           Flexible(
             child: Container(
-              height: 70,
+              height: 78,
               child: TextFormField(
                 key: Key(TestHelper.TextInputKeyValue),
                 textDirection: TextDirection.ltr,
