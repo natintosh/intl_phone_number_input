@@ -60,6 +60,9 @@ class _MyHomePageState extends State<MyHomePage> {
               initialValue: number,
               textFieldController: controller,
               inputBorder: OutlineInputBorder(),
+              onSaved: (PhoneNumber number) {
+                print('On Saved: $number');
+              },
             ),
             RaisedButton(
               onPressed: () {
@@ -72,6 +75,12 @@ class _MyHomePageState extends State<MyHomePage> {
                 getPhoneNumber('+15417543010');
               },
               child: Text('Update'),
+            ),
+            RaisedButton(
+              onPressed: () {
+                formKey.currentState.save();
+              },
+              child: Text('Save'),
             ),
           ],
         ),
