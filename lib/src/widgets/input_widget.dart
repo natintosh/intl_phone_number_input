@@ -69,6 +69,8 @@ class InternationalPhoneNumberInput extends StatefulWidget {
   final InputBorder inputBorder;
   final InputDecoration inputDecoration;
   final InputDecoration searchBoxDecoration;
+  final TextAlign textAlign;
+  final TextAlignVertical textAlignVertical;
   final EdgeInsets scrollPadding;
 
   final FocusNode focusNode;
@@ -104,6 +106,8 @@ class InternationalPhoneNumberInput extends StatefulWidget {
       this.inputBorder,
       this.inputDecoration,
       this.searchBoxDecoration,
+      this.textAlign = TextAlign.start,
+      this.textAlignVertical = TextAlignVertical.center,
       this.scrollPadding,
       this.focusNode,
       this.countries})
@@ -350,6 +354,8 @@ class _InputWidgetView
               textInputAction: widget.keyboardAction,
               style: widget.textStyle,
               decoration: state.getInputDecoration(widget.inputDecoration),
+              textAlign: widget.textAlign,
+              textAlignVertical: widget.textAlignVertical,
               onEditingComplete: widget.onSubmit,
               onFieldSubmitted: widget.onFieldSubmitted,
               autovalidateMode: widget.autoValidateMode,
