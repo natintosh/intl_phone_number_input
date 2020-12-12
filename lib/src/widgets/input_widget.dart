@@ -74,6 +74,7 @@ class InternationalPhoneNumberInput extends StatefulWidget {
   final EdgeInsets scrollPadding;
 
   final FocusNode focusNode;
+  final Iterable<String> autofillHints;
 
   final List<String> countries;
 
@@ -110,6 +111,7 @@ class InternationalPhoneNumberInput extends StatefulWidget {
       this.textAlignVertical = TextAlignVertical.center,
       this.scrollPadding,
       this.focusNode,
+      this.autofillHints,
       this.countries})
       : super(key: key);
 
@@ -381,6 +383,7 @@ class _InputWidgetView
               onEditingComplete: widget.onSubmit,
               onFieldSubmitted: widget.onFieldSubmitted,
               autovalidateMode: widget.autoValidateMode,
+              autofillHints: widget.autofillHints,
               validator: widget.validator ?? state.validator,
               onSaved: state.onSaved,
               scrollPadding: widget.scrollPadding ?? EdgeInsets.all(20.0),
