@@ -1631,7 +1631,7 @@ class Countries {
         "zh": "埃及",
         "nl": "Egypt",
         "de": "Ägypt",
-        "fr": "Égypt",
+        "fr": "Égypte",
         "es": "Egipt",
         "en": "Egypt",
         "pt_BR": "Egito",
