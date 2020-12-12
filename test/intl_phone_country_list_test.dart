@@ -23,6 +23,8 @@ void main() {
         'en',
         'es',
         'pt_BR',
+        'sr-Cyrl',
+        'sr-Latn',
       ];
 
       Countries.countryList.forEach((Map<String, dynamic> data) {
