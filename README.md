@@ -1,3 +1,9 @@
+# Fork readme
+
+[fork from](https://github.com/natintosh/intl_phone_number_input)
+
+add locale zh_TW
+
 # Intl Phone Number Input
 
 A simple and customizable flutter package for international phone number input
