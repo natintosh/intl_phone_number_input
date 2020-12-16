@@ -10,28 +10,29 @@ class Countries {
   ///
   ///   ```dart
   ///     {
-  ///       "num_code": "566",
-  ///        "alpha_2_code": "NG",
-  ///        "alpha_3_code": "NGA",
-  ///        "en_short_name": "Nigeria",
-  ///        "nationality": "Nigerian",
-  ///        "dial_code": "+234",
-  ///        "nameTranslations": {
-  ///          "sk": "Nigéria",
-  ///          "se": "Nigeria",
-  ///          "pl": "Nigeria",
-  ///          "no": "Nigeria",
-  ///          "ja": "ナイジェリア",
-  ///          "it": "Nigeria",
-  ///          "zh": "尼日利亚",
-  ///          "nl": "Nigeria",
-  ///          "de": "Nigeria",
-  ///          "fr": "Nigéria",
-  ///          "es": "Nigeria",
-  ///          "en": "Nigeria",
-  ///          "pt_BR": "Nigéria",
-  ///          "sr-Cyrl": "Нигерија",
-  ///          "sr-Latn": "Nigerija",
+  ///    "num_code": "566",
+  ///    "alpha_2_code": "NG",
+  ///    "alpha_3_code": "NGA",
+  ///    "en_short_name": "Nigeria",
+  ///    "nationality": "Nigerian",
+  ///    "dial_code": "+234",
+  ///    "nameTranslations": {
+  ///      "sk": "Nigéria",
+  ///      "se": "Nigeria",
+  ///      "pl": "Nigeria",
+  ///      "no": "Nigeria",
+  ///      "ja": "ナイジェリア",
+  ///      "it": "Nigeria",
+  ///      "zh": "尼日利亚",
+  ///      "nl": "Nigeria",
+  ///      "de": "Nigeria",
+  ///      "fr": "Nigéria",
+  ///      "es": "Nigeria",
+  ///      "en": "Nigeria",
+  ///      "pt_BR": "Nigéria",
+  ///      "sr-Cyrl": "Нигерија",
+  ///      "sr-Latn": "Nigerija",
+  ///      "zh_TW": "奈及利亞",
   ///        }
   ///     }
   ///   ```
@@ -3572,7 +3573,7 @@ class Countries {
         "pt_BR": "Malta",
         "sr-Cyrl": "Малта",
         "sr-Latn": "Malta",
-        "zh_TW": "馬爾他", 
+        "zh_TW": "馬爾他",
       }
     },
     {
@@ -4430,7 +4431,7 @@ class Countries {
         "pt_BR": "Panamá",
         "sr-Cyrl": "Панама",
         "sr-Latn": "Panama",
-        "zh_TW": "巴拿馬", 
+        "zh_TW": "巴拿馬",
       }
     },
     {
