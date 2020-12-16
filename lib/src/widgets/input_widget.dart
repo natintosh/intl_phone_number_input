@@ -130,11 +130,9 @@ class _InputWidgetState extends State<InternationalPhoneNumberInput> {
   @override
   void initState() {
     super.initState();
+    loadCountries();
     controller = widget.textFieldController ?? TextEditingController();
     initialiseWidget();
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      loadCountries();
-    });
   }
 
   @override
