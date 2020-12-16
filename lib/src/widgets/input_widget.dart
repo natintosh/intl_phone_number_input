@@ -328,6 +328,7 @@ class _InputWidgetState extends State<InternationalPhoneNumberInput> {
     _phoneNumberSaved();
   }
 
+  /// Corrects duplicate locale
   String get locale {
     if (widget.locale.toLowerCase() == 'nb' ||
         widget.locale.toLowerCase() == 'nn') {
