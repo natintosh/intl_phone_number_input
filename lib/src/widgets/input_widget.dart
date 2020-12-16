@@ -129,10 +129,12 @@ class _InputWidgetState extends State<InternationalPhoneNumberInput> {
 
   @override
   void initState() {
-    Future.delayed(Duration.zero, () => loadCountries());
+    super.initState();
     controller = widget.textFieldController ?? TextEditingController();
     initialiseWidget();
-    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      loadCountries();
+    });
   }
 
   @override
@@ -325,6 +327,14 @@ class _InputWidgetState extends State<InternationalPhoneNumberInput> {
   void onSaved(String value) {
     _phoneNumberSaved();
   }
+
+  String get locale {
+    if (widget.locale.toLowerCase() == 'nb' ||
+        widget.locale.toLowerCase() == 'nn') {
+      return 'no';
+    }
+    return widget.locale;
+  }
 }
 
 class _InputWidgetView
@@ -355,7 +365,7 @@ class _InputWidgetView
                 selectorConfig: widget.selectorConfig,
                 selectorTextStyle: widget.selectorTextStyle,
                 searchBoxDecoration: widget.searchBoxDecoration,
-                locale: widget.locale,
+                locale: state.locale,
                 isEnabled: widget.isEnabled,
                 autoFocusSearchField: widget.autoFocusSearch,
                 isScrollControlled: widget.countrySelectorScrollControlled,
