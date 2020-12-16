@@ -5,12 +5,12 @@ import 'package:intl_phone_number_input/src/models/country_model.dart';
 import 'package:intl_phone_number_input/src/providers/country_provider.dart';
 import 'package:intl_phone_number_input/src/utils/formatter/as_you_type_formatter.dart';
 import 'package:intl_phone_number_input/src/utils/phone_number.dart';
+import 'package:intl_phone_number_input/src/utils/phone_number/phone_number_util.dart';
 import 'package:intl_phone_number_input/src/utils/selector_config.dart';
 import 'package:intl_phone_number_input/src/utils/test/test_helper.dart';
 import 'package:intl_phone_number_input/src/utils/util.dart';
 import 'package:intl_phone_number_input/src/utils/widget_view.dart';
 import 'package:intl_phone_number_input/src/widgets/selector_button.dart';
-import 'package:libphonenumber/libphonenumber.dart';
 
 /// Enum for [SelectorButton] types.
 ///
@@ -164,7 +164,7 @@ class _InputWidgetState extends State<InternationalPhoneNumberInput> {
     if (widget.initialValue != null) {
       if (widget.initialValue.phoneNumber != null &&
           widget.initialValue.phoneNumber.isNotEmpty &&
-          await PhoneNumberUtil.isValidPhoneNumber(
+          await PhoneNumberUtil.isValidNumber(
               phoneNumber: widget.initialValue.phoneNumber,
               isoCode: widget.initialValue.isoCode)) {
         controller.text =
@@ -246,7 +246,7 @@ class _InputWidgetState extends State<InternationalPhoneNumberInput> {
       String phoneNumber, String isoCode) async {
     if (phoneNumber.isNotEmpty && isoCode != null) {
       try {
-        bool isValidPhoneNumber = await PhoneNumberUtil.isValidPhoneNumber(
+        bool isValidPhoneNumber = await PhoneNumberUtil.isValidNumber(
             phoneNumber: phoneNumber, isoCode: isoCode);
 
         if (isValidPhoneNumber) {

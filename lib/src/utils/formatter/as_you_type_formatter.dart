@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:libphonenumber/libphonenumber.dart';
+import 'package:intl_phone_number_input/src/utils/phone_number/phone_number_util.dart';
 
 typedef OnInputFormatted<T> = void Function(T value);
 
@@ -39,15 +39,12 @@ class AsYouTypeFormatter extends TextInputFormatter {
       String newValueText = newValue.text;
       String rawText = newValueText.replaceAll(separatorChars, '');
       String textToParse = dialCode + rawText;
+
       final insertedDigits = newValueText
           .substring(
               oldValue.selection.start == -1 ? 0 : oldValue.selection.start,
               newValue.selection.end == -1 ? 0 : newValue.selection.end)
           .replaceAll(separatorChars, '');
-
-      print('Inserted Digits $insertedDigits');
-      print('Old start ${oldValue.selection.start}');
-      print('New end ${newValue.selection.end}');
 
       formatAsYouType(input: textToParse).then(
         (String value) {
