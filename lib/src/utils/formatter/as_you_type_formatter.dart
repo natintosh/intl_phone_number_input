@@ -48,7 +48,7 @@ class AsYouTypeFormatter extends TextInputFormatter {
 
       formatAsYouType(input: textToParse).then(
         (String value) {
-          String parsedText = value.replaceFirst(dialCode, '').trim();
+          String parsedText = parsePhoneNumber(value);
 
           int offset =
               oldValue.selection.start == -1 ? 0 : oldValue.selection.start;
@@ -86,5 +86,26 @@ class AsYouTypeFormatter extends TextInputFormatter {
     } on Exception {
       return '';
     }
+  }
+
+  String parsePhoneNumber(String phoneNumber) {
+    if (dialCode.length > 4) {
+      if (isPartOfNorthAmericanNumberingPlan(dialCode)) {
+        String northAmericaDialCode = '+1';
+        String countryDialCodeWithSpace = northAmericaDialCode +
+            ' ' +
+            dialCode.replaceFirst(northAmericaDialCode, '');
+
+        return phoneNumber
+            .replaceFirst(countryDialCodeWithSpace, '')
+            .replaceFirst(separatorChars, '')
+            .trim();
+      }
+    }
+    return phoneNumber.replaceFirst(dialCode, '').trim();
+  }
+
+  bool isPartOfNorthAmericanNumberingPlan(String dialCode) {
+    return dialCode.contains('+1');
   }
 }
