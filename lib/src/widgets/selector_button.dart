@@ -147,7 +147,7 @@ class SelectorButton extends StatelessWidget {
             builder: (BuildContext context, ScrollController controller) {
               return Container(
                 decoration: ShapeDecoration(
-                  color: selectorConfig.backgroundColor,
+                  color: Theme.of(context).canvasColor,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(12),

@@ -52,7 +52,6 @@ class _MyHomePageState extends State<MyHomePage> {
               },
               selectorConfig: SelectorConfig(
                 selectorType: PhoneInputSelectorType.BOTTOM_SHEET,
-                backgroundColor: Colors.black,
               ),
               ignoreBlank: false,
               autoValidateMode: AutovalidateMode.disabled,

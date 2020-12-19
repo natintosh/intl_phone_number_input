@@ -19,8 +19,6 @@ class SelectorConfig {
   /// [useEmoji], uses emoji flags instead of png assets
   final bool useEmoji;
 
-  final Color backgroundColor;
-
   /// [countryComparator], sort the country list according to the comparator.
   ///
   /// Sorting is disabled by default
@@ -30,7 +28,6 @@ class SelectorConfig {
     this.selectorType = PhoneInputSelectorType.DROPDOWN,
     this.showFlags = true,
     this.useEmoji = false,
-    this.backgroundColor = Colors.white,
     this.countryComparator,
   });
 }
