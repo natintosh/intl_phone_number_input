@@ -53,6 +53,7 @@ class InternationalPhoneNumberInput extends StatefulWidget {
   final String errorMessage;
 
   final double selectorButtonOnErrorPadding;
+  final double spaceBetweenSelectorAndTextField;
   final int maxLength;
 
   final bool isEnabled;
@@ -95,6 +96,7 @@ class InternationalPhoneNumberInput extends StatefulWidget {
       this.hintText = 'Phone number',
       this.errorMessage = 'Invalid phone number',
       this.selectorButtonOnErrorPadding = 24,
+      this.spaceBetweenSelectorAndTextField = 12,
       this.maxLength = 15,
       this.isEnabled = true,
       this.formatInput = true,
@@ -376,7 +378,7 @@ class _InputWidgetView
               ),
             ],
           ),
-          SizedBox(width: 12),
+          SizedBox(width: widget.spaceBetweenSelectorAndTextField),
           Flexible(
             child: TextFormField(
               key: Key(TestHelper.TextInputKeyValue),
