@@ -51,15 +51,10 @@ class AsYouTypeFormatter extends TextInputFormatter {
           String parsedText = parsePhoneNumber(value);
 
           int offset =
-              oldValue.selection.start == -1 ? 0 : oldValue.selection.start;
-          for (int digitIndex = 0;
-              digitIndex < insertedDigits.length && offset < parsedText.length;
-              ++offset) {
-            final insertedDigit = insertedDigits[digitIndex];
-            final parsedChar = parsedText[offset];
-            if (parsedChar == insertedDigit) {
-              ++digitIndex;
-            }
+              oldValue.selection.end == -1 ? 0 : oldValue.selection.end;
+
+          if (offset < parsedText.length) {
+            offset += parsedText.length - offset;
           }
 
           if (separatorChars.hasMatch(parsedText)) {
