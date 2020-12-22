@@ -48,13 +48,34 @@ class AsYouTypeFormatter extends TextInputFormatter {
 
       formatAsYouType(input: textToParse).then(
         (String value) {
+
           String parsedText = parsePhoneNumber(value);
 
           int offset =
-              oldValue.selection.end == -1 ? 0 : oldValue.selection.end;
+              newValue.selection.end == -1 ? 0 : newValue.selection.end;
+
+          String valueInInputIndex = parsedText[offset - 1];
 
           if (offset < parsedText.length) {
-            offset += parsedText.length - offset;
+            int offsetDifference = parsedText.length - offset;
+
+            if (offsetDifference < 2) {
+
+              if (separatorChars.hasMatch(valueInInputIndex)) {
+                offset += 1;
+              } else {
+                if (valueInInputIndex != insertedDigits) {
+                  offset += offsetDifference;
+                }
+              }
+            } else {
+              if (parsedText.length > offset - 1) {
+
+                if (separatorChars.hasMatch(valueInInputIndex)) {
+                  offset += 1;
+                }
+              }
+            }
           }
 
           if (separatorChars.hasMatch(parsedText)) {
