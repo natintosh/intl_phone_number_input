@@ -157,8 +157,10 @@ class _InputWidgetState extends State<InternationalPhoneNumberInput> {
   void didUpdateWidget(InternationalPhoneNumberInput oldWidget) {
     if (oldWidget.initialValue != widget.initialValue ||
         oldWidget.initialValue?.hash != widget.initialValue?.hash) {
-      loadCountries();
+      loadCountries(previouslySelectedCountry: country);
       initialiseWidget();
+    } else {
+      loadCountries(previouslySelectedCountry: country);
     }
     super.didUpdateWidget(oldWidget);
   }
@@ -180,7 +182,7 @@ class _InputWidgetState extends State<InternationalPhoneNumberInput> {
   }
 
   /// loads countries from [Countries.countryList] and selected Country
-  void loadCountries() {
+  void loadCountries({Country previouslySelectedCountry}) {
     if (this.mounted) {
       List<Country> countries =
           CountryProvider.getCountriesData(countries: widget.countries);
@@ -191,10 +193,11 @@ class _InputWidgetState extends State<InternationalPhoneNumberInput> {
         countries.sort(countryComparator);
       }
 
-      Country country = Utils.getInitialSelectedCountry(
-        countries,
-        widget.initialValue?.isoCode ?? '',
-      );
+      Country country = previouslySelectedCountry ??
+          Utils.getInitialSelectedCountry(
+            countries,
+            widget.initialValue?.isoCode ?? '',
+          );
 
       setState(() {
         this.countries = countries;
