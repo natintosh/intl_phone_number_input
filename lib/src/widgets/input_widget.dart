@@ -71,6 +71,7 @@ class InternationalPhoneNumberInput extends StatefulWidget {
   final InputBorder inputBorder;
   final InputDecoration inputDecoration;
   final InputDecoration searchBoxDecoration;
+  final Color cursorColor;
   final TextAlign textAlign;
   final TextAlignVertical textAlignVertical;
   final EdgeInsets scrollPadding;
@@ -115,9 +116,11 @@ class InternationalPhoneNumberInput extends StatefulWidget {
       this.textAlignVertical = TextAlignVertical.center,
       this.scrollPadding = const EdgeInsets.all(20.0),
       this.focusNode,
+      this.cursorColor,
       this.autofillHints,
       this.countries})
-      : super(key: key);
+      : assert(inputDecoration?.prefixIcon == null),
+        super(key: key);
 
   @override
   State<StatefulWidget> createState() => _InputWidgetState();
@@ -395,7 +398,23 @@ class _InputWidgetView
               keyboardType: widget.keyboardType,
               textInputAction: widget.keyboardAction,
               style: widget.textStyle,
-              decoration: state.getInputDecoration(widget.inputDecoration),
+              cursorColor: widget.cursorColor,
+              decoration:
+                  state.getInputDecoration(widget.inputDecoration).copyWith(
+                        prefixIcon: SelectorButton(
+                          country: state.country,
+                          countries: state.countries,
+                          onCountryChanged: state.onCountryChanged,
+                          selectorConfig: widget.selectorConfig,
+                          selectorTextStyle: widget.selectorTextStyle,
+                          searchBoxDecoration: widget.searchBoxDecoration,
+                          locale: widget.locale,
+                          isEnabled: widget.isEnabled,
+                          autoFocusSearchField: widget.autoFocusSearch,
+                          isScrollControlled:
+                              widget.countrySelectorScrollControlled,
+                        ),
+                      ),
               textAlign: widget.textAlign,
               textAlignVertical: widget.textAlignVertical,
               onEditingComplete: widget.onSubmit,
