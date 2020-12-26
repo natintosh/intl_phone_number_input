@@ -29,11 +29,15 @@ class SelectorConfig {
   /// Sorting is disabled by default
   final CountryComparator countryComparator;
 
+  /// [setSelectorButtonAsPrefixIcon], this sets/places the selector button inside the [TextField] as a prefixIcon.
+  final bool setSelectorButtonAsPrefixIcon;
+
   const SelectorConfig({
     this.selectorType = PhoneInputSelectorType.DROPDOWN,
     this.showFlags = true,
     this.useEmoji = false,
     this.backgroundColor,
     this.countryComparator,
+    this.setSelectorButtonAsPrefixIcon = false,
   });
 }

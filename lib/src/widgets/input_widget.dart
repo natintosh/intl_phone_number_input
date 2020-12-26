@@ -119,8 +119,7 @@ class InternationalPhoneNumberInput extends StatefulWidget {
       this.cursorColor,
       this.autofillHints,
       this.countries})
-      : assert(inputDecoration?.prefixIcon == null),
-        super(key: key);
+      : super(key: key);
 
   @override
   State<StatefulWidget> createState() => _InputWidgetState();
@@ -272,11 +271,29 @@ class _InputWidgetState extends State<InternationalPhoneNumberInput> {
 
   /// Creates or Select [InputDecoration]
   InputDecoration getInputDecoration(InputDecoration decoration) {
-    return decoration ??
+    InputDecoration value = decoration ??
         InputDecoration(
           border: widget.inputBorder ?? UnderlineInputBorder(),
           hintText: widget.hintText,
         );
+
+    if (widget.selectorConfig.setSelectorButtonAsPrefixIcon) {
+      return value.copyWith(
+          prefixIcon: SelectorButton(
+        country: country,
+        countries: countries,
+        onCountryChanged: onCountryChanged,
+        selectorConfig: widget.selectorConfig,
+        selectorTextStyle: widget.selectorTextStyle,
+        searchBoxDecoration: widget.searchBoxDecoration,
+        locale: locale,
+        isEnabled: widget.isEnabled,
+        autoFocusSearchField: widget.autoFocusSearch,
+        isScrollControlled: widget.countrySelectorScrollControlled,
+      ));
+    }
+
+    return value;
   }
 
   /// Validate the phone number when a change occurs
@@ -366,26 +383,29 @@ class _InputWidgetView
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-          Column(
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              SelectorButton(
-                country: state.country,
-                countries: state.countries,
-                onCountryChanged: state.onCountryChanged,
-                selectorConfig: widget.selectorConfig,
-                selectorTextStyle: widget.selectorTextStyle,
-                searchBoxDecoration: widget.searchBoxDecoration,
-                locale: state.locale,
-                isEnabled: widget.isEnabled,
-                autoFocusSearchField: widget.autoFocusSearch,
-                isScrollControlled: widget.countrySelectorScrollControlled,
-              ),
-              SizedBox(
-                height: state.selectorButtonBottomPadding,
-              ),
-            ],
-          ),
+          widget.selectorConfig.setSelectorButtonAsPrefixIcon
+              ? SizedBox.shrink()
+              : Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    SelectorButton(
+                      country: state.country,
+                      countries: state.countries,
+                      onCountryChanged: state.onCountryChanged,
+                      selectorConfig: widget.selectorConfig,
+                      selectorTextStyle: widget.selectorTextStyle,
+                      searchBoxDecoration: widget.searchBoxDecoration,
+                      locale: state.locale,
+                      isEnabled: widget.isEnabled,
+                      autoFocusSearchField: widget.autoFocusSearch,
+                      isScrollControlled:
+                          widget.countrySelectorScrollControlled,
+                    ),
+                    SizedBox(
+                      height: state.selectorButtonBottomPadding,
+                    ),
+                  ],
+                ),
           SizedBox(width: widget.spaceBetweenSelectorAndTextField),
           Flexible(
             child: TextFormField(
@@ -398,23 +418,7 @@ class _InputWidgetView
               keyboardType: widget.keyboardType,
               textInputAction: widget.keyboardAction,
               style: widget.textStyle,
-              cursorColor: widget.cursorColor,
-              decoration:
-                  state.getInputDecoration(widget.inputDecoration).copyWith(
-                        prefixIcon: SelectorButton(
-                          country: state.country,
-                          countries: state.countries,
-                          onCountryChanged: state.onCountryChanged,
-                          selectorConfig: widget.selectorConfig,
-                          selectorTextStyle: widget.selectorTextStyle,
-                          searchBoxDecoration: widget.searchBoxDecoration,
-                          locale: widget.locale,
-                          isEnabled: widget.isEnabled,
-                          autoFocusSearchField: widget.autoFocusSearch,
-                          isScrollControlled:
-                              widget.countrySelectorScrollControlled,
-                        ),
-                      ),
+              decoration: state.getInputDecoration(widget.inputDecoration),
               textAlign: widget.textAlign,
               textAlignVertical: widget.textAlignVertical,
               onEditingComplete: widget.onSubmit,
