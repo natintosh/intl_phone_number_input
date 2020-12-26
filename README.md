@@ -104,6 +104,7 @@ SelectorConfig({
 | Parameter                       | Datatype               |    Initial Value          |
 |---------------------------------|------------------------|---------------------------|
 | onInputChanged                  | function(PhoneNumber)  |        null               |
+| onSaved                         | function(PhoneNumber)  |        null               |
 | onInputValidated                | function(bool)         |        null               |
 | focusNode                       | FocusNode              |        null               |
 | textFieldController             | TextEditingController  |   TextEditingController() |

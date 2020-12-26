@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:libphonenumber/libphonenumber.dart';
+import 'package:intl_phone_number_input/src/utils/phone_number/phone_number_util.dart';
 
 typedef OnInputFormatted<T> = void Function(T value);
 
@@ -39,33 +39,50 @@ class AsYouTypeFormatter extends TextInputFormatter {
       String newValueText = newValue.text;
       String rawText = newValueText.replaceAll(separatorChars, '');
       String textToParse = dialCode + rawText;
+
       final insertedDigits = newValueText
           .substring(
               oldValue.selection.start == -1 ? 0 : oldValue.selection.start,
               newValue.selection.end == -1 ? 0 : newValue.selection.end)
           .replaceAll(separatorChars, '');
 
-      print('Inserted Digits $insertedDigits');
-      print('Old start ${oldValue.selection.start}');
-      print('New end ${newValue.selection.end}');
-
       formatAsYouType(input: textToParse).then(
         (String value) {
-          String parsedText = value.replaceFirst(dialCode, '').trim();
+          String parsedText = parsePhoneNumber(value);
 
           int offset =
-              oldValue.selection.start == -1 ? 0 : oldValue.selection.start;
-          for (int digitIndex = 0;
-              digitIndex < insertedDigits.length && offset < parsedText.length;
-              ++offset) {
-            final insertedDigit = insertedDigits[digitIndex];
-            final parsedChar = parsedText[offset];
-            if (parsedChar == insertedDigit) {
-              ++digitIndex;
-            }
-          }
+              newValue.selection.end == -1 ? 0 : newValue.selection.end;
 
           if (separatorChars.hasMatch(parsedText)) {
+            String valueInInputIndex = parsedText[offset - 1];
+
+            if (offset < parsedText.length) {
+              int offsetDifference = parsedText.length - offset;
+
+              if (offsetDifference < 2) {
+                if (separatorChars.hasMatch(valueInInputIndex)) {
+                  offset += 1;
+                } else {
+                  bool isLastChar;
+                  try {
+                    var _ = newValueText[newValue.selection.end];
+                    isLastChar = false;
+                  } on RangeError {
+                    isLastChar = true;
+                  }
+                  if (isLastChar) {
+                    offset += offsetDifference;
+                  }
+                }
+              } else {
+                if (parsedText.length > offset - 1) {
+                  if (separatorChars.hasMatch(valueInInputIndex)) {
+                    offset += 1;
+                  }
+                }
+              }
+            }
+
             this.onInputFormatted(
               TextEditingValue(
                 text: parsedText,
@@ -89,5 +106,26 @@ class AsYouTypeFormatter extends TextInputFormatter {
     } on Exception {
       return '';
     }
+  }
+
+  String parsePhoneNumber(String phoneNumber) {
+    if (dialCode.length > 4) {
+      if (isPartOfNorthAmericanNumberingPlan(dialCode)) {
+        String northAmericaDialCode = '+1';
+        String countryDialCodeWithSpace = northAmericaDialCode +
+            ' ' +
+            dialCode.replaceFirst(northAmericaDialCode, '');
+
+        return phoneNumber
+            .replaceFirst(countryDialCodeWithSpace, '')
+            .replaceFirst(separatorChars, '')
+            .trim();
+      }
+    }
+    return phoneNumber.replaceFirst(dialCode, '').trim();
+  }
+
+  bool isPartOfNorthAmericanNumberingPlan(String dialCode) {
+    return dialCode.contains('+1');
   }
 }

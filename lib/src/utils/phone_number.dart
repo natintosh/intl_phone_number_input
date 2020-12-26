@@ -2,22 +2,21 @@ import 'dart:math';
 
 import 'package:equatable/equatable.dart';
 import 'package:intl_phone_number_input/src/models/country_list.dart';
-import 'package:libphonenumber/libphonenumber.dart';
-import 'package:libphonenumber/libphonenumber.dart' as lib;
+import 'package:intl_phone_number_input/src/utils/phone_number/phone_number_util.dart';
 
 enum PhoneNumberType {
-  FIXED_LINE,
-  MOBILE,
-  FIXED_LINE_OR_PHONE_NUMBER,
-  TOLL_FREE,
-  PREMIUM_RATE,
-  SHARED_COST,
-  VOIP,
-  PERSONAL_NUMBER,
-  PAGER,
-  UAN,
-  VOICE_MALE,
-  UNKNOWN
+  FIXED_LINE, // : 0,
+  MOBILE, //: 1,
+  FIXED_LINE_OR_MOBILE, //: 2,
+  TOLL_FREE, //: 3,
+  PREMIUM_RATE, //: 4,
+  SHARED_COST, //: 5,
+  VOIP, //: 6,
+  PERSONAL_NUMBER, //: 7,
+  PAGER, //: 8,
+  UAN, //: 9,
+  VOICEMAIL, //: 10,
+  UNKNOWN, //: -1
 }
 
 /// [PhoneNumber] contains detailed information about a phone number
@@ -121,10 +120,9 @@ class PhoneNumber extends Equatable {
   /// Accepts [phoneNumber] and [isoCode] and r
   static Future<PhoneNumberType> getPhoneNumberType(
       String phoneNumber, String isoCode) async {
-    int index = lib.PhoneNumberType.values.indexOf(
-        await lib.PhoneNumberUtil.getNumberType(
-            phoneNumber: phoneNumber, isoCode: isoCode));
+    PhoneNumberType type = await PhoneNumberUtil.getNumberType(
+        phoneNumber: phoneNumber, isoCode: isoCode);
 
-    return PhoneNumberType.values[index];
+    return type;
   }
 }

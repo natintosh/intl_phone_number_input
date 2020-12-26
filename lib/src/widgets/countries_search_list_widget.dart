@@ -123,6 +123,13 @@ class _CountrySearchListWidgetState extends State<CountrySearchListWidget> {
       ],
     );
   }
+
+  @override
+  void setState(fn) {
+    if (mounted) {
+      super.setState(fn);
+    }
+  }
 }
 
 class _Flag extends StatelessWidget {
