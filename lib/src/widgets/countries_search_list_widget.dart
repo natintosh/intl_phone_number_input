@@ -3,6 +3,7 @@ import 'package:intl_phone_number_input/src/models/country_model.dart';
 import 'package:intl_phone_number_input/src/utils/test/test_helper.dart';
 import 'package:intl_phone_number_input/src/utils/util.dart';
 
+/// Creates a list of Countries with a search textfield.
 class CountrySearchListWidget extends StatefulWidget {
   final List<Country> countries;
   final InputDecoration searchBoxDecoration;
@@ -40,11 +41,13 @@ class _CountrySearchListWidgetState extends State<CountrySearchListWidget> {
     super.dispose();
   }
 
+  /// Returns [InputDecoration] of the search box
   InputDecoration getSearchBoxDecoration() {
     return widget.searchBoxDecoration ??
         InputDecoration(labelText: 'Search by country name or dial code');
   }
 
+  /// Filters the list of Country by text from the search box.
   List<Country> filterCountries() {
     final value = _searchController.text.trim();
 
@@ -67,6 +70,8 @@ class _CountrySearchListWidgetState extends State<CountrySearchListWidget> {
     return widget.countries;
   }
 
+  /// Returns the country name of a [Country]. if the locale is set and translation in available.
+  /// returns the translated name.
   String getCountryName(Country country) {
     if (widget.locale != null && country.nameTranslations != null) {
       String translated = country.nameTranslations[widget.locale];
