@@ -1,3 +1,24 @@
+## [0.6.0]
+  - Added support for Flutter Web :fire: :fire: :fire: :rocket: :rocket: :rocket: .
+  - Added textAlign, textAlignVertical.
+  - Fixed French translation of Egypt.
+  - Added option to make selector button a prefix icon in `SelectorConfig`.
+  - Added `cursorColor` option.
+  - Added `scrollPadding` option.
+  - Added new language translations for Serbia, with two scripts.
+  - Updated onSaved into `ValueChange<PhoneNumber>`. now onSaved returns a `PhoneNumber` object.
+  - Added `keyboardType` option and improvements on iOS keyboard, see [#147](https://github.com/natintosh/intl_phone_number_input/pull/147), [#148](https://github.com/natintosh/intl_phone_number_input/pull/148) for more details.
+  - Added locale zh-TW.
+  - Added support of nb and nn locale.
+  - Fixed issue with AsYouType formatter injecting country dial code on every input for phone numbers with North American Numbering Plan.
+  - Fixed issue with Selector Button onTap when enable is false.
+  - <b>Breaking Change</b> for v0.7.0, `SelectorConfig.backgroudColor` would be removed and replaced with `Theme.of(context).canvasColor`.
+  - Added `spaceBetweenSelectorAndTextField` for padding between selector button and text field.
+  - Fixed Bug with cursor position on typing, see [#130](https://github.com/natintosh/intl_phone_number_input/issues/130) for illustration and more information.
+  - Fixed Bug with selector button country restoring to initialValue after updating/changing value, see [#155](https://github.com/natintosh/intl_phone_number_input/issues/155) for more information.
+  - Tap outside `selectorType` `PhoneInputSelectorType.BOTTOM_SHEET` now dismisses the dialog.
+
+
 ## [0.5.2+2]
 ## [0.5.2+1]
   - Fixed issue with pub.dev analysis
