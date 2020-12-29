@@ -9,6 +9,7 @@
   - Updated onSaved into `ValueChange<PhoneNumber>`. now onSaved returns a `PhoneNumber` object.
   - Added `keyboardType` option and improvements on iOS keyboard, see [#147](https://github.com/natintosh/intl_phone_number_input/pull/147), [#148](https://github.com/natintosh/intl_phone_number_input/pull/148) for more details.
   - Added locale zh-TW.
+  - Added locale ar.
   - Added support of nb and nn locale.
   - Fixed issue with AsYouType formatter injecting country dial code on every input for phone numbers with North American Numbering Plan.
   - Fixed issue with Selector Button onTap when enable is false.
