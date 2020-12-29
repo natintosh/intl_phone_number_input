@@ -12,7 +12,7 @@
   - Added support of nb and nn locale.
   - Fixed issue with AsYouType formatter injecting country dial code on every input for phone numbers with North American Numbering Plan.
   - Fixed issue with Selector Button onTap when enable is false.
-  - <b>Breaking Change</b> for v0.7.0, `SelectorConfig.backgroudColor` would be removed and replaced with `Theme.of(context).canvasColor`.
+  - <b>Breaking Change</b> for v0.7.0, `SelectorConfig.backgroundColor` would be removed and replaced with `Theme.of(context).canvasColor`.
   - Added `spaceBetweenSelectorAndTextField` for padding between selector button and text field.
   - Fixed Bug with cursor position on typing, see [#130](https://github.com/natintosh/intl_phone_number_input/issues/130) for illustration and more information.
   - Fixed Bug with selector button country restoring to initialValue after updating/changing value, see [#155](https://github.com/natintosh/intl_phone_number_input/issues/155) for more information.
