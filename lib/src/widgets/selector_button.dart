@@ -143,31 +143,36 @@ class SelectorButton extends StatelessWidget {
           padding:
               EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
           duration: const Duration(milliseconds: 100),
-          child: DraggableScrollableSheet(
-            builder: (BuildContext context, ScrollController controller) {
-              return Container(
-                decoration: ShapeDecoration(
-                  color: selectorConfig.backgroundColor ??
-                      Theme.of(context).canvasColor,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(12),
-                      topRight: Radius.circular(12),
+          child: Stack(children: [
+            GestureDetector(
+              onTap: () => Navigator.pop(context),
+            ),
+            DraggableScrollableSheet(
+              builder: (BuildContext context, ScrollController controller) {
+                return Container(
+                  decoration: ShapeDecoration(
+                    color: selectorConfig.backgroundColor ??
+                        Theme.of(context).canvasColor,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(12),
+                        topRight: Radius.circular(12),
+                      ),
                     ),
                   ),
-                ),
-                child: CountrySearchListWidget(
-                  countries,
-                  locale,
-                  searchBoxDecoration: searchBoxDecoration,
-                  scrollController: controller,
-                  showFlags: selectorConfig.showFlags,
-                  useEmoji: selectorConfig.useEmoji,
-                  autoFocus: autoFocusSearchField,
-                ),
-              );
-            },
-          ),
+                  child: CountrySearchListWidget(
+                    countries,
+                    locale,
+                    searchBoxDecoration: searchBoxDecoration,
+                    scrollController: controller,
+                    showFlags: selectorConfig.showFlags,
+                    useEmoji: selectorConfig.useEmoji,
+                    autoFocus: autoFocusSearchField,
+                  ),
+                );
+              },
+            ),
+          ]),
         );
       },
     );
