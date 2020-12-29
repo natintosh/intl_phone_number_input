@@ -3,7 +3,10 @@ import 'package:intl_phone_number_input/src/utils/phone_number.dart';
 import 'package:libphonenumber/libphonenumber.dart' as l;
 import 'package:libphonenumber_plugin/libphonenumber_plugin.dart' as p;
 
+/// A wrapper class [PhoneNumberUtil] that basically switch between plugin available for `Web` or `Android or IOS` and `Other platforms` when available.
 class PhoneNumberUtil {
+  /// Accepts [phoneNumber] and [isoCode]
+  /// Returns [Future<String>]
   static Future<String> getNameForNumber(
       {@required String phoneNumber, @required String isoCode}) async {
     return kIsWeb
@@ -12,6 +15,9 @@ class PhoneNumberUtil {
             phoneNumber: phoneNumber, isoCode: isoCode);
   }
 
+  /// [isValidNumber] checks if a [phoneNumber] is valid.
+  /// Accepts [phoneNumber] and [isoCode]
+  /// Returns [Future<bool>].
   static Future<bool> isValidNumber(
       {@required String phoneNumber, @required String isoCode}) async {
     return kIsWeb
@@ -20,6 +26,9 @@ class PhoneNumberUtil {
             phoneNumber: phoneNumber, isoCode: isoCode);
   }
 
+  /// [normalizePhoneNumber] normalizes a string of characters representing a phone number
+  /// Accepts [phoneNumber] and [isoCode]
+  /// Returns [Future<String>]
   static Future<String> normalizePhoneNumber(
       {@required String phoneNumber, @required String isoCode}) async {
     return kIsWeb
@@ -28,6 +37,8 @@ class PhoneNumberUtil {
             phoneNumber: phoneNumber, isoCode: isoCode);
   }
 
+  /// Accepts [phoneNumber] and [isoCode]
+  /// Returns [Future<RegionInfo>] of all information available about the [phoneNumber]
   static Future<RegionInfo> getRegionInfo(
       {@required String phoneNumber, @required String isoCode}) async {
     var response;
@@ -42,6 +53,8 @@ class PhoneNumberUtil {
         formattedPhoneNumber: response.formattedPhoneNumber);
   }
 
+  /// Accepts [phoneNumber] and [isoCode]
+  /// Returns [Future<PhoneNumberType>] type of phone number
   static Future<PhoneNumberType> getNumberType(
       {@required String phoneNumber, @required String isoCode}) async {
     var webType = await p.PhoneNumberUtil.getNumberType(phoneNumber, isoCode);
@@ -52,6 +65,9 @@ class PhoneNumberUtil {
         kIsWeb ? webType.index : mobileType.index);
   }
 
+  /// [formatAsYouType] uses Google's libphonenumber input format as you type.
+  /// Accepts [phoneNumber] and [isoCode]
+  /// Returns [Future<String>]
   static Future<String> formatAsYouType(
       {@required String phoneNumber, @required String isoCode}) async {
     return kIsWeb
@@ -61,6 +77,10 @@ class PhoneNumberUtil {
   }
 }
 
+/// [RegionInfo] contains regional information about a phone number.
+/// [isoCode] current region/country code of the phone number
+/// [regionPrefix] dialCode of the phone number
+/// [formattedPhoneNumber] national level formatting rule apply to the phone number
 class RegionInfo {
   String regionPrefix;
   String isoCode;
@@ -88,7 +108,9 @@ class RegionInfo {
   }
 }
 
+/// [PhoneNumberTypeUtil] helper class for `PhoneNumberType`
 class PhoneNumberTypeUtil {
+  /// Returns [PhoneNumberType] for index [value]
   static PhoneNumberType getType(int value) {
     switch (value) {
       case 0:
@@ -131,7 +153,9 @@ class PhoneNumberTypeUtil {
   }
 }
 
+/// Extension on PhoneNumberType
 extension phonenumbertypeproperties on PhoneNumberType {
+  /// Returns the index [int] of the current `PhoneNumberType`
   int get value {
     switch (this) {
       case PhoneNumberType.FIXED_LINE:

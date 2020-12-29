@@ -4,6 +4,7 @@ import 'package:equatable/equatable.dart';
 import 'package:intl_phone_number_input/src/models/country_list.dart';
 import 'package:intl_phone_number_input/src/utils/phone_number/phone_number_util.dart';
 
+/// Type of phone numbers.
 enum PhoneNumberType {
   FIXED_LINE, // : 0,
   MOBILE, //: 1,

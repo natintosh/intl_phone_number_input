@@ -108,6 +108,8 @@ class AsYouTypeFormatter extends TextInputFormatter {
     }
   }
 
+  /// Accepts a formatted [phoneNumber]
+  /// returns a [String] of `phoneNumber` with the dialCode replaced with an empty String
   String parsePhoneNumber(String phoneNumber) {
     if (dialCode.length > 4) {
       if (isPartOfNorthAmericanNumberingPlan(dialCode)) {
@@ -125,6 +127,8 @@ class AsYouTypeFormatter extends TextInputFormatter {
     return phoneNumber.replaceFirst(dialCode, '').trim();
   }
 
+  /// Accepts a [dialCode]
+  /// returns a [bool], true if the `dialCode` is part of North American Numbering Plan
   bool isPartOfNorthAmericanNumberingPlan(String dialCode) {
     return dialCode.contains('+1');
   }
