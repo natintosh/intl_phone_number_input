@@ -1,6 +1,6 @@
 # Intl Phone Number Input
 
-A simple and customizable flutter package for international phone number input
+A simple and customizable flutter package for inputting phone number in intl / international format uses Google's libphonenumber
 
 | CustomDecoration | CustomBorder | Default |
 |----------|-------------|--------|
