@@ -34,6 +34,7 @@ class Countries {
   ///      "sr-Cyrl": "Нигерија",
   ///      "sr-Latn": "Nigerija",
   ///      "zh_TW": "奈及利亞",
+  ///      "ar": "نيجيريا"
   ///        }
   ///     }
   ///   ```
@@ -65,6 +66,7 @@ class Countries {
         "sr-Cyrl": "Авганистан",
         "sr-Latn": "Avganistan",
         "zh_TW": "阿富汗",
+        "ar": "أفغانستان"
       }
     },
     {
@@ -91,6 +93,7 @@ class Countries {
         "sr-Cyrl": "Аландска Острва",
         "sr-Latn": "Alandska Ostrva",
         "zh_TW": "奧蘭群島",
+        "ar": "جزر أولاند"
       }
     },
     {
@@ -117,6 +120,7 @@ class Countries {
         "sr-Cyrl": "Албанија",
         "sr-Latn": "Albanija",
         "zh_TW": "阿爾巴尼亞",
+        "ar": "ألبانيا"
       }
     },
     {
@@ -143,6 +147,7 @@ class Countries {
         "sr-Cyrl": "Аргентина",
         "sr-Latn": "Argentina",
         "zh_TW": "阿爾及利亞",
+        "ar": "الجزائر"
       }
     },
     {
@@ -169,6 +174,7 @@ class Countries {
         "sr-Cyrl": "Америчка Самоа",
         "sr-Latn": "Američka Samoa",
         "zh_TW": "美屬薩摩亞",
+        "ar": "ساموا الأمريكية"
       }
     },
     {
@@ -195,6 +201,7 @@ class Countries {
         "sr-Cyrl": "Андора",
         "sr-Latn": "Andora",
         "zh_TW": "安道爾",
+        "ar": "أندورا"
       }
     },
     {
@@ -221,6 +228,7 @@ class Countries {
         "sr-Cyrl": "Ангола",
         "sr-Latn": "Angola",
         "zh_TW": "安哥拉",
+        "ar": "أنغولا"
       }
     },
     {
@@ -247,6 +255,7 @@ class Countries {
         "sr-Cyrl": "Ангвила",
         "sr-Latn": "Angvila",
         "zh_TW": "安圭拉",
+        "ar": "أنغويلا"
       }
     },
     {
@@ -273,6 +282,7 @@ class Countries {
         "sr-Cyrl": "Антарктик",
         "sr-Latn": "Antarktik",
         "zh_TW": "南極",
+        "ar": "القارة القطبية الجنوبية"
       }
     },
     {
@@ -299,6 +309,7 @@ class Countries {
         "sr-Cyrl": "Антигва и Барбуда",
         "sr-Latn": "Antigva i Barbuda",
         "zh_TW": "安提瓜和巴布達",
+        "ar": "أنتيغوا وباربودا"
       }
     },
     {
@@ -325,6 +336,7 @@ class Countries {
         "sr-Cyrl": "Аргентина",
         "sr-Latn": "Argentina",
         "zh_TW": "阿根廷",
+        "ar": "الأرجنتين"
       }
     },
     {
@@ -351,6 +363,7 @@ class Countries {
         "sr-Cyrl": "Јерменија",
         "sr-Latn": "Jermenija",
         "zh_TW": "亞美尼亞",
+        "ar": "أرمينيا"
       }
     },
     {
@@ -377,6 +390,7 @@ class Countries {
         "sr-Cyrl": "Аруба",
         "sr-Latn": "Aruba",
         "zh_TW": "阿魯巴",
+        "ar": "أروبا"
       }
     },
     {
@@ -402,7 +416,8 @@ class Countries {
         "pt_BR": "Austrália",
         "sr-Cyrl": "Аустралија",
         "sr-Latn": "Australija",
-        "zh_TW": "澳州"
+        "zh_TW": "澳州",
+        "ar": "أستراليا"
       }
     },
     {
@@ -429,6 +444,7 @@ class Countries {
         "sr-Cyrl": "Аустрија",
         "sr-Latn": "Austrija",
         "zh_TW": "奥地利",
+        "ar": "النمسا"
       }
     },
     {
@@ -455,6 +471,7 @@ class Countries {
         "sr-Cyrl": "Азербејџан",
         "sr-Latn": "Azerbejdžan",
         "zh_TW": "亞塞拜然",
+        "ar": "أذربيجان"
       }
     },
     {
@@ -481,6 +498,7 @@ class Countries {
         "sr-Cyrl": "Бахаме",
         "sr-Latn": "Bahame",
         "zh_TW": "巴哈馬",
+        "ar": "باهاماس"
       }
     },
     {
@@ -507,6 +525,7 @@ class Countries {
         "sr-Cyrl": "Бахреин",
         "sr-Latn": "Bahrein",
         "zh_TW": "巴林",
+        "ar": "البحرين"
       }
     },
     {
@@ -533,6 +552,7 @@ class Countries {
         "sr-Cyrl": "Бангладеш",
         "sr-Latn": "Bangladeš",
         "zh_TW": "孟加拉",
+        "ar": "بنغلاديش"
       }
     },
     {
@@ -559,6 +579,7 @@ class Countries {
         "sr-Cyrl": "Барбадос",
         "sr-Latn": "Barbados",
         "zh_TW": "巴巴多斯",
+        "ar": "باربادوس"
       }
     },
     {
@@ -585,6 +606,7 @@ class Countries {
         "sr-Cyrl": "Белорусија",
         "sr-Latn": "Belorusija",
         "zh_TW": "白俄羅斯",
+        "ar": "بيلاروس"
       }
     },
     {
@@ -611,6 +633,7 @@ class Countries {
         "sr-Cyrl": "Белгија",
         "sr-Latn": "Belgija",
         "zh_TW": "比利時",
+        "ar": "بلجيكا"
       }
     },
     {
@@ -637,6 +660,7 @@ class Countries {
         "sr-Cyrl": "Белизе",
         "sr-Latn": "Belize",
         "zh_TW": "伯利茲",
+        "ar": "بليز"
       }
     },
     {
@@ -663,6 +687,7 @@ class Countries {
         "sr-Cyrl": "Бенин",
         "sr-Latn": "Benin",
         "zh_TW": "貝南",
+        "ar": "بنين"
       }
     },
     {
@@ -689,6 +714,7 @@ class Countries {
         "sr-Cyrl": "Бермуда",
         "sr-Latn": "Bermuda",
         "zh_TW": "百慕達",
+        "ar": "برمودا"
       }
     },
     {
@@ -715,6 +741,7 @@ class Countries {
         "sr-Cyrl": "Бутан",
         "sr-Latn": "Butan",
         "zh_TW": "不丹",
+        "ar": "بوتان"
       }
     },
     {
@@ -741,6 +768,7 @@ class Countries {
         "sr-Cyrl": "Боливија",
         "sr-Latn": "Bolivija",
         "zh_TW": "玻利維亞",
+        "ar": "بوليفيا"
       }
     },
     {
@@ -767,6 +795,7 @@ class Countries {
         "sr-Cyrl": "Босна и Херцеговина",
         "sr-Latn": "Bosna i Hercegovina",
         "zh_TW": "波士尼亞和黑塞哥維那",
+        "ar": "البوسنة والهرسك"
       }
     },
     {
@@ -793,6 +822,7 @@ class Countries {
         "sr-Cyrl": "Боцвана",
         "sr-Latn": "Bocvana",
         "zh_TW": "博茨瓦納",
+        "ar": "بوتسوانا"
       }
     },
     {
@@ -819,6 +849,7 @@ class Countries {
         "sr-Cyrl": "Острво Буве",
         "sr-Latn": "Ostrvo Buve",
         "zh_TW": "布維特島",
+        "ar": "جزيرة بوفيه"
       }
     },
     {
@@ -845,6 +876,7 @@ class Countries {
         "sr-Cyrl": "Бразил",
         "sr-Latn": "Brazil",
         "zh_TW": "巴西",
+        "ar": "البرازيل"
       }
     },
     {
@@ -871,6 +903,7 @@ class Countries {
         "sr-Cyrl": "Британска територија Индијског океана",
         "sr-Latn": "Britanska teritorija Indijskog okeana",
         "zh_TW": "英屬印度洋領地",
+        "ar": "إقليم المحيط الهندي البريطاني"
       }
     },
     {
@@ -897,6 +930,7 @@ class Countries {
         "sr-Cyrl": "Брунеј",
         "sr-Latn": "Brunej",
         "zh_TW": "汶萊",
+        "ar": "بروناي"
       }
     },
     {
@@ -923,6 +957,7 @@ class Countries {
         "sr-Cyrl": "Бугарска",
         "sr-Latn": "Bugarska",
         "zh_TW": "保加利亞",
+        "ar": "بلغاريا"
       }
     },
     {
@@ -949,6 +984,7 @@ class Countries {
         "sr-Cyrl": "Буркина Фасо",
         "sr-Latn": "Burkina Faso",
         "zh_TW": "布吉納法索",
+        "ar": "بوركينا فاسو"
       }
     },
     {
@@ -975,6 +1011,7 @@ class Countries {
         "sr-Cyrl": "Бурунди",
         "sr-Latn": "Burundi",
         "zh_TW": "蒲隆地",
+        "ar": "بوروندي"
       }
     },
     {
@@ -1001,6 +1038,7 @@ class Countries {
         "sr-Cyrl": "Зеленортска Острва",
         "sr-Latn": "Zalanortska Ostrva",
         "zh_TW": "佛得角",
+        "ar": "الرأس الأخضر"
       }
     },
     {
@@ -1027,6 +1065,7 @@ class Countries {
         "sr-Cyrl": "Камбоџа",
         "sr-Latn": "Kambodža",
         "zh_TW": "柬埔寨",
+        "ar": "كمبوديا"
       }
     },
     {
@@ -1053,6 +1092,7 @@ class Countries {
         "sr-Cyrl": "Камерун",
         "sr-Latn": "Kamerun",
         "zh_TW": "喀麥隆",
+        "ar": "الكاميرون"
       }
     },
     {
@@ -1079,6 +1119,7 @@ class Countries {
         "sr-Cyrl": "Канада",
         "sr-Latn": "Kanada",
         "zh_TW": "加拿大",
+        "ar": "كندا"
       }
     },
     {
@@ -1105,6 +1146,7 @@ class Countries {
         "sr-Cyrl": "Кајманска Острва",
         "sr-Latn": "Kajmanska Ostrva",
         "zh_TW": "開曼群島",
+        "ar": "جزر كايمان"
       }
     },
     {
@@ -1130,7 +1172,8 @@ class Countries {
         "pt_BR": "República Centro-Africana",
         "sr-Cyrl": "Централноафричка Република",
         "sr-Latn": "Centralnoafrička Republika",
-        "zh_TW": "中非共和國"
+        "zh_TW": "中非共和國",
+        "ar": "جمهورية أفريقيا الوسطى"
       }
     },
     {
@@ -1157,6 +1200,7 @@ class Countries {
         "sr-Cyrl": "Чад",
         "sr-Latn": "Čad",
         "zh_TW": "查德",
+        "ar": "تشاد"
       }
     },
     {
@@ -1183,6 +1227,7 @@ class Countries {
         "sr-Cyrl": "Чиле",
         "sr-Latn": "Čile",
         "zh_TW": "智利",
+        "ar": "تشيلي"
       }
     },
     {
@@ -1209,6 +1254,7 @@ class Countries {
         "sr-Cyrl": "Кина",
         "sr-Latn": "Kina",
         "zh_TW": "中國",
+        "ar": "الصين"
       }
     },
     {
@@ -1235,6 +1281,7 @@ class Countries {
         "sr-Cyrl": "Ускршња Острва",
         "sr-Latn": "Uskršnja Ostrva",
         "zh_TW": "聖誕島",
+        "ar": "جزيرة عيد الميلاد"
       }
     },
     {
@@ -1261,6 +1308,7 @@ class Countries {
         "sr-Cyrl": "Кокосова Острва",
         "sr-Latn": "Kokosova Ostrva",
         "zh_TW": "科科斯（基林）群島",
+        "ar": "جزر كوكوس"
       }
     },
     {
@@ -1287,6 +1335,7 @@ class Countries {
         "sr-Cyrl": "Колумбија",
         "sr-Latn": "Kolumbija",
         "zh_TW": "哥倫比亞",
+        "ar": "كولومبيا"
       }
     },
     {
@@ -1313,6 +1362,7 @@ class Countries {
         "sr-Cyrl": "Комори",
         "sr-Latn": "Komori",
         "zh_TW": "科摩羅",
+        "ar": "جزر القمر"
       }
     },
     {
@@ -1339,6 +1389,7 @@ class Countries {
         "sr-Cyrl": "Република Конго",
         "sr-Latn": "Republika Kongo",
         "zh_TW": "剛果共和國（布拉柴維爾）",
+        "ar": "جمهورية الكونغو"
       }
     },
     {
@@ -1364,7 +1415,8 @@ class Countries {
         "pt_BR": "Congo - Kinshasa",
         "sr-Cyrl": "Демократска Република Конго",
         "sr-Latn": "Demokratska Republika Kongo",
-        "zh_TW": "剛果民主共和國（金沙薩）"
+        "zh_TW": "剛果民主共和國（金沙薩）",
+        "ar": "جمهورية الكونغو الديمقراطية"
       }
     },
     {
@@ -1391,6 +1443,7 @@ class Countries {
         "sr-Cyrl": "Кукова Острва",
         "sr-Latn": "Kukova Ostrva",
         "zh_TW": "庫克群島",
+        "ar": "جزر كوك"
       }
     },
     {
@@ -1417,6 +1470,7 @@ class Countries {
         "sr-Cyrl": "Коста Рика",
         "sr-Latn": "Kosta Rika",
         "zh_TW": "哥斯大黎加",
+        "ar": "كوستاريكا"
       }
     },
     {
@@ -1443,6 +1497,7 @@ class Countries {
         "sr-Cyrl": "Обала Слоноваче",
         "sr-Latn": "Obala Slonovače",
         "zh_TW": "象牙海岸",
+        "ar": "ساحل العاج"
       }
     },
     {
@@ -1469,6 +1524,7 @@ class Countries {
         "sr-Cyrl": "Хрватска",
         "sr-Latn": "Hrvatska",
         "zh_TW": "克羅埃西亞",
+        "ar": "كرواتيا"
       }
     },
     {
@@ -1495,6 +1551,7 @@ class Countries {
         "sr-Cyrl": "Куба",
         "sr-Latn": "Kuba",
         "zh_TW": "古巴",
+        "ar": "كوبا"
       }
     },
     {
@@ -1521,6 +1578,7 @@ class Countries {
         "sr-Cyrl": "Кипар",
         "sr-Latn": "Kipar",
         "zh_TW": "塞普勒斯",
+        "ar": "قبرص"
       }
     },
     {
@@ -1547,6 +1605,7 @@ class Countries {
         "sr-Cyrl": "Чешка",
         "sr-Latn": "Češka",
         "zh_TW": "捷克",
+        "ar": "جمهورية التشيك"
       }
     },
     {
@@ -1573,6 +1632,7 @@ class Countries {
         "sr-Cyrl": "Данска",
         "sr-Latn": "Danska",
         "zh_TW": "丹麥",
+        "ar": "الدنمارك"
       }
     },
     {
@@ -1599,6 +1659,7 @@ class Countries {
         "sr-Cyrl": "Џибути",
         "sr-Latn": "Džibuti",
         "zh_TW": "吉布地",
+        "ar": "جيبوتي"
       }
     },
     {
@@ -1625,6 +1686,7 @@ class Countries {
         "sr-Cyrl": "Доминика",
         "sr-Latn": "Dominika",
         "zh_TW": "多明尼加",
+        "ar": "دومينيكا"
       }
     },
     {
@@ -1651,6 +1713,7 @@ class Countries {
         "sr-Cyrl": "Доминиканска Република",
         "sr-Latn": "Dominikanska Republika",
         "zh_TW": "多明尼加共和國",
+        "ar": "جمهورية الدومينيكان"
       }
     },
     {
@@ -1677,6 +1740,7 @@ class Countries {
         "sr-Cyrl": "Еквадор",
         "sr-Latn": "Ekvador",
         "zh_TW": "厄瓜多",
+        "ar": "الإكوادور"
       }
     },
     {
@@ -1703,6 +1767,7 @@ class Countries {
         "sr-Cyrl": "Египат",
         "sr-Latn": "Egipat",
         "zh_TW": "埃及",
+        "ar": "مصر"
       }
     },
     {
@@ -1729,6 +1794,7 @@ class Countries {
         "sr-Cyrl": "Салвадор",
         "sr-Latn": "Salvador",
         "zh_TW": "薩爾瓦多",
+        "ar": "السلفادور"
       }
     },
     {
@@ -1755,6 +1821,7 @@ class Countries {
         "sr-Cyrl": "Екваторијална Гвинеја",
         "sr-Latn": "Ekvatorijalna Gvineja",
         "zh_TW": "赤道幾內亞",
+        "ar": "غينيا الاستوائية"
       }
     },
     {
@@ -1781,6 +1848,7 @@ class Countries {
         "sr-Cyrl": "Еритреја",
         "sr-Latn": "Eritreja",
         "zh_TW": "厄立特裡亞",
+        "ar": "إريتريا"
       }
     },
     {
@@ -1807,6 +1875,7 @@ class Countries {
         "sr-Cyrl": "Естонија",
         "sr-Latn": "Estonija",
         "zh_TW": "愛沙尼亞",
+        "ar": "إستونيا"
       }
     },
     {
@@ -1833,6 +1902,7 @@ class Countries {
         "sr-Cyrl": "Етиопија",
         "sr-Latn": "Etiopija",
         "zh_TW": "伊索比亞",
+        "ar": "إثيوبيا"
       }
     },
     {
@@ -1859,6 +1929,7 @@ class Countries {
         "sr-Cyrl": "Фокландска Острва",
         "sr-Latn": "Foklandska Ostrva",
         "zh_TW": "福克蘭群島",
+        "ar": "جزر فوكلاند"
       }
     },
     {
@@ -1885,6 +1956,7 @@ class Countries {
         "sr-Cyrl": "Фарска Острва",
         "sr-Latn": "Farska Ostrva",
         "zh_TW": "法羅群島",
+        "ar": "جزر فارو"
       }
     },
     {
@@ -1911,6 +1983,7 @@ class Countries {
         "sr-Cyrl": "Фиџи",
         "sr-Latn": "Fidži",
         "zh_TW": "斐濟",
+        "ar": "فيجي"
       }
     },
     {
@@ -1937,6 +2010,7 @@ class Countries {
         "sr-Cyrl": "Финска",
         "sr-Latn": "Finska",
         "zh_TW": "芬蘭",
+        "ar": "فنلندا"
       }
     },
     {
@@ -1963,6 +2037,7 @@ class Countries {
         "sr-Cyrl": "Француска",
         "sr-Latn": "Francuska",
         "zh_TW": "法國",
+        "ar": "فرنسا"
       }
     },
     {
@@ -1989,6 +2064,7 @@ class Countries {
         "sr-Cyrl": "Француска Гвајана",
         "sr-Latn": "Francuska Gvajana",
         "zh_TW": "法屬蓋亞那",
+        "ar": "غويانا الفرنسية"
       }
     },
     {
@@ -2015,6 +2091,7 @@ class Countries {
         "sr-Cyrl": "Француска Полинезија",
         "sr-Latn": "Francuska Polinezija",
         "zh_TW": "法屬玻里尼西亞",
+        "ar": "بولينزيا الفرنسية"
       }
     },
     {
@@ -2041,6 +2118,7 @@ class Countries {
         "sr-Cyrl": "Француске јужне и антарктичке земље",
         "sr-Latn": "Francuske južne i antarktičke zemlje",
         "zh_TW": "法屬南部屬地",
+        "ar": "أراض فرنسية جنوبية وأنتارتيكية"
       }
     },
     {
@@ -2067,6 +2145,7 @@ class Countries {
         "sr-Cyrl": "Габон",
         "sr-Latn": "Gabon",
         "zh_TW": "加彭",
+        "ar": "الغابون"
       }
     },
     {
@@ -2093,6 +2172,7 @@ class Countries {
         "sr-Cyrl": "Гамбија",
         "sr-Latn": "Gambija",
         "zh_TW": "岡比亞",
+        "ar": "غامبيا"
       }
     },
     {
@@ -2119,6 +2199,7 @@ class Countries {
         "sr-Cyrl": "Грузија",
         "sr-Latn": "Gruzija",
         "zh_TW": "喬治亞",
+        "ar": "جورجيا"
       }
     },
     {
@@ -2145,6 +2226,7 @@ class Countries {
         "sr-Cyrl": "Немачка",
         "sr-Latn": "Nemačka",
         "zh_TW": "德國",
+        "ar": "ألمانيا"
       }
     },
     {
@@ -2171,6 +2253,7 @@ class Countries {
         "sr-Cyrl": "Гана",
         "sr-Latn": "Gana",
         "zh_TW": "迦納",
+        "ar": "غانا"
       }
     },
     {
@@ -2197,6 +2280,7 @@ class Countries {
         "sr-Cyrl": "Гибралтар",
         "sr-Latn": "Gibraltar",
         "zh_TW": "直布羅陀",
+        "ar": "جبل طارق"
       }
     },
     {
@@ -2223,6 +2307,7 @@ class Countries {
         "sr-Cyrl": "Грчка",
         "sr-Latn": "Grčka",
         "zh_TW": "希臘",
+        "ar": "اليونان"
       }
     },
     {
@@ -2249,6 +2334,7 @@ class Countries {
         "sr-Cyrl": "Гренланд",
         "sr-Latn": "Grenland",
         "zh_TW": "格陵蘭",
+        "ar": "جرينلاند"
       }
     },
     {
@@ -2275,6 +2361,7 @@ class Countries {
         "sr-Cyrl": "Гренада",
         "sr-Latn": "Grenada",
         "zh_TW": "格林納達",
+        "ar": "غرينادا"
       }
     },
     {
@@ -2301,6 +2388,7 @@ class Countries {
         "sr-Cyrl": "Гваделуп",
         "sr-Latn": "Gvadelup",
         "zh_TW": "瓜地洛普",
+        "ar": "غوادلوب"
       }
     },
     {
@@ -2327,6 +2415,7 @@ class Countries {
         "sr-Cyrl": "Гвам",
         "sr-Latn": "Gvam",
         "zh_TW": "關島",
+        "ar": "غوام"
       }
     },
     {
@@ -2353,6 +2442,7 @@ class Countries {
         "sr-Cyrl": "Гватемала",
         "sr-Latn": "Gvatemala",
         "zh_TW": "瓜地馬拉",
+        "ar": "غواتيمالا"
       }
     },
     {
@@ -2379,6 +2469,7 @@ class Countries {
         "sr-Cyrl": "Гернзи",
         "sr-Latn": "Gernzi",
         "zh_TW": "根息島",
+        "ar": "غيرنزي"
       }
     },
     {
@@ -2405,6 +2496,7 @@ class Countries {
         "sr-Cyrl": "Гвинеја",
         "sr-Latn": "Gvineja",
         "zh_TW": "幾內亞",
+        "ar": "غينيا"
       }
     },
     {
@@ -2431,6 +2523,7 @@ class Countries {
         "sr-Cyrl": "Гвинеја Бисао",
         "sr-Latn": "Gvineja Bisao",
         "zh_TW": "幾內亞比索",
+        "ar": "غينيا بيساو"
       }
     },
     {
@@ -2457,6 +2550,7 @@ class Countries {
         "sr-Cyrl": "Гвајана",
         "sr-Latn": "Gvajana",
         "zh_TW": "蓋亞那",
+        "ar": "غيانا"
       }
     },
     {
@@ -2483,6 +2577,7 @@ class Countries {
         "sr-Cyrl": "Хаити",
         "sr-Latn": "Haiti",
         "zh_TW": "海地",
+        "ar": "هايتي"
       }
     },
     {
@@ -2509,6 +2604,7 @@ class Countries {
         "sr-Cyrl": "Острва Херд и Макдоналд",
         "sr-Latn": "Ostrva Herd i Makdonald",
         "zh_TW": "赫德暨麥當勞群島",
+        "ar": "جزيرة هيرد وجزر ماكدونالد"
       }
     },
     {
@@ -2535,6 +2631,7 @@ class Countries {
         "sr-Cyrl": "Ватикан",
         "sr-Latn": "Vatikan",
         "zh_TW": "梵蒂岡",
+        "ar": "الفاتيكان"
       }
     },
     {
@@ -2561,6 +2658,7 @@ class Countries {
         "sr-Cyrl": "Хондурас",
         "sr-Latn": "Honduras",
         "zh_TW": "宏都拉斯",
+        "ar": "هندوراس"
       }
     },
     {
@@ -2587,6 +2685,7 @@ class Countries {
         "sr-Cyrl": "Хонг Конг",
         "sr-Latn": "Hong Kong",
         "zh_TW": "香港",
+        "ar": "هونغ كونغ"
       }
     },
     {
@@ -2613,6 +2712,7 @@ class Countries {
         "sr-Cyrl": "Мађарска",
         "sr-Latn": "Mađarska",
         "zh_TW": "匈牙利",
+        "ar": "المجر"
       }
     },
     {
@@ -2639,6 +2739,7 @@ class Countries {
         "sr-Cyrl": "Исланд",
         "sr-Latn": "Island",
         "zh_TW": "冰島",
+        "ar": "آيسلندا"
       }
     },
     {
@@ -2665,6 +2766,7 @@ class Countries {
         "sr-Cyrl": "Индија",
         "sr-Latn": "Indija",
         "zh_TW": "印度",
+        "ar": "الهند"
       }
     },
     {
@@ -2691,6 +2793,7 @@ class Countries {
         "sr-Cyrl": "Индонезија",
         "sr-Latn": "Indonezija",
         "zh_TW": "印尼",
+        "ar": "إندونيسيا"
       }
     },
     {
@@ -2717,6 +2820,7 @@ class Countries {
         "sr-Cyrl": "Иран",
         "sr-Latn": "Iran",
         "zh_TW": "伊朗",
+        "ar": "إيران"
       }
     },
     {
@@ -2743,6 +2847,7 @@ class Countries {
         "sr-Cyrl": "Ирак",
         "sr-Latn": "Irak",
         "zh_TW": "伊拉克",
+        "ar": "العراق"
       }
     },
     {
@@ -2769,6 +2874,7 @@ class Countries {
         "sr-Cyrl": "Ирска",
         "sr-Latn": "Irska",
         "zh_TW": "愛爾蘭",
+        "ar": "أيرلندا"
       }
     },
     {
@@ -2795,6 +2901,7 @@ class Countries {
         "sr-Cyrl": "Острво Мен",
         "sr-Latn": "Ostrvo Men",
         "zh_TW": "曼島",
+        "ar": "جزيرة مان"
       }
     },
     {
@@ -2821,6 +2928,7 @@ class Countries {
         "sr-Cyrl": "Израел",
         "sr-Latn": "Izrael",
         "zh_TW": "以色列",
+        "ar": "إسرائيل"
       }
     },
     {
@@ -2847,6 +2955,7 @@ class Countries {
         "sr-Cyrl": "Италија",
         "sr-Latn": "Italija",
         "zh_TW": "義大利",
+        "ar": "إيطاليا"
       }
     },
     {
@@ -2873,6 +2982,7 @@ class Countries {
         "sr-Cyrl": "Јамајка",
         "sr-Latn": "Jamajka",
         "zh_TW": "牙買加",
+        "ar": "جامايكا"
       }
     },
     {
@@ -2899,6 +3009,7 @@ class Countries {
         "sr-Cyrl": "Јапан",
         "sr-Latn": "Japan",
         "zh_TW": "日本",
+        "ar": "اليابان"
       }
     },
     {
@@ -2925,6 +3036,7 @@ class Countries {
         "sr-Cyrl": "Џерзи",
         "sr-Latn": "Džerzi",
         "zh_TW": "澤西",
+        "ar": "جيرزي"
       }
     },
     {
@@ -2951,6 +3063,7 @@ class Countries {
         "sr-Cyrl": "Јордан",
         "sr-Latn": "Jordan",
         "zh_TW": "約旦",
+        "ar": "الأردن"
       }
     },
     {
@@ -2977,6 +3090,7 @@ class Countries {
         "sr-Cyrl": "Казахстан",
         "sr-Latn": "Kazahstan",
         "zh_TW": "哈薩克",
+        "ar": "كازاخستان"
       }
     },
     {
@@ -3003,6 +3117,7 @@ class Countries {
         "sr-Cyrl": "Кенија",
         "sr-Latn": "Kenija",
         "zh_TW": "肯亞",
+        "ar": "كينيا"
       }
     },
     {
@@ -3029,6 +3144,7 @@ class Countries {
         "sr-Cyrl": "Кирибати",
         "sr-Latn": "Kiribati",
         "zh_TW": "吉里巴斯",
+        "ar": "كيريباتي"
       }
     },
     {
@@ -3055,6 +3171,7 @@ class Countries {
         "sr-Cyrl": "Северна Кореја",
         "sr-Latn": "Severna Koreja",
         "zh_TW": "北韓",
+        "ar": "كوريا الشمالية"
       }
     },
     {
@@ -3081,6 +3198,7 @@ class Countries {
         "sr-Cyrl": "Јужна Кореја",
         "sr-Latn": "Južna Koreja",
         "zh_TW": "南韓",
+        "ar": "كوريا الجنوبية"
       }
     },
     {
@@ -3107,6 +3225,7 @@ class Countries {
         "sr-Cyrl": "Кувајт",
         "sr-Latn": "Kuvajt",
         "zh_TW": "科威特",
+        "ar": "الكويت"
       }
     },
     {
@@ -3133,6 +3252,7 @@ class Countries {
         "sr-Cyrl": "Киргистан",
         "sr-Latn": "Kirgistan",
         "zh_TW": "吉爾吉斯",
+        "ar": "قيرغيزستان"
       }
     },
     {
@@ -3159,6 +3279,7 @@ class Countries {
         "sr-Cyrl": "Лаос",
         "sr-Latn": "Laos",
         "zh_TW": "寮國",
+        "ar": "لاوس"
       }
     },
     {
@@ -3185,6 +3306,7 @@ class Countries {
         "sr-Cyrl": "Летонија",
         "sr-Latn": "Letonija",
         "zh_TW": "拉托維亞",
+        "ar": "لاتفيا"
       }
     },
     {
@@ -3211,6 +3333,7 @@ class Countries {
         "sr-Cyrl": "Либан",
         "sr-Latn": "Liban",
         "zh_TW": "黎巴嫩",
+        "ar": "لبنان"
       }
     },
     {
@@ -3237,6 +3360,7 @@ class Countries {
         "sr-Cyrl": "Лесото",
         "sr-Latn": "Lesoto",
         "zh_TW": "賴索托",
+        "ar": "ليسوتو"
       }
     },
     {
@@ -3263,6 +3387,7 @@ class Countries {
         "sr-Cyrl": "Либерија",
         "sr-Latn": "Liberija",
         "zh_TW": "賴比瑞亞",
+        "ar": "ليبيريا"
       }
     },
     {
@@ -3289,6 +3414,7 @@ class Countries {
         "sr-Cyrl": "Либија",
         "sr-Latn": "Libija",
         "zh_TW": "利比亞",
+        "ar": "ليبيا"
       }
     },
     {
@@ -3315,6 +3441,7 @@ class Countries {
         "sr-Cyrl": "Лихтенштајн",
         "sr-Latn": "Lihtenštajn",
         "zh_TW": "列支敦斯登",
+        "ar": "ليختنشتاين"
       }
     },
     {
@@ -3341,6 +3468,7 @@ class Countries {
         "sr-Cyrl": "Литванија",
         "sr-Latn": "Litvanija",
         "zh_TW": "立陶宛",
+        "ar": "ليتوانيا"
       }
     },
     {
@@ -3367,6 +3495,7 @@ class Countries {
         "sr-Cyrl": "Луксенбург",
         "sr-Latn": "Luksenburg",
         "zh_TW": "盧森堡",
+        "ar": "لوكسمبورغ"
       }
     },
     {
@@ -3393,6 +3522,7 @@ class Countries {
         "sr-Cyrl": "Макао",
         "sr-Latn": "Makao",
         "zh_TW": "澳門",
+        "ar": "ماكاو"
       }
     },
     {
@@ -3419,6 +3549,7 @@ class Countries {
         "sr-Cyrl": "Северна Македонија",
         "sr-Latn": "Severna Makedonija",
         "zh_TW": "北馬其頓",
+        "ar": "مقدونيا"
       }
     },
     {
@@ -3445,6 +3576,7 @@ class Countries {
         "sr-Cyrl": "Мадагаскар",
         "sr-Latn": "Madagaskar",
         "zh_TW": "馬達加斯加",
+        "ar": "مدغشقر"
       }
     },
     {
@@ -3471,6 +3603,7 @@ class Countries {
         "sr-Cyrl": "Малави",
         "sr-Latn": "Malavi",
         "zh_TW": "馬拉威",
+        "ar": "مالاوي"
       }
     },
     {
@@ -3497,6 +3630,7 @@ class Countries {
         "sr-Cyrl": "Малезија",
         "sr-Latn": "Malezija",
         "zh_TW": "馬來西亞",
+        "ar": "ماليزيا"
       }
     },
     {
@@ -3523,6 +3657,7 @@ class Countries {
         "sr-Cyrl": "Малдиви",
         "sr-Latn": "Maldivi",
         "zh_TW": "馬爾地夫",
+        "ar": "جزر المالديف"
       }
     },
     {
@@ -3549,6 +3684,7 @@ class Countries {
         "sr-Cyrl": "Мали",
         "sr-Latn": "Mali",
         "zh_TW": "馬里",
+        "ar": "مالي"
       }
     },
     {
@@ -3575,6 +3711,7 @@ class Countries {
         "sr-Cyrl": "Малта",
         "sr-Latn": "Malta",
         "zh_TW": "馬爾他",
+        "ar": "مالطا"
       }
     },
     {
@@ -3601,6 +3738,7 @@ class Countries {
         "sr-Cyrl": "Маршалска Острва",
         "sr-Latn": "Maršalska Ostrva",
         "zh_TW": "馬紹爾群島",
+        "ar": "جزر مارشال"
       }
     },
     {
@@ -3627,6 +3765,7 @@ class Countries {
         "sr-Cyrl": "Мартиник",
         "sr-Latn": "Martinik",
         "zh_TW": "馬丁尼克",
+        "ar": "مارتينيك"
       }
     },
     {
@@ -3653,6 +3792,7 @@ class Countries {
         "sr-Cyrl": "Мауританија",
         "sr-Latn": "Mauritanija",
         "zh_TW": "茅利塔尼亞",
+        "ar": "موريتانيا"
       }
     },
     {
@@ -3679,6 +3819,7 @@ class Countries {
         "sr-Cyrl": "Маурицијус",
         "sr-Latn": "Mauricijus",
         "zh_TW": "模里西斯",
+        "ar": "موريشيوس"
       }
     },
     {
@@ -3705,6 +3846,7 @@ class Countries {
         "sr-Cyrl": "Мајота",
         "sr-Latn": "Majota",
         "zh_TW": "馬約特",
+        "ar": "مايوت"
       }
     },
     {
@@ -3731,6 +3873,7 @@ class Countries {
         "sr-Cyrl": "Мексико",
         "sr-Latn": "Meksiko",
         "zh_TW": "墨西哥",
+        "ar": "المكسيك"
       }
     },
     {
@@ -3757,6 +3900,7 @@ class Countries {
         "sr-Cyrl": "Микронезија",
         "sr-Latn": "Mikronezija",
         "zh_TW": "密克羅尼西亞",
+        "ar": "ولايات ميكرونيسيا المتحدة"
       }
     },
     {
@@ -3783,6 +3927,7 @@ class Countries {
         "sr-Cyrl": "Молдавија",
         "sr-Latn": "Moldavija",
         "zh_TW": "摩爾多瓦",
+        "ar": "مولدوفا"
       }
     },
     {
@@ -3809,6 +3954,7 @@ class Countries {
         "sr-Cyrl": "Монако",
         "sr-Latn": "Monako",
         "zh_TW": "摩納哥",
+        "ar": "موناكو"
       }
     },
     {
@@ -3835,6 +3981,7 @@ class Countries {
         "sr-Cyrl": "Монголија",
         "sr-Latn": "Mongolija",
         "zh_TW": "蒙古",
+        "ar": "منغوليا"
       }
     },
     {
@@ -3861,6 +4008,7 @@ class Countries {
         "sr-Cyrl": "Црна Гора",
         "sr-Latn": "Crna Gora",
         "zh_TW": "蒙特內哥羅",
+        "ar": "الجبل الأسود"
       }
     },
     {
@@ -3887,6 +4035,7 @@ class Countries {
         "sr-Cyrl": "Монтсерат",
         "sr-Latn": "Montserat",
         "zh_TW": "蒙哲臘",
+        "ar": "مونتسرات"
       }
     },
     {
@@ -3913,6 +4062,7 @@ class Countries {
         "sr-Cyrl": "Мароко",
         "sr-Latn": "Maroko",
         "zh_TW": "摩洛哥",
+        "ar": "المغرب"
       }
     },
     {
@@ -3939,6 +4089,7 @@ class Countries {
         "sr-Cyrl": "Мозамбик",
         "sr-Latn": "Mozambik",
         "zh_TW": "莫三比克",
+        "ar": "موزمبيق"
       }
     },
     {
@@ -3965,6 +4116,7 @@ class Countries {
         "sr-Cyrl": "Мјанмар (Бурма)",
         "sr-Latn": "Mjanmar (Burma)",
         "zh_TW": "緬甸",
+        "ar": "ميانمار"
       }
     },
     {
@@ -3991,6 +4143,7 @@ class Countries {
         "sr-Cyrl": "Намибија",
         "sr-Latn": "Namibija",
         "zh_TW": "納米比亞",
+        "ar": "ناميبيا"
       }
     },
     {
@@ -4017,6 +4170,7 @@ class Countries {
         "sr-Cyrl": "Науру",
         "sr-Latn": "Nauru",
         "zh_TW": "諾魯",
+        "ar": "ناورو"
       }
     },
     {
@@ -4043,6 +4197,7 @@ class Countries {
         "sr-Cyrl": "Непал",
         "sr-Latn": "Nepal",
         "zh_TW": "尼泊爾",
+        "ar": "نيبال"
       }
     },
     {
@@ -4069,6 +4224,7 @@ class Countries {
         "sr-Cyrl": "Холандија",
         "sr-Latn": "Holandija",
         "zh_TW": "荷蘭",
+        "ar": "هولندا"
       }
     },
     {
@@ -4095,6 +4251,7 @@ class Countries {
         "sr-Cyrl": "Нова Каледонија",
         "sr-Latn": "Nova Kaledonija",
         "zh_TW": "新喀里多尼亞",
+        "ar": "كاليدونيا الجديدة"
       }
     },
     {
@@ -4121,6 +4278,7 @@ class Countries {
         "sr-Cyrl": "Нови Зеланд",
         "sr-Latn": "Novi Zeland",
         "zh_TW": "紐西蘭",
+        "ar": "نيوزيلندا"
       }
     },
     {
@@ -4147,6 +4305,7 @@ class Countries {
         "sr-Cyrl": "Никарагва",
         "sr-Latn": "Nikaragva",
         "zh_TW": "尼加拉瓜",
+        "ar": "نيكاراغوا"
       }
     },
     {
@@ -4173,6 +4332,7 @@ class Countries {
         "sr-Cyrl": "Нигер",
         "sr-Latn": "Niger",
         "zh_TW": "尼日爾",
+        "ar": "النيجر"
       }
     },
     {
@@ -4199,6 +4359,7 @@ class Countries {
         "sr-Cyrl": "Нигерија",
         "sr-Latn": "Nigerija",
         "zh_TW": "奈及利亞",
+        "ar": "نيجيريا"
       }
     },
     {
@@ -4225,6 +4386,7 @@ class Countries {
         "sr-Cyrl": "Нијуе",
         "sr-Latn": "Nijue",
         "zh_TW": "紐埃",
+        "ar": "نييوي"
       }
     },
     {
@@ -4251,6 +4413,7 @@ class Countries {
         "sr-Cyrl": "Острво Норфок",
         "sr-Latn": "Ostrvo Norfok",
         "zh_TW": "諾福克島",
+        "ar": "جزيرة نورفولك"
       }
     },
     {
@@ -4277,6 +4440,7 @@ class Countries {
         "sr-Cyrl": "Северна Маријанска Острва",
         "sr-Latn": "Severna Marijanska Ostrva",
         "zh_TW": "北馬利安納群島",
+        "ar": "جزر ماريانا الشمالية"
       }
     },
     {
@@ -4303,6 +4467,7 @@ class Countries {
         "sr-Cyrl": "Норвешка",
         "sr-Latn": "Norveška",
         "zh_TW": "挪威",
+        "ar": "النرويج"
       }
     },
     {
@@ -4329,6 +4494,7 @@ class Countries {
         "sr-Cyrl": "Оман",
         "sr-Latn": "Oman",
         "zh_TW": "阿曼",
+        "ar": "عمان"
       }
     },
     {
@@ -4355,6 +4521,7 @@ class Countries {
         "sr-Cyrl": "Пакистан",
         "sr-Latn": "Pakistan",
         "zh_TW": "巴基斯坦",
+        "ar": "باكستان"
       }
     },
     {
@@ -4381,6 +4548,7 @@ class Countries {
         "sr-Cyrl": "Палау",
         "sr-Latn": "Palau",
         "zh_TW": "帛琉",
+        "ar": "بالاو"
       }
     },
     {
@@ -4407,6 +4575,7 @@ class Countries {
         "sr-Cyrl": "Палестина",
         "sr-Latn": "Palestina",
         "zh_TW": "巴勒斯坦",
+        "ar": "فلسطين"
       }
     },
     {
@@ -4433,6 +4602,7 @@ class Countries {
         "sr-Cyrl": "Панама",
         "sr-Latn": "Panama",
         "zh_TW": "巴拿馬",
+        "ar": "بنما"
       }
     },
     {
@@ -4459,6 +4629,7 @@ class Countries {
         "sr-Cyrl": "Папуа Нова Гвинеја",
         "sr-Latn": "Papua Nova Gvineja",
         "zh_TW": "巴布亞新幾內亞",
+        "ar": "بابوا غينيا الجديدة"
       }
     },
     {
@@ -4484,7 +4655,8 @@ class Countries {
         "pt_BR": "Paraguai",
         "sr-Cyrl": "Парагвај",
         "sr-Latn": "Paragvaj",
-        "zh_TW": "巴拉圭"
+        "zh_TW": "巴拉圭",
+        "ar": "باراغواي"
       }
     },
     {
@@ -4511,6 +4683,7 @@ class Countries {
         "sr-Cyrl": "Перу",
         "sr-Latn": "Peru",
         "zh_TW": "秘鲁",
+        "ar": "بيرو"
       }
     },
     {
@@ -4537,6 +4710,7 @@ class Countries {
         "sr-Cyrl": "Филипини",
         "sr-Latn": "Filipini",
         "zh_TW": "菲律賓",
+        "ar": "الفلبين"
       }
     },
     {
@@ -4563,6 +4737,7 @@ class Countries {
         "sr-Cyrl": "Острва Питкерн",
         "sr-Latn": "Ostrva Pitkern",
         "zh_TW": "皮特肯群島",
+        "ar": "جزر بيتكيرن"
       }
     },
     {
@@ -4589,6 +4764,7 @@ class Countries {
         "sr-Cyrl": "Пољска",
         "sr-Latn": "Poljska",
         "zh_TW": "波蘭",
+        "ar": "بولندا"
       }
     },
     {
@@ -4615,6 +4791,7 @@ class Countries {
         "sr-Cyrl": "Португалија",
         "sr-Latn": "Portugalija",
         "zh_TW": "葡萄牙",
+        "ar": "البرتغال"
       }
     },
     {
@@ -4641,6 +4818,7 @@ class Countries {
         "sr-Cyrl": "Порто Рико",
         "sr-Latn": "Porto Riko",
         "zh_TW": "波多黎各",
+        "ar": "بورتوريكو"
       }
     },
     {
@@ -4667,6 +4845,7 @@ class Countries {
         "sr-Cyrl": "Катар",
         "sr-Latn": "Katar",
         "zh_TW": "卡達",
+        "ar": "قطر"
       }
     },
     {
@@ -4693,6 +4872,7 @@ class Countries {
         "sr-Cyrl": "Реинион",
         "sr-Latn": "Reinion",
         "zh_TW": "留尼旺",
+        "ar": "لا ريونيون"
       }
     },
     {
@@ -4719,6 +4899,7 @@ class Countries {
         "sr-Cyrl": "Румунија",
         "sr-Latn": "Rumunija",
         "zh_TW": "羅馬尼亞",
+        "ar": "رومانيا"
       }
     },
     {
@@ -4745,6 +4926,7 @@ class Countries {
         "sr-Cyrl": "Русија",
         "sr-Latn": "Rusija",
         "zh_TW": "俄羅斯",
+        "ar": "روسيا"
       }
     },
     {
@@ -4771,6 +4953,7 @@ class Countries {
         "sr-Cyrl": "Руанда",
         "sr-Latn": "Ruanda",
         "zh_TW": "盧安達",
+        "ar": "رواندا"
       }
     },
     {
@@ -4797,6 +4980,7 @@ class Countries {
         "sr-Cyrl": "Сент Бартелеми",
         "sr-Latn": "Sent Bartelemi",
         "zh_TW": "聖巴瑟米",
+        "ar": "سان بارتيلمي"
       }
     },
     {
@@ -4823,6 +5007,7 @@ class Countries {
         "sr-Cyrl": "Света Јелена, Асенсион и Тристан да Куња",
         "sr-Latn": "Sveta Jelena, Asension i Tristan de Kunja",
         "zh_TW": "聖凱倫拿島",
+        "ar": "سانت هيلانة وأسينشين وتريستان دا كونا"
       }
     },
     {
@@ -4849,6 +5034,7 @@ class Countries {
         "sr-Cyrl": "Сент Китс и Невис",
         "sr-Latn": "Sent Kits i Nevis",
         "zh_TW": "聖克里斯多福及尼維斯",
+        "ar": "سانت كيتس ونيفيس"
       }
     },
     {
@@ -4875,6 +5061,7 @@ class Countries {
         "sr-Cyrl": "Света Луција",
         "sr-Latn": "Sveta Lucija",
         "zh_TW": "聖露西亞",
+        "ar": "سانت لوسيا"
       }
     },
     {
@@ -4901,6 +5088,7 @@ class Countries {
         "sr-Cyrl": "Свети Мартин",
         "sr-Latn": "Sveti Martin",
         "zh_TW": "聖馬丁",
+        "ar": "تجمع سان مارتين"
       }
     },
     {
@@ -4927,6 +5115,7 @@ class Countries {
         "sr-Cyrl": "Сен Пјер и Микелон",
         "sr-Latn": "Sen Pjer i Mikelon",
         "zh_TW": "聖皮埃與密克隆群島",
+        "ar": "سان بيير وميكلون"
       }
     },
     {
@@ -4953,6 +5142,7 @@ class Countries {
         "sr-Cyrl": "Свети Винсент и Гренадини",
         "sr-Latn": "Sveti Vinsent i Grenadini",
         "zh_TW": "聖文森及格瑞那丁",
+        "ar": "سانت فينسنت والغرينادين"
       }
     },
     {
@@ -4979,6 +5169,7 @@ class Countries {
         "sr-Cyrl": "Самоа",
         "sr-Latn": "Samoa",
         "zh_TW": "薩摩亞",
+        "ar": "ساموا"
       }
     },
     {
@@ -5005,6 +5196,7 @@ class Countries {
         "sr-Cyrl": "Сан Марино",
         "sr-Latn": "San Marino",
         "zh_TW": "聖馬利諾",
+        "ar": "سان مارينو"
       }
     },
     {
@@ -5031,6 +5223,7 @@ class Countries {
         "sr-Cyrl": "Сао Томе и Принсипе",
         "sr-Latn": "Sao Tome i Prinsipe",
         "zh_TW": "聖多美普林西比",
+        "ar": "ساو تومي وبرينسيب"
       }
     },
     {
@@ -5057,6 +5250,7 @@ class Countries {
         "sr-Cyrl": "Саудијска Арабија",
         "sr-Latn": "Saudijska Arabija",
         "zh_TW": "沙烏地阿拉",
+        "ar": "السعودية"
       }
     },
     {
@@ -5083,6 +5277,7 @@ class Countries {
         "sr-Cyrl": "Сенегал",
         "sr-Latn": "Senegal",
         "zh_TW": "塞內加爾",
+        "ar": "السنغال"
       }
     },
     {
@@ -5109,6 +5304,7 @@ class Countries {
         "sr-Cyrl": "Србија",
         "sr-Latn": "Srbija",
         "zh_TW": "塞爾維亞",
+        "ar": "صربيا"
       }
     },
     {
@@ -5135,6 +5331,7 @@ class Countries {
         "sr-Cyrl": "Сејшели",
         "sr-Latn": "Sejšeli",
         "zh_TW": "塞席爾",
+        "ar": "سيشل"
       }
     },
     {
@@ -5161,6 +5358,7 @@ class Countries {
         "sr-Cyrl": "Сијера Леоне",
         "sr-Latn": "Sijera Leone",
         "zh_TW": "獅子山",
+        "ar": "سيراليون"
       }
     },
     {
@@ -5187,6 +5385,7 @@ class Countries {
         "sr-Cyrl": "Сингапур",
         "sr-Latn": "Singapur",
         "zh_TW": "新加坡",
+        "ar": "سنغافورة"
       }
     },
     {
@@ -5213,6 +5412,7 @@ class Countries {
         "sr-Cyrl": "Словачка",
         "sr-Latn": "Slovačka",
         "zh_TW": "斯洛伐克",
+        "ar": "سلوفاكيا"
       }
     },
     {
@@ -5239,6 +5439,7 @@ class Countries {
         "sr-Cyrl": "Словеније",
         "sr-Latn": "Slovenija",
         "zh_TW": "斯洛維尼亞",
+        "ar": "سلوفينيا"
       }
     },
     {
@@ -5264,7 +5465,8 @@ class Countries {
         "pt_BR": "Ilhas Salomão",
         "sr-Cyrl": "Соломонска Острва",
         "sr-Latn": "Solomonska Ostrva",
-        "zh_TW": "所羅門群島"
+        "zh_TW": "所羅門群島",
+        "ar": "جزر سليمان"
       }
     },
     {
@@ -5291,6 +5493,7 @@ class Countries {
         "sr-Cyrl": "Сомалија",
         "sr-Latn": "Somalija",
         "zh_TW": "索馬利亞",
+        "ar": "الصومال"
       }
     },
     {
@@ -5317,6 +5520,7 @@ class Countries {
         "sr-Cyrl": "Јужноафричка Република",
         "sr-Latn": "Južnoafrička Republika",
         "zh_TW": "南非",
+        "ar": "جنوب أفريقيا"
       }
     },
     {
@@ -5343,6 +5547,7 @@ class Countries {
         "sr-Cyrl": "Јужна Џорџија и Јужна Сендвичка Острва",
         "sr-Latn": "Južna Džordžija i Južna Sendvička Ostrva",
         "zh_TW": "南喬治亞與南三明治群島 ",
+        "ar": "جورجيا الجنوبية وجزر ساندويتش الجنوبية"
       }
     },
     {
@@ -5369,6 +5574,7 @@ class Countries {
         "sr-Cyrl": "Јужни Судан",
         "sr-Latn": "Južni Sudan",
         "zh_TW": "南蘇丹",
+        "ar": "جنوب السودان"
       }
     },
     {
@@ -5395,6 +5601,7 @@ class Countries {
         "sr-Cyrl": "Шпанија",
         "sr-Latn": "Španija",
         "zh_TW": "西班牙",
+        "ar": "إسبانيا"
       }
     },
     {
@@ -5420,7 +5627,8 @@ class Countries {
         "pt_BR": "Sri Lanka",
         "sr-Cyrl": "Шри Ланка",
         "sr-Latn": "Šri Lanka",
-        "zh_TW": "斯里蘭卡"
+        "zh_TW": "斯里蘭卡",
+        "ar": "سريلانكا"
       }
     },
     {
@@ -5447,6 +5655,7 @@ class Countries {
         "sr-Cyrl": "Судан",
         "sr-Latn": "Sudan",
         "zh_TW": "蘇丹",
+        "ar": "السودان"
       }
     },
     {
@@ -5473,6 +5682,7 @@ class Countries {
         "sr-Cyrl": "Суринам",
         "sr-Latn": "Surinam",
         "zh_TW": "蘇利南",
+        "ar": "سورينام"
       }
     },
     {
@@ -5499,6 +5709,7 @@ class Countries {
         "sr-Cyrl": "Свалбард",
         "sr-Latn": "Svalbard",
         "zh_TW": "斯瓦巴及尖棉",
+        "ar": "سفالبارد ويان ماين"
       }
     },
     {
@@ -5525,6 +5736,7 @@ class Countries {
         "sr-Cyrl": "Свазиланд",
         "sr-Latn": "Svaziland",
         "zh_TW": "史瓦帝尼",
+        "ar": "إسواتيني"
       }
     },
     {
@@ -5551,6 +5763,7 @@ class Countries {
         "sr-Cyrl": "Шведска",
         "sr-Latn": "Švedska",
         "zh_TW": "瑞典",
+        "ar": "السويد"
       }
     },
     {
@@ -5577,6 +5790,7 @@ class Countries {
         "sr-Cyrl": "Швајцарска",
         "sr-Latn": "Švajcarska",
         "zh_TW": "瑞士",
+        "ar": "سويسرا"
       }
     },
     {
@@ -5603,6 +5817,7 @@ class Countries {
         "sr-Cyrl": "Сирија",
         "sr-Latn": "Sirija",
         "zh_TW": "敘利亞",
+        "ar": "سوريا"
       }
     },
     {
@@ -5629,6 +5844,7 @@ class Countries {
         "sr-Cyrl": "Тајван",
         "sr-Latn": "Tajvan",
         "zh_TW": "台灣",
+        "ar": "تايوان"
       }
     },
     {
@@ -5655,6 +5871,7 @@ class Countries {
         "sr-Cyrl": "Таџикистан",
         "sr-Latn": "Tadžikistan",
         "zh_TW": "塔吉克",
+        "ar": "طاجيكستان"
       }
     },
     {
@@ -5681,6 +5898,7 @@ class Countries {
         "sr-Cyrl": "Танзанија",
         "sr-Latn": "Tanzanija",
         "zh_TW": "坦尚尼亞",
+        "ar": "تنزانيا"
       }
     },
     {
@@ -5707,6 +5925,7 @@ class Countries {
         "sr-Cyrl": "Тајланд",
         "sr-Latn": "Tajland",
         "zh_TW": "泰國",
+        "ar": "تايلاند"
       }
     },
     {
@@ -5733,6 +5952,7 @@ class Countries {
         "sr-Cyrl": "Источни Тимор",
         "sr-Latn": "Istočni Timor",
         "zh_TW": "東帝汶",
+        "ar": "تيمور الشرقية"
       }
     },
     {
@@ -5759,6 +5979,7 @@ class Countries {
         "sr-Cyrl": "Того",
         "sr-Latn": "Togo",
         "zh_TW": "多哥",
+        "ar": "توغو"
       }
     },
     {
@@ -5785,6 +6006,7 @@ class Countries {
         "sr-Cyrl": "Токелау",
         "sr-Latn": "Tokelau",
         "zh_TW": "托克勞",
+        "ar": "توكيلاو"
       }
     },
     {
@@ -5811,6 +6033,7 @@ class Countries {
         "sr-Cyrl": "Тонга",
         "sr-Latn": "Tonga",
         "zh_TW": "東加",
+        "ar": "تونغا"
       }
     },
     {
@@ -5837,6 +6060,7 @@ class Countries {
         "sr-Cyrl": "Тринидад и Тобаго",
         "sr-Latn": "Trinidad i Tobago",
         "zh_TW": "千里達及托巴哥",
+        "ar": "ترينيداد وتوباغو"
       }
     },
     {
@@ -5863,6 +6087,7 @@ class Countries {
         "sr-Cyrl": "Тунис",
         "sr-Latn": "Tunis",
         "zh_TW": "突尼西亞",
+        "ar": "تونس"
       }
     },
     {
@@ -5889,6 +6114,7 @@ class Countries {
         "sr-Cyrl": "Турска",
         "sr-Latn": "Turska",
         "zh_TW": "土耳其",
+        "ar": "تركيا"
       }
     },
     {
@@ -5915,6 +6141,7 @@ class Countries {
         "sr-Cyrl": "Туркменистан",
         "sr-Latn": "Turkmenistan",
         "zh_TW": "土庫曼",
+        "ar": "تركمانستان"
       }
     },
     {
@@ -5941,6 +6168,7 @@ class Countries {
         "sr-Cyrl": "Туркс и Кајкос",
         "sr-Latn": "Turks i Kajkos",
         "zh_TW": "土克斯及開科斯群島",
+        "ar": "جزر توركس وكايكوس"
       }
     },
     {
@@ -5967,6 +6195,7 @@ class Countries {
         "sr-Cyrl": "Тувалу",
         "sr-Latn": "Tuvalu",
         "zh_TW": "圖瓦盧",
+        "ar": "توفالو"
       }
     },
     {
@@ -5993,6 +6222,7 @@ class Countries {
         "sr-Cyrl": "Уганда",
         "sr-Latn": "Uganda",
         "zh_TW": "烏干達",
+        "ar": "أوغندا"
       }
     },
     {
@@ -6019,6 +6249,7 @@ class Countries {
         "sr-Cyrl": "Украјина",
         "sr-Latn": "Ukrajina",
         "zh_TW": "烏克蘭",
+        "ar": "أوكرانيا"
       }
     },
     {
@@ -6045,6 +6276,7 @@ class Countries {
         "sr-Cyrl": "Уједињени Арапски Емирати",
         "sr-Latn": "Ujedinjeni Arapski Emirati",
         "zh_TW": "阿拉伯聯合大公國",
+        "ar": "الإمارات العربية المتحدة"
       }
     },
     {
@@ -6071,6 +6303,7 @@ class Countries {
         "sr-Cyrl": "Уједињено Краљевство",
         "sr-Latn": "Ujedinjeno Kraljevstvo",
         "zh_TW": "英國",
+        "ar": "المملكة المتحدة"
       }
     },
     {
@@ -6097,6 +6330,7 @@ class Countries {
         "sr-Cyrl": "Сједињене Америчке Државе",
         "sr-Latn": "Sjedinjene Američke Države",
         "zh_TW": "美國",
+        "ar": "الولايات المتحدة"
       }
     },
     {
@@ -6123,6 +6357,7 @@ class Countries {
         "sr-Cyrl": "Уругвај",
         "sr-Latn": "Urugvaj",
         "zh_TW": "烏拉圭",
+        "ar": "الأوروغواي"
       }
     },
     {
@@ -6149,6 +6384,7 @@ class Countries {
         "sr-Cyrl": "Узбекистан",
         "sr-Latn": "Uzbekistan",
         "zh_TW": "烏玆別克",
+        "ar": "أوزبكستان"
       }
     },
     {
@@ -6175,6 +6411,7 @@ class Countries {
         "sr-Cyrl": "Вануату",
         "sr-Latn": "Vanuatu",
         "zh_TW": "瓦努阿圖",
+        "ar": "فانواتو"
       }
     },
     {
@@ -6201,6 +6438,7 @@ class Countries {
         "sr-Cyrl": "Венецуела",
         "sr-Latn": "Venecuela",
         "zh_TW": "委內瑞拉",
+        "ar": "فنزويلا"
       }
     },
     {
@@ -6227,6 +6465,7 @@ class Countries {
         "sr-Cyrl": "Вијетнам",
         "sr-Latn": "Vijetnam",
         "zh_TW": "越南",
+        "ar": "فيتنام"
       }
     },
     {
@@ -6253,6 +6492,7 @@ class Countries {
         "sr-Cyrl": "Британска Девичанска Острва",
         "sr-Latn": "Britanska Devičanska Ostrva",
         "zh_TW": "英屬維京群島",
+        "ar": "جزر العذراء البريطانية"
       }
     },
     {
@@ -6279,6 +6519,7 @@ class Countries {
         "sr-Cyrl": "Амепичка Девичанска Острва",
         "sr-Latn": "Američka Devičanska Ostrva",
         "zh_TW": "美屬維京群島",
+        "ar": "جزر العذراء الأمريكية"
       }
     },
     {
@@ -6305,6 +6546,7 @@ class Countries {
         "sr-Cyrl": "Валис и Футуна",
         "sr-Latn": "Valis i Futuna",
         "zh_TW": "瓦利斯和富圖那",
+        "ar": "والس وفوتونا"
       }
     },
     {
@@ -6331,6 +6573,7 @@ class Countries {
         "sr-Cyrl": "Јемен",
         "sr-Latn": "Jemen",
         "zh_TW": "葉門",
+        "ar": "اليمن"
       }
     },
     {
@@ -6357,6 +6600,7 @@ class Countries {
         "sr-Cyrl": "Замбија",
         "sr-Latn": "Zambija",
         "zh_TW": "贊比亞",
+        "ar": "زامبيا"
       }
     },
     {
@@ -6383,6 +6627,7 @@ class Countries {
         "sr-Cyrl": "Зимбабве",
         "sr-Latn": "Zimbabve",
         "zh_TW": "辛巴威",
+        "ar": "زيمبابوي"
       }
     }
   ];
