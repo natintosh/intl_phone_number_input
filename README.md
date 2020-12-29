@@ -209,3 +209,6 @@ Made with [contributors-img](https://contributors-img.web.app).
 # Credits
 
 A special thanks to [niinyarko](https://github.com/niinyarko/flutter-international-phone-input)
+
+# FAQ
+* For discussions and frequent question and concerns, check [here](https://github.com/natintosh/intl_phone_number_input/discussions/159)
