@@ -53,6 +53,8 @@ class InternationalPhoneNumberInput extends StatefulWidget {
   final String errorMessage;
 
   final double selectorButtonOnErrorPadding;
+
+  /// Ignored if [setSelectorButtonAsPrefixIcon = true]
   final double spaceBetweenSelectorAndTextField;
   final int maxLength;
 
@@ -382,30 +384,29 @@ class _InputWidgetView
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-          widget.selectorConfig.setSelectorButtonAsPrefixIcon
-              ? SizedBox.shrink()
-              : Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: <Widget>[
-                    SelectorButton(
-                      country: state.country,
-                      countries: state.countries,
-                      onCountryChanged: state.onCountryChanged,
-                      selectorConfig: widget.selectorConfig,
-                      selectorTextStyle: widget.selectorTextStyle,
-                      searchBoxDecoration: widget.searchBoxDecoration,
-                      locale: state.locale,
-                      isEnabled: widget.isEnabled,
-                      autoFocusSearchField: widget.autoFocusSearch,
-                      isScrollControlled:
-                          widget.countrySelectorScrollControlled,
-                    ),
-                    SizedBox(
-                      height: state.selectorButtonBottomPadding,
-                    ),
-                  ],
+          if (!widget.selectorConfig.setSelectorButtonAsPrefixIcon) ...[
+            Column(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                SelectorButton(
+                  country: state.country,
+                  countries: state.countries,
+                  onCountryChanged: state.onCountryChanged,
+                  selectorConfig: widget.selectorConfig,
+                  selectorTextStyle: widget.selectorTextStyle,
+                  searchBoxDecoration: widget.searchBoxDecoration,
+                  locale: state.locale,
+                  isEnabled: widget.isEnabled,
+                  autoFocusSearchField: widget.autoFocusSearch,
+                  isScrollControlled: widget.countrySelectorScrollControlled,
                 ),
-          SizedBox(width: widget.spaceBetweenSelectorAndTextField),
+                SizedBox(
+                  height: state.selectorButtonBottomPadding,
+                ),
+              ],
+            ),
+            SizedBox(width: widget.spaceBetweenSelectorAndTextField),
+          ],
           Flexible(
             child: TextFormField(
               key: Key(TestHelper.TextInputKeyValue),
