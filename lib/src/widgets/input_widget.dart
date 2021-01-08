@@ -11,6 +11,7 @@ import 'package:intl_phone_number_input/src/utils/test/test_helper.dart';
 import 'package:intl_phone_number_input/src/utils/util.dart';
 import 'package:intl_phone_number_input/src/utils/widget_view.dart';
 import 'package:intl_phone_number_input/src/widgets/selector_button.dart';
+import 'package:flutter_libphonenumber/flutter_libphonenumber.dart';
 
 /// Enum for [SelectorButton] types.
 ///
@@ -78,11 +79,13 @@ class InternationalPhoneNumberInput extends StatefulWidget {
 
   final FocusNode focusNode;
   final Iterable<String> autofillHints;
+  final Key fieldKey;
 
   final List<String> countries;
 
   InternationalPhoneNumberInput(
       {Key key,
+      this.fieldKey,
       this.selectorConfig = const SelectorConfig(),
       @required this.onInputChanged,
       this.onInputValidated,
@@ -408,7 +411,7 @@ class _InputWidgetView
           SizedBox(width: widget.spaceBetweenSelectorAndTextField),
           Flexible(
             child: TextFormField(
-              key: Key(TestHelper.TextInputKeyValue),
+              key: widget.fieldKey,
               textDirection: TextDirection.ltr,
               controller: state.controller,
               focusNode: widget.focusNode,
