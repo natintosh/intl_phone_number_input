@@ -30,10 +30,11 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  final phoneKey = GlobalKey<FormFieldState<String>>();
 
   final TextEditingController controller = TextEditingController();
-  String initialCountry = 'NG';
-  PhoneNumber number = PhoneNumber(isoCode: 'NG');
+  String initialCountry = 'US';
+  PhoneNumber number = PhoneNumber(isoCode: 'US');
 
   @override
   Widget build(BuildContext context) {
@@ -50,6 +51,7 @@ class _MyHomePageState extends State<MyHomePage> {
               onInputValidated: (bool value) {
                 print(value);
               },
+              fieldKey: phoneKey,
               selectorConfig: SelectorConfig(
                 selectorType: PhoneInputSelectorType.BOTTOM_SHEET,
               ),
@@ -58,8 +60,12 @@ class _MyHomePageState extends State<MyHomePage> {
               selectorTextStyle: TextStyle(color: Colors.black),
               initialValue: number,
               textFieldController: controller,
-              formatInput: false,
-              keyboardType: TextInputType.numberWithOptions(signed: true, decimal: true),
+              formatInput: true,
+              validator: (String value) {
+                return null;
+              },
+              keyboardType:
+                  TextInputType.numberWithOptions(signed: true, decimal: true),
               inputBorder: OutlineInputBorder(),
               onSaved: (PhoneNumber number) {
                 print('On Saved: $number');
@@ -67,7 +73,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             RaisedButton(
               onPressed: () {
-                formKey.currentState.validate();
+                phoneKey.currentState.validate();
               },
               child: Text('Validate'),
             ),
@@ -79,7 +85,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             RaisedButton(
               onPressed: () {
-                formKey.currentState.save();
+                phoneKey.currentState.save();
               },
               child: Text('Save'),
             ),
