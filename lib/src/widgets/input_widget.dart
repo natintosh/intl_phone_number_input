@@ -7,7 +7,6 @@ import 'package:intl_phone_number_input/src/utils/formatter/as_you_type_formatte
 import 'package:intl_phone_number_input/src/utils/phone_number.dart';
 import 'package:intl_phone_number_input/src/utils/phone_number/phone_number_util.dart';
 import 'package:intl_phone_number_input/src/utils/selector_config.dart';
-import 'package:intl_phone_number_input/src/utils/test/test_helper.dart';
 import 'package:intl_phone_number_input/src/utils/util.dart';
 import 'package:intl_phone_number_input/src/utils/widget_view.dart';
 import 'package:intl_phone_number_input/src/widgets/selector_button.dart';
@@ -78,11 +77,13 @@ class InternationalPhoneNumberInput extends StatefulWidget {
 
   final FocusNode focusNode;
   final Iterable<String> autofillHints;
+  final Key fieldKey;
 
   final List<String> countries;
 
   InternationalPhoneNumberInput(
       {Key key,
+      this.fieldKey,
       this.selectorConfig = const SelectorConfig(),
       @required this.onInputChanged,
       this.onInputValidated,
@@ -408,7 +409,7 @@ class _InputWidgetView
           SizedBox(width: widget.spaceBetweenSelectorAndTextField),
           Flexible(
             child: TextFormField(
-              key: Key(TestHelper.TextInputKeyValue),
+              key: widget.fieldKey,
               textDirection: TextDirection.ltr,
               controller: state.controller,
               focusNode: widget.focusNode,

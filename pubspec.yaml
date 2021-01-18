@@ -14,7 +14,6 @@ dependencies:
   libphonenumber: ^1.0.2
   libphonenumber_plugin: ^0.1.0
   equatable: ^1.2.5
-
 dev_dependencies:
   flutter_test:
     sdk: flutter
