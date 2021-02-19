@@ -1,3 +1,4 @@
+import 'package:flutter/rendering.dart';
 import 'package:meta/meta.dart';
 
 /// A [Country] model represents an instance of a country which contains
@@ -43,4 +44,23 @@ class Country {
           : null,
     );
   }
+
+  @override
+  bool operator ==(Object other) {
+    return other is Country
+        && other.alpha2Code == this.alpha2Code
+        && other.alpha3Code == this.alpha3Code
+        && other.dialCode == this.dialCode;
+  }
+
+  @override
+  int get hashCode => hashValues(alpha2Code, alpha3Code, dialCode);
+
+  @override
+  String toString() => '[Country] { '
+      'name: $name, '
+      'alpha2: $alpha2Code, '
+      'alpha3: $alpha3Code, '
+      'dialCode: $dialCode '
+    '}';
 }
