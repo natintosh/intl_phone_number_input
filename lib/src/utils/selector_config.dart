@@ -32,6 +32,12 @@ class SelectorConfig {
   /// [setSelectorButtonAsPrefixIcon], this sets/places the selector button inside the [TextField] as a prefixIcon.
   final bool setSelectorButtonAsPrefixIcon;
 
+  /// Space before the flag icon
+  final double leadingPadding;
+
+  /// Add white space for short dial code
+  final bool trailingSpace;
+
   const SelectorConfig({
     this.selectorType = PhoneInputSelectorType.DROPDOWN,
     this.showFlags = true,
@@ -39,5 +45,7 @@ class SelectorConfig {
     this.backgroundColor,
     this.countryComparator,
     this.setSelectorButtonAsPrefixIcon = false,
+    this.leadingPadding,
+    this.trailingSpace = true,
   });
 }
