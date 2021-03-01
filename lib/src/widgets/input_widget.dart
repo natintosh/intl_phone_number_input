@@ -38,7 +38,7 @@ class InternationalPhoneNumberInput extends StatefulWidget {
 
   final ValueChanged<PhoneNumber> onInputChanged;
   final ValueChanged<bool> onInputValidated;
-
+  final GestureTapCallback onTap;
   final VoidCallback onSubmit;
   final ValueChanged<String> onFieldSubmitted;
   final String Function(String) validator;
@@ -86,6 +86,7 @@ class InternationalPhoneNumberInput extends StatefulWidget {
       this.selectorConfig = const SelectorConfig(),
       @required this.onInputChanged,
       this.onInputValidated,
+        this.onTap,
       this.onSubmit,
       this.onFieldSubmitted,
       this.validator,
@@ -411,6 +412,7 @@ class _InputWidgetView
               key: Key(TestHelper.TextInputKeyValue),
               textDirection: TextDirection.ltr,
               controller: state.controller,
+              onTap: widget.onTap,
               focusNode: widget.focusNode,
               enabled: widget.isEnabled,
               autofocus: widget.autoFocus,
