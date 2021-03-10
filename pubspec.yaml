@@ -13,7 +13,9 @@ dependencies:
 
   libphonenumber: ^1.0.2
   libphonenumber_plugin: #^0.1.0
-    git: https://github.com/flaviup/plugin_libphonenumber/tree/main/libphonenumber #https://github.com/flaviup/plugin_libphonenumber.git
+    git: 
+      url: https://github.com/flaviup/plugin_libphonenumber.git #https://github.com/flaviup/plugin_libphonenumber.git
+      path: libphonenumber
   equatable: ^1.2.5
 
 dev_dependencies:
