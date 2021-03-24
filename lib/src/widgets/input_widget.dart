@@ -224,7 +224,10 @@ class _InputWidgetState extends State<InternationalPhoneNumberInput> {
             widget.onInputChanged(PhoneNumber(
                 phoneNumber: phoneNumber,
                 isoCode: this.country?.alpha2Code,
-                dialCode: this.country?.dialCode));
+                dialCode: this.country?.dialCode,
+                countryName: this.country?.name,
+                flagEmoji: Utils.generateFlagEmojiUnicode(this.country?.alpha2Code ?? '')
+            ));
           }
 
           if (widget.onInputValidated != null) {
