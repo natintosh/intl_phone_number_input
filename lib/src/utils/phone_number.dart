@@ -46,6 +46,8 @@ class PhoneNumber extends Equatable {
     this.phoneNumber,
     this.dialCode,
     this.isoCode,
+    this.countryName,
+    this.flagEmoji
   }) : _hash = 1000 + Random().nextInt(99999 - 1000);
 
   @override
