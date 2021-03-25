@@ -52,13 +52,13 @@ class _MyHomePageState extends State<MyHomePage> {
                 selectorType: PhoneInputSelectorType.BOTTOM_SHEET,
               ),
             ),
-            RaisedButton(
+            ElevatedButton(
               onPressed: () {
                 formKey.currentState.validate();
               },
               child: Text('Validate'),
             ),
-            RaisedButton(
+            ElevatedButton(
               onPressed: () {
                 getPhoneNumber('+15417543010');
               },

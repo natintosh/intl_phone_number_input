@@ -59,25 +59,26 @@ class _MyHomePageState extends State<MyHomePage> {
               initialValue: number,
               textFieldController: controller,
               formatInput: false,
-              keyboardType: TextInputType.numberWithOptions(signed: true, decimal: true),
+              keyboardType:
+                  TextInputType.numberWithOptions(signed: true, decimal: true),
               inputBorder: OutlineInputBorder(),
               onSaved: (PhoneNumber number) {
                 print('On Saved: $number');
               },
             ),
-            RaisedButton(
+            ElevatedButton(
               onPressed: () {
                 formKey.currentState.validate();
               },
               child: Text('Validate'),
             ),
-            RaisedButton(
+            ElevatedButton(
               onPressed: () {
                 getPhoneNumber('+15417543010');
               },
               child: Text('Update'),
             ),
-            RaisedButton(
+            ElevatedButton(
               onPressed: () {
                 formKey.currentState.save();
               },

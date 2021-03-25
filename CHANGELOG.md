@@ -1,3 +1,6 @@
+## [0.6.1]
+* Upgrade dependencies
+
 ## [0.6.0]
   - Added support for Flutter Web :fire: :fire: :fire: :rocket: :rocket: :rocket: .
   - Added textAlign, textAlignVertical.
