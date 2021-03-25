@@ -59,7 +59,8 @@ class _MyHomePageState extends State<MyHomePage> {
               initialValue: number,
               textFieldController: controller,
               formatInput: false,
-              keyboardType: TextInputType.numberWithOptions(signed: true, decimal: true),
+              keyboardType:
+                  TextInputType.numberWithOptions(signed: true, decimal: true),
               inputBorder: OutlineInputBorder(),
               onSaved: (PhoneNumber number) {
                 print('On Saved: $number');
