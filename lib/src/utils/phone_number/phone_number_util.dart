@@ -21,7 +21,7 @@ class PhoneNumberUtil {
   static Future<bool> isValidNumber(
       {@required String phoneNumber, @required String isoCode}) async {
     return kIsWeb
-        ? p.PhoneNumberUtil.isValidNumber(phoneNumber, isoCode)
+        ? p.PhoneNumberUtil.isValidPhoneNumber(phoneNumber, isoCode)
         : l.PhoneNumberUtil.isValidPhoneNumber(
             phoneNumber: phoneNumber, isoCode: isoCode);
   }
