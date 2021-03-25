@@ -190,17 +190,20 @@ class _InputWidgetState extends State<InternationalPhoneNumberInput> {
       List<Country> countries =
           CountryProvider.getCountriesData(countries: widget.countries);
 
-      final CountryComparator countryComparator =
-          widget.selectorConfig?.countryComparator;
-      if (countryComparator != null) {
-        countries.sort(countryComparator);
-      }
-
       Country country = previouslySelectedCountry ??
           Utils.getInitialSelectedCountry(
             countries,
             widget.initialValue?.isoCode ?? '',
           );
+
+      // Remove potential duplicates
+      countries = countries.toSet().toList();
+
+      final CountryComparator countryComparator =
+          widget.selectorConfig?.countryComparator;
+      if (countryComparator != null) {
+        countries.sort(countryComparator);
+      }
 
       setState(() {
         this.countries = countries;
