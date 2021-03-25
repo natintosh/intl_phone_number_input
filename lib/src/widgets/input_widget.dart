@@ -411,6 +411,7 @@ class _InputWidgetView
               key: Key(TestHelper.TextInputKeyValue),
               textDirection: TextDirection.ltr,
               controller: state.controller,
+              cursorColor: widget.cursorColor,
               focusNode: widget.focusNode,
               enabled: widget.isEnabled,
               autofocus: widget.autoFocus,
