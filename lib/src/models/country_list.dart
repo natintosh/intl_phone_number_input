@@ -5824,7 +5824,7 @@ class Countries {
       "num_code": "158",
       "alpha_2_code": "TW",
       "alpha_3_code": "TWN",
-      "en_short_name": "Taiwan, Province of China",
+      "en_short_name": "Taiwan",
       "nationality": "Chinese, Taiwanese",
       "dial_code": "+886",
       "nameTranslations": {
