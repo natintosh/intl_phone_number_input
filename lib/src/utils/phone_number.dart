@@ -39,7 +39,7 @@ class PhoneNumber extends Equatable {
   int get hash => _hash;
 
   @override
-  List<Object> get props => [phoneNumber, dialCode];
+  List<Object> get props => [phoneNumber, isoCode, dialCode];
 
   PhoneNumber({
     this.phoneNumber,
@@ -54,8 +54,7 @@ class PhoneNumber extends Equatable {
 
   /// Returns [PhoneNumber] which contains region information about
   /// the [phoneNumber] and [isoCode] passed.
-  static Future<PhoneNumber> getRegionInfoFromPhoneNumber(
-    String phoneNumber, [
+  static Future<PhoneNumber> getRegionInfoFromPhoneNumber(String phoneNumber, [
     String isoCode = '',
   ]) async {
     assert(isoCode != null);
@@ -63,7 +62,7 @@ class PhoneNumber extends Equatable {
         phoneNumber: phoneNumber ?? '', isoCode: isoCode);
 
     String internationalPhoneNumber =
-        await PhoneNumberUtil.normalizePhoneNumber(
+    await PhoneNumberUtil.normalizePhoneNumber(
       phoneNumber: phoneNumber,
       isoCode: regionInfo.isoCode ?? isoCode,
     );
@@ -108,7 +107,7 @@ class PhoneNumber extends Equatable {
     if (prefix != null && prefix.isNotEmpty) {
       prefix = prefix.startsWith('+') ? prefix : '+$prefix';
       var country = Countries.countryList.firstWhere(
-          (country) => country['dial_code'] == prefix,
+              (country) => country['dial_code'] == prefix,
           orElse: () => null);
       if (country != null && country['alpha_2_code'] != null) {
         return country['alpha_2_code'];
@@ -119,8 +118,8 @@ class PhoneNumber extends Equatable {
 
   /// Returns [PhoneNumberType] which is the type of phone number
   /// Accepts [phoneNumber] and [isoCode] and r
-  static Future<PhoneNumberType> getPhoneNumberType(
-      String phoneNumber, String isoCode) async {
+  static Future<PhoneNumberType> getPhoneNumberType(String phoneNumber,
+      String isoCode) async {
     PhoneNumberType type = await PhoneNumberUtil.getNumberType(
         phoneNumber: phoneNumber, isoCode: isoCode);
 
