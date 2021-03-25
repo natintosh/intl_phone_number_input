@@ -149,42 +149,37 @@ class SelectorButton extends StatelessWidget {
           borderRadius: BorderRadius.only(
               topLeft: Radius.circular(12), topRight: Radius.circular(12))),
       builder: (BuildContext context) {
-        return AnimatedPadding(
-          padding:
-              EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
-          duration: const Duration(milliseconds: 100),
-          child: Stack(children: [
-            GestureDetector(
-              onTap: () => Navigator.pop(context),
-            ),
-            DraggableScrollableSheet(
-              builder: (BuildContext context, ScrollController controller) {
-                return Container(
-                  decoration: ShapeDecoration(
-                    // ignore: deprecated_member_use_from_same_package
-                    color: selectorConfig.backgroundColor ??
-                        Theme.of(context).canvasColor,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(12),
-                        topRight: Radius.circular(12),
-                      ),
+        return Stack(children: [
+          GestureDetector(
+            onTap: () => Navigator.pop(context),
+          ),
+          DraggableScrollableSheet(
+            builder: (BuildContext context, ScrollController controller) {
+              return Container(
+                decoration: ShapeDecoration(
+                  // ignore: deprecated_member_use_from_same_package
+                  color: selectorConfig.backgroundColor ??
+                      Theme.of(context).canvasColor,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(12),
+                      topRight: Radius.circular(12),
                     ),
                   ),
-                  child: CountrySearchListWidget(
-                    countries,
-                    locale,
-                    searchBoxDecoration: searchBoxDecoration,
-                    scrollController: controller,
-                    showFlags: selectorConfig.showFlags,
-                    useEmoji: selectorConfig.useEmoji,
-                    autoFocus: autoFocusSearchField,
-                  ),
-                );
-              },
-            ),
-          ]),
-        );
+                ),
+                child: CountrySearchListWidget(
+                  countries,
+                  locale,
+                  searchBoxDecoration: searchBoxDecoration,
+                  scrollController: controller,
+                  showFlags: selectorConfig.showFlags,
+                  useEmoji: selectorConfig.useEmoji,
+                  autoFocus: autoFocusSearchField,
+                ),
+              );
+            },
+          ),
+        ]);
       },
     );
   }
