@@ -57,12 +57,12 @@ class PhoneNumberUtil {
   /// Returns [Future<PhoneNumberType>] type of phone number
   static Future<PhoneNumberType> getNumberType(
       {@required String phoneNumber, @required String isoCode}) async {
-    var webType = await p.PhoneNumberUtil.getNumberType(phoneNumber, isoCode);
-    var mobileType = await l.PhoneNumberUtil.getNumberType(
-        phoneNumber: phoneNumber, isoCode: isoCode);
+    final dynamic type = kIsWeb
+        ? await p.PhoneNumberUtil.getNumberType(phoneNumber, isoCode)
+        : await l.PhoneNumberUtil.getNumberType(
+            phoneNumber: phoneNumber, isoCode: isoCode);
 
-    return PhoneNumberTypeUtil.getType(
-        kIsWeb ? webType.index : mobileType.index);
+    return PhoneNumberTypeUtil.getType(type.index);
   }
 
   /// [formatAsYouType] uses Google's libphonenumber input format as you type.

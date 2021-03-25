@@ -1,5 +1,6 @@
 ## [0.6.1]
 * Upgrade dependencies
+* cherrypick pending fixes from repo  
 
 ## [0.6.0]
   - Added support for Flutter Web :fire: :fire: :fire: :rocket: :rocket: :rocket: .

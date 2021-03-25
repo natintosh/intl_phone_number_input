@@ -39,7 +39,7 @@ class PhoneNumber extends Equatable {
   int get hash => _hash;
 
   @override
-  List<Object> get props => [phoneNumber, dialCode];
+  List<Object> get props => [phoneNumber, isoCode, dialCode];
 
   PhoneNumber({
     this.phoneNumber,
