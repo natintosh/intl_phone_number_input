@@ -9,6 +9,8 @@ class Item extends StatelessWidget {
   final bool useEmoji;
   final TextStyle textStyle;
   final bool withCountryNames;
+  final double leadingPadding;
+  final bool trailingSpace;
 
   const Item({
     Key key,
@@ -17,17 +19,23 @@ class Item extends StatelessWidget {
     this.useEmoji,
     this.textStyle,
     this.withCountryNames = false,
+    this.leadingPadding = 12,
+    this.trailingSpace = true,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    String dialCode = (country?.dialCode ?? '');
+    if (trailingSpace) {
+      dialCode = dialCode.padRight(5, "   ");
+    }
     return Container(
       child: Row(
         textDirection: TextDirection.ltr,
         mainAxisAlignment: MainAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          SizedBox(width: 12.0),
+          SizedBox(width: leadingPadding),
           _Flag(
             country: country,
             showFlag: showFlag,
@@ -35,7 +43,7 @@ class Item extends StatelessWidget {
           ),
           SizedBox(width: 12.0),
           Text(
-            '${(country?.dialCode ?? '').padRight(5, "   ")}',
+            '$dialCode',
             textDirection: TextDirection.ltr,
             style: textStyle,
           ),
