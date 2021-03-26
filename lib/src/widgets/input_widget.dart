@@ -338,14 +338,14 @@ class _InputWidgetState extends State<InternationalPhoneNumberInput> {
       String parsedPhoneNumberString =
           controller.text.replaceAll(RegExp(r'[^\d+]'), '');
 
-      getParsedPhoneNumber(parsedPhoneNumberString, this.country?.alpha2Code)
-          .then(
-        (phoneNumber) => widget.onSaved?.call(
-          PhoneNumber(
-              phoneNumber: phoneNumber,
-              isoCode: this.country?.alpha2Code,
-              dialCode: this.country?.dialCode),
-        ),
+      String phoneNumber =
+          '${this.country?.dialCode ?? ''}' + parsedPhoneNumberString;
+
+      widget.onSaved?.call(
+        PhoneNumber(
+            phoneNumber: phoneNumber,
+            isoCode: this.country?.alpha2Code,
+            dialCode: this.country?.dialCode),
       );
     }
   }
