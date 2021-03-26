@@ -62,8 +62,8 @@ In your app directory, edit `web/index.html` to add the following
     
         ...
 
-        <script src="packages/libphonenumber_plugin/js/libphonenumber.js"></script>
-        <script src="packages/libphonenumber_plugin/js/stringbuffer.js"></script>
+        <script src="assets/packages/libphonenumber_plugin/js/libphonenumber.js"></script>
+        <script src="assets/packages/libphonenumber_plugin/js/stringbuffer.js"></script>
 
         ...
 
