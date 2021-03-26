@@ -161,6 +161,9 @@ class _InputWidgetState extends State<InternationalPhoneNumberInput> {
   void didUpdateWidget(InternationalPhoneNumberInput oldWidget) {
     loadCountries(previouslySelectedCountry: country);
     if (oldWidget?.initialValue?.hash != widget?.initialValue?.hash) {
+      if (country.alpha2Code != widget?.initialValue?.isoCode) {
+        loadCountries();
+      }
       initialiseWidget();
     }
     super.didUpdateWidget(oldWidget);
@@ -174,8 +177,12 @@ class _InputWidgetState extends State<InternationalPhoneNumberInput> {
           await PhoneNumberUtil.isValidNumber(
               phoneNumber: widget.initialValue.phoneNumber,
               isoCode: widget.initialValue.isoCode)) {
-        controller.text =
+        String phoneNumber =
             await PhoneNumber.getParsableNumber(widget.initialValue);
+
+        controller.text = widget.formatInput
+            ? phoneNumber
+            : phoneNumber.replaceAll(RegExp(r'[^\d+]'), '');
 
         phoneNumberControllerListener();
       }
