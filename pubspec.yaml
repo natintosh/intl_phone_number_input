@@ -4,7 +4,7 @@ version: 0.6.1
 homepage: https://github.com/natintosh/intl-phone-number-input
 
 environment:
-  sdk: ">=2.6.0 <3.0.0"
+  sdk: '>=2.12.0 <3.0.0'
 
 dependencies:
   flutter:
@@ -13,6 +13,7 @@ dependencies:
 
   libphonenumber_plugin: ^0.2.2
   equatable: ^2.0.0
+  collection: ^1.15.0-nullsafety.4
 
 dev_dependencies:
   flutter_test:

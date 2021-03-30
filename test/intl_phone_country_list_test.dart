@@ -31,15 +31,15 @@ void main() {
       Countries.countryList.forEach((Map<String, dynamic> data) {
         Country country = Country.fromJson(data);
 
-        expect(country.name.length, greaterThan(0));
-        expect(country.alpha2Code.length, greaterThan(0));
-        expect(country.alpha3Code.length, greaterThan(0));
-        expect(country.dialCode.length, greaterThan(0));
+        expect(country.name!.length, greaterThan(0));
+        expect(country.alpha2Code!.length, greaterThan(0));
+        expect(country.alpha3Code!.length, greaterThan(0));
+        expect(country.dialCode!.length, greaterThan(0));
         expect(country.flagUri.length, greaterThan(0));
-        expect(country.nameTranslations.length,
+        expect(country.nameTranslations!.length,
             equals(expectedTranslations.length));
         expectedTranslations.forEach((language) =>
-            expect(country.nameTranslations.containsKey(language), true));
+            expect(country.nameTranslations!.containsKey(language), true));
       });
     });
   });

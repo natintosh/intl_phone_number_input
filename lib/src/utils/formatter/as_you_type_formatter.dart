@@ -23,11 +23,9 @@ class AsYouTypeFormatter extends TextInputFormatter {
   final OnInputFormatted<TextEditingValue> onInputFormatted;
 
   AsYouTypeFormatter(
-      {@required this.isoCode,
-      @required this.dialCode,
-      @required this.onInputFormatted})
-      : assert(isoCode != null),
-        assert(dialCode != null);
+      {required this.isoCode,
+      required this.dialCode,
+      required this.onInputFormatted});
 
   @override
   TextEditingValue formatEditUpdate(
@@ -47,7 +45,7 @@ class AsYouTypeFormatter extends TextInputFormatter {
           .replaceAll(separatorChars, '');
 
       formatAsYouType(input: textToParse).then(
-        (String value) {
+        (String? value) {
           String parsedText = parsePhoneNumber(value);
 
           int offset =
@@ -98,9 +96,9 @@ class AsYouTypeFormatter extends TextInputFormatter {
 
   /// Accepts [input], unformatted phone number and
   /// returns a [Future<String>] of the formatted phone number.
-  Future<String> formatAsYouType({@required String input}) async {
+  Future<String?> formatAsYouType({required String input}) async {
     try {
-      String formattedPhoneNumber = await PhoneNumberUtil.formatAsYouType(
+      String? formattedPhoneNumber = await PhoneNumberUtil.formatAsYouType(
           phoneNumber: input, isoCode: isoCode);
       return formattedPhoneNumber;
     } on Exception {
@@ -110,7 +108,7 @@ class AsYouTypeFormatter extends TextInputFormatter {
 
   /// Accepts a formatted [phoneNumber]
   /// returns a [String] of `phoneNumber` with the dialCode replaced with an empty String
-  String parsePhoneNumber(String phoneNumber) {
+  String parsePhoneNumber(String? phoneNumber) {
     if (dialCode.length > 4) {
       if (isPartOfNorthAmericanNumberingPlan(dialCode)) {
         String northAmericaDialCode = '+1';
@@ -118,13 +116,13 @@ class AsYouTypeFormatter extends TextInputFormatter {
             ' ' +
             dialCode.replaceFirst(northAmericaDialCode, '');
 
-        return phoneNumber
+        return phoneNumber!
             .replaceFirst(countryDialCodeWithSpace, '')
             .replaceFirst(separatorChars, '')
             .trim();
       }
     }
-    return phoneNumber.replaceFirst(dialCode, '').trim();
+    return phoneNumber!.replaceFirst(dialCode, '').trim();
   }
 
   /// Accepts a [dialCode]

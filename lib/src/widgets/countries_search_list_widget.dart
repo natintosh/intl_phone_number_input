@@ -6,12 +6,12 @@ import 'package:intl_phone_number_input/src/utils/util.dart';
 /// Creates a list of Countries with a search textfield.
 class CountrySearchListWidget extends StatefulWidget {
   final List<Country> countries;
-  final InputDecoration searchBoxDecoration;
-  final String locale;
-  final ScrollController scrollController;
+  final InputDecoration? searchBoxDecoration;
+  final String? locale;
+  final ScrollController? scrollController;
   final bool autoFocus;
-  final bool showFlags;
-  final bool useEmoji;
+  final bool? showFlags;
+  final bool? useEmoji;
 
   CountrySearchListWidget(this.countries, this.locale,
       {this.searchBoxDecoration,
@@ -27,7 +27,7 @@ class CountrySearchListWidget extends StatefulWidget {
 
 class _CountrySearchListWidgetState extends State<CountrySearchListWidget> {
   TextEditingController _searchController = TextEditingController();
-  List<Country> filteredCountries;
+  late List<Country> filteredCountries;
 
   @override
   void initState() {
@@ -37,7 +37,7 @@ class _CountrySearchListWidgetState extends State<CountrySearchListWidget> {
 
   @override
   void dispose() {
-    _searchController?.dispose();
+    _searchController.dispose();
     super.dispose();
   }
 
@@ -55,14 +55,14 @@ class _CountrySearchListWidgetState extends State<CountrySearchListWidget> {
       return widget.countries
           .where(
             (Country country) =>
-                country.alpha3Code
+                country.alpha3Code!
                     .toLowerCase()
                     .startsWith(value.toLowerCase()) ||
-                country.name.toLowerCase().contains(value.toLowerCase()) ||
-                getCountryName(country)
+                country.name!.toLowerCase().contains(value.toLowerCase()) ||
+                getCountryName(country)!
                     .toLowerCase()
                     .contains(value.toLowerCase()) ||
-                country.dialCode.contains(value.toLowerCase()),
+                country.dialCode!.contains(value.toLowerCase()),
           )
           .toList();
     }
@@ -72,9 +72,9 @@ class _CountrySearchListWidgetState extends State<CountrySearchListWidget> {
 
   /// Returns the country name of a [Country]. if the locale is set and translation in available.
   /// returns the translated name.
-  String getCountryName(Country country) {
+  String? getCountryName(Country country) {
     if (widget.locale != null && country.nameTranslations != null) {
-      String translated = country.nameTranslations[widget.locale];
+      String? translated = country.nameTranslations![widget.locale!];
       if (translated != null && translated.isNotEmpty) {
         return translated;
       }
@@ -105,10 +105,9 @@ class _CountrySearchListWidgetState extends State<CountrySearchListWidget> {
             itemCount: filteredCountries.length,
             itemBuilder: (BuildContext context, int index) {
               Country country = filteredCountries[index];
-              if (country == null) return null;
               return ListTile(
                 key: Key(TestHelper.countryItemKeyValue(country.alpha2Code)),
-                leading: widget.showFlags
+                leading: widget.showFlags!
                     ? _Flag(country: country, useEmoji: widget.useEmoji)
                     : null,
                 title: Align(
@@ -117,7 +116,7 @@ class _CountrySearchListWidgetState extends State<CountrySearchListWidget> {
                         textAlign: TextAlign.start)),
                 subtitle: Align(
                     alignment: AlignmentDirectional.centerStart,
-                    child: Text('${country?.dialCode ?? ''}',
+                    child: Text('${country.dialCode ?? ''}',
                         textDirection: TextDirection.ltr,
                         textAlign: TextAlign.start)),
                 onTap: () => Navigator.of(context).pop(country),
@@ -138,16 +137,16 @@ class _CountrySearchListWidgetState extends State<CountrySearchListWidget> {
 }
 
 class _Flag extends StatelessWidget {
-  final Country country;
-  final bool useEmoji;
+  final Country? country;
+  final bool? useEmoji;
 
-  const _Flag({Key key, this.country, this.useEmoji}) : super(key: key);
+  const _Flag({Key? key, this.country, this.useEmoji}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return country != null
         ? Container(
-            child: useEmoji
+            child: useEmoji!
                 ? Text(
                     Utils.generateFlagEmojiUnicode(country?.alpha2Code ?? ''),
                     style: Theme.of(context).textTheme.headline5,
@@ -155,7 +154,7 @@ class _Flag extends StatelessWidget {
                 : country?.flagUri != null
                     ? CircleAvatar(
                         backgroundImage: AssetImage(
-                          country.flagUri,
+                          country!.flagUri,
                           package: 'intl_phone_number_input',
                         ),
                       )

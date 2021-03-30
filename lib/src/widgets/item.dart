@@ -4,16 +4,16 @@ import 'package:intl_phone_number_input/src/utils/util.dart';
 
 /// [Item]
 class Item extends StatelessWidget {
-  final Country country;
-  final bool showFlag;
-  final bool useEmoji;
-  final TextStyle textStyle;
+  final Country? country;
+  final bool? showFlag;
+  final bool? useEmoji;
+  final TextStyle? textStyle;
   final bool withCountryNames;
-  final double leadingPadding;
+  final double? leadingPadding;
   final bool trailingSpace;
 
   const Item({
-    Key key,
+    Key? key,
     this.country,
     this.showFlag,
     this.useEmoji,
@@ -54,29 +54,30 @@ class Item extends StatelessWidget {
 }
 
 class _Flag extends StatelessWidget {
-  final Country country;
-  final bool showFlag;
-  final bool useEmoji;
+  final Country? country;
+  final bool? showFlag;
+  final bool? useEmoji;
 
-  const _Flag({Key key, this.country, this.showFlag, this.useEmoji})
+  const _Flag({Key? key, this.country, this.showFlag, this.useEmoji})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return country != null && showFlag
+    return country != null && showFlag!
         ? Container(
-            child: useEmoji
+            child: useEmoji!
                 ? Text(
                     Utils.generateFlagEmojiUnicode(country?.alpha2Code ?? ''),
                     style: Theme.of(context).textTheme.headline5,
                   )
-                : country?.flagUri != null
-                    ? Image.asset(
-                        country?.flagUri,
-                        width: 32.0,
-                        package: 'intl_phone_number_input',
-                      )
-                    : SizedBox.shrink(),
+                : Image.asset(
+                    country!.flagUri,
+                    width: 32.0,
+                    package: 'intl_phone_number_input',
+                    errorBuilder: (context, error, stackTrace) {
+                      return SizedBox.shrink();
+                    },
+                  ),
           )
         : SizedBox.shrink();
   }
