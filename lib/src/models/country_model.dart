@@ -47,10 +47,10 @@ class Country {
 
   @override
   bool operator ==(Object other) {
-    return other is Country
-        && other.alpha2Code == this.alpha2Code
-        && other.alpha3Code == this.alpha3Code
-        && other.dialCode == this.dialCode;
+    return other is Country &&
+        other.alpha2Code == this.alpha2Code &&
+        other.alpha3Code == this.alpha3Code &&
+        other.dialCode == this.dialCode;
   }
 
   @override
@@ -62,5 +62,5 @@ class Country {
       'alpha2: $alpha2Code, '
       'alpha3: $alpha3Code, '
       'dialCode: $dialCode '
-    '}';
+      '}';
 }
