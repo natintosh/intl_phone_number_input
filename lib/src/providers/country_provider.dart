@@ -1,8 +1,6 @@
 import 'package:intl_phone_number_input/src/models/country_list.dart';
 import 'package:intl_phone_number_input/src/models/country_model.dart';
 
-import '../models/country_list.dart';
-
 const String PropertyName = 'alpha_2_code';
 
 /// [CountryProvider] provides helper classes that involves manipulations.
