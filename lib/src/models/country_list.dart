@@ -1817,7 +1817,7 @@ class Countries {
       "alpha_3_code": "DOM",
       "en_short_name": "Dominican Republic",
       "nationality": "Dominican",
-      "dial_code": "+1849",
+      "dial_code": "+1",
       "nameTranslations": {
         "sk": "Dominikánska republika",
         "se": "Dominikána dásseváldi",
