@@ -194,6 +194,9 @@ Widget Key parameters and Helper classes are now available for integration testi
 # Contributions
 If you encounter any problem or the library is missing a feature feel free to open an issue. Feel free to fork, improve the package and make pull request.
 
+## Co-contributors
+Interested in becoming a co-contributors checkout this link for more info [discussions/201](https://github.com/natintosh/intl_phone_number_input/discussions/201)
+
 # Contributors 
 <a href="https://github.com/natintosh/intl_phone_number_input/graphs/contributors">
   <img src="https://contributors-img.web.app/image?repo=natintosh/intl_phone_number_input" />

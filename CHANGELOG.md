@@ -1,4 +1,5 @@
 ## [0.7.0]
+* Co-contributors discussion now opened, view this [link](https://github.com/natintosh/intl_phone_number_input/discussions/201) for more info.
 * Null Safety Migration
 * Upgraded dependencies
 * <b>Breaking Change</b> Depreciated `SelectorConfig.backgroundColor` and replaced with `Theme.of(context).canvasColor`
