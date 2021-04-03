@@ -176,9 +176,9 @@ class _InputWidgetState extends State<InternationalPhoneNumberInput> {
     if (widget.initialValue != null) {
       if (widget.initialValue!.phoneNumber != null &&
           widget.initialValue!.phoneNumber!.isNotEmpty &&
-          await (PhoneNumberUtil.isValidNumber(
+          (await PhoneNumberUtil.isValidNumber(
               phoneNumber: widget.initialValue!.phoneNumber!,
-              isoCode: widget.initialValue!.isoCode!) as FutureOr<bool>)) {
+              isoCode: widget.initialValue!.isoCode!))!) {
         String phoneNumber =
             await PhoneNumber.getParsableNumber(widget.initialValue!);
 
@@ -266,10 +266,10 @@ class _InputWidgetState extends State<InternationalPhoneNumberInput> {
       String phoneNumber, String? isoCode) async {
     if (phoneNumber.isNotEmpty && isoCode != null) {
       try {
-        bool isValidPhoneNumber = await (PhoneNumberUtil.isValidNumber(
-            phoneNumber: phoneNumber, isoCode: isoCode) as FutureOr<bool>);
+        bool? isValidPhoneNumber = await PhoneNumberUtil.isValidNumber(
+            phoneNumber: phoneNumber, isoCode: isoCode);
 
-        if (isValidPhoneNumber) {
+        if (isValidPhoneNumber!) {
           return await PhoneNumberUtil.normalizePhoneNumber(
               phoneNumber: phoneNumber, isoCode: isoCode);
         }

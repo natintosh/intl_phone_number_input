@@ -41,11 +41,11 @@ class PhoneNumberTest {
         phoneNumber.phoneNumber!,
         phoneNumber.isoCode!,
       );
-      String formattedNumber = await (PhoneNumberUtil.formatAsYouType(
+      String? formattedNumber = await PhoneNumberUtil.formatAsYouType(
         phoneNumber: number.phoneNumber!,
         isoCode: number.isoCode!,
-      ) as FutureOr<String>);
-      return formattedNumber.replaceAll(
+      );
+      return formattedNumber!.replaceAll(
         RegExp('^([\\+]?${number.dialCode}[\\s]?)'),
         '',
       );
