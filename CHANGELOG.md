@@ -1,3 +1,7 @@
+## [0.7.0+2]
+* Fixed validator defined with wrong type #207
+* PlatformException thrown when isValidPhoneNumber is passed a 0 or 1 character phoneNumber parameter. #209
+
 ## [0.7.0+1]
 * Replaced `FutureOr<>` with `Future<>`
 
