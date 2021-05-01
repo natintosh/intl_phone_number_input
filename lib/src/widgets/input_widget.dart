@@ -43,7 +43,7 @@ class InternationalPhoneNumberInput extends StatefulWidget {
 
   final VoidCallback? onSubmit;
   final ValueChanged<String>? onFieldSubmitted;
-  final String Function(String?)? validator;
+  final String? Function(String?)? validator;
   final ValueChanged<PhoneNumber>? onSaved;
 
   final TextEditingController? textFieldController;
