@@ -141,7 +141,9 @@ class _InputWidgetState extends State<InternationalPhoneNumberInput> {
   void initState() {
     super.initState();
     loadCountries();
-    controller = widget.textFieldController ?? TextEditingController();
+    var controller = widget.textFieldController ?? TextEditingController();
+    controller.addListener(onChanged);
+    this.controller = controller;
     initialiseWidget();
   }
 
@@ -308,7 +310,7 @@ class _InputWidgetState extends State<InternationalPhoneNumberInput> {
   }
 
   /// Validate the phone number when a change occurs
-  void onChanged(String value) {
+  void onChanged() {
     phoneNumberControllerListener();
   }
 
@@ -451,7 +453,6 @@ class _InputWidgetView
                       )
                     : FilteringTextInputFormatter.digitsOnly,
               ],
-              onChanged: state.onChanged,
             ),
           )
         ],
