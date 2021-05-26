@@ -26,7 +26,7 @@ enum PhoneNumberType {
 class PhoneNumber extends Equatable {
   /// Either formatted or unformatted String of the phone number
 
-  final String phoneNumber;
+  final String? phoneNumber;
   final String? countryName;
   final String? flagEmoji;
 
