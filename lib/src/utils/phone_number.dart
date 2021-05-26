@@ -25,7 +25,10 @@ enum PhoneNumberType {
 /// [PhoneNumber] contains detailed information about a phone number
 class PhoneNumber extends Equatable {
   /// Either formatted or unformatted String of the phone number
+
   final String? phoneNumber;
+  final String? countryName;
+  final String? flagEmoji;
 
   /// The Country [dialCode] of the phone number
   final String? dialCode;
@@ -47,6 +50,8 @@ class PhoneNumber extends Equatable {
     this.phoneNumber,
     this.dialCode,
     this.isoCode,
+    this.countryName,
+    this.flagEmoji
   }) : _hash = 1000 + Random().nextInt(99999 - 1000);
 
   @override
