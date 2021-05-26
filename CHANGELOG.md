@@ -1,3 +1,34 @@
+## [0.7.0+2]
+* Fixed validator defined with wrong type #207
+* PlatformException thrown when isValidPhoneNumber is passed a 0 or 1 character phoneNumber parameter. #209
+
+## [0.7.0+1]
+* Replaced `FutureOr<>` with `Future<>`
+
+## [0.7.0]
+* Co-contributors discussion now opened, view this [link](https://github.com/natintosh/intl_phone_number_input/discussions/201) for more info.
+* Null Safety Migration
+* Upgraded dependencies
+* <b>Breaking Change</b> Depreciated `SelectorConfig.backgroundColor` and replaced with `Theme.of(context).canvasColor`
+* Fixed Dominican Republic dial_code at country_list.dart #196
+* Fixed change country when initialValue is set with the widget #170
+* Fixed PhoneNumberUtil.getNumberType on mobile and web #188
+* Added translations for Turkish and Romanian #190
+* Updated Taiwan country name #181
+* Added style config for selector button #177
+* Removed any potential duplicates on countries list #175
+* Fixed ignore selector and text field spacing in prefixIcon mode #161
+* :sweat_smile: Well, Actually using cursorColor #160
+* Fixed initialValue should not be formatted if formatInput is false #192
+* Fixed Bottom Sheet RenderFlex overflow bug #187, similar to Search by Country name or dial code bug #197
+* Updated README.md file to fix Web release does not recognize the packages #186
+* Fixed onSaved callback in the InternationalPhoneNumberInput is not synchronous #180
+* Cherry picked pending fixes and pull request from repo.
+
+## [0.6.1]
+* Upgrade dependencies
+* cherrypick pending fixes from repo  
+
 ## [0.6.0]
   - Added support for Flutter Web :fire: :fire: :fire: :rocket: :rocket: :rocket: .
   - Added textAlign, textAlignVertical.

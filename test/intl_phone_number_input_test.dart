@@ -9,7 +9,7 @@ void main() {
     test("Assert Test AsYouTypeFormatter", () {
       expect(() {
         AsYouTypeFormatter(
-          isoCode: null,
+          isoCode: "",
           dialCode: "",
           onInputFormatted: (_) {},
         );
@@ -17,7 +17,7 @@ void main() {
       expect(() {
         AsYouTypeFormatter(
           isoCode: "",
-          dialCode: null,
+          dialCode: "",
           onInputFormatted: (_) {},
         );
       }, throwsAssertionError);
@@ -27,7 +27,7 @@ void main() {
   group("Phone Number Object Test", () {
     test("Assert Test getRegionInfoFromPhoneNumber", () {
       expect(
-        PhoneNumber.getRegionInfoFromPhoneNumber('', null),
+        PhoneNumber.getRegionInfoFromPhoneNumber('', ""),
         throwsAssertionError,
       );
     });
