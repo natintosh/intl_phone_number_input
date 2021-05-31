@@ -33,6 +33,9 @@ class SelectorConfig {
   /// Add white space for short dial code
   final bool trailingSpace;
 
+  /// Show names instead of dial codes
+  final bool showNames;
+
   const SelectorConfig({
     this.selectorType = PhoneInputSelectorType.DROPDOWN,
     this.showFlags = true,
@@ -41,5 +44,6 @@ class SelectorConfig {
     this.setSelectorButtonAsPrefixIcon = false,
     this.leadingPadding,
     this.trailingSpace = true,
+    this.showNames = false,
   });
 }

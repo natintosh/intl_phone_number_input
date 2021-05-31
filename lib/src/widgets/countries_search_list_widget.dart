@@ -12,13 +12,18 @@ class CountrySearchListWidget extends StatefulWidget {
   final bool autoFocus;
   final bool? showFlags;
   final bool? useEmoji;
+  final bool hideCode;
 
-  CountrySearchListWidget(this.countries, this.locale,
-      {this.searchBoxDecoration,
-      this.scrollController,
-      this.showFlags,
-      this.useEmoji,
-      this.autoFocus = false});
+  CountrySearchListWidget(
+    this.countries,
+    this.locale, {
+    this.searchBoxDecoration,
+    this.scrollController,
+    this.showFlags,
+    this.useEmoji,
+    this.autoFocus = false,
+    this.hideCode = false,
+  });
 
   @override
   _CountrySearchListWidgetState createState() =>
@@ -114,11 +119,13 @@ class _CountrySearchListWidgetState extends State<CountrySearchListWidget> {
                     alignment: AlignmentDirectional.centerStart,
                     child: Text('${getCountryName(country)}',
                         textAlign: TextAlign.start)),
-                subtitle: Align(
-                    alignment: AlignmentDirectional.centerStart,
-                    child: Text('${country.dialCode ?? ''}',
-                        textDirection: TextDirection.ltr,
-                        textAlign: TextAlign.start)),
+                subtitle: (!widget.hideCode)
+                    ? Align(
+                        alignment: AlignmentDirectional.centerStart,
+                        child: Text('${country.dialCode ?? ''}',
+                            textDirection: TextDirection.ltr,
+                            textAlign: TextAlign.start))
+                    : Container(),
                 onTap: () => Navigator.of(context).pop(country),
               );
             },

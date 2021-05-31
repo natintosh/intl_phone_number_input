@@ -8,7 +8,7 @@ class Item extends StatelessWidget {
   final bool? showFlag;
   final bool? useEmoji;
   final TextStyle? textStyle;
-  final bool withCountryNames;
+  final bool showNames;
   final double? leadingPadding;
   final bool trailingSpace;
 
@@ -18,16 +18,23 @@ class Item extends StatelessWidget {
     this.showFlag,
     this.useEmoji,
     this.textStyle,
-    this.withCountryNames = false,
+    this.showNames = false,
     this.leadingPadding = 12,
     this.trailingSpace = true,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    String dialCode = (country?.dialCode ?? '');
+    String strLabel = '';
+
+    if (showNames) {
+      strLabel = (country?.name ?? '');
+    } else {
+      strLabel = (country?.dialCode ?? '');
+    }
+
     if (trailingSpace) {
-      dialCode = dialCode.padRight(5, "   ");
+      strLabel = strLabel.padRight(5, "   ");
     }
     return Container(
       child: Row(
@@ -43,7 +50,7 @@ class Item extends StatelessWidget {
           ),
           SizedBox(width: 12.0),
           Text(
-            '$dialCode',
+            '$strLabel',
             textDirection: TextDirection.ltr,
             style: textStyle,
           ),
