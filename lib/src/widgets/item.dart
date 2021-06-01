@@ -8,26 +8,35 @@ class Item extends StatelessWidget {
   final bool? showFlag;
   final bool? useEmoji;
   final TextStyle? textStyle;
-  final bool withCountryNames;
+  final bool showNames;
   final double? leadingPadding;
   final bool trailingSpace;
+  final String locale;
 
-  const Item({
-    Key? key,
-    this.country,
-    this.showFlag,
-    this.useEmoji,
-    this.textStyle,
-    this.withCountryNames = false,
-    this.leadingPadding = 12,
-    this.trailingSpace = true,
-  }) : super(key: key);
+  const Item(
+      {Key? key,
+      this.country,
+      this.showFlag,
+      this.useEmoji,
+      this.textStyle,
+      this.showNames = false,
+      this.leadingPadding = 12,
+      this.trailingSpace = true,
+      this.locale = ""})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    String dialCode = (country?.dialCode ?? '');
+    String strLabel = '';
+
+    if (showNames) {
+      strLabel = Utils.getCountryName(country!, locale) ?? "";
+    } else {
+      strLabel = (country?.dialCode ?? '');
+    }
+
     if (trailingSpace) {
-      dialCode = dialCode.padRight(5, "   ");
+      strLabel = strLabel.padRight(5, "   ");
     }
     return Container(
       child: Row(
@@ -43,7 +52,7 @@ class Item extends StatelessWidget {
           ),
           SizedBox(width: 12.0),
           Text(
-            '$dialCode',
+            '$strLabel',
             textDirection: TextDirection.ltr,
             style: textStyle,
           ),

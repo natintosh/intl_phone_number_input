@@ -12,13 +12,18 @@ class CountrySearchListWidget extends StatefulWidget {
   final bool autoFocus;
   final bool? showFlags;
   final bool? useEmoji;
+  final bool hideCode;
 
-  CountrySearchListWidget(this.countries, this.locale,
-      {this.searchBoxDecoration,
-      this.scrollController,
-      this.showFlags,
-      this.useEmoji,
-      this.autoFocus = false});
+  CountrySearchListWidget(
+    this.countries,
+    this.locale, {
+    this.searchBoxDecoration,
+    this.scrollController,
+    this.showFlags,
+    this.useEmoji,
+    this.autoFocus = false,
+    this.hideCode = false,
+  });
 
   @override
   _CountrySearchListWidgetState createState() =>
@@ -59,7 +64,7 @@ class _CountrySearchListWidgetState extends State<CountrySearchListWidget> {
                     .toLowerCase()
                     .startsWith(value.toLowerCase()) ||
                 country.name!.toLowerCase().contains(value.toLowerCase()) ||
-                getCountryName(country)!
+                Utils.getCountryName(country, widget.locale)!
                     .toLowerCase()
                     .contains(value.toLowerCase()) ||
                 country.dialCode!.contains(value.toLowerCase()),
@@ -68,18 +73,6 @@ class _CountrySearchListWidgetState extends State<CountrySearchListWidget> {
     }
 
     return widget.countries;
-  }
-
-  /// Returns the country name of a [Country]. if the locale is set and translation in available.
-  /// returns the translated name.
-  String? getCountryName(Country country) {
-    if (widget.locale != null && country.nameTranslations != null) {
-      String? translated = country.nameTranslations![widget.locale!];
-      if (translated != null && translated.isNotEmpty) {
-        return translated;
-      }
-    }
-    return country.name;
   }
 
   @override
@@ -112,13 +105,16 @@ class _CountrySearchListWidgetState extends State<CountrySearchListWidget> {
                     : null,
                 title: Align(
                     alignment: AlignmentDirectional.centerStart,
-                    child: Text('${getCountryName(country)}',
+                    child: Text(
+                        '${Utils.getCountryName(country, widget.locale)}',
                         textAlign: TextAlign.start)),
-                subtitle: Align(
-                    alignment: AlignmentDirectional.centerStart,
-                    child: Text('${country.dialCode ?? ''}',
-                        textDirection: TextDirection.ltr,
-                        textAlign: TextAlign.start)),
+                subtitle: (!widget.hideCode)
+                    ? Align(
+                        alignment: AlignmentDirectional.centerStart,
+                        child: Text('${country.dialCode ?? ''}',
+                            textDirection: TextDirection.ltr,
+                            textAlign: TextAlign.start))
+                    : Container(),
                 onTap: () => Navigator.of(context).pop(country),
               );
             },

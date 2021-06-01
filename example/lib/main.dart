@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 
@@ -35,14 +37,39 @@ class _MyHomePageState extends State<MyHomePage> {
   String initialCountry = 'NG';
   PhoneNumber number = PhoneNumber(isoCode: 'NG');
 
+  Country country;
+  List<Country> countries = CountryProvider.getCountriesData(
+      countries: ["US", "AS", "DE", "BR", "CD"]);
+
   @override
   Widget build(BuildContext context) {
+    if (country == null) country = countries[0];
     return Form(
       key: formKey,
       child: Container(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            SelectorButton(
+              country: country,
+              countries: countries,
+              onCountryChanged: (value) {
+                setState(() {
+                  country = value;
+                });
+              },
+              selectorConfig: SelectorConfig(
+                selectorType: PhoneInputSelectorType.BOTTOM_SHEET,
+                showNames: true,
+              ),
+              selectorTextStyle: TextStyle(color: Colors.white),
+              searchBoxDecoration:
+                  InputDecoration(labelText: 'Search country by name'),
+              locale: Platform.localeName,
+              isEnabled: true,
+              autoFocusSearchField: false,
+              isScrollControlled: false,
+            ),
             InternationalPhoneNumberInput(
               onInputChanged: (PhoneNumber number) {
                 print(number.phoneNumber);
