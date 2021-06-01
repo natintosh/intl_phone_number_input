@@ -11,24 +11,26 @@ class Item extends StatelessWidget {
   final bool showNames;
   final double? leadingPadding;
   final bool trailingSpace;
+  final String locale;
 
-  const Item({
-    Key? key,
-    this.country,
-    this.showFlag,
-    this.useEmoji,
-    this.textStyle,
-    this.showNames = false,
-    this.leadingPadding = 12,
-    this.trailingSpace = true,
-  }) : super(key: key);
+  const Item(
+      {Key? key,
+      this.country,
+      this.showFlag,
+      this.useEmoji,
+      this.textStyle,
+      this.showNames = false,
+      this.leadingPadding = 12,
+      this.trailingSpace = true,
+      this.locale = ""})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     String strLabel = '';
 
     if (showNames) {
-      strLabel = (country?.name ?? '');
+      strLabel = Utils.getCountryName(country!, locale) ?? "";
     } else {
       strLabel = (country?.dialCode ?? '');
     }

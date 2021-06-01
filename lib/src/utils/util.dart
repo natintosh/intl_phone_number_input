@@ -21,4 +21,16 @@ class Utils {
         .reduce((value, element) => value + element)
         .toString();
   }
+
+  /// Returns the country name of a [Country]. if the locale is set and translation in available.
+  /// returns the translated name.
+  static String? getCountryName(Country country, String? locale) {
+    if (locale != null && country.nameTranslations != null) {
+      String? translated = country.nameTranslations![locale];
+      if (translated != null && translated.isNotEmpty) {
+        return translated;
+      }
+    }
+    return country.name;
+  }
 }

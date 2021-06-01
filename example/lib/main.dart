@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 
@@ -63,7 +65,7 @@ class _MyHomePageState extends State<MyHomePage> {
               selectorTextStyle: TextStyle(color: Colors.white),
               searchBoxDecoration:
                   InputDecoration(labelText: 'Search country by name'),
-              locale: "US",
+              locale: Platform.localeName,
               isEnabled: true,
               autoFocusSearchField: false,
               isScrollControlled: false,
