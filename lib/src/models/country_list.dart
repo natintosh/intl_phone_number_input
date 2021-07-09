@@ -1750,7 +1750,7 @@ class Countries {
         "tr": "Kıbrıs",
         "ro": "Cipru",
         "ar": "قبرص",
-        "fa": "قبرص"
+        "fa": "قبرس"
       }
     },
     {
