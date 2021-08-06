@@ -41,6 +41,7 @@ class SelectorButton extends StatelessWidget {
             ? DropdownButtonHideUnderline(
                 child: DropdownButton<Country>(
                   key: Key(TestHelper.DropdownButtonKeyValue),
+                  icon: selectorConfig.icon,
                   hint: Item(
                     country: country,
                     showFlag: selectorConfig.showFlags,
@@ -61,6 +62,7 @@ class SelectorButton extends StatelessWidget {
                 leadingPadding: selectorConfig.leadingPadding,
                 trailingSpace: selectorConfig.trailingSpace,
                 textStyle: selectorTextStyle,
+                icon: selectorConfig.icon,
               )
         : MaterialButton(
             key: Key(TestHelper.DropdownButtonKeyValue),
@@ -92,6 +94,7 @@ class SelectorButton extends StatelessWidget {
                 leadingPadding: selectorConfig.leadingPadding,
                 trailingSpace: selectorConfig.trailingSpace,
                 textStyle: selectorTextStyle,
+                icon: selectorConfig.icon,
               ),
             ),
           );
@@ -109,6 +112,7 @@ class SelectorButton extends StatelessWidget {
           showFlag: selectorConfig.showFlags,
           useEmoji: selectorConfig.useEmoji,
           textStyle: selectorTextStyle,
+          icon: selectorConfig.icon,
           withCountryNames: false,
         ),
       );
