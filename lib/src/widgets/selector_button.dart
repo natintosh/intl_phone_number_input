@@ -110,6 +110,7 @@ class SelectorButton extends StatelessWidget {
           useEmoji: selectorConfig.useEmoji,
           textStyle: selectorTextStyle,
           withCountryNames: false,
+          trailingSpace: selectorConfig.trailingSpace,
         ),
       );
     }).toList();
