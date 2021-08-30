@@ -354,6 +354,10 @@ class _InputWidgetState extends State<InternationalPhoneNumberInput> {
     _phoneNumberSaved();
   }
 
+  void onInputTap() {
+    widget.inputOnTap!();
+  }
+
   /// Corrects duplicate locale
   String? get locale {
     if (widget.locale == null) return null;
@@ -426,7 +430,7 @@ class _InputWidgetView extends WidgetView<InternationalPhoneNumberInput, _InputW
               validator: widget.validator ?? state.validator,
               onSaved: state.onSaved,
               scrollPadding: widget.scrollPadding,
-              onTap: () => widget.inputOnTap,
+              onTap: state.onInputTap,
               inputFormatters: [
                 LengthLimitingTextInputFormatter(widget.maxLength),
                 widget.formatInput
