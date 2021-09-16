@@ -67,6 +67,7 @@ class InternationalPhoneNumberInput extends StatefulWidget {
   final AutovalidateMode autoValidateMode;
   final bool ignoreBlank;
   final bool countrySelectorScrollControlled;
+  final bool? selectorButtonShowFlag;
 
   final String? locale;
 
@@ -110,6 +111,7 @@ class InternationalPhoneNumberInput extends StatefulWidget {
       this.autoValidateMode = AutovalidateMode.disabled,
       this.ignoreBlank = false,
       this.countrySelectorScrollControlled = true,
+      this.selectorButtonShowFlag,
       this.locale,
       this.textStyle,
       this.selectorTextStyle,
@@ -301,6 +303,8 @@ class _InputWidgetState extends State<InternationalPhoneNumberInput> {
         isEnabled: widget.isEnabled,
         autoFocusSearchField: widget.autoFocusSearch,
         isScrollControlled: widget.countrySelectorScrollControlled,
+        showFlag:
+            widget.selectorButtonShowFlag ?? widget.selectorConfig.showFlags,
       ));
     }
 
@@ -408,6 +412,8 @@ class _InputWidgetView
                   isEnabled: widget.isEnabled,
                   autoFocusSearchField: widget.autoFocusSearch,
                   isScrollControlled: widget.countrySelectorScrollControlled,
+                  showFlag: widget.selectorButtonShowFlag ??
+                      widget.selectorConfig.showFlags,
                 ),
                 SizedBox(
                   height: state.selectorButtonBottomPadding,
