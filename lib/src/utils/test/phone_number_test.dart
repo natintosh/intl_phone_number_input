@@ -50,8 +50,7 @@ class PhoneNumberTest {
         '',
       );
     } else {
-      print('ISO Code is "${phoneNumber.isoCode}"');
-      return '';
+      throw new Exception('ISO Code is "${phoneNumber.isoCode}"');
     }
   }
 

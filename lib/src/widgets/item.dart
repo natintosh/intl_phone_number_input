@@ -31,7 +31,6 @@ class Item extends StatelessWidget {
     }
     return Container(
       child: Row(
-        textDirection: TextDirection.ltr,
         mainAxisAlignment: MainAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[

@@ -381,7 +381,6 @@ class _InputWidgetView extends WidgetView<InternationalPhoneNumberInput, _InputW
 
     return Container(
       child: Row(
-        textDirection: TextDirection.ltr,
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[

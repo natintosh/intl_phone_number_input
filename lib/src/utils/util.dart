@@ -21,4 +21,41 @@ class Utils {
         .reduce((value, element) => value + element)
         .toString();
   }
+
+  /// Filters the list of Country by text from the search box.
+  static List<Country> filterCountries({
+    required List<Country> countries,
+    required String? locale,
+    required String value,
+  }) {
+    if (value.isNotEmpty) {
+      return countries
+          .where(
+            (Country country) =>
+                country.alpha3Code!
+                    .toLowerCase()
+                    .startsWith(value.toLowerCase()) ||
+                country.name!.toLowerCase().contains(value.toLowerCase()) ||
+                Utils.getCountryName(country, locale)!
+                    .toLowerCase()
+                    .contains(value.toLowerCase()) ||
+                country.dialCode!.contains(value.toLowerCase()),
+          )
+          .toList();
+    }
+
+    return countries;
+  }
+
+  /// Returns the country name of a [Country]. if the locale is set and translation in available.
+  /// returns the translated name.
+  static String? getCountryName(Country country, String? locale) {
+    if (locale != null && country.nameTranslations != null) {
+      String? translated = country.nameTranslations![locale];
+      if (translated != null && translated.isNotEmpty) {
+        return translated;
+      }
+    }
+    return country.name;
+  }
 }
