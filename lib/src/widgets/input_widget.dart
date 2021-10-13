@@ -355,7 +355,11 @@ class _InputWidgetState extends State<InternationalPhoneNumberInput> {
   }
 
   void onInputTap() {
-    widget.inputOnTap!();
+    try {
+      widget.inputOnTap!();
+    } catch (e) {
+      // Ugly way to handle this
+    }
   }
 
   /// Corrects duplicate locale
