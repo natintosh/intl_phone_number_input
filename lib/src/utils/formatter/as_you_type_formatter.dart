@@ -35,6 +35,16 @@ class AsYouTypeFormatter extends TextInputFormatter {
 
     if (newValueLength > 0 && newValueLength > oldValueLength) {
       String newValueText = newValue.text;
+      newValueText = newValueText.replaceAll('١', '1')
+        .replaceAll('٢', '2')
+        .replaceAll('٣', '3')
+        .replaceAll('٤', '4')
+        .replaceAll('٥', '5')
+        .replaceAll('٦', '6')
+        .replaceAll('٧', '7')
+        .replaceAll('٨', '8')
+        .replaceAll('٩', '9')
+        .replaceAll('٠', '0');
       String rawText = newValueText.replaceAll(separatorChars, '');
       String textToParse = dialCode + rawText;
 
