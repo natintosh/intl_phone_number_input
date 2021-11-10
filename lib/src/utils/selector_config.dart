@@ -16,8 +16,7 @@ class SelectorConfig {
   /// and list items within the selector
   final bool showFlags;
 
-  /// [hideUnderline], displays flag along side countries info on selector button
-  /// and list items within the selector
+  /// [hideUnderline], hide the underline of selector button
   final bool hideUnderline;
 
   /// [useEmoji], uses emoji flags instead of png assets
