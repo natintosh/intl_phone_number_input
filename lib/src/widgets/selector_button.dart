@@ -36,70 +36,80 @@ class SelectorButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return selectorConfig.selectorType == PhoneInputSelectorType.DROPDOWN
-        ? countries.isNotEmpty && countries.length > 1
-            ? DropdownButtonHideUnderline(
-                child: DropdownButton<Country>(
-                  key: Key(TestHelper.DropdownButtonKeyValue),
-                  hint: Item(
-                    country: country,
-                    showFlag: selectorConfig.showFlags,
-                    useEmoji: selectorConfig.useEmoji,
-                    leadingPadding: selectorConfig.leadingPadding,
-                    trailingSpace: selectorConfig.trailingSpace,
-                    textStyle: selectorTextStyle,
-                  ),
-                  value: country,
-                  items: mapCountryToDropdownItem(countries),
-                  onChanged: isEnabled ? onCountryChanged : null,
-                ),
-              )
-            : Item(
-                country: country,
-                showFlag: selectorConfig.showFlags,
-                useEmoji: selectorConfig.useEmoji,
-                leadingPadding: selectorConfig.leadingPadding,
-                trailingSpace: selectorConfig.trailingSpace,
-                textStyle: selectorTextStyle,
-              )
-        : MaterialButton(
-            key: Key(TestHelper.DropdownButtonKeyValue),
-            padding: EdgeInsets.zero,
-            minWidth: 0,
-            onPressed: countries.isNotEmpty && countries.length > 1 && isEnabled
-                ? () async {
-                    Country? selected;
-                    if (selectorConfig.selectorType ==
-                        PhoneInputSelectorType.BOTTOM_SHEET) {
-                      selected = await showCountrySelectorBottomSheet(
-                          context, countries);
-                    } else {
-                      selected =
-                          await showCountrySelectorDialog(context, countries);
-                    }
+    if (selectorConfig.selectorType == PhoneInputSelectorType.DROPDOWN) {
+      if (countries.isNotEmpty && countries.length > 1) {
+        final dropdown = DropdownButton<Country>(
+          key: Key(TestHelper.DropdownButtonKeyValue),
+          hint: Item(
+            country: country,
+            showFlag: selectorConfig.showFlags,
+            useEmoji: selectorConfig.useEmoji,
+            leadingPadding: selectorConfig.leadingPadding,
+            trailingSpace: selectorConfig.trailingSpace,
+            textStyle: selectorTextStyle,
+          ),
+          value: country,
+          items: mapCountryToDropdownItem(countries),
+          onChanged: isEnabled ? onCountryChanged : null,
+        );
 
-                    if (selected != null) {
-                      onCountryChanged(selected);
-                    }
-                  }
-                : null,
-            child: Padding(
-              padding: const EdgeInsets.only(right: 8.0),
-              child: Item(
-                country: country,
-                showFlag: selectorConfig.showFlags,
-                useEmoji: selectorConfig.useEmoji,
-                leadingPadding: selectorConfig.leadingPadding,
-                trailingSpace: selectorConfig.trailingSpace,
-                textStyle: selectorTextStyle,
-              ),
-            ),
+        if (selectorConfig.hideUnderline) {
+          return DropdownButtonHideUnderline(
+            child: dropdown,
           );
+        }
+
+        return dropdown;
+      } else {
+        return Item(
+          country: country,
+          showFlag: selectorConfig.showFlags,
+          useEmoji: selectorConfig.useEmoji,
+          leadingPadding: selectorConfig.leadingPadding,
+          trailingSpace: selectorConfig.trailingSpace,
+          textStyle: selectorTextStyle,
+        );
+      }
+    }
+    return MaterialButton(
+      key: Key(TestHelper.DropdownButtonKeyValue),
+      padding: EdgeInsets.zero,
+      minWidth: 0,
+      onPressed: countries.isNotEmpty && countries.length > 1 && isEnabled
+          ? () async {
+              Country? selected;
+              if (selectorConfig.selectorType ==
+                  PhoneInputSelectorType.BOTTOM_SHEET) {
+                selected = await showCountrySelectorBottomSheet(
+                    context, countries);
+              } else {
+                selected =
+                    await showCountrySelectorDialog(context, countries);
+              }
+
+              if (selected != null) {
+                onCountryChanged(selected);
+              }
+            }
+          : null,
+      child: Padding(
+        padding: const EdgeInsets.only(right: 8.0),
+        child: Item(
+          country: country,
+          showFlag: selectorConfig.showFlags,
+          useEmoji: selectorConfig.useEmoji,
+          leadingPadding: selectorConfig.leadingPadding,
+          trailingSpace: selectorConfig.trailingSpace,
+          textStyle: selectorTextStyle,
+        ),
+      ),
+    );
   }
 
   /// Converts the list [countries] to `DropdownMenuItem`
   List<DropdownMenuItem<Country>> mapCountryToDropdownItem(
-      List<Country> countries) {
+      List<Country> countries,
+  ) {
     return countries.map((country) {
       return DropdownMenuItem<Country>(
         value: country,
@@ -118,7 +128,9 @@ class SelectorButton extends StatelessWidget {
 
   /// shows a Dialog with list [countries] if the [PhoneInputSelectorType.DIALOG] is selected
   Future<Country?> showCountrySelectorDialog(
-      BuildContext inheritedContext, List<Country> countries) {
+      BuildContext inheritedContext,
+      List<Country> countries,
+  ) {
     return showDialog(
       context: inheritedContext,
       barrierDismissible: true,

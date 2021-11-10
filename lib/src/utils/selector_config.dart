@@ -16,6 +16,10 @@ class SelectorConfig {
   /// and list items within the selector
   final bool showFlags;
 
+  /// [hideUnderline], displays flag along side countries info on selector button
+  /// and list items within the selector
+  final bool hideUnderline;
+
   /// [useEmoji], uses emoji flags instead of png assets
   final bool useEmoji;
 
@@ -36,6 +40,7 @@ class SelectorConfig {
   const SelectorConfig({
     this.selectorType = PhoneInputSelectorType.DROPDOWN,
     this.showFlags = true,
+    this.hideUnderline = false,
     this.useEmoji = false,
     this.countryComparator,
     this.setSelectorButtonAsPrefixIcon = false,
