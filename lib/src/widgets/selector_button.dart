@@ -36,6 +36,8 @@ class SelectorButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final underlineBorderSide = selectorConfig.underlineBorderSide;
+
     if (selectorConfig.selectorType == PhoneInputSelectorType.DROPDOWN) {
       if (countries.isNotEmpty && countries.length > 1) {
         final dropdown = DropdownButton<Country>(
@@ -49,6 +51,7 @@ class SelectorButton extends StatelessWidget {
             textStyle: selectorTextStyle,
           ),
           value: country,
+          underline: _buildUnderline(underlineBorderSide),
           items: mapCountryToDropdownItem(countries),
           onChanged: isEnabled ? onCountryChanged : null,
         );
@@ -71,20 +74,18 @@ class SelectorButton extends StatelessWidget {
         );
       }
     }
-    return MaterialButton(
+
+    Widget child = MaterialButton(
       key: Key(TestHelper.DropdownButtonKeyValue),
       padding: EdgeInsets.zero,
       minWidth: 0,
       onPressed: countries.isNotEmpty && countries.length > 1 && isEnabled
           ? () async {
               Country? selected;
-              if (selectorConfig.selectorType ==
-                  PhoneInputSelectorType.BOTTOM_SHEET) {
-                selected = await showCountrySelectorBottomSheet(
-                    context, countries);
+              if (selectorConfig.selectorType == PhoneInputSelectorType.BOTTOM_SHEET) {
+                selected = await showCountrySelectorBottomSheet(context, countries);
               } else {
-                selected =
-                    await showCountrySelectorDialog(context, countries);
+                selected = await showCountrySelectorDialog(context, countries);
               }
 
               if (selected != null) {
@@ -92,15 +93,54 @@ class SelectorButton extends StatelessWidget {
               }
             }
           : null,
-      child: Padding(
-        padding: const EdgeInsets.only(right: 8.0),
-        child: Item(
-          country: country,
-          showFlag: selectorConfig.showFlags,
-          useEmoji: selectorConfig.useEmoji,
-          leadingPadding: selectorConfig.leadingPadding,
-          trailingSpace: selectorConfig.trailingSpace,
-          textStyle: selectorTextStyle,
+      child: Row(
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(right: 8.0),
+            child: Item(
+              country: country,
+              showFlag: selectorConfig.showFlags,
+              useEmoji: selectorConfig.useEmoji,
+              leadingPadding: selectorConfig.leadingPadding,
+              trailingSpace: selectorConfig.trailingSpace,
+              textStyle: selectorTextStyle,
+            ),
+          ),
+          if (selectorConfig.showTrailingArrow)
+            Icon(
+              Icons.arrow_drop_down_outlined,
+            ),
+        ],
+      ),
+    );
+
+    if (selectorConfig.hideUnderline) {
+      return child;
+    }
+
+    return Stack(
+      clipBehavior: Clip.none,
+      children: <Widget>[
+        child,
+        Positioned(
+          left: 0.0,
+          right: 0.0,
+          bottom: -(underlineBorderSide.width ?? 1),
+          child: _buildUnderline(underlineBorderSide),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildUnderline(BorderSide? borderSide) {
+    if (borderSide == null) {
+      return SizedBox();
+    }
+    return Container(
+      height: borderSide.width,
+      decoration: BoxDecoration(
+        border: Border(
+          bottom: borderSide,
         ),
       ),
     );
@@ -108,7 +148,7 @@ class SelectorButton extends StatelessWidget {
 
   /// Converts the list [countries] to `DropdownMenuItem`
   List<DropdownMenuItem<Country>> mapCountryToDropdownItem(
-      List<Country> countries,
+    List<Country> countries,
   ) {
     return countries.map((country) {
       return DropdownMenuItem<Country>(
@@ -128,8 +168,8 @@ class SelectorButton extends StatelessWidget {
 
   /// shows a Dialog with list [countries] if the [PhoneInputSelectorType.DIALOG] is selected
   Future<Country?> showCountrySelectorDialog(
-      BuildContext inheritedContext,
-      List<Country> countries,
+    BuildContext inheritedContext,
+    List<Country> countries,
   ) {
     return showDialog(
       context: inheritedContext,
@@ -154,16 +194,18 @@ class SelectorButton extends StatelessWidget {
   }
 
   /// shows a Dialog with list [countries] if the [PhoneInputSelectorType.BOTTOM_SHEET] is selected
-  Future<Country?> showCountrySelectorBottomSheet(
-      BuildContext inheritedContext, List<Country> countries) {
+  Future<Country?> showCountrySelectorBottomSheet(BuildContext inheritedContext, List<Country> countries) {
     return showModalBottomSheet(
       context: inheritedContext,
       clipBehavior: Clip.hardEdge,
       isScrollControlled: isScrollControlled,
-      backgroundColor: Colors.transparent,
+      // backgroundColor: Colors.transparent,
       shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(12), topRight: Radius.circular(12))),
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(12),
+          topRight: Radius.circular(12),
+        ),
+      ),
       builder: (BuildContext context) {
         return Stack(children: [
           GestureDetector(
@@ -175,7 +217,7 @@ class SelectorButton extends StatelessWidget {
                 textDirection: Directionality.of(inheritedContext),
                 child: Container(
                   decoration: ShapeDecoration(
-                    color: Theme.of(context).canvasColor,
+                    color: Theme.of(context).colorScheme.onSurface,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(12),
@@ -183,6 +225,7 @@ class SelectorButton extends StatelessWidget {
                       ),
                     ),
                   ),
+                  padding: selectorConfig.bottomSheetPadding,
                   child: CountrySearchListWidget(
                     countries,
                     locale,

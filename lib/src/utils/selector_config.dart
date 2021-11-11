@@ -19,6 +19,12 @@ class SelectorConfig {
   /// [hideUnderline], hide the underline of selector button
   final bool hideUnderline;
 
+  final BorderSide? underlineBorderSide;
+
+  /// [showTrailingArrow], displays flag along side countries info on selector button
+  /// and list items within the selector
+  final bool showTrailingArrow;
+
   /// [useEmoji], uses emoji flags instead of png assets
   final bool useEmoji;
 
@@ -33,6 +39,9 @@ class SelectorConfig {
   /// Space before the flag icon
   final double? leadingPadding;
 
+  /// Space around the content of bottom sheet
+  final EdgeInsetsGeometry? bottomSheetPadding;
+
   /// Add white space for short dial code
   final bool trailingSpace;
 
@@ -40,10 +49,13 @@ class SelectorConfig {
     this.selectorType = PhoneInputSelectorType.DROPDOWN,
     this.showFlags = true,
     this.hideUnderline = false,
+    this.underlineBorderSide = null,
+    this.showTrailingArrow = true,
     this.useEmoji = false,
     this.countryComparator,
     this.setSelectorButtonAsPrefixIcon = false,
     this.leadingPadding,
+    this.bottomSheetPadding,
     this.trailingSpace = true,
-  });
+  }) : assert(hideUnderline && underlineBorderSide != null);
 }

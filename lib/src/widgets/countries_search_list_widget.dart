@@ -24,8 +24,7 @@ class CountrySearchListWidget extends StatefulWidget {
   });
 
   @override
-  _CountrySearchListWidgetState createState() =>
-      _CountrySearchListWidgetState();
+  _CountrySearchListWidgetState createState() => _CountrySearchListWidgetState();
 }
 
 class _CountrySearchListWidgetState extends State<CountrySearchListWidget> {
@@ -51,8 +50,7 @@ class _CountrySearchListWidgetState extends State<CountrySearchListWidget> {
 
   /// Returns [InputDecoration] of the search box
   InputDecoration getSearchBoxDecoration() {
-    return widget.searchBoxDecoration ??
-        InputDecoration(labelText: 'Search by country name or dial code');
+    return widget.searchBoxDecoration ?? InputDecoration(labelText: 'Search by country name or dial code');
   }
 
   @override
@@ -60,24 +58,24 @@ class _CountrySearchListWidgetState extends State<CountrySearchListWidget> {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
-          child: TextFormField(
-            key: Key(TestHelper.CountrySearchInputKeyValue),
-            decoration: getSearchBoxDecoration(),
-            controller: _searchController,
-            autofocus: widget.autoFocus,
-            onChanged: (value) {
-              final String value = _searchController.text.trim();
-              return setState(
-                () => filteredCountries = Utils.filterCountries(
-                  countries: widget.countries,
-                  locale: widget.locale,
-                  value: value,
-                ),
-              );
-            },
-          ),
+        TextFormField(
+          key: Key(TestHelper.CountrySearchInputKeyValue),
+          decoration: getSearchBoxDecoration(),
+          controller: _searchController,
+          autofocus: widget.autoFocus,
+          onChanged: (value) {
+            final String value = _searchController.text.trim();
+            return setState(
+              () => filteredCountries = Utils.filterCountries(
+                countries: widget.countries,
+                locale: widget.locale,
+                value: value,
+              ),
+            );
+          },
+        ),
+        SizedBox(
+          height: 24,
         ),
         Flexible(
           child: ListView.builder(
@@ -148,6 +146,7 @@ class DirectionalCountryListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
+      contentPadding: EdgeInsets.zero,
       key: Key(TestHelper.countryItemKeyValue(country.alpha2Code)),
       leading: (showFlags ? _Flag(country: country, useEmoji: useEmoji) : null),
       title: Align(
@@ -179,22 +178,24 @@ class _Flag extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return country != null
-        ? Container(
-            child: useEmoji!
-                ? Text(
-                    Utils.generateFlagEmojiUnicode(country?.alpha2Code ?? ''),
-                    style: Theme.of(context).textTheme.headline5,
-                  )
-                : country?.flagUri != null
-                    ? CircleAvatar(
-                        backgroundImage: AssetImage(
-                          country!.flagUri,
-                          package: 'intl_phone_number_input',
-                        ),
-                      )
-                    : SizedBox.shrink(),
-          )
-        : SizedBox.shrink();
+    if (country == null) {
+      return SizedBox.shrink();
+    }
+
+    return Container(
+      child: useEmoji!
+          ? Text(
+              Utils.generateFlagEmojiUnicode(country?.alpha2Code ?? ''),
+              style: Theme.of(context).textTheme.headline5,
+            )
+          : country?.flagUri != null
+              ? CircleAvatar(
+                  backgroundImage: AssetImage(
+                    country!.flagUri,
+                    package: 'intl_phone_number_input',
+                  ),
+                )
+              : SizedBox.shrink(),
+    );
   }
 }
