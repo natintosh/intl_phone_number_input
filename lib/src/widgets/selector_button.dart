@@ -51,7 +51,7 @@ class SelectorButton extends StatelessWidget {
             textStyle: selectorTextStyle,
           ),
           value: country,
-          underline: _buildUnderline(underlineBorderSide),
+          underline: underlineBorderSide && _buildUnderline(underlineBorderSide),
           items: mapCountryToDropdownItem(countries),
           onChanged: isEnabled ? onCountryChanged : null,
         );
@@ -114,7 +114,7 @@ class SelectorButton extends StatelessWidget {
       ),
     );
 
-    if (selectorConfig.hideUnderline) {
+    if (selectorConfig.hideUnderline || underlineBorderSide == null) {
       return child;
     }
 
@@ -125,7 +125,7 @@ class SelectorButton extends StatelessWidget {
         Positioned(
           left: 0.0,
           right: 0.0,
-          bottom: -(underlineBorderSide.width ?? 1),
+          bottom: -(underlineBorderSide!.width ?? 1),
           child: _buildUnderline(underlineBorderSide),
         ),
       ],
