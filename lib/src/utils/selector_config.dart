@@ -49,7 +49,7 @@ class SelectorConfig {
     this.selectorType = PhoneInputSelectorType.DROPDOWN,
     this.showFlags = true,
     this.hideUnderline = false,
-    this.underlineBorderSide = null,
+    this.underlineBorderSide,
     this.showTrailingArrow = true,
     this.useEmoji = false,
     this.countryComparator,
@@ -57,5 +57,5 @@ class SelectorConfig {
     this.leadingPadding,
     this.bottomSheetPadding,
     this.trailingSpace = true,
-  }) : assert(hideUnderline && underlineBorderSide != null);
+  });
 }

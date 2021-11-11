@@ -51,7 +51,7 @@ class SelectorButton extends StatelessWidget {
             textStyle: selectorTextStyle,
           ),
           value: country,
-          underline: underlineBorderSide && _buildUnderline(underlineBorderSide),
+          underline: (underlineBorderSide != null) ? _buildUnderline(underlineBorderSide) : null,
           items: mapCountryToDropdownItem(countries),
           onChanged: isEnabled ? onCountryChanged : null,
         );
