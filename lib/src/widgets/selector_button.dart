@@ -41,7 +41,7 @@ class SelectorButton extends StatelessWidget {
     if (selectorConfig.selectorType == PhoneInputSelectorType.DROPDOWN) {
       if (countries.isNotEmpty && countries.length > 1) {
         final dropdown = DropdownButton<Country>(
-          key: Key(TestHelper.DropdownButtonKeyValue),
+          key: const Key(TestHelper.DropdownButtonKeyValue),
           hint: Item(
             country: country,
             showFlag: selectorConfig.showFlags,
@@ -76,7 +76,7 @@ class SelectorButton extends StatelessWidget {
     }
 
     Widget child = MaterialButton(
-      key: Key(TestHelper.DropdownButtonKeyValue),
+      key: const Key(TestHelper.DropdownButtonKeyValue),
       padding: EdgeInsets.zero,
       minWidth: 0,
       onPressed: countries.isNotEmpty && countries.length > 1 && isEnabled
@@ -96,7 +96,7 @@ class SelectorButton extends StatelessWidget {
       child: Row(
         children: [
           Padding(
-            padding: const EdgeInsets.only(right: 8.0),
+            padding: const EdgeInsets.only(right: 8),
             child: Item(
               country: country,
               showFlag: selectorConfig.showFlags,
@@ -107,34 +107,33 @@ class SelectorButton extends StatelessWidget {
             ),
           ),
           if (selectorConfig.showTrailingArrow)
-            Icon(
+            const Icon(
               Icons.arrow_drop_down_outlined,
             ),
         ],
       ),
     );
 
-    if (selectorConfig.hideUnderline || underlineBorderSide == null) {
-      return child;
+    if (!selectorConfig.hideUnderline && underlineBorderSide != null) {
+      return Stack(
+        clipBehavior: Clip.none,
+        children: <Widget>[
+          child,
+          Positioned(
+            left: 0,
+            right: 0,
+            bottom: -underlineBorderSide.width,
+            child: _buildUnderline(underlineBorderSide),
+          ),
+        ],
+      );
     }
-
-    return Stack(
-      clipBehavior: Clip.none,
-      children: <Widget>[
-        child,
-        Positioned(
-          left: 0.0,
-          right: 0.0,
-          bottom: -(underlineBorderSide!.width ?? 1),
-          child: _buildUnderline(underlineBorderSide),
-        ),
-      ],
-    );
+    return child;
   }
 
   Widget _buildUnderline(BorderSide? borderSide) {
     if (borderSide == null) {
-      return SizedBox();
+      return const SizedBox();
     }
     return Container(
       height: borderSide.width,
