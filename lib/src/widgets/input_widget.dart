@@ -392,7 +392,6 @@ class _InputWidgetView
 
     return Container(
       child: Row(
-        textDirection: TextDirection.ltr,
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[

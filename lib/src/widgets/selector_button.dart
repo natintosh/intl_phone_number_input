@@ -110,6 +110,7 @@ class SelectorButton extends StatelessWidget {
           useEmoji: selectorConfig.useEmoji,
           textStyle: selectorTextStyle,
           withCountryNames: false,
+          trailingSpace: selectorConfig.trailingSpace,
         ),
       );
     }).toList();
@@ -117,20 +118,23 @@ class SelectorButton extends StatelessWidget {
 
   /// shows a Dialog with list [countries] if the [PhoneInputSelectorType.DIALOG] is selected
   Future<Country?> showCountrySelectorDialog(
-      BuildContext context, List<Country> countries) {
+      BuildContext inheritedContext, List<Country> countries) {
     return showDialog(
-      context: context,
+      context: inheritedContext,
       barrierDismissible: true,
       builder: (BuildContext context) => AlertDialog(
-        content: Container(
-          width: double.maxFinite,
-          child: CountrySearchListWidget(
-            countries,
-            locale,
-            searchBoxDecoration: searchBoxDecoration,
-            showFlags: selectorConfig.showFlags,
-            useEmoji: selectorConfig.useEmoji,
-            autoFocus: autoFocusSearchField,
+        content: Directionality(
+          textDirection: Directionality.of(inheritedContext),
+          child: Container(
+            width: double.maxFinite,
+            child: CountrySearchListWidget(
+              countries,
+              locale,
+              searchBoxDecoration: searchBoxDecoration,
+              showFlags: selectorConfig.showFlags,
+              useEmoji: selectorConfig.useEmoji,
+              autoFocus: autoFocusSearchField,
+            ),
           ),
         ),
       ),
@@ -139,9 +143,9 @@ class SelectorButton extends StatelessWidget {
 
   /// shows a Dialog with list [countries] if the [PhoneInputSelectorType.BOTTOM_SHEET] is selected
   Future<Country?> showCountrySelectorBottomSheet(
-      BuildContext context, List<Country> countries) {
+      BuildContext inheritedContext, List<Country> countries) {
     return showModalBottomSheet(
-      context: context,
+      context: inheritedContext,
       clipBehavior: Clip.hardEdge,
       isScrollControlled: isScrollControlled,
       backgroundColor: Colors.transparent,
@@ -155,24 +159,27 @@ class SelectorButton extends StatelessWidget {
           ),
           DraggableScrollableSheet(
             builder: (BuildContext context, ScrollController controller) {
-              return Container(
-                decoration: ShapeDecoration(
-                  color: Theme.of(context).canvasColor,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(12),
-                      topRight: Radius.circular(12),
+              return Directionality(
+                textDirection: Directionality.of(inheritedContext),
+                child: Container(
+                  decoration: ShapeDecoration(
+                    color: Theme.of(context).canvasColor,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(12),
+                        topRight: Radius.circular(12),
+                      ),
                     ),
                   ),
-                ),
-                child: CountrySearchListWidget(
-                  countries,
-                  locale,
-                  searchBoxDecoration: searchBoxDecoration,
-                  scrollController: controller,
-                  showFlags: selectorConfig.showFlags,
-                  useEmoji: selectorConfig.useEmoji,
-                  autoFocus: autoFocusSearchField,
+                  child: CountrySearchListWidget(
+                    countries,
+                    locale,
+                    searchBoxDecoration: searchBoxDecoration,
+                    scrollController: controller,
+                    showFlags: selectorConfig.showFlags,
+                    useEmoji: selectorConfig.useEmoji,
+                    autoFocus: autoFocusSearchField,
+                  ),
                 ),
               );
             },

@@ -15,9 +15,12 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: Scaffold(
-        appBar: AppBar(title: Text('Demo')),
-        body: MyHomePage(),
+      home: Directionality(
+        textDirection: TextDirection.rtl,
+        child: Scaffold(
+          appBar: AppBar(title: Text('Demo')),
+          body: MyHomePage(),
+        ),
       ),
     );
   }
@@ -68,7 +71,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             ElevatedButton(
               onPressed: () {
-                formKey.currentState.validate();
+                formKey.currentState?.validate();
               },
               child: Text('Validate'),
             ),
@@ -80,7 +83,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             ElevatedButton(
               onPressed: () {
-                formKey.currentState.save();
+                formKey.currentState?.save();
               },
               child: Text('Save'),
             ),
@@ -101,7 +104,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   void dispose() {
-    controller?.dispose();
+    controller.dispose();
     super.dispose();
   }
 }
