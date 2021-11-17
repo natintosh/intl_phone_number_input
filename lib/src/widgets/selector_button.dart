@@ -51,9 +51,7 @@ class SelectorButton extends StatelessWidget {
             textStyle: selectorTextStyle,
           ),
           value: country,
-          underline: (underlineBorderSide != null)
-              ? _buildUnderline(underlineBorderSide)
-              : null,
+          underline: (underlineBorderSide != null) ? _buildUnderline(underlineBorderSide) : null,
           items: mapCountryToDropdownItem(countries),
           onChanged: isEnabled ? onCountryChanged : null,
         );
@@ -84,10 +82,8 @@ class SelectorButton extends StatelessWidget {
       onPressed: countries.isNotEmpty && countries.length > 1 && isEnabled
           ? () async {
               Country? selected;
-              if (selectorConfig.selectorType ==
-                  PhoneInputSelectorType.BOTTOM_SHEET) {
-                selected =
-                    await showCountrySelectorBottomSheet(context, countries);
+              if (selectorConfig.selectorType == PhoneInputSelectorType.BOTTOM_SHEET) {
+                selected = await showCountrySelectorBottomSheet(context, countries);
               } else {
                 selected = await showCountrySelectorDialog(context, countries);
               }
@@ -200,7 +196,9 @@ class SelectorButton extends StatelessWidget {
 
   /// shows a Dialog with list [countries] if the [PhoneInputSelectorType.BOTTOM_SHEET] is selected
   Future<Country?> showCountrySelectorBottomSheet(
-      BuildContext inheritedContext, List<Country> countries) {
+    BuildContext inheritedContext,
+    List<Country> countries,
+  ) {
     return showModalBottomSheet(
       context: inheritedContext,
       clipBehavior: Clip.hardEdge,
@@ -218,6 +216,7 @@ class SelectorButton extends StatelessWidget {
             onTap: () => Navigator.pop(context),
           ),
           DraggableScrollableSheet(
+            initialChildSize: 0.75,
             builder: (context, controller) {
               return Directionality(
                 textDirection: Directionality.of(inheritedContext),
