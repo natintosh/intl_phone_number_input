@@ -126,7 +126,7 @@ class SelectorButton extends StatelessWidget {
           Positioned(
             left: 0,
             right: 0,
-            bottom: -underlineBorderSide.width,
+            bottom: -underlineBorderSide.width - 1,
             child: _buildUnderline(underlineBorderSide),
           ),
         ],
@@ -200,7 +200,9 @@ class SelectorButton extends StatelessWidget {
 
   /// shows a Dialog with list [countries] if the [PhoneInputSelectorType.BOTTOM_SHEET] is selected
   Future<Country?> showCountrySelectorBottomSheet(
-      BuildContext inheritedContext, List<Country> countries) {
+    BuildContext inheritedContext,
+    List<Country> countries,
+  ) {
     return showModalBottomSheet(
       context: inheritedContext,
       clipBehavior: Clip.hardEdge,
@@ -223,7 +225,7 @@ class SelectorButton extends StatelessWidget {
                 textDirection: Directionality.of(inheritedContext),
                 child: Container(
                   decoration: ShapeDecoration(
-                    color: Theme.of(context).colorScheme.onSurface,
+                    color: Theme.of(context).colorScheme.surface,
                     shape: const RoundedRectangleBorder(
                       borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(12),
