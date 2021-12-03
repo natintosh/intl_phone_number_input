@@ -122,7 +122,7 @@ class SelectorButton extends StatelessWidget {
           Positioned(
             left: 0,
             right: 0,
-            bottom: -underlineBorderSide.width - 1,
+            bottom: -underlineBorderSide.width * 2,
             child: _buildUnderline(underlineBorderSide),
           ),
         ],
