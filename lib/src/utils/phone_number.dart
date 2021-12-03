@@ -1,5 +1,6 @@
+// ignore_for_file: constant_identifier_names
+
 import 'dart:async';
-import 'dart:math';
 
 import 'package:collection/collection.dart' show IterableExtension;
 import 'package:equatable/equatable.dart';
@@ -33,21 +34,14 @@ class PhoneNumber extends Equatable {
   /// Country [isoCode] of the phone number
   final String? isoCode;
 
-  /// [_hash] is used to compare instances of [PhoneNumber] object.
-  final int _hash;
-
-  /// Returns an integer generated after the object was initialised.
-  /// Used to compare different instances of [PhoneNumber]
-  int get hash => _hash;
-
   @override
   List<Object?> get props => [phoneNumber, isoCode, dialCode];
 
-  PhoneNumber({
-    this.phoneNumber,
-    this.dialCode,
-    this.isoCode,
-  }) : _hash = 1000 + Random().nextInt(99999 - 1000);
+  const PhoneNumber({
+    this.phoneNumber = '',
+    this.dialCode = '',
+    this.isoCode = '',
+  });
 
   @override
   String toString() {
@@ -60,11 +54,9 @@ class PhoneNumber extends Equatable {
     String phoneNumber, [
     String isoCode = '',
   ]) async {
-    RegionInfo regionInfo = await PhoneNumberUtil.getRegionInfo(
-        phoneNumber: phoneNumber, isoCode: isoCode);
+    final regionInfo = await PhoneNumberUtil.getRegionInfo(phoneNumber: phoneNumber, isoCode: isoCode);
 
-    String? internationalPhoneNumber =
-        await PhoneNumberUtil.normalizePhoneNumber(
+    final internationalPhoneNumber = await PhoneNumberUtil.normalizePhoneNumber(
       phoneNumber: phoneNumber,
       isoCode: regionInfo.isoCode ?? isoCode,
     );
@@ -79,11 +71,11 @@ class PhoneNumber extends Equatable {
   /// Accepts a [PhoneNumber] object and returns a formatted phone number String
   static Future<String> getParsableNumber(PhoneNumber phoneNumber) async {
     if (phoneNumber.isoCode != null) {
-      PhoneNumber number = await getRegionInfoFromPhoneNumber(
+      final number = await getRegionInfoFromPhoneNumber(
         phoneNumber.phoneNumber!,
         phoneNumber.isoCode!,
       );
-      String? formattedNumber = await PhoneNumberUtil.formatAsYouType(
+      final formattedNumber = await PhoneNumberUtil.formatAsYouType(
         phoneNumber: number.phoneNumber!,
         isoCode: number.isoCode!,
       );
@@ -93,22 +85,23 @@ class PhoneNumber extends Equatable {
         '',
       );
     } else {
-      throw new Exception('ISO Code is "${phoneNumber.isoCode}"');
+      throw Exception('ISO Code is "${phoneNumber.isoCode}"');
     }
   }
 
   /// Returns a String of [phoneNumber] without [dialCode]
   String parseNumber() {
-    return this.phoneNumber!.replaceAll("${this.dialCode}", '');
+    return phoneNumber!.replaceAll("${dialCode}", '');
   }
 
   /// For predefined phone number returns Country's [isoCode] from the dial code,
   /// Returns null if not found.
   static String? getISO2CodeByPrefix(String prefix) {
     if (prefix.isNotEmpty) {
-      prefix = prefix.startsWith('+') ? prefix : '+$prefix';
-      var country = Countries.countryList
-          .firstWhereOrNull((country) => country['dial_code'] == prefix);
+      final normalizedPrefix = prefix.startsWith('+') ? prefix : '+$prefix';
+      final country = Countries.countryList.firstWhereOrNull(
+        (country) => country['dial_code'] == normalizedPrefix,
+      );
       if (country != null && country['alpha_2_code'] != null) {
         return country['alpha_2_code'];
       }
@@ -118,10 +111,8 @@ class PhoneNumber extends Equatable {
 
   /// Returns [PhoneNumberType] which is the type of phone number
   /// Accepts [phoneNumber] and [isoCode] and r
-  static Future<PhoneNumberType> getPhoneNumberType(
-      String phoneNumber, String isoCode) async {
-    PhoneNumberType type = await PhoneNumberUtil.getNumberType(
-        phoneNumber: phoneNumber, isoCode: isoCode);
+  static Future<PhoneNumberType> getPhoneNumberType(String phoneNumber, String isoCode) async {
+    final type = await PhoneNumberUtil.getNumberType(phoneNumber: phoneNumber, isoCode: isoCode);
 
     return type;
   }
