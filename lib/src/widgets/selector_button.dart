@@ -86,7 +86,7 @@ class SelectorButton extends StatelessWidget {
                   }
                 : null,
             child: Padding(
-              padding: const EdgeInsets.only(right: 8.0),
+              padding: buttonPadding,
               child: Item(
                 country: country,
                 showFlag: selectorConfig.showFlags,
