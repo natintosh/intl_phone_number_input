@@ -33,6 +33,24 @@ class SelectorConfig {
   /// Add white space for short dial code
   final bool trailingSpace;
 
+  /// The initial fractional value of the parent container's height to use when
+  /// displaying the DraggableScrollableSheet.
+  ///
+  /// The default value is `0.5`.
+  final double initialSheetSize;
+
+  /// The minimum fractional value of the parent container's height to use when
+  /// displaying the DraggableScrollableSheet.
+  ///
+  /// The default value is `0.25`.
+  final double minSheetSize;
+
+  /// The maximum fractional value of the parent container's height to use when
+  /// displaying the DraggableScrollableSheet.
+  ///
+  /// The default value is `1.0`.
+  final double maxSheetSize;
+
   const SelectorConfig({
     this.selectorType = PhoneInputSelectorType.DROPDOWN,
     this.showFlags = true,
@@ -41,5 +59,8 @@ class SelectorConfig {
     this.setSelectorButtonAsPrefixIcon = false,
     this.leadingPadding,
     this.trailingSpace = true,
+    this.initialSheetSize = 0.5,
+    this.minSheetSize = 0.25,
+    this.maxSheetSize = 1.0,
   });
 }
