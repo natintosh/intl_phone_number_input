@@ -17,7 +17,7 @@ class SelectorButton extends StatelessWidget {
   final String? locale;
   final bool isEnabled;
   final bool isScrollControlled;
-
+  final Color? dropdownColor;
   final ValueChanged<Country?> onCountryChanged;
 
   const SelectorButton({
@@ -32,6 +32,7 @@ class SelectorButton extends StatelessWidget {
     required this.onCountryChanged,
     required this.isEnabled,
     required this.isScrollControlled,
+    this.dropdownColor,
   }) : super(key: key);
 
   @override
@@ -52,6 +53,7 @@ class SelectorButton extends StatelessWidget {
                   value: country,
                   items: mapCountryToDropdownItem(countries),
                   onChanged: isEnabled ? onCountryChanged : null,
+                  dropdownColor: selectorConfig.color,
                 ),
               )
             : Item(
@@ -123,10 +125,12 @@ class SelectorButton extends StatelessWidget {
       context: inheritedContext,
       barrierDismissible: true,
       builder: (BuildContext context) => AlertDialog(
+        backgroundColor: selectorConfig.color,
         content: Directionality(
           textDirection: Directionality.of(inheritedContext),
           child: Container(
             width: double.maxFinite,
+            color: selectorConfig.color,
             child: CountrySearchListWidget(
               countries,
               locale,
@@ -159,14 +163,15 @@ class SelectorButton extends StatelessWidget {
           ),
           Padding(
             padding: EdgeInsets.only(
-                    bottom: MediaQuery.of(context).viewInsets.bottom),
+                bottom: MediaQuery.of(context).viewInsets.bottom),
             child: DraggableScrollableSheet(
               builder: (BuildContext context, ScrollController controller) {
                 return Directionality(
                   textDirection: Directionality.of(inheritedContext),
                   child: Container(
                     decoration: ShapeDecoration(
-                      color: Theme.of(context).canvasColor,
+                      color:
+                          selectorConfig.color ?? Theme.of(context).canvasColor,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(12),
