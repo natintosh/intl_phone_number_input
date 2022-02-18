@@ -296,7 +296,6 @@ class _InputWidgetState extends State<InternationalPhoneNumberInput> {
           prefixIcon: SelectorButton(
         country: country,
         countries: countries,
-        dropdownColor: widget.dropdownColor,
         onCountryChanged: onCountryChanged,
         selectorConfig: widget.selectorConfig,
         selectorTextStyle: widget.selectorTextStyle,
@@ -410,7 +409,6 @@ class _InputWidgetView
                   searchBoxDecoration: widget.searchBoxDecoration,
                   locale: state.locale,
                   isEnabled: widget.isEnabled,
-                  dropdownColor: widget.dropdownColor,
                   autoFocusSearchField: widget.autoFocusSearch,
                   isScrollControlled: widget.countrySelectorScrollControlled,
                 ),
