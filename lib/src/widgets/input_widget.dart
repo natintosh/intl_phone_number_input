@@ -389,26 +389,41 @@ class _InputWidgetView
     final dialCode = state.country?.dialCode ?? '';
 
     return Container(
+      margin: EdgeInsets.zero,
+      padding: EdgeInsets.zero,
       child: Row(
-        textDirection: TextDirection.ltr,
         mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.baseline,
+        textBaseline: TextBaseline.alphabetic,
         children: <Widget>[
           if (!widget.selectorConfig.setSelectorButtonAsPrefixIcon) ...[
             Column(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
-                SelectorButton(
-                  country: state.country,
-                  countries: state.countries,
-                  onCountryChanged: state.onCountryChanged,
-                  selectorConfig: widget.selectorConfig,
-                  selectorTextStyle: widget.selectorTextStyle,
-                  searchBoxDecoration: widget.searchBoxDecoration,
-                  locale: state.locale,
-                  isEnabled: widget.isEnabled,
-                  autoFocusSearchField: widget.autoFocusSearch,
-                  isScrollControlled: widget.countrySelectorScrollControlled,
+                Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(8)),
+                    border: Border.all(
+                      width: 1,
+                      color: Color(0xFFB1B1B1),
+                    ),
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.only(left: 10),
+                    child: SelectorButton(
+                      country: state.country,
+                      countries: state.countries,
+                      onCountryChanged: state.onCountryChanged,
+                      selectorConfig: widget.selectorConfig,
+                      selectorTextStyle: widget.selectorTextStyle,
+                      searchBoxDecoration: widget.searchBoxDecoration,
+                      locale: state.locale,
+                      isEnabled: widget.isEnabled,
+                      autoFocusSearchField: widget.autoFocusSearch,
+                      isScrollControlled:
+                          widget.countrySelectorScrollControlled,
+                    ),
+                  ),
                 ),
                 SizedBox(
                   height: state.selectorButtonBottomPadding,
@@ -419,7 +434,6 @@ class _InputWidgetView
           ],
           Flexible(
             child: TextFormField(
-              key: Key(TestHelper.TextInputKeyValue),
               textDirection: TextDirection.ltr,
               controller: state.controller,
               cursorColor: widget.cursorColor,
