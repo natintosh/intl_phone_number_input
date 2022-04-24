@@ -37,25 +37,54 @@ class _MyHomePageState extends State<MyHomePage> {
   final TextEditingController controller = TextEditingController();
   String initialCountry = 'NG';
   PhoneNumber number = PhoneNumber(isoCode: 'NG');
+  FocusNode _focusNode = FocusNode();
+
+  String _userNameErrorText = 'Invalid Phone Number';
 
   @override
   Widget build(BuildContext context) {
-    return Form(
-      key: formKey,
-      child: Container(
+    return DismissKeyboardOnTap(
+      child: Form(
+        key: formKey,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             InternationalPhoneNumberInput(
+              focusNode: _focusNode,
+              errorMessage: _userNameErrorText,
               onInputChanged: (PhoneNumber number) {
-                print(number.phoneNumber);
+                // print(number.phoneNumber);
               },
-              onInputValidated: (bool value) {
-                print(value);
-              },
-              selectorConfig: SelectorConfig(
-                selectorType: PhoneInputSelectorType.BOTTOM_SHEET,
+              inputDecoration: InputDecoration(
+                errorBorder: _focusNode.hasFocus
+                    ? OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.blue, width: 1.0),
+                      )
+                    : OutlineInputBorder(
+                        borderSide: BorderSide.none,
+                      ),
+                errorStyle: _focusNode.hasFocus
+                    ? TextStyle(fontSize: 0, height: 0)
+                    : null,
+                focusedErrorBorder: UnderlineInputBorder(
+                  borderSide: BorderSide.none,
+                ),
               ),
+              onInputValidated: (bool value) {},
+              selectorConfig: SelectorConfig(
+                selectorType: PhoneInputSelectorType.CUSTOM,
+                showFlags: false,
+                setSelectorButtonAsPrefixIcon: true,
+              ),
+              onCustomSelectionWidget: (List<Country> countries) async {
+                return await Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>
+                        CustomSearchScreen(countries: countries),
+                  ),
+                );
+              },
               ignoreBlank: false,
               autoValidateMode: AutovalidateMode.disabled,
               selectorTextStyle: TextStyle(color: Colors.black),
@@ -106,5 +135,55 @@ class _MyHomePageState extends State<MyHomePage> {
   void dispose() {
     controller.dispose();
     super.dispose();
+  }
+}
+
+class CustomSearchScreen extends StatelessWidget {
+  final List<Country> countries;
+  const CustomSearchScreen({Key key, this.countries}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        title: Text('countries list'),
+      ),
+      body: ListView.builder(
+        itemBuilder: (context, index) {
+          return ListTile(
+            onTap: () {
+              Navigator.pop(context, countries[index]);
+            },
+            title: Text(
+              '${countries[index].name} (${countries[index].dialCode})',
+              style: TextStyle(color: Colors.black),
+            ),
+          );
+        },
+        itemCount: countries.length,
+      ),
+    );
+  }
+}
+
+class DismissKeyboardOnTap extends StatelessWidget {
+  const DismissKeyboardOnTap({Key key, this.child}) : super(key: key);
+
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      behavior: HitTestBehavior.translucent,
+      onTap: () {
+        final currentFocus = FocusScope.of(context);
+        if (!currentFocus.hasPrimaryFocus &&
+            currentFocus.focusedChild != null) {
+          FocusManager.instance.primaryFocus.unfocus();
+        }
+      },
+      child: child,
+    );
   }
 }
