@@ -43,10 +43,17 @@ class _MyHomePageState extends State<MyHomePage> {
     return Form(
       key: formKey,
       child: Container(
+        color: Color(0xff8B8777),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             InternationalPhoneNumberInput(
+              selectorButtonBottomWidget: Container(
+                color: Colors.white,
+                height: 1,
+                width: 120,
+              ),
+              betweenTextFieldWidget: Icon(Icons.arrow_drop_down_sharp),
               onInputChanged: (PhoneNumber number) {
                 print(number.phoneNumber);
               },
