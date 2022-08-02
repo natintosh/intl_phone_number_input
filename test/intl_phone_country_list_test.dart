@@ -25,7 +25,12 @@ void main() {
         'pt_BR',
         'sr-Cyrl',
         'sr-Latn',
-        "zh_TW"
+        'zh_TW',
+        'tr',
+        'ro',
+        'ar',
+        'fa',
+        'yue',
       ];
 
       Countries.countryList.forEach((Map<String, dynamic> data) {
