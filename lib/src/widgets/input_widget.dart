@@ -166,7 +166,6 @@ class _InputWidgetState extends State<InternationalPhoneNumberInput> {
       if (country!.alpha2Code != widget.initialValue?.isoCode) {
         loadCountries();
       }
-      initialiseWidget();
     }
     super.didUpdateWidget(oldWidget);
   }
