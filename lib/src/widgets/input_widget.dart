@@ -46,6 +46,7 @@ class InternationalPhoneNumberInput extends StatefulWidget {
   final String? Function(String?)? validator;
   final ValueChanged<PhoneNumber>? onSaved;
 
+  final Key? fieldKey;
   final TextEditingController? textFieldController;
   final TextInputType keyboardType;
   final TextInputAction? keyboardAction;
@@ -94,6 +95,7 @@ class InternationalPhoneNumberInput extends StatefulWidget {
       this.onFieldSubmitted,
       this.validator,
       this.onSaved,
+      this.fieldKey,
       this.textFieldController,
       this.keyboardAction,
       this.keyboardType = TextInputType.phone,
@@ -318,7 +320,7 @@ class _InputWidgetState extends State<InternationalPhoneNumberInput> {
   String? validator(String? value) {
     bool isValid =
         this.isNotValid && (value!.isNotEmpty || widget.ignoreBlank == false);
-    WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       if (isValid && widget.errorMessage != null) {
         setState(() {
           this.selectorButtonBottomPadding =
@@ -390,7 +392,6 @@ class _InputWidgetView
 
     return Container(
       child: Row(
-        textDirection: TextDirection.ltr,
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
@@ -419,7 +420,7 @@ class _InputWidgetView
           ],
           Flexible(
             child: TextFormField(
-              key: Key(TestHelper.TextInputKeyValue),
+              key: widget.fieldKey ?? Key(TestHelper.TextInputKeyValue),
               textDirection: TextDirection.ltr,
               controller: state.controller,
               cursorColor: widget.cursorColor,
