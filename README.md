@@ -73,6 +73,8 @@ In your app directory, edit `web/index.html` to add the following
 ```
 
 Or checkout `/example` folder from [Github](https://github.com/natintosh/intl_phone_number_input/tree/develop/example).
+if you are looking for your country ISO number click here   [Github]([https://github.com/natintosh/intl_phone_number_input/tree/develop/example](https://github.com/natintosh/intl_phone_number_input/blob/master/lib/src/models/country_list.dart)) 
+
 
 
 ### Note
