@@ -17,22 +17,24 @@ class SelectorButton extends StatelessWidget {
   final String? locale;
   final bool isEnabled;
   final bool isScrollControlled;
+  final Future<Country?> Function(List<Country>)? onCustomSelectionWidget;
 
   final ValueChanged<Country?> onCountryChanged;
 
-  const SelectorButton({
-    Key? key,
-    required this.countries,
-    required this.country,
-    required this.selectorConfig,
-    required this.selectorTextStyle,
-    required this.searchBoxDecoration,
-    required this.autoFocusSearchField,
-    required this.locale,
-    required this.onCountryChanged,
-    required this.isEnabled,
-    required this.isScrollControlled,
-  }) : super(key: key);
+  const SelectorButton(
+      {Key? key,
+      required this.countries,
+      required this.country,
+      required this.selectorConfig,
+      required this.selectorTextStyle,
+      required this.searchBoxDecoration,
+      required this.autoFocusSearchField,
+      required this.locale,
+      required this.onCountryChanged,
+      required this.isEnabled,
+      required this.isScrollControlled,
+      this.onCustomSelectionWidget})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -73,9 +75,12 @@ class SelectorButton extends StatelessWidget {
                         PhoneInputSelectorType.BOTTOM_SHEET) {
                       selected = await showCountrySelectorBottomSheet(
                           context, countries);
-                    } else {
+                    } else if (selectorConfig.selectorType ==
+                        PhoneInputSelectorType.DIALOG) {
                       selected =
                           await showCountrySelectorDialog(context, countries);
+                    } else {
+                      selected = await onCustomSelectionWidget!(countries);
                     }
 
                     if (selected != null) {
