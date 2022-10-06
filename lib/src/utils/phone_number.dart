@@ -54,6 +54,12 @@ class PhoneNumber extends Equatable {
     return 'PhoneNumber(phoneNumber: $phoneNumber, dialCode: $dialCode, isoCode: $isoCode)';
   }
 
+  Future<bool> isValidNumber() async {
+    bool? isValid = await PhoneNumberUtil.isValidNumber(
+        phoneNumber: this.phoneNumber ?? "", isoCode: this.isoCode ?? "");
+    return isValid ?? false;
+  }
+
   /// Returns [PhoneNumber] which contains region information about
   /// the [phoneNumber] and [isoCode] passed.
   static Future<PhoneNumber> getRegionInfoFromPhoneNumber(
