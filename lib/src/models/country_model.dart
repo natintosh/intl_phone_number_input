@@ -65,5 +65,6 @@ class Country {
       'alpha2: $alpha2Code, '
       'alpha3: $alpha3Code, '
       'dialCode: $dialCode '
+      'numCode: $numCode '
       '}';
 }

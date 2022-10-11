@@ -237,10 +237,14 @@ class _InputWidgetState extends State<InternationalPhoneNumberInput> {
               '${this.country?.dialCode}$parsedPhoneNumberString';
 
           if (widget.onInputChanged != null) {
-            widget.onInputChanged!(PhoneNumber(
+            widget.onInputChanged!(
+              PhoneNumber(
                 phoneNumber: phoneNumber,
+                numCode: this.country?.numCode,
                 isoCode: this.country?.alpha2Code,
-                dialCode: this.country?.dialCode));
+                dialCode: this.country?.dialCode,
+              ),
+            );
           }
 
           if (widget.onInputValidated != null) {
@@ -249,10 +253,14 @@ class _InputWidgetState extends State<InternationalPhoneNumberInput> {
           this.isNotValid = true;
         } else {
           if (widget.onInputChanged != null) {
-            widget.onInputChanged!(PhoneNumber(
+            widget.onInputChanged!(
+              PhoneNumber(
                 phoneNumber: phoneNumber,
+                numCode: this.country?.numCode,
                 isoCode: this.country?.alpha2Code,
-                dialCode: this.country?.dialCode));
+                dialCode: this.country?.dialCode,
+              ),
+            );
           }
 
           if (widget.onInputValidated != null) {

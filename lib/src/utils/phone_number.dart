@@ -32,7 +32,7 @@ class PhoneNumber extends Equatable {
 
   /// Country [isoCode] of the phone number
   final String? isoCode;
-
+  final int? numCode;
   /// [_hash] is used to compare instances of [PhoneNumber] object.
   final int _hash;
 
@@ -46,12 +46,13 @@ class PhoneNumber extends Equatable {
   PhoneNumber({
     this.phoneNumber,
     this.dialCode,
+    this.numCode,
     this.isoCode,
   }) : _hash = 1000 + Random().nextInt(99999 - 1000);
 
   @override
   String toString() {
-    return 'PhoneNumber(phoneNumber: $phoneNumber, dialCode: $dialCode, isoCode: $isoCode)';
+    return 'PhoneNumber(phoneNumber: $phoneNumber, dialCode: $dialCode, isoCode: $isoCode, numCode: $numCode)';
   }
 
   /// Returns [PhoneNumber] which contains region information about
