@@ -83,13 +83,14 @@ class InternationalPhoneNumberInput extends StatefulWidget {
   final List<TextInputFormatter>? inputFormatters;
   final FocusNode? focusNode;
   final Iterable<String>? autofillHints;
-
+  final ValueChanged<Country?>? onCountryChanged;
   final List<String>? countries;
 
   InternationalPhoneNumberInput(
       {Key? key,
       this.selectorConfig = const SelectorConfig(),
       required this.onInputChanged,
+      this.onCountryChanged,
       this.onInputValidated,
       this.onSubmit,
       this.onFieldSubmitted,
@@ -339,6 +340,7 @@ class _InputWidgetState extends State<InternationalPhoneNumberInput> {
 
   /// Changes Selector Button Country and Validate Change.
   void onCountryChanged(Country? country) {
+    widget.onCountryChanged?.call(country);
     setState(() {
       this.country = country;
     });

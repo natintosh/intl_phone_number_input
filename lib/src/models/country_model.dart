@@ -18,6 +18,8 @@ class Country {
   /// The flagUri which links to the flag for the [Country] in the library assets
   final String flagUri;
 
+  final int? numCode;
+
   /// The nameTranslation for translation
   final Map<String, String>? nameTranslations;
 
@@ -27,6 +29,7 @@ class Country {
     required this.alpha3Code,
     required this.dialCode,
     required this.flagUri,
+    this.numCode,
     this.nameTranslations,
   });
 
@@ -36,6 +39,7 @@ class Country {
       name: data['en_short_name'],
       alpha2Code: data['alpha_2_code'],
       alpha3Code: data['alpha_3_code'],
+      numCode: int.tryParse(data['num_code'] ?? ''),
       dialCode: data['dial_code'],
       flagUri: 'assets/flags/${data['alpha_2_code'].toLowerCase()}.png',
       nameTranslations: data['nameTranslations'] != null
