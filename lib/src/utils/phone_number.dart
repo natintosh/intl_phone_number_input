@@ -32,7 +32,7 @@ class PhoneNumber extends Equatable {
 
   /// Country [isoCode] of the phone number
   final String? isoCode;
-
+  final String? numCode;
   /// [_hash] is used to compare instances of [PhoneNumber] object.
   final int _hash;
 
@@ -46,12 +46,32 @@ class PhoneNumber extends Equatable {
   PhoneNumber({
     this.phoneNumber,
     this.dialCode,
+    this.numCode,
     this.isoCode,
   }) : _hash = 1000 + Random().nextInt(99999 - 1000);
 
+  String? getFormattedNumCode() {
+    final phoneWithoutDialCode = phoneNumber?.trim()
+      .replaceAll(RegExp('[^0-9]'), '')
+      .replaceFirst(dialCode?.replaceAll(RegExp('[^0-9]'), '') ?? '', '');
+    if ((phoneWithoutDialCode?.length ?? 0) < (dialCode?.length ?? 0)) {
+      return phoneWithoutDialCode
+        ?.substring(0, phoneWithoutDialCode.length);
+    }
+    return phoneWithoutDialCode
+      ?.substring(0, numCode?.length ?? 0);
+  }
+
+  String? getFormattedPhone() {
+    return phoneNumber?.trim()
+      .replaceAll(RegExp('[^0-9]'), '')
+      .replaceFirst(dialCode?.replaceAll(RegExp('[^0-9]'), '') ?? '', '')
+      .replaceFirst(getFormattedNumCode() ?? '', '');
+  }
+
   @override
   String toString() {
-    return 'PhoneNumber(phoneNumber: $phoneNumber, dialCode: $dialCode, isoCode: $isoCode)';
+    return 'PhoneNumber(phoneNumber: $phoneNumber, dialCode: $dialCode, isoCode: $isoCode, numCode: $numCode)';
   }
 
   /// Returns [PhoneNumber] which contains region information about

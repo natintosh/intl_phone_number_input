@@ -80,16 +80,17 @@ class InternationalPhoneNumberInput extends StatefulWidget {
   final TextAlign textAlign;
   final TextAlignVertical textAlignVertical;
   final EdgeInsets scrollPadding;
-
+  final List<TextInputFormatter>? inputFormatters;
   final FocusNode? focusNode;
   final Iterable<String>? autofillHints;
-
+  final ValueChanged<Country?>? onCountryChanged;
   final List<String>? countries;
 
   InternationalPhoneNumberInput(
       {Key? key,
       this.selectorConfig = const SelectorConfig(),
       required this.onInputChanged,
+      this.onCountryChanged,
       this.onInputValidated,
       this.onSubmit,
       this.onFieldSubmitted,
@@ -124,6 +125,7 @@ class InternationalPhoneNumberInput extends StatefulWidget {
       this.focusNode,
       this.cursorColor,
       this.autofillHints,
+      this.inputFormatters,
       this.countries})
       : super(key: key);
 
@@ -235,10 +237,14 @@ class _InputWidgetState extends State<InternationalPhoneNumberInput> {
               '${this.country?.dialCode}$parsedPhoneNumberString';
 
           if (widget.onInputChanged != null) {
-            widget.onInputChanged!(PhoneNumber(
+            widget.onInputChanged!(
+              PhoneNumber(
                 phoneNumber: phoneNumber,
+                numCode: this.country?.numCode,
                 isoCode: this.country?.alpha2Code,
-                dialCode: this.country?.dialCode));
+                dialCode: this.country?.dialCode,
+              ),
+            );
           }
 
           if (widget.onInputValidated != null) {
@@ -247,10 +253,14 @@ class _InputWidgetState extends State<InternationalPhoneNumberInput> {
           this.isNotValid = true;
         } else {
           if (widget.onInputChanged != null) {
-            widget.onInputChanged!(PhoneNumber(
+            widget.onInputChanged!(
+              PhoneNumber(
                 phoneNumber: phoneNumber,
+                numCode: this.country?.numCode,
                 isoCode: this.country?.alpha2Code,
-                dialCode: this.country?.dialCode));
+                dialCode: this.country?.dialCode,
+              ),
+            );
           }
 
           if (widget.onInputValidated != null) {
@@ -338,6 +348,7 @@ class _InputWidgetState extends State<InternationalPhoneNumberInput> {
 
   /// Changes Selector Button Country and Validate Change.
   void onCountryChanged(Country? country) {
+    widget.onCountryChanged?.call(country);
     setState(() {
       this.country = country;
     });
@@ -356,6 +367,7 @@ class _InputWidgetState extends State<InternationalPhoneNumberInput> {
         PhoneNumber(
             phoneNumber: phoneNumber,
             isoCode: this.country?.alpha2Code,
+            numCode: this.country?.numCode,
             dialCode: this.country?.dialCode),
       );
     }
@@ -451,6 +463,8 @@ class _InputWidgetView
                         },
                       )
                     : FilteringTextInputFormatter.digitsOnly,
+                if (widget.inputFormatters != null)
+                  ...widget.inputFormatters!
               ],
               onChanged: state.onChanged,
             ),
