@@ -367,6 +367,7 @@ class _InputWidgetState extends State<InternationalPhoneNumberInput> {
         PhoneNumber(
             phoneNumber: phoneNumber,
             isoCode: this.country?.alpha2Code,
+            numCode: this.country?.numCode,
             dialCode: this.country?.dialCode),
       );
     }

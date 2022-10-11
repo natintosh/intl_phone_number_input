@@ -32,7 +32,7 @@ class PhoneNumber extends Equatable {
 
   /// Country [isoCode] of the phone number
   final String? isoCode;
-  final int? numCode;
+  final String? numCode;
   /// [_hash] is used to compare instances of [PhoneNumber] object.
   final int _hash;
 
@@ -49,6 +49,10 @@ class PhoneNumber extends Equatable {
     this.numCode,
     this.isoCode,
   }) : _hash = 1000 + Random().nextInt(99999 - 1000);
+
+  String? getFormattedNumCode() {
+    return phoneNumber?.trim().substring(0, numCode?.length ?? 0);
+  }
 
   @override
   String toString() {
