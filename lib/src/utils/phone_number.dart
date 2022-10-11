@@ -51,7 +51,22 @@ class PhoneNumber extends Equatable {
   }) : _hash = 1000 + Random().nextInt(99999 - 1000);
 
   String? getFormattedNumCode() {
-    return phoneNumber?.trim().substring(0, numCode?.length ?? 0);
+    final phoneWithoutDialCode = phoneNumber?.trim()
+      .replaceAll(RegExp('[^0-9]'), '')
+      .replaceFirst(dialCode?.replaceAll(RegExp('[^0-9]'), '') ?? '', '');
+    if ((phoneWithoutDialCode?.length ?? 0) < (dialCode?.length ?? 0)) {
+      return phoneWithoutDialCode
+        ?.substring(0, phoneWithoutDialCode.length);
+    }
+    return phoneWithoutDialCode
+      ?.substring(0, numCode?.length ?? 0);
+  }
+
+  String? getFormattedPhone() {
+    return phoneNumber?.trim()
+      .replaceAll(RegExp('[^0-9]'), '')
+      .replaceFirst(dialCode?.replaceAll(RegExp('[^0-9]'), '') ?? '', '')
+      .replaceFirst(getFormattedNumCode() ?? '', '');
   }
 
   @override
