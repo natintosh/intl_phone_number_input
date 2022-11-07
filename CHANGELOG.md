@@ -1,3 +1,6 @@
+## [0.7.1]
+* Massive thanks to the community
+
 ## [0.7.0+2]
 * Fixed validator defined with wrong type #207
 * PlatformException thrown when isValidPhoneNumber is passed a 0 or 1 character phoneNumber parameter. #209
