@@ -3609,6 +3609,37 @@ class Countries {
       }
     },
     {
+      "num_code": "926",
+      "alpha_2_code": "XK",
+      "alpha_3_code": "XKX",
+      "en_short_name": "Kosovo (Republic of)",
+      "nationality": "Kosovo",
+      "dial_code": "+383",
+      "nameTranslations": {
+        "sk": "Kosovo",
+        "se": "Kosovo",
+        "pl": "Kosovo",
+        "no": "Kosovo",
+        "ja": "コソボ",
+        "it": "Kosovo",
+        "zh": "科索沃",
+        "nl": "Kosovo",
+        "de": "Kosovo",
+        "fr": "Kosovo",
+        "es": "Kosovo",
+        "en": "Kosovo",
+        "pt_BR": "Kosovo",
+        "sr-Cyrl": "Косово",
+        "sr-Latn": "Kosovo",
+        "zh_TW": "科索沃",
+        "tr": "Kosovo",
+        "ro": "Kosovo",
+        "ar": "كوسوفو",
+        "fa": "کوسوو",
+        "yue": "科索沃"
+      }
+    },
+    {
       "num_code": "408",
       "alpha_2_code": "KP",
       "alpha_3_code": "PRK",
