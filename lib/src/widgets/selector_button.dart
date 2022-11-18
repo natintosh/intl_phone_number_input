@@ -17,7 +17,9 @@ class SelectorButton extends StatelessWidget {
   final String? locale;
   final bool isEnabled;
   final bool isScrollControlled;
-
+  final bool isShowSelectorArrow;
+  final BoxDecoration? selectorDecoration;
+  final  double? selectorHeight;
   final ValueChanged<Country?> onCountryChanged;
 
   const SelectorButton({
@@ -32,28 +34,36 @@ class SelectorButton extends StatelessWidget {
     required this.onCountryChanged,
     required this.isEnabled,
     required this.isScrollControlled,
+    required this.isShowSelectorArrow,
+     this.selectorDecoration,
+     this.selectorHeight,
+
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return selectorConfig.selectorType == PhoneInputSelectorType.DROPDOWN
         ? countries.isNotEmpty && countries.length > 1
-            ? DropdownButtonHideUnderline(
-                child: DropdownButton<Country>(
-                  key: Key(TestHelper.DropdownButtonKeyValue),
-                  hint: Item(
-                    country: country,
-                    showFlag: selectorConfig.showFlags,
-                    useEmoji: selectorConfig.useEmoji,
-                    leadingPadding: selectorConfig.leadingPadding,
-                    trailingSpace: selectorConfig.trailingSpace,
-                    textStyle: selectorTextStyle,
+            ?
+            borderedContainer(
+              child: DropdownButtonHideUnderline(
+                  child: DropdownButton<Country>(
+                    icon: isShowSelectorArrow ? Icon(Icons.arrow_drop_down_outlined) : SizedBox.shrink(),
+                    key: Key(TestHelper.DropdownButtonKeyValue),
+                    hint: Item(
+                      country: country,
+                      showFlag: selectorConfig.showFlags,
+                      useEmoji: selectorConfig.useEmoji,
+                      leadingPadding: selectorConfig.leadingPadding,
+                      trailingSpace: selectorConfig.trailingSpace,
+                      textStyle: selectorTextStyle,
+                    ),
+                    value: country,
+                    items: mapCountryToDropdownItem(countries),
+                    onChanged: isEnabled ? onCountryChanged : null,
                   ),
-                  value: country,
-                  items: mapCountryToDropdownItem(countries),
-                  onChanged: isEnabled ? onCountryChanged : null,
                 ),
-              )
+            )
             : Item(
                 country: country,
                 showFlag: selectorConfig.showFlags,
@@ -85,17 +95,34 @@ class SelectorButton extends StatelessWidget {
                 : null,
             child: Padding(
               padding: const EdgeInsets.only(right: 8.0),
-              child: Item(
-                country: country,
-                showFlag: selectorConfig.showFlags,
-                useEmoji: selectorConfig.useEmoji,
-                leadingPadding: selectorConfig.leadingPadding,
-                trailingSpace: selectorConfig.trailingSpace,
-                textStyle: selectorTextStyle,
+              child: borderedContainer(
+                child: Item(
+                  country: country,
+                  showFlag: selectorConfig.showFlags,
+                  useEmoji: selectorConfig.useEmoji,
+                  leadingPadding: selectorConfig.leadingPadding,
+                  trailingSpace: selectorConfig.trailingSpace,
+                  textStyle: selectorTextStyle,
+                ),
               ),
             ),
           );
   }
+  
+  Widget borderedContainer({ required Widget child,}){
+    return  Container(
+      height: selectorHeight ?? 60,
+      child: child,
+      decoration: selectorDecoration ?? BoxDecoration(
+        border: Border.all(
+            color: Colors.grey
+        ),
+        borderRadius: BorderRadius.circular(5),
+
+      ),
+    );
+  }
+  
 
   /// Converts the list [countries] to `DropdownMenuItem`
   List<DropdownMenuItem<Country>> mapCountryToDropdownItem(
