@@ -10,13 +10,13 @@ class MyApp extends StatelessWidget {
 
     return MaterialApp(
       title: 'Demo',
-      themeMode: ThemeMode.dark,
-      darkTheme: darkTheme,
+      // themeMode: ThemeMode.dark,
+      // darkTheme: darkTheme,
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
       home: Directionality(
-        textDirection: TextDirection.rtl,
+        textDirection: TextDirection.ltr,
         child: Scaffold(
           appBar: AppBar(title: Text('Demo')),
           body: MyHomePage(),
@@ -43,10 +43,12 @@ class _MyHomePageState extends State<MyHomePage> {
     return Form(
       key: formKey,
       child: Container(
+        padding: EdgeInsets.all(10),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             InternationalPhoneNumberInput(
+             isShowSelectorArrow: true,
               onInputChanged: (PhoneNumber number) {
                 print(number.phoneNumber);
               },
@@ -55,15 +57,16 @@ class _MyHomePageState extends State<MyHomePage> {
               },
               selectorConfig: SelectorConfig(
                 selectorType: PhoneInputSelectorType.BOTTOM_SHEET,
+                leadingPadding: 10
               ),
               ignoreBlank: false,
+              spaceBetweenSelectorAndTextField: 0,
               autoValidateMode: AutovalidateMode.disabled,
               selectorTextStyle: TextStyle(color: Colors.black),
               initialValue: number,
               textFieldController: controller,
               formatInput: false,
-              keyboardType:
-                  TextInputType.numberWithOptions(signed: true, decimal: true),
+              keyboardType: TextInputType.numberWithOptions(signed: true, decimal: true),
               inputBorder: OutlineInputBorder(),
               onSaved: (PhoneNumber number) {
                 print('On Saved: $number');

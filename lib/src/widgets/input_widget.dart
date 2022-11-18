@@ -83,8 +83,10 @@ class InternationalPhoneNumberInput extends StatefulWidget {
 
   final FocusNode? focusNode;
   final Iterable<String>? autofillHints;
-
+  final bool isShowSelectorArrow;
   final List<String>? countries;
+  final BoxDecoration? selectorDecoration;
+  final  double? selectorHeight;
 
   InternationalPhoneNumberInput(
       {Key? key,
@@ -124,7 +126,9 @@ class InternationalPhoneNumberInput extends StatefulWidget {
       this.focusNode,
       this.cursorColor,
       this.autofillHints,
-      this.countries})
+      this.countries,
+      this.isShowSelectorArrow = true, this.selectorDecoration, this.selectorHeight
+      })
       : super(key: key);
 
   @override
@@ -293,6 +297,7 @@ class _InputWidgetState extends State<InternationalPhoneNumberInput> {
     if (widget.selectorConfig.setSelectorButtonAsPrefixIcon) {
       return value.copyWith(
           prefixIcon: SelectorButton(
+            isShowSelectorArrow: widget.isShowSelectorArrow,
         country: country,
         countries: countries,
         onCountryChanged: onCountryChanged,
@@ -303,6 +308,8 @@ class _InputWidgetState extends State<InternationalPhoneNumberInput> {
         isEnabled: widget.isEnabled,
         autoFocusSearchField: widget.autoFocusSearch,
         isScrollControlled: widget.countrySelectorScrollControlled,
+        selectorDecoration: widget.selectorDecoration,
+        selectorHeight:  widget.selectorHeight,
       ));
     }
 
@@ -320,7 +327,7 @@ class _InputWidgetState extends State<InternationalPhoneNumberInput> {
   String? validator(String? value) {
     bool isValid =
         this.isNotValid && (value!.isNotEmpty || widget.ignoreBlank == false);
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+    WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
       if (isValid && widget.errorMessage != null) {
         setState(() {
           this.selectorButtonBottomPadding =
@@ -400,6 +407,7 @@ class _InputWidgetView
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 SelectorButton(
+                  isShowSelectorArrow: widget.isShowSelectorArrow,
                   country: state.country,
                   countries: state.countries,
                   onCountryChanged: state.onCountryChanged,
@@ -410,6 +418,8 @@ class _InputWidgetView
                   isEnabled: widget.isEnabled,
                   autoFocusSearchField: widget.autoFocusSearch,
                   isScrollControlled: widget.countrySelectorScrollControlled,
+                  selectorDecoration: widget.selectorDecoration,
+                  selectorHeight:  widget.selectorHeight,
                 ),
                 SizedBox(
                   height: state.selectorButtonBottomPadding,
