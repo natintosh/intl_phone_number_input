@@ -1,3 +1,10 @@
+## [0.7.2]
+* Updated libphonenumber and PhoneNumberToCarrierMapper on Android
+* Removed dependency on libphonenumber
+* Switch from libphonenumber-iOS to PhoneNumberKit on iOS
+* Update libphonenumber.js file
+* Depreciating getNameForNumber in future updates
+
 ## [0.7.1]
 * Massive thanks to the community
 
