@@ -108,7 +108,7 @@ class PhoneNumber extends Equatable {
     if (prefix.isNotEmpty) {
       prefix = prefix.startsWith('+') ? prefix : '+$prefix';
       var country = Countries.countryList
-          .firstWhereOrNull((country) => country['dial_code'] == prefix);
+          .firstWhereOrNull((country) => prefix.contains(country['dial_code']);
       if (country != null && country['alpha_2_code'] != null) {
         return country['alpha_2_code'];
       }
