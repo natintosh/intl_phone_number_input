@@ -181,13 +181,6 @@ class _InputWidgetState extends State<InternationalPhoneNumberInput> {
           (await PhoneNumberUtil.isValidNumber(
               phoneNumber: widget.initialValue!.phoneNumber!,
               isoCode: widget.initialValue!.isoCode!))!) {
-        String phoneNumber =
-            await PhoneNumber.getParsableNumber(widget.initialValue!);
-
-        controller!.text = widget.formatInput
-            ? phoneNumber
-            : phoneNumber.replaceAll(RegExp(r'[^\d+]'), '');
-
         phoneNumberControllerListener();
       }
     }
@@ -448,6 +441,9 @@ class _InputWidgetView
                         dialCode: dialCode,
                         onInputFormatted: (TextEditingValue value) {
                           state.controller!.value = value;
+                          state.controller!.selection = TextSelection.collapsed(
+                            offset: value.text.length,
+                          );
                         },
                       )
                     : FilteringTextInputFormatter.digitsOnly,
