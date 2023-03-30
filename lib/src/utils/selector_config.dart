@@ -19,6 +19,15 @@ class SelectorConfig {
   /// [useEmoji], uses emoji flags instead of png assets
   final bool useEmoji;
 
+  /// [icon], uses the choosen icon
+  final Icon? icon;
+
+  /// [BoxDecoration], uses boxDecoration
+  final BoxDecoration? boxDecoration;
+
+  /// [EdgeInsets], uses padding
+  final EdgeInsets? padding;
+
   /// [countryComparator], sort the country list according to the comparator.
   ///
   /// Sorting is disabled by default
@@ -37,6 +46,9 @@ class SelectorConfig {
     this.selectorType = PhoneInputSelectorType.DROPDOWN,
     this.showFlags = true,
     this.useEmoji = false,
+    this.icon,
+    this.boxDecoration,
+    this.padding,
     this.countryComparator,
     this.setSelectorButtonAsPrefixIcon = false,
     this.leadingPadding,

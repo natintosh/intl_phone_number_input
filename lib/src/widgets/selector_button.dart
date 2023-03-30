@@ -41,6 +41,7 @@ class SelectorButton extends StatelessWidget {
             ? DropdownButtonHideUnderline(
                 child: DropdownButton<Country>(
                   key: Key(TestHelper.DropdownButtonKeyValue),
+                  icon: selectorConfig.icon,
                   hint: Item(
                     country: country,
                     showFlag: selectorConfig.showFlags,
@@ -48,6 +49,8 @@ class SelectorButton extends StatelessWidget {
                     leadingPadding: selectorConfig.leadingPadding,
                     trailingSpace: selectorConfig.trailingSpace,
                     textStyle: selectorTextStyle,
+                    boxDecoration: selectorConfig.boxDecoration,
+                    padding: selectorConfig.padding,
                   ),
                   value: country,
                   items: mapCountryToDropdownItem(countries),
@@ -61,6 +64,9 @@ class SelectorButton extends StatelessWidget {
                 leadingPadding: selectorConfig.leadingPadding,
                 trailingSpace: selectorConfig.trailingSpace,
                 textStyle: selectorTextStyle,
+                icon: selectorConfig.icon,
+                boxDecoration: selectorConfig.boxDecoration,
+                padding: selectorConfig.padding,
               )
         : MaterialButton(
             key: Key(TestHelper.DropdownButtonKeyValue),
@@ -92,6 +98,9 @@ class SelectorButton extends StatelessWidget {
                 leadingPadding: selectorConfig.leadingPadding,
                 trailingSpace: selectorConfig.trailingSpace,
                 textStyle: selectorTextStyle,
+                icon: selectorConfig.icon,
+                boxDecoration: selectorConfig.boxDecoration,
+                padding: selectorConfig.padding,
               ),
             ),
           );
@@ -111,6 +120,9 @@ class SelectorButton extends StatelessWidget {
           textStyle: selectorTextStyle,
           withCountryNames: false,
           trailingSpace: selectorConfig.trailingSpace,
+          icon: selectorConfig.icon,
+          boxDecoration: selectorConfig.boxDecoration,
+          padding: selectorConfig.padding,
         ),
       );
     }).toList();
