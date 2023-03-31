@@ -3,7 +3,6 @@ import 'package:libphonenumber_plugin/libphonenumber_plugin.dart' as p;
 
 /// A wrapper class [PhoneNumberUtil] that basically switch between plugin available for `Web` or `Android or IOS` and `Other platforms` when available.
 class PhoneNumberUtil {
-
   /// [isValidNumber] checks if a [phoneNumber] is valid.
   /// Accepts [phoneNumber] and [isoCode]
   /// Returns [Future<bool>].

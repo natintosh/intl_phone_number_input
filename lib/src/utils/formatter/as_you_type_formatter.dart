@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/services.dart';
 import 'package:intl_phone_number_input/src/utils/phone_number/phone_number_util.dart';
 
@@ -14,7 +12,8 @@ class AsYouTypeFormatter extends TextInputFormatter {
   /// The [allowedChars] contains [RegExp] for allowable phone number characters.
   final RegExp allowedChars = RegExp(r'[\d+]');
 
-  final RegExp bracketsBetweenDigitsOrSpace = RegExp(r'(?![\s\d])([()])(?=[\d\s])');
+  final RegExp bracketsBetweenDigitsOrSpace =
+      RegExp(r'(?![\s\d])([()])(?=[\d\s])');
 
   /// The [isoCode] of the [Country] formatting the phone number to
   final String isoCode;
