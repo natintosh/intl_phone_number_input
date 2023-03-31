@@ -1,4 +1,7 @@
-## [0.7.3]
+## [0.7.3+1]
+* Added pub example
+
+* ## [0.7.3]
 * Updated dependency in libphonenumber
 * Update AsYouTypeFormatter
 * Replaced `headline` with `headlineSmall` in countries_search_list_widget.dart
