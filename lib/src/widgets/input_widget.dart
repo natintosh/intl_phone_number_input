@@ -291,8 +291,7 @@ class _InputWidgetState extends State<InternationalPhoneNumberInput> {
         );
 
     if (widget.selectorConfig.setSelectorButtonAsPrefixIcon) {
-      return value.copyWith(
-          prefixIcon: SelectorButton(
+      return value.copyWith(prefixIcon: SelectorButton(
         country: country,
         countries: countries,
         onCountryChanged: onCountryChanged,

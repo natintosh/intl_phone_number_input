@@ -92,7 +92,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void getPhoneNumber(String phoneNumber) async {
     PhoneNumber number =
-        await PhoneNumber.getRegionInfoFromPhoneNumber(phoneNumber, 'US');
+        await PhoneNumber.getRegionInfoFromPhoneNumber(phoneNumber);
 
     setState(() {
       this.number = number;
