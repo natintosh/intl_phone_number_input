@@ -228,6 +228,15 @@ class _InputWidgetState extends State<InternationalPhoneNumberInput> {
       String parsedPhoneNumberString =
           controller!.text.replaceAll(RegExp(r'[^\d+]'), '');
 
+      print('T1: $parsedPhoneNumberString');
+
+      if (parsedPhoneNumberString.startsWith('${this.country?.dialCode}')) {
+        parsedPhoneNumberString =
+            parsedPhoneNumberString.substring(this.country!.dialCode!.length);
+      }
+
+      print('T2: $parsedPhoneNumberString');
+
       getParsedPhoneNumber(parsedPhoneNumberString, this.country?.alpha2Code)
           .then((phoneNumber) {
         if (phoneNumber == null) {
