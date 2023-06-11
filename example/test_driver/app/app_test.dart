@@ -8,16 +8,14 @@ main() {
     final dropdownButtonFinder =
         find.byValueKey(TestHelper.DropdownButtonKeyValue);
 
-    FlutterDriver driver;
+    late FlutterDriver driver;
 
     setUpAll(() async {
       driver = await FlutterDriver.connect();
     });
 
     tearDownAll(() async {
-      if (driver != null) {
-        driver.close();
-      }
+      driver.close();
     });
 
     test('Tap On TextField and enter text', () async {

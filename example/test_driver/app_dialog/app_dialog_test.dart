@@ -10,16 +10,14 @@ main() {
     final countrySearchInputFinder =
         find.byValueKey(TestHelper.CountrySearchInputKeyValue);
 
-    FlutterDriver driver;
+    late FlutterDriver driver;
 
     setUpAll(() async {
       driver = await FlutterDriver.connect();
     });
 
     tearDownAll(() async {
-      if (driver != null) {
-        driver.close();
-      }
+      driver.close();
     });
 
     test('Tap On TextField and enter text', () async {

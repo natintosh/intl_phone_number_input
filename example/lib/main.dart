@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 
 void main() => runApp(MyApp());
@@ -65,6 +66,9 @@ class _MyHomePageState extends State<MyHomePage> {
               onSaved: (PhoneNumber number) {
                 print('On Saved: $number');
               },
+              inputFormatters: [
+                FilteringTextInputFormatter.deny(RegExp("[a-zA-Z]")),
+              ],
             ),
             ElevatedButton(
               onPressed: () {
