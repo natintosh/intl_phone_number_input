@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 /// A [Country] model represents an instance of a country which contains
 /// information about the country
 class Country {
@@ -19,12 +20,15 @@ class Country {
   /// The nameTranslation for translation
   final Map<String, String>? nameTranslations;
 
+  final bool withCountryCode;
+
   Country({
     required this.name,
     required this.alpha2Code,
     required this.alpha3Code,
     required this.dialCode,
     required this.flagUri,
+    this.withCountryCode = true,
     this.nameTranslations,
   });
 
@@ -46,8 +50,7 @@ class Country {
   bool operator ==(Object other) {
     return other is Country &&
         other.alpha2Code == this.alpha2Code &&
-        other.alpha3Code == this.alpha3Code &&
-        other.dialCode == this.dialCode;
+        other.alpha3Code == this.alpha3Code;
   }
 
   @override
@@ -59,5 +62,26 @@ class Country {
       'alpha2: $alpha2Code, '
       'alpha3: $alpha3Code, '
       'dialCode: $dialCode '
+      'withCountryCode: $withCountryCode'
       '}';
+
+  Country copyWith({
+    String? name,
+    String? alpha2Code,
+    String? alpha3Code,
+    String? dialCode,
+    String? flagUri,
+    Map<String, String>? nameTranslations,
+    bool? withCountryCode,
+  }) {
+    return Country(
+      name: name ?? this.name,
+      alpha2Code: alpha2Code ?? this.alpha2Code,
+      alpha3Code: alpha3Code ?? this.alpha3Code,
+      dialCode: dialCode ?? this.dialCode,
+      flagUri: flagUri ?? this.flagUri,
+      nameTranslations: nameTranslations ?? this.nameTranslations,
+      withCountryCode: withCountryCode ?? this.withCountryCode,
+    );
+  }
 }
