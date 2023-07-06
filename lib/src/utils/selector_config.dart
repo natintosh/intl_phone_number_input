@@ -51,6 +51,12 @@ class SelectorConfig {
   /// The default value is `1.0`.
   final double maxSheetSize;
 
+  /// If [setSelectorButtonAsPrefixIcon] is true, this will show a separator
+  /// between the prefix icon and the text field.
+  ///
+  /// The default value is `false`.
+  final bool showSeparator;
+
   /// Only when [selectorType] is [PhoneInputSelectorType.BOTTOM_SHEET]
   final Widget? suffix;
 
@@ -66,6 +72,7 @@ class SelectorConfig {
     this.minSheetSize = 0.25,
     this.maxSheetSize = 1.0,
     //
+    this.showSeparator = false,
     this.suffix,
   });
 }
