@@ -83,18 +83,27 @@ class SelectorButton extends StatelessWidget {
                     }
                   }
                 : null,
-            child: Padding(
-              padding: const EdgeInsets.only(right: 8.0),
-              child: Item(
-                country: country,
-                showFlag: selectorConfig.showFlags,
-                useEmoji: selectorConfig.useEmoji,
-                leadingPadding: selectorConfig.leadingPadding,
-                trailingSpace: selectorConfig.trailingSpace,
-                textStyle: selectorTextStyle,
-              ),
-            ),
+            child: buttonContent(context),
           );
+  }
+
+  Widget buttonContent(BuildContext context) {
+    return Row(
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(right: 8),
+          child: Item(
+            country: country,
+            showFlag: selectorConfig.showFlags,
+            useEmoji: selectorConfig.useEmoji,
+            leadingPadding: selectorConfig.leadingPadding,
+            trailingSpace: selectorConfig.trailingSpace,
+            textStyle: selectorTextStyle,
+          ),
+        ),
+        if (selectorConfig.suffix != null) selectorConfig.suffix!,
+      ],
+    );
   }
 
   /// Converts the list [countries] to `DropdownMenuItem`

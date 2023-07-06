@@ -51,6 +51,9 @@ class SelectorConfig {
   /// The default value is `1.0`.
   final double maxSheetSize;
 
+  /// Only when [selectorType] is [PhoneInputSelectorType.BOTTOM_SHEET]
+  final Widget? suffix;
+
   const SelectorConfig({
     this.selectorType = PhoneInputSelectorType.DROPDOWN,
     this.showFlags = true,
@@ -62,5 +65,7 @@ class SelectorConfig {
     this.initialSheetSize = 0.5,
     this.minSheetSize = 0.25,
     this.maxSheetSize = 1.0,
+    //
+    this.suffix,
   });
 }
