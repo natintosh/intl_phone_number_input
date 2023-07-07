@@ -83,11 +83,11 @@ class SelectorButton extends StatelessWidget {
                     }
                   }
                 : null,
-            child: buttonContent(context),
+            child: _buttonContent(context),
           );
   }
 
-  Widget buttonContent(BuildContext context) {
+  Widget _buttonContent(BuildContext context) {
     return Row(
       children: [
         Padding(

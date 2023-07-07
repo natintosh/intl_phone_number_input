@@ -292,28 +292,28 @@ class _InputWidgetState extends State<InternationalPhoneNumberInput> {
 
     if (widget.selectorConfig.setSelectorButtonAsPrefixIcon) {
       return value.copyWith(
-        prefixIcon: prefixIcon(),
+        prefixIcon: _prefixIcon(),
       );
     }
 
     return value;
   }
 
-  Widget prefixIcon() {
+  Widget _prefixIcon() {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
-        selectorButton(),
+        _selectorButton(),
         if (widget.selectorConfig.showSeparator)
           Padding(
             padding: EdgeInsets.only(right: 8),
-            child: separator(),
+            child: _separator(),
           ),
       ],
     );
   }
 
-  Widget selectorButton() {
+  Widget _selectorButton() {
     return SelectorButton(
       country: country,
       countries: countries,
@@ -328,7 +328,7 @@ class _InputWidgetState extends State<InternationalPhoneNumberInput> {
     );
   }
 
-  Widget separator() {
+  Widget _separator() {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 2),
       height: 24,
