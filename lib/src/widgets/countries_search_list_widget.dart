@@ -61,7 +61,7 @@ class _CountrySearchListWidgetState extends State<CountrySearchListWidget> {
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         Container(
-          color: Theme.of(context).colorScheme.surface,
+          color: Theme.of(context).canvasColor,
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
             child: TextFormField(
