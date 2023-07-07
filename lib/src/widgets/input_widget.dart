@@ -292,21 +292,48 @@ class _InputWidgetState extends State<InternationalPhoneNumberInput> {
 
     if (widget.selectorConfig.setSelectorButtonAsPrefixIcon) {
       return value.copyWith(
-          prefixIcon: SelectorButton(
-        country: country,
-        countries: countries,
-        onCountryChanged: onCountryChanged,
-        selectorConfig: widget.selectorConfig,
-        selectorTextStyle: widget.selectorTextStyle,
-        searchBoxDecoration: widget.searchBoxDecoration,
-        locale: locale,
-        isEnabled: widget.isEnabled,
-        autoFocusSearchField: widget.autoFocusSearch,
-        isScrollControlled: widget.countrySelectorScrollControlled,
-      ));
+        prefixIcon: _prefixIcon(),
+      );
     }
 
     return value;
+  }
+
+  Widget _prefixIcon() {
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        _selectorButton(),
+        if (widget.selectorConfig.showSeparator)
+          Padding(
+            padding: EdgeInsets.only(right: 8),
+            child: _separator(),
+          ),
+      ],
+    );
+  }
+
+  Widget _selectorButton() {
+    return SelectorButton(
+      country: country,
+      countries: countries,
+      onCountryChanged: onCountryChanged,
+      selectorConfig: widget.selectorConfig,
+      selectorTextStyle: widget.selectorTextStyle,
+      searchBoxDecoration: widget.searchBoxDecoration,
+      locale: locale,
+      isEnabled: widget.isEnabled,
+      autoFocusSearchField: widget.autoFocusSearch,
+      isScrollControlled: widget.countrySelectorScrollControlled,
+    );
+  }
+
+  Widget _separator() {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 2),
+      height: 24,
+      child: VerticalDivider(),
+    );
   }
 
   /// Validate the phone number when a change occurs
