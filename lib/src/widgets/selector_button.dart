@@ -170,17 +170,19 @@ class SelectorButton extends StatelessWidget {
             padding: EdgeInsets.only(
                 bottom: MediaQuery.of(context).viewInsets.bottom),
             child: DraggableScrollableSheet(
+              minChildSize: selectorConfig.minSheetSize,
+              maxChildSize: selectorConfig.maxSheetSize,
+              initialChildSize: selectorConfig.initialSheetSize,
               builder: (BuildContext context, ScrollController controller) {
                 return Directionality(
                   textDirection: Directionality.of(inheritedContext),
-                  child: Container(
-                    decoration: ShapeDecoration(
-                      color: Theme.of(context).canvasColor,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(12),
-                          topRight: Radius.circular(12),
-                        ),
+                  child: Material(
+                    clipBehavior: Clip.hardEdge,
+                    color: Theme.of(context).listTileTheme.tileColor,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(12),
+                        topRight: Radius.circular(12),
                       ),
                     ),
                     child: CountrySearchListWidget(
