@@ -19,9 +19,10 @@ class CountryProvider {
     if (countries == null || countries.isEmpty) {
       return jsonList.map((country) => Country.fromJson(country)).toList();
     }
-    List filteredList = jsonList.where((country) {
-      return countries.contains(country[PropertyName]);
-    }).toList();
+    List filteredList = countries
+        .map((countryCode) => jsonList.firstWhere((country) => country[PropertyName] == countryCode,
+            orElse: () => null))
+        .toList();
 
     return filteredList.map((country) => Country.fromJson(country)).toList();
   }
