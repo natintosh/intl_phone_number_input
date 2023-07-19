@@ -14,7 +14,7 @@ description: A new Flutter application.
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.1.0 <3.0.0"
+  sdk: ">=2.12.0 <4.0.0"
 
 dependencies:
   flutter:
@@ -31,7 +31,6 @@ dev_dependencies:
     sdk: flutter
   test: any
 
-  libphonenumber: ^2.0.0
   intl_phone_number_input:
     path: ../
 
