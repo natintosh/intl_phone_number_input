@@ -50,6 +50,7 @@ class _MyHomePageState extends State<MyHomePage> {
               inputBorder: OutlineInputBorder(),
               selectorConfig: SelectorConfig(
                 selectorType: PhoneInputSelectorType.BOTTOM_SHEET,
+                useBottomSheetSafeArea: true,
               ),
             ),
             ElevatedButton(
