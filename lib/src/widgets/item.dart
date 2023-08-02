@@ -11,6 +11,8 @@ class Item extends StatelessWidget {
   final bool withCountryNames;
   final double? leadingPadding;
   final bool trailingSpace;
+  final Widget? arrowDownIcon;
+  final BoxDecoration? selectorDecoration;
 
   const Item({
     Key? key,
@@ -21,6 +23,8 @@ class Item extends StatelessWidget {
     this.withCountryNames = false,
     this.leadingPadding = 12,
     this.trailingSpace = true,
+    this.arrowDownIcon,
+    this.selectorDecoration,
   }) : super(key: key);
 
   @override
@@ -30,6 +34,7 @@ class Item extends StatelessWidget {
       dialCode = dialCode.padRight(5, "   ");
     }
     return Container(
+      decoration: selectorDecoration,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
@@ -46,6 +51,14 @@ class Item extends StatelessWidget {
             textDirection: TextDirection.ltr,
             style: textStyle,
           ),
+          ...[
+            arrowDownIcon ??
+                Icon(
+                  Icons.arrow_drop_down,
+                  color: Colors.black,
+                  size: 20,
+                ),
+          ]
         ],
       ),
     );
