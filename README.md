@@ -121,7 +121,7 @@ InternationalPhoneNumberInput({
       this.autofillHints,
       this.countries
     });
-```|
+```
 
 ```dart
 SelectorConfig({
