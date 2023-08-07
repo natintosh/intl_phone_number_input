@@ -60,6 +60,9 @@ class SelectorConfig {
   /// Only when [selectorType] is [PhoneInputSelectorType.BOTTOM_SHEET]
   final Widget? suffix;
 
+  /// Use safe area for selectorType=BOTTOM_SHEET
+  final bool useBottomSheetSafeArea;
+
   const SelectorConfig({
     this.selectorType = PhoneInputSelectorType.DROPDOWN,
     this.showFlags = true,
@@ -74,5 +77,6 @@ class SelectorConfig {
     //
     this.showSeparator = false,
     this.suffix,
+    this.useBottomSheetSafeArea = false,
   });
 }
