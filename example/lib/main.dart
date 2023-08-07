@@ -52,6 +52,7 @@ class _MyHomePageState extends State<MyHomePage> {
               },
               selectorConfig: SelectorConfig(
                 selectorType: PhoneInputSelectorType.BOTTOM_SHEET,
+                useBottomSheetSafeArea: true,
               ),
               ignoreBlank: false,
               autoValidateMode: AutovalidateMode.disabled,
