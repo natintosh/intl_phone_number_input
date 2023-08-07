@@ -32,8 +32,13 @@ android {
         main.java.srcDirs += 'src/main/kotlin'
     }
 
-    lintOptions {
-        disable 'InvalidPackage'
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+
+    kotlinOptions {
+        jvmTarget = '11'
     }
 
     defaultConfig {
@@ -54,6 +59,9 @@ android {
         }
     }
     namespace 'com.example.intlphonenumberinputtest'
+    lint {
+        disable 'InvalidPackage'
+    }
 }
 
 flutter {
