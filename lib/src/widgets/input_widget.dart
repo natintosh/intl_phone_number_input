@@ -304,11 +304,8 @@ class _InputWidgetState extends State<InternationalPhoneNumberInput> {
       mainAxisSize: MainAxisSize.min,
       children: [
         _selectorButton(),
-        if (widget.selectorConfig.showSeparator)
-          Padding(
-            padding: EdgeInsets.only(right: 8),
-            child: _separator(),
-          ),
+        if (widget.selectorConfig.separator != null)
+          widget.selectorConfig.separator!,
       ],
     );
   }
@@ -325,14 +322,6 @@ class _InputWidgetState extends State<InternationalPhoneNumberInput> {
       isEnabled: widget.isEnabled,
       autoFocusSearchField: widget.autoFocusSearch,
       isScrollControlled: widget.countrySelectorScrollControlled,
-    );
-  }
-
-  Widget _separator() {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 2),
-      height: 24,
-      child: VerticalDivider(),
     );
   }
 

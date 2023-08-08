@@ -51,14 +51,17 @@ class SelectorConfig {
   /// The default value is `1.0`.
   final double maxSheetSize;
 
-  /// If [setSelectorButtonAsPrefixIcon] is true, this will show a separator
-  /// between the prefix icon and the text field.
+  /// If [setSelectorButtonAsPrefixIcon] is true, this will show a widget
+  /// (eg separator) between the prefix icon and the text field.
   ///
-  /// The default value is `false`.
-  final bool showSeparator;
+  /// The default value is `null`.
+  final Widget? separator;
 
   /// Only when [selectorType] is [PhoneInputSelectorType.BOTTOM_SHEET]
   final Widget? suffix;
+
+  /// Use safe area for selectorType=BOTTOM_SHEET
+  final bool useBottomSheetSafeArea;
 
   const SelectorConfig({
     this.selectorType = PhoneInputSelectorType.DROPDOWN,
@@ -72,7 +75,8 @@ class SelectorConfig {
     this.minSheetSize = 0.25,
     this.maxSheetSize = 1.0,
     //
-    this.showSeparator = false,
+    this.separator,
     this.suffix,
+    this.useBottomSheetSafeArea = false,
   });
 }

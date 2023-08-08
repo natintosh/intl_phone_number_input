@@ -53,6 +53,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 initialSheetSize: 0.7,
                 minSheetSize: 0.3,
                 maxSheetSize: 0.9,
+                useBottomSheetSafeArea: true,
               ),
             ),
             ElevatedButton(
