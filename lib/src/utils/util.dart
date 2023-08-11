@@ -29,7 +29,7 @@ class Utils {
     required String value,
   }) {
     if (value.isNotEmpty) {
-      return countries
+      final filteredCountries = countries
           .where(
             (Country country) =>
                 country.alpha3Code!
@@ -42,6 +42,37 @@ class Utils {
                 country.dialCode!.contains(value.toLowerCase()),
           )
           .toList();
+
+      final matchDialCode = filteredCountries[0].dialCode!.contains(value);
+      final matchLocaleName =
+          Utils.getCountryName(filteredCountries[0], locale)!
+              .toLowerCase()
+              .contains(value);
+
+      if (!matchDialCode && !matchLocaleName) return filteredCountries;
+
+      return filteredCountries
+        ..sort((a, b) {
+          final compareLengthDialCode =
+              a.dialCode!.length.compareTo(b.dialCode!.length);
+          final compareLengthName = Utils.getCountryName(a, locale)!
+              .toLowerCase()
+              .length
+              .compareTo(Utils.getCountryName(b, locale)!.toLowerCase().length);
+
+          if (matchDialCode && compareLengthDialCode != 0) {
+            return compareLengthDialCode;
+          } else if (matchLocaleName && compareLengthName != 0) {
+            return compareLengthName;
+          }
+
+          return matchDialCode
+              ? a.dialCode!.compareTo(b.dialCode!)
+              : Utils.getCountryName(a, locale)!.toLowerCase().length.compareTo(
+                  Utils.getCountryName(b, locale)!
+                      .toLowerCase()
+                      .length); // Sort lexicographically
+        });
     }
 
     return countries;
