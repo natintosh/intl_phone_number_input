@@ -402,6 +402,7 @@ class _InputWidgetView
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
+
           if (!widget.selectorConfig.setSelectorButtonAsPrefixIcon) ...[
             Column(
               mainAxisSize: MainAxisSize.min,
@@ -428,6 +429,7 @@ class _InputWidgetView
             ),
             SizedBox(width: widget.spaceBetweenSelectorAndTextField),
           ],
+
           Flexible(
             child: TextFormField(
               key: widget.fieldKey ?? Key(TestHelper.TextInputKeyValue),
@@ -465,6 +467,7 @@ class _InputWidgetView
               onChanged: state.onChanged,
             ),
           )
+
         ],
       ),
     );

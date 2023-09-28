@@ -118,7 +118,6 @@ class SelectorButton extends StatelessWidget {
             color: Colors.grey
         ),
         borderRadius: BorderRadius.circular(5),
-
       ),
     );
   }
