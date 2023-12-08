@@ -7466,7 +7466,7 @@ class Countries {
       "num_code": "826",
       "alpha_2_code": "GB",
       "alpha_3_code": "GBR",
-      "en_short_name": "United Kingdom of Great Britain and Northern Ireland",
+      "en_short_name": "United Kingdom of Great Britain",
       "nationality": "British, UK",
       "dial_code": "+44",
       "nameTranslations": {
