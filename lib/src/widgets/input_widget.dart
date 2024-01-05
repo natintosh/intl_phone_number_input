@@ -84,6 +84,8 @@ class InternationalPhoneNumberInput extends StatefulWidget {
   final FocusNode? focusNode;
   final Iterable<String>? autofillHints;
 
+  final EdgeInsets buttonPadding;
+
   final List<String>? countries;
 
   InternationalPhoneNumberInput(
@@ -124,7 +126,8 @@ class InternationalPhoneNumberInput extends StatefulWidget {
       this.focusNode,
       this.cursorColor,
       this.autofillHints,
-      this.countries})
+      this.countries,
+      this.buttonPadding = const EdgeInsets.only(right: 8.0)})
       : super(key: key);
 
   @override
@@ -293,6 +296,7 @@ class _InputWidgetState extends State<InternationalPhoneNumberInput> {
     if (widget.selectorConfig.setSelectorButtonAsPrefixIcon) {
       return value.copyWith(
           prefixIcon: SelectorButton(
+        buttonPadding: widget.buttonPadding,
         country: country,
         countries: countries,
         onCountryChanged: onCountryChanged,
@@ -400,6 +404,7 @@ class _InputWidgetView
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 SelectorButton(
+                  buttonPadding: widget.buttonPadding,
                   country: state.country,
                   countries: state.countries,
                   onCountryChanged: state.onCountryChanged,
