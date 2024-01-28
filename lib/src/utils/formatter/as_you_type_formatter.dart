@@ -32,6 +32,15 @@ class AsYouTypeFormatter extends TextInputFormatter {
   @override
   TextEditingValue formatEditUpdate(
       TextEditingValue oldValue, TextEditingValue newValue) {
+    // Fixes autofill and manually typing the dial code in the input
+    if (newValue.text.startsWith(dialCode)) {
+      final newValueText = newValue.text.replaceFirst(dialCode, '');
+      newValue = newValue.copyWith(
+        text: newValueText,
+        selection: TextSelection.collapsed(offset: newValueText.length),
+      );
+    }
+
     int oldValueLength = oldValue.text.length;
     int newValueLength = newValue.text.length;
 
