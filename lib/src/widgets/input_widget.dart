@@ -75,6 +75,7 @@ class InternationalPhoneNumberInput extends StatefulWidget {
   final TextStyle? selectorTextStyle;
   final InputBorder? inputBorder;
   final InputDecoration? inputDecoration;
+  final GestureTapCallback? inputOnTap;
   final InputDecoration? searchBoxDecoration;
   final Color? cursorColor;
   final TextAlign textAlign;
@@ -117,6 +118,7 @@ class InternationalPhoneNumberInput extends StatefulWidget {
       this.selectorTextStyle,
       this.inputBorder,
       this.inputDecoration,
+      this.inputOnTap,
       this.searchBoxDecoration,
       this.textAlign = TextAlign.start,
       this.textAlignVertical = TextAlignVertical.center,
@@ -433,6 +435,7 @@ class _InputWidgetView
               decoration: state.getInputDecoration(widget.inputDecoration),
               textAlign: widget.textAlign,
               textAlignVertical: widget.textAlignVertical,
+              onTap: widget.inputOnTap,
               onEditingComplete: widget.onSubmit,
               onFieldSubmitted: widget.onFieldSubmitted,
               autovalidateMode: widget.autoValidateMode,
