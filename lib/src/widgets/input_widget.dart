@@ -55,6 +55,7 @@ class InternationalPhoneNumberInput extends StatefulWidget {
   final String? hintText;
   final String? errorMessage;
 
+  final double selectorButtonBottomPadding;
   final double selectorButtonOnErrorPadding;
 
   /// Ignored if [setSelectorButtonAsPrefixIcon = true]
@@ -102,6 +103,7 @@ class InternationalPhoneNumberInput extends StatefulWidget {
       this.initialValue,
       this.hintText = 'Phone number',
       this.errorMessage = 'Invalid phone number',
+      this.selectorButtonBottomPadding = 0,
       this.selectorButtonOnErrorPadding = 24,
       this.spaceBetweenSelectorAndTextField = 12,
       this.maxLength = 15,
@@ -133,17 +135,18 @@ class InternationalPhoneNumberInput extends StatefulWidget {
 
 class _InputWidgetState extends State<InternationalPhoneNumberInput> {
   TextEditingController? controller;
-  double selectorButtonBottomPadding = 0;
+  late double selectorButtonBottomPadding;
 
   Country? country;
   List<Country> countries = [];
-  bool isNotValid = true;
+  bool isValidPhone = false;
 
   @override
   void initState() {
     super.initState();
     loadCountries();
     controller = widget.textFieldController ?? TextEditingController();
+    selectorButtonBottomPadding = widget.selectorButtonBottomPadding;
     initialiseWidget();
   }
 
@@ -231,32 +234,21 @@ class _InputWidgetState extends State<InternationalPhoneNumberInput> {
       getParsedPhoneNumber(parsedPhoneNumberString, this.country?.alpha2Code)
           .then((phoneNumber) {
         if (phoneNumber == null) {
-          String phoneNumber =
-              '${this.country?.dialCode}$parsedPhoneNumberString';
-
-          if (widget.onInputChanged != null) {
-            widget.onInputChanged!(PhoneNumber(
-                phoneNumber: phoneNumber,
-                isoCode: this.country?.alpha2Code,
-                dialCode: this.country?.dialCode));
-          }
-
-          if (widget.onInputValidated != null) {
-            widget.onInputValidated!(false);
-          }
-          this.isNotValid = true;
+          this.isValidPhone = false;
         } else {
-          if (widget.onInputChanged != null) {
-            widget.onInputChanged!(PhoneNumber(
-                phoneNumber: phoneNumber,
-                isoCode: this.country?.alpha2Code,
-                dialCode: this.country?.dialCode));
-          }
+          this.isValidPhone = true;
+        }
 
-          if (widget.onInputValidated != null) {
-            widget.onInputValidated!(true);
-          }
-          this.isNotValid = false;
+        if (widget.onInputChanged != null) {
+          widget.onInputChanged!(PhoneNumber(
+              phoneNumber: phoneNumber ??
+                  '${this.country?.dialCode}$parsedPhoneNumberString',
+              isoCode: this.country?.alpha2Code,
+              dialCode: this.country?.dialCode));
+        }
+
+        if (widget.onInputValidated != null) {
+          widget.onInputValidated!(this.isValidPhone);
         }
       });
     }
@@ -318,22 +310,22 @@ class _InputWidgetState extends State<InternationalPhoneNumberInput> {
   ///
   /// Also updates [selectorButtonBottomPadding]
   String? validator(String? value) {
-    bool isValid =
-        this.isNotValid && (value!.isNotEmpty || widget.ignoreBlank == false);
+    bool isValidInput =
+        this.isValidPhone && (value!.isNotEmpty || widget.ignoreBlank == false);
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      if (isValid && widget.errorMessage != null) {
+      if (!isValidInput && widget.errorMessage != null) {
         setState(() {
           this.selectorButtonBottomPadding =
               widget.selectorButtonOnErrorPadding;
         });
       } else {
         setState(() {
-          this.selectorButtonBottomPadding = 0;
+          this.selectorButtonBottomPadding = widget.selectorButtonBottomPadding;
         });
       }
     });
 
-    return isValid ? widget.errorMessage : null;
+    return !isValidInput ? widget.errorMessage : null;
   }
 
   /// Changes Selector Button Country and Validate Change.
