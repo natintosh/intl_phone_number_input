@@ -6,17 +6,22 @@ class PhoneNumberUtil {
   /// [isValidNumber] checks if a [phoneNumber] is valid.
   /// Accepts [phoneNumber] and [isoCode]
   /// Returns [Future<bool>].
-  static Future<bool?> isValidNumber(
+  static Future<bool> isValidNumber(
       {required String phoneNumber, required String isoCode}) async {
     if (phoneNumber.length < 2) {
       return false;
     }
-    return p.PhoneNumberUtil.isValidPhoneNumber(phoneNumber, isoCode);
+    // The .then is needed to make sure return Future<bool>, instead of Future<bool?>. It appears
+    // that the libphonenumber_plugin packages should be returning Future<bool> anyway, but the error
+    // of returning Future<bool?> runs deep into the dependencies. So fix here until those are fixed
+    // to return false if validation result is null.
+    return p.PhoneNumberUtil.isValidPhoneNumber(phoneNumber, isoCode)
+        .then((v) => v ?? false);
   }
 
   /// [normalizePhoneNumber] normalizes a string of characters representing a phone number
   /// Accepts [phoneNumber] and [isoCode]
-  /// Returns [Future<String>]
+  /// Returns [Future<String?>]
   static Future<String?> normalizePhoneNumber(
       {required String phoneNumber, required String isoCode}) async {
     return p.PhoneNumberUtil.normalizePhoneNumber(phoneNumber, isoCode);
