@@ -183,7 +183,7 @@ class _InputWidgetState extends State<InternationalPhoneNumberInput> {
           widget.initialValue!.phoneNumber!.isNotEmpty &&
           (await PhoneNumberUtil.isValidNumber(
               phoneNumber: widget.initialValue!.phoneNumber!,
-              isoCode: widget.initialValue!.isoCode!))!) {
+              isoCode: widget.initialValue!.isoCode!))) {
         String phoneNumber =
             await PhoneNumber.getParsableNumber(widget.initialValue!);
 
@@ -233,12 +233,6 @@ class _InputWidgetState extends State<InternationalPhoneNumberInput> {
 
       getParsedPhoneNumber(parsedPhoneNumberString, this.country?.alpha2Code)
           .then((phoneNumber) {
-        if (phoneNumber == null) {
-          this.isValidPhone = false;
-        } else {
-          this.isValidPhone = true;
-        }
-
         if (widget.onInputChanged != null) {
           widget.onInputChanged!(PhoneNumber(
               phoneNumber: phoneNumber ??
@@ -260,14 +254,16 @@ class _InputWidgetState extends State<InternationalPhoneNumberInput> {
       String phoneNumber, String? isoCode) async {
     if (phoneNumber.isNotEmpty && isoCode != null) {
       try {
-        bool? isValidPhoneNumber = await PhoneNumberUtil.isValidNumber(
+        this.isValidPhone = await PhoneNumberUtil.isValidNumber(
             phoneNumber: phoneNumber, isoCode: isoCode);
 
-        if (isValidPhoneNumber!) {
+        if (this.isValidPhone) {
           return await PhoneNumberUtil.normalizePhoneNumber(
               phoneNumber: phoneNumber, isoCode: isoCode);
         }
-      } on Exception {
+        // ignore: unused_catch_clause, unused_catch_stack
+      } on Exception catch (e, s) {
+        //Keep catch clause for easier debugging in editors that can hover over e and s.
         return null;
       }
     }
