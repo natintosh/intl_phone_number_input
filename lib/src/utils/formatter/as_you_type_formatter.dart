@@ -24,14 +24,17 @@ class AsYouTypeFormatter extends TextInputFormatter {
   /// [onInputFormatted] is a callback that passes the formatted phone number
   final OnInputFormatted<TextEditingValue> onInputFormatted;
 
-  AsYouTypeFormatter(
-      {required this.isoCode,
-      required this.dialCode,
-      required this.onInputFormatted});
+  AsYouTypeFormatter({
+    required this.isoCode,
+    required this.dialCode,
+    required this.onInputFormatted,
+  });
 
   @override
   TextEditingValue formatEditUpdate(
-      TextEditingValue oldValue, TextEditingValue newValue) {
+    TextEditingValue oldValue,
+    TextEditingValue newValue,
+  ) {
     int oldValueLength = oldValue.text.length;
     int newValueLength = newValue.text.length;
 
@@ -101,7 +104,9 @@ class AsYouTypeFormatter extends TextInputFormatter {
   Future<String?> formatAsYouType({required String input}) async {
     try {
       String? formattedPhoneNumber = await PhoneNumberUtil.formatAsYouType(
-          phoneNumber: input, isoCode: isoCode);
+        phoneNumber: input,
+        isoCode: isoCode,
+      );
       return formattedPhoneNumber;
     } on Exception {
       return '';
