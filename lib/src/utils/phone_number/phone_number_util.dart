@@ -6,8 +6,10 @@ class PhoneNumberUtil {
   /// [isValidNumber] checks if a [phoneNumber] is valid.
   /// Accepts [phoneNumber] and [isoCode]
   /// Returns [Future<bool>].
-  static Future<bool?> isValidNumber(
-      {required String phoneNumber, required String isoCode}) async {
+  static Future<bool?> isValidNumber({
+    required String phoneNumber,
+    required String isoCode,
+  }) async {
     if (phoneNumber.length < 2) {
       return false;
     }
@@ -17,29 +19,38 @@ class PhoneNumberUtil {
   /// [normalizePhoneNumber] normalizes a string of characters representing a phone number
   /// Accepts [phoneNumber] and [isoCode]
   /// Returns [Future<String>]
-  static Future<String?> normalizePhoneNumber(
-      {required String phoneNumber, required String isoCode}) async {
+  static Future<String?> normalizePhoneNumber({
+    required String phoneNumber,
+    required String isoCode,
+  }) async {
     return p.PhoneNumberUtil.normalizePhoneNumber(phoneNumber, isoCode);
   }
 
   /// Accepts [phoneNumber] and [isoCode]
   /// Returns [Future<RegionInfo>] of all information available about the [phoneNumber]
-  static Future<RegionInfo> getRegionInfo(
-      {required String phoneNumber, required String isoCode}) async {
+  static Future<RegionInfo> getRegionInfo({
+    required String phoneNumber,
+    required String isoCode,
+  }) async {
     var response = await p.PhoneNumberUtil.getRegionInfo(phoneNumber, isoCode);
 
     return RegionInfo(
-        regionPrefix: response.regionPrefix,
-        isoCode: response.isoCode,
-        formattedPhoneNumber: response.formattedPhoneNumber);
+      regionPrefix: response.regionPrefix,
+      isoCode: response.isoCode,
+      formattedPhoneNumber: response.formattedPhoneNumber,
+    );
   }
 
   /// Accepts [phoneNumber] and [isoCode]
   /// Returns [Future<PhoneNumberType>] type of phone number
-  static Future<PhoneNumberType> getNumberType(
-      {required String phoneNumber, required String isoCode}) async {
-    final dynamic type =
-        await p.PhoneNumberUtil.getNumberType(phoneNumber, isoCode);
+  static Future<PhoneNumberType> getNumberType({
+    required String phoneNumber,
+    required String isoCode,
+  }) async {
+    final dynamic type = await p.PhoneNumberUtil.getNumberType(
+      phoneNumber,
+      isoCode,
+    );
 
     return PhoneNumberTypeUtil.getType(type.index);
   }
@@ -47,8 +58,10 @@ class PhoneNumberUtil {
   /// [formatAsYouType] uses Google's libphonenumber input format as you type.
   /// Accepts [phoneNumber] and [isoCode]
   /// Returns [Future<String>]
-  static Future<String?> formatAsYouType(
-      {required String phoneNumber, required String isoCode}) async {
+  static Future<String?> formatAsYouType({
+    required String phoneNumber,
+    required String isoCode,
+  }) async {
     return p.PhoneNumberUtil.formatAsYouType(phoneNumber, isoCode);
   }
 }
