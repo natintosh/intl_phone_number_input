@@ -48,7 +48,7 @@ class Item extends StatelessWidget {
             textDirection: TextDirection.ltr,
             style: textStyle,
           ),
-          if(!showFlag)  Padding(
+           Padding(
             padding: const EdgeInsets.only(right: 1.0),
             child: Icon(
               Icons.keyboard_arrow_down_outlined,
