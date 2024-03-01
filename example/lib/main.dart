@@ -48,16 +48,31 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             InternationalPhoneNumberInput(
-             isShowSelectorArrow: true,
+             isShowSelectorArrow: false,
               onInputChanged: (PhoneNumber number) {
                 print(number.phoneNumber);
               },
               onInputValidated: (bool value) {
                 print(value);
               },
+              showSeparator: true,
+              separatorBorderSide: BorderSide(
+                color: Colors.grey,
+                width: 1
+              ),
+              selectorDecoration: BoxDecoration(
+                borderRadius: BorderRadius.horizontal(left: Radius.circular(8))
+              ),
               selectorConfig: SelectorConfig(
                 selectorType: PhoneInputSelectorType.BOTTOM_SHEET,
-                leadingPadding: 10
+                leadingPadding: 4,
+                showFlags: true,
+              ),
+              inputDecoration: InputDecoration(
+                  hintText: 'Phone number',
+                border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                )
               ),
               ignoreBlank: false,
               spaceBetweenSelectorAndTextField: 0,
@@ -67,7 +82,6 @@ class _MyHomePageState extends State<MyHomePage> {
               textFieldController: controller,
               formatInput: false,
               keyboardType: TextInputType.numberWithOptions(signed: true, decimal: true),
-              inputBorder: OutlineInputBorder(),
               onSaved: (PhoneNumber number) {
                 print('On Saved: $number');
               },

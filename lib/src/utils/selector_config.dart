@@ -25,7 +25,7 @@ class SelectorConfig {
   final CountryComparator? countryComparator;
 
   /// [setSelectorButtonAsPrefixIcon], this sets/places the selector button inside the [TextField] as a prefixIcon.
-  final bool setSelectorButtonAsPrefixIcon;
+  // final bool setSelectorButtonAsPrefixIcon;
 
   /// Space before the flag icon
   final double? leadingPadding;
@@ -38,7 +38,7 @@ class SelectorConfig {
     this.showFlags = true,
     this.useEmoji = false,
     this.countryComparator,
-    this.setSelectorButtonAsPrefixIcon = false,
+    // this.setSelectorButtonAsPrefixIcon = false,
     this.leadingPadding,
     this.trailingSpace = true,
   });

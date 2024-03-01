@@ -21,6 +21,8 @@ class SelectorButton extends StatelessWidget {
   final BoxDecoration? selectorDecoration;
   final  double? selectorHeight;
   final ValueChanged<Country?> onCountryChanged;
+  final bool showSeparator;
+  final BorderSide? separatorBorderSide;
 
   const SelectorButton({
     Key? key,
@@ -37,6 +39,8 @@ class SelectorButton extends StatelessWidget {
     required this.isShowSelectorArrow,
      this.selectorDecoration,
      this.selectorHeight,
+    required this.showSeparator,
+    this.separatorBorderSide,
 
   }) : super(key: key);
 
@@ -71,6 +75,7 @@ class SelectorButton extends StatelessWidget {
                 leadingPadding: selectorConfig.leadingPadding,
                 trailingSpace: selectorConfig.trailingSpace,
                 textStyle: selectorTextStyle,
+                showSeparator: showSeparator,
               )
         : MaterialButton(
             key: Key(TestHelper.DropdownButtonKeyValue),
@@ -103,6 +108,8 @@ class SelectorButton extends StatelessWidget {
                   leadingPadding: selectorConfig.leadingPadding,
                   trailingSpace: selectorConfig.trailingSpace,
                   textStyle: selectorTextStyle,
+                  showSeparator: showSeparator,
+                  separatorBorderSide: separatorBorderSide ,
                 ),
               ),
             ),

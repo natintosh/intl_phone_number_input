@@ -5,28 +5,30 @@ import 'package:intl_phone_number_input/src/utils/util.dart';
 /// [Item]
 class Item extends StatelessWidget {
   final Country? country;
-  final bool? showFlag;
+  final bool showFlag;
   final bool? useEmoji;
   final TextStyle? textStyle;
   final bool withCountryNames;
   final double? leadingPadding;
   final bool trailingSpace;
+  final bool showSeparator;
+  final BorderSide? separatorBorderSide;
 
   const Item({
     Key? key,
     this.country,
-    this.showFlag,
+    this.showFlag = false,
     this.useEmoji,
     this.textStyle,
     this.withCountryNames = false,
     this.leadingPadding = 12,
-    this.trailingSpace = true,
+    this.trailingSpace = true, this.showSeparator = false, this.separatorBorderSide,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     String dialCode = (country?.dialCode ?? '');
-    if (trailingSpace) {
+    if (trailingSpace && showFlag) {
       dialCode = dialCode.padRight(5, "   ");
     }
     return Container(
@@ -35,18 +37,31 @@ class Item extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           SizedBox(width: leadingPadding),
-          _Flag(
+          if(showFlag) _Flag(
             country: country,
             showFlag: showFlag,
             useEmoji: useEmoji,
           ),
-          SizedBox(width: 8.0),
+          if(showFlag) SizedBox(width: 8.0),
           Text(
             '$dialCode',
             textDirection: TextDirection.ltr,
             style: textStyle,
           ),
+          if(!showFlag)  Padding(
+            padding: const EdgeInsets.only(right: 1.0),
+            child: Icon(
+              Icons.keyboard_arrow_down_outlined,
+              size: 20,
+              color: Colors.black,
+            ),
+          )
         ],
+      ),
+      decoration: BoxDecoration(
+          border: showSeparator ? Border(
+              right: separatorBorderSide ?? BorderSide.none
+          ) : null
       ),
     );
   }
@@ -57,7 +72,8 @@ class _Flag extends StatelessWidget {
   final bool? showFlag;
   final bool? useEmoji;
 
-  const _Flag({Key? key, this.country, this.showFlag, this.useEmoji})
+
+  const _Flag({Key? key, this.country, this.showFlag, this.useEmoji,})
       : super(key: key);
 
   @override
