@@ -29,7 +29,7 @@ class Item extends StatelessWidget {
   Widget build(BuildContext context) {
     String dialCode = (country?.dialCode ?? '');
     if (trailingSpace && showFlag) {
-      dialCode = dialCode.padRight(5, "   ");
+      dialCode = dialCode.padRight(5, " ");
     }
     return Container(
       child: Row(
