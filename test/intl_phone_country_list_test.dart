@@ -30,6 +30,7 @@ void main() {
         'ro',
         'ar',
         'fa',
+        'ku',
         'yue',
       ];
 
