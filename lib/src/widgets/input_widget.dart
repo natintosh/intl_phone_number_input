@@ -190,12 +190,13 @@ class _InputWidgetState extends State<InternationalPhoneNumberInput> {
           (await PhoneNumberUtil.isValidNumber(
               phoneNumber: widget.initialValue!.phoneNumber!,
               isoCode: widget.initialValue!.isoCode!))!) {
-        String phoneNumber =
-            await PhoneNumber.getParsableNumber(widget.initialValue!);
+        // String phoneNumber =
+        //     await PhoneNumber.getParsableNumber(widget.initialValue!);
 
-        controller!.text = widget.formatInput
-            ? phoneNumber
-            : phoneNumber.replaceAll(RegExp(r'[^\d+]'), '');
+        controller!.text = widget.initialValue?.number ?? '';
+        // widget.formatInput
+        //     ? phoneNumber
+        //     : phoneNumber.replaceAll(RegExp(r'[^\d+]'), '');
 
         phoneNumberControllerListener();
       }
