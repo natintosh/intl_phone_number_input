@@ -245,6 +245,7 @@ class _InputWidgetState extends State<InternationalPhoneNumberInput> {
 
           if (widget.onInputChanged != null) {
             widget.onInputChanged!(PhoneNumber(
+              number: parsedPhoneNumberString,
                 phoneNumber: phoneNumber,
                 isoCode: this.country?.alpha2Code,
                 dialCode: this.country?.dialCode));
@@ -257,6 +258,7 @@ class _InputWidgetState extends State<InternationalPhoneNumberInput> {
         } else {
           if (widget.onInputChanged != null) {
             widget.onInputChanged!(PhoneNumber(
+              number: parsedPhoneNumberString,
                 phoneNumber: phoneNumber,
                 isoCode: this.country?.alpha2Code,
                 dialCode: this.country?.dialCode));

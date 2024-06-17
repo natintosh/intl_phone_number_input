@@ -27,6 +27,9 @@ class PhoneNumber extends Equatable {
   /// Either formatted or unformatted String of the phone number
   final String? phoneNumber;
 
+  /// Either formatted or unformatted String of the phone number
+  final String? number;
+
   /// The Country [dialCode] of the phone number
   final String? dialCode;
 
@@ -41,17 +44,18 @@ class PhoneNumber extends Equatable {
   int get hash => _hash;
 
   @override
-  List<Object?> get props => [phoneNumber, isoCode, dialCode];
+  List<Object?> get props => [phoneNumber, isoCode, dialCode, number];
 
   PhoneNumber({
     this.phoneNumber,
+    this.number,
     this.dialCode,
     this.isoCode,
   }) : _hash = 1000 + Random().nextInt(99999 - 1000);
 
   @override
   String toString() {
-    return 'PhoneNumber(phoneNumber: $phoneNumber, dialCode: $dialCode, isoCode: $isoCode)';
+    return 'PhoneNumber(phoneNumber: $phoneNumber, dialCode: $dialCode, isoCode: $isoCode,number: $number, )';
   }
 
   /// Returns [PhoneNumber] which contains region information about
