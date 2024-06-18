@@ -44,6 +44,38 @@ class Countries {
 
   static List<Map<String, dynamic>> _countryList = [
     {
+      "num_code": "308",
+      "alpha_2_code": "GD",
+      "alpha_3_code": "GRD",
+      "en_short_name": "Grenada",
+      "nationality": "Grenadian",
+      "dial_code": "+1473",
+      "nameTranslations": {
+        "sk": "Grenada",
+        "se": "Grenada",
+        "pl": "Grenada",
+        "no": "Grenada",
+        "ja": "グレナダ",
+        "it": "Grenada",
+        "zh": "格林纳达",
+        "nl": "Grenada",
+        "de": "Grenada",
+        "fr": "Grenade",
+        "es": "Granada",
+        "en": "Grenada",
+        "pt_BR": "Grenada",
+        "sr-Cyrl": "Гренада",
+        "sr-Latn": "Grenada",
+        "zh_TW": "格林納達",
+        "tr": "Grenada",
+        "ro": "Grenada",
+        "ar": "غرينادا",
+        "fa": "گرنادا",
+        "yue": "格林納達",
+        "el": "Γρενάδα",
+      }
+    },
+    {
       "num_code": "4",
       "alpha_2_code": "AF",
       "alpha_3_code": "AFG",
@@ -2760,38 +2792,6 @@ class Countries {
       }
     },
     {
-      "num_code": "308",
-      "alpha_2_code": "GD",
-      "alpha_3_code": "GRD",
-      "en_short_name": "Grenada",
-      "nationality": "Grenadian",
-      "dial_code": "+1473",
-      "nameTranslations": {
-        "sk": "Grenada",
-        "se": "Grenada",
-        "pl": "Grenada",
-        "no": "Grenada",
-        "ja": "グレナダ",
-        "it": "Grenada",
-        "zh": "格林纳达",
-        "nl": "Grenada",
-        "de": "Grenada",
-        "fr": "Grenade",
-        "es": "Granada",
-        "en": "Grenada",
-        "pt_BR": "Grenada",
-        "sr-Cyrl": "Гренада",
-        "sr-Latn": "Grenada",
-        "zh_TW": "格林納達",
-        "tr": "Grenada",
-        "ro": "Grenada",
-        "ar": "غرينادا",
-        "fa": "گرنادا",
-        "yue": "格林納達",
-        "el": "Γρενάδα",
-      }
-    },
-    {
       "num_code": "312",
       "alpha_2_code": "GP",
       "alpha_3_code": "GLP",
@@ -4227,7 +4227,8 @@ class Countries {
         "ar": "مقدونيا",
         "fa": "مقدونیه",
         "yue": "馬其頓（前南斯拉夫共和國）",
-        "el": "Βόρεια Μακεδονία (πρώην Γιουγκοσλαβική Δημοκρατία της Μακεδονίας)",
+        "el":
+            "Βόρεια Μακεδονία (πρώην Γιουγκοσλαβική Δημοκρατία της Μακεδονίας)",
       }
     },
     {
@@ -7491,7 +7492,8 @@ class Countries {
         "ar": "المملكة المتحدة",
         "fa": "بریتانیا",
         "yue": "大不列顛及北愛爾蘭聯合王國",
-        "el": "Ηνωμένο Βασίλειο της Μεγάλης Βρετανίας και της Βόρειας Ιρλανδίας",
+        "el":
+            "Ηνωμένο Βασίλειο της Μεγάλης Βρετανίας και της Βόρειας Ιρλανδίας",
       }
     },
     {
