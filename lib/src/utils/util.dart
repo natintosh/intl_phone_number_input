@@ -7,7 +7,12 @@ class Utils {
   static Country getInitialSelectedCountry(
       List<Country> countries, String countryCode) {
     return countries.firstWhere((country) => country.alpha2Code == countryCode,
-        orElse: () => countries[0]);
+        orElse: () => Country(
+            name: "Placeholder",
+            alpha2Code: "Placeholder",
+            alpha3Code: "Placeholder",
+            dialCode: "(---)",
+            flagUri: ""));
   }
 
   /// Returns a [String] which will be the unicode of a Flag Emoji,
