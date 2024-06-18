@@ -11,7 +11,7 @@ class Utils {
             name: "Placeholder",
             alpha2Code: "Placeholder",
             alpha3Code: "Placeholder",
-            dialCode: "(---)",
+            dialCode: "( - - - )",
             flagUri: ""));
   }
 
