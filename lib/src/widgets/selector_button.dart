@@ -107,12 +107,15 @@ class SelectorButton extends StatelessWidget {
             ),
           );
 
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Expanded(child: mainWidget),
-        prefixIcon ?? Container(),
-      ],
+    return Container(
+      width: 100,
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          mainWidget,
+          prefixIcon ?? Container(),
+        ],
+      ),
     );
   }
 
