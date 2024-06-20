@@ -111,6 +111,8 @@ class SelectorButton extends StatelessWidget {
       width: 100,
       child: Row(
         mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.end,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           mainWidget,
           prefixIcon ?? Container(),
