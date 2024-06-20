@@ -12,7 +12,8 @@ class SelectorConfig {
   /// [selectorType], for selector button type
   final PhoneInputSelectorType selectorType;
 
-  final Country? Function(BuildContext, List<Country>)? showCustomSelectorDialog;
+  final Future<Country?> Function(BuildContext inheritedContext, List<Country> countries)?
+      showCustomSelectorDialog;
 
   /// [showFlags], displays flag along side countries info on selector button
   /// and list items within the selector
