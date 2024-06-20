@@ -20,7 +20,8 @@ import 'package:intl_phone_number_input/src/widgets/selector_button.dart';
 ///   * [PhoneInputSelectorType.DROPDOWN]
 ///   * [PhoneInputSelectorType.BOTTOM_SHEET]
 ///   * [PhoneInputSelectorType.DIALOG]
-enum PhoneInputSelectorType { DROPDOWN, BOTTOM_SHEET, DIALOG }
+///   * [PhoneInputSelectorType.CUSTOM]
+enum PhoneInputSelectorType { DROPDOWN, BOTTOM_SHEET, DIALOG, CUSTOM }
 
 /// A [TextFormField] for [InternationalPhoneNumberInput].
 ///

@@ -12,6 +12,8 @@ class SelectorConfig {
   /// [selectorType], for selector button type
   final PhoneInputSelectorType selectorType;
 
+  final Country? Function(BuildContext, List<Country>)? showCustomSelectorDialog;
+
   /// [showFlags], displays flag along side countries info on selector button
   /// and list items within the selector
   final bool showFlags;
@@ -38,6 +40,7 @@ class SelectorConfig {
 
   const SelectorConfig({
     this.selectorType = PhoneInputSelectorType.DROPDOWN,
+    this.showCustomSelectorDialog,
     this.showFlags = true,
     this.useEmoji = false,
     this.countryComparator,

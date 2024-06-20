@@ -69,13 +69,19 @@ class SelectorButton extends StatelessWidget {
             onPressed: countries.isNotEmpty && countries.length > 1 && isEnabled
                 ? () async {
                     Country? selected;
-                    if (selectorConfig.selectorType ==
-                        PhoneInputSelectorType.BOTTOM_SHEET) {
-                      selected = await showCountrySelectorBottomSheet(
-                          context, countries);
-                    } else {
-                      selected =
-                          await showCountrySelectorDialog(context, countries);
+
+                    switch (selectorConfig.selectorType) {
+                      case PhoneInputSelectorType.BOTTOM_SHEET:
+                        selected = await showCountrySelectorBottomSheet(context, countries);
+                        break;
+                      case PhoneInputSelectorType.DIALOG:
+                        selected = await showCountrySelectorDialog(context, countries);
+                        break;
+                      case PhoneInputSelectorType.CUSTOM:
+                        selected = await selectorConfig.showCustomSelectorDialog!(context, countries);
+                        break;
+                      default:
+                        break;
                     }
 
                     if (selected != null) {
