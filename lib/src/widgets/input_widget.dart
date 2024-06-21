@@ -63,6 +63,8 @@ class InternationalPhoneNumberInput extends StatefulWidget {
 
   /// Ignored if [setSelectorButtonAsPrefixIcon = true]
   final double spaceBetweenSelectorAndTextField;
+  final Decoration selectorDecoration;
+  final BoxConstraints selectorConstraints;
   final int maxLength;
 
   final bool isEnabled;
@@ -110,6 +112,8 @@ class InternationalPhoneNumberInput extends StatefulWidget {
       this.selectorButtonPadding = 0,
       this.prefixIcon = const SizedBox(),
       this.spaceBetweenSelectorAndTextField = 12,
+      this.selectorDecoration = const BoxDecoration(),
+      this.selectorConstraints = const BoxConstraints(),
       this.maxLength = 15,
       this.isEnabled = true,
       this.formatInput = true,
@@ -389,28 +393,32 @@ class _InputWidgetView extends WidgetView<InternationalPhoneNumberInput, _InputW
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           if (!widget.selectorConfig.setSelectorButtonAsPrefixIcon) ...[
-            Column(
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                SelectorButton(
-                  country: state.country,
-                  countries: state.countries,
-                  onCountryChanged: state.onCountryChanged,
-                  selectorConfig: widget.selectorConfig,
-                  selectorTextStyle: widget.selectorTextStyle,
-                  searchBoxDecoration: widget.searchBoxDecoration,
-                  locale: state.locale,
-                  isEnabled: widget.isEnabled,
-                  autoFocusSearchField: widget.autoFocusSearch,
-                  isScrollControlled: widget.countrySelectorScrollControlled,
-                  prefixIcon: widget.prefixIcon,
-                ),
-                SizedBox(
-                  height: state.selectorButtonBottomPadding,
-                ),
-              ],
+            Container(
+              decoration: widget.selectorDecoration,
+              constraints: widget.selectorConstraints,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  SelectorButton(
+                    country: state.country,
+                    countries: state.countries,
+                    onCountryChanged: state.onCountryChanged,
+                    selectorConfig: widget.selectorConfig,
+                    selectorTextStyle: widget.selectorTextStyle,
+                    searchBoxDecoration: widget.searchBoxDecoration,
+                    locale: state.locale,
+                    isEnabled: widget.isEnabled,
+                    autoFocusSearchField: widget.autoFocusSearch,
+                    isScrollControlled: widget.countrySelectorScrollControlled,
+                    prefixIcon: widget.prefixIcon,
+                  ),
+                  SizedBox(
+                    height: state.selectorButtonBottomPadding,
+                  ),
+                  SizedBox(width: widget.spaceBetweenSelectorAndTextField),
+                ],
+              ),
             ),
-            SizedBox(width: widget.spaceBetweenSelectorAndTextField),
           ],
           Flexible(
             child: TextFormField(
