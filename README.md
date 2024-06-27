@@ -12,6 +12,7 @@ A simple and customizable flutter package for inputting phone number in intl / i
 
 
 ### What's new
+  - Replace libphonenumber_plugin with dlibphonenumber
   - Updated libphonenumber and PhoneNumberToCarrierMapper on Android
   - Removed dependency on libphonenumber
   - Switch from libphonenumber-iOS to PhoneNumberKit on iOS
@@ -20,7 +21,7 @@ A simple and customizable flutter package for inputting phone number in intl / i
   
   
 ### Features
-  - Web support.
+  - Support all Flutter platforms.
   - Support for RTL languages
   - Selector mode dropdown, bottom sheet and dialog
   - As You Type Formatter: formats inputs to its selected international format
@@ -34,33 +35,6 @@ A simple and customizable flutter package for inputting phone number in intl / i
     String parsableNumber = number.parseNumber();
     `controller reference`.text = parsableNumber
 ```    
-
-### Web Support
-
-In your app directory, edit `web/index.html` to add the following
-
-```html
-
-<!DOCTYPE html>
-<html>
-    <head>
-        ...
-    </head>
-    <body>
-    
-        ...
-
-        <script src="assets/packages/libphonenumber_plugin/js/libphonenumber.js"></script>
-        <script src="assets/packages/libphonenumber_plugin/js/stringbuffer.js"></script>
-
-        ...
-
-        <script src="main.dart.js" type="application/javascript"></script>
-    </body>
-</html>
-```
-
-Or checkout `/example` folder from [Github](https://github.com/natintosh/intl_phone_number_input/tree/develop/example).
 
 
 ### Note
@@ -195,7 +169,7 @@ Made with [contributors-img](https://contributors-img.web.app).
 
 # Dependencies
 
-* [libphonenumber](https://pub.dev/packages/libphonenumber)
+* [dlibphonenumber](https://pub.dev/packages/dlibphonenumber)
 * [equatable](https://pub.dev/packages/equatable)
 
 # Credits
