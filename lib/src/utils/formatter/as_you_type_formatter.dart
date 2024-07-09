@@ -54,9 +54,10 @@ class AsYouTypeFormatter extends TextInputFormatter {
               newValue.selection.end == -1 ? 0 : newValue.selection.end;
 
           if (separatorChars.hasMatch(parsedText)) {
-            String valueInInputIndex = parsedText[offset - 1];
 
             if (offset < parsedText.length) {
+              String valueInInputIndex = parsedText[offset - 1];
+
               int offsetDifference = parsedText.length - offset;
 
               if (offsetDifference < 2) {
