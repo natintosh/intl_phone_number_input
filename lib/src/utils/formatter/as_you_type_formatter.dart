@@ -85,10 +85,7 @@ class AsYouTypeFormatter extends TextInputFormatter {
             }
 
             this.onInputFormatted(
-              TextEditingValue(
-                text: parsedText,
-                selection: TextSelection.collapsed(offset: offset),
-              ),
+              TextEditingValue(text: parsedText),
             );
           }
         },
