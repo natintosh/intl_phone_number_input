@@ -63,6 +63,7 @@ class InternationalPhoneNumberInput extends StatefulWidget {
 
   /// Ignored if [setSelectorButtonAsPrefixIcon = true]
   final double spaceBetweenSelectorAndTextField;
+  final double selectorButtonBottomPadding;
   final Decoration selectorDecoration;
   final int maxLength;
 
@@ -111,6 +112,7 @@ class InternationalPhoneNumberInput extends StatefulWidget {
       this.selectorButtonPadding = 0,
       this.prefixIcon = const SizedBox(),
       this.spaceBetweenSelectorAndTextField = 12,
+      this.selectorButtonBottomPadding = 0,
       this.selectorDecoration = const BoxDecoration(),
       this.maxLength = 15,
       this.isEnabled = true,
@@ -141,7 +143,6 @@ class InternationalPhoneNumberInput extends StatefulWidget {
 
 class _InputWidgetState extends State<InternationalPhoneNumberInput> {
   TextEditingController? controller;
-  double selectorButtonBottomPadding = 0;
 
   Country? country;
   List<Country> countries = [];
@@ -330,18 +331,6 @@ class _InputWidgetState extends State<InternationalPhoneNumberInput> {
   /// Also updates [selectorButtonBottomPadding]
   String? validator(String? value) {
     bool isValid = this.isNotValid && (value!.isNotEmpty || widget.ignoreBlank == false);
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      if (isValid && widget.errorMessage != null) {
-        setState(() {
-          this.selectorButtonBottomPadding = widget.selectorButtonOnErrorPadding;
-        });
-      } else {
-        setState(() {
-          this.selectorButtonBottomPadding = widget.selectorButtonPadding;
-        });
-      }
-    });
-
     return isValid ? widget.errorMessage : null;
   }
 
@@ -402,7 +391,7 @@ class _InputWidgetView extends WidgetView<InternationalPhoneNumberInput, _InputW
           if (!widget.selectorConfig.setSelectorButtonAsPrefixIcon) ...[
             Container(
               decoration: widget.selectorDecoration,
-              height: state.widgetSize.height + state.selectorButtonBottomPadding,
+              height: state.widgetSize.height + widget.selectorButtonBottomPadding,
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
@@ -420,7 +409,7 @@ class _InputWidgetView extends WidgetView<InternationalPhoneNumberInput, _InputW
                     prefixIcon: widget.prefixIcon,
                   ),
                   SizedBox(
-                    height: state.selectorButtonBottomPadding,
+                    height: widget.selectorButtonBottomPadding,
                     width: widget.spaceBetweenSelectorAndTextField,
                   ),
                 ],
