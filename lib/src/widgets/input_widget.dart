@@ -391,7 +391,7 @@ class _InputWidgetView extends WidgetView<InternationalPhoneNumberInput, _InputW
           if (!widget.selectorConfig.setSelectorButtonAsPrefixIcon) ...[
             Container(
               decoration: widget.selectorDecoration,
-              height: state.widgetSize.height + widget.selectorButtonBottomPadding + 1,
+              height: state.widgetSize.height + widget.selectorButtonBottomPadding,
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
