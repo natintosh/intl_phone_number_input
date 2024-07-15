@@ -396,6 +396,7 @@ class _InputWidgetView extends WidgetView<InternationalPhoneNumberInput, _InputW
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
                   SelectorButton(
+                    width: widget.spaceBetweenSelectorAndTextField,
                     country: state.country,
                     countries: state.countries,
                     onCountryChanged: state.onCountryChanged,
@@ -407,10 +408,6 @@ class _InputWidgetView extends WidgetView<InternationalPhoneNumberInput, _InputW
                     autoFocusSearchField: widget.autoFocusSearch,
                     isScrollControlled: widget.countrySelectorScrollControlled,
                     prefixIcon: widget.prefixIcon,
-                  ),
-                  SizedBox(
-                    height: widget.selectorButtonBottomPadding,
-                    width: widget.spaceBetweenSelectorAndTextField,
                   ),
                 ],
               ),

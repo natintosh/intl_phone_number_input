@@ -18,6 +18,7 @@ class SelectorButton extends StatelessWidget {
   final bool isEnabled;
   final bool isScrollControlled;
   final Widget? prefixIcon;
+  final double width;
 
   final ValueChanged<Country?> onCountryChanged;
 
@@ -34,6 +35,7 @@ class SelectorButton extends StatelessWidget {
     required this.isEnabled,
     required this.isScrollControlled,
     required this.prefixIcon,
+    this.width = 100,
   }) : super(key: key);
 
   @override
@@ -108,7 +110,7 @@ class SelectorButton extends StatelessWidget {
           );
 
     return Container(
-      width: 100,
+      width: width,
       child: Row(
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.end,
