@@ -406,9 +406,9 @@ class _InputWidgetView extends WidgetView<InternationalPhoneNumberInput, _InputW
               decoration: widget.selectorDecoration,
               constraints: widget.selectorConstraints == BoxConstraints()
                   ? BoxConstraints(
-                      minWidth: state.widgetSize.width,
+                      minWidth: 0.0,
                       minHeight: state.widgetSize.height,
-                      maxWidth: state.widgetSize.width,
+                      maxWidth: double.infinity,
                       maxHeight: state.widgetSize.height,
                     )
                   : BoxConstraints(),
