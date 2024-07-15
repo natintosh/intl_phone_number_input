@@ -64,7 +64,6 @@ class InternationalPhoneNumberInput extends StatefulWidget {
   /// Ignored if [setSelectorButtonAsPrefixIcon = true]
   final double spaceBetweenSelectorAndTextField;
   final Decoration selectorDecoration;
-  final BoxConstraints selectorConstraints;
   final int maxLength;
 
   final bool isEnabled;
@@ -113,7 +112,6 @@ class InternationalPhoneNumberInput extends StatefulWidget {
       this.prefixIcon = const SizedBox(),
       this.spaceBetweenSelectorAndTextField = 12,
       this.selectorDecoration = const BoxDecoration(),
-      this.selectorConstraints = const BoxConstraints(),
       this.maxLength = 15,
       this.isEnabled = true,
       this.formatInput = true,
@@ -404,14 +402,7 @@ class _InputWidgetView extends WidgetView<InternationalPhoneNumberInput, _InputW
           if (!widget.selectorConfig.setSelectorButtonAsPrefixIcon) ...[
             Container(
               decoration: widget.selectorDecoration,
-              constraints: widget.selectorConstraints == BoxConstraints()
-                  ? BoxConstraints(
-                      minWidth: 0.0,
-                      minHeight: state.widgetSize.height,
-                      maxWidth: double.infinity,
-                      maxHeight: state.widgetSize.height,
-                    )
-                  : BoxConstraints(),
+              height: state.widgetSize.height + state.selectorButtonBottomPadding,
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
@@ -430,8 +421,8 @@ class _InputWidgetView extends WidgetView<InternationalPhoneNumberInput, _InputW
                   ),
                   SizedBox(
                     height: state.selectorButtonBottomPadding,
+                    width: widget.spaceBetweenSelectorAndTextField,
                   ),
-                  SizedBox(width: widget.spaceBetweenSelectorAndTextField),
                 ],
               ),
             ),
