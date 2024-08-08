@@ -383,7 +383,7 @@ class _InputWidgetView extends WidgetView<InternationalPhoneNumberInput, _InputW
     final countryCode = state.country?.alpha2Code ?? '';
     final dialCode = state.country?.dialCode ?? '';
 
-    return Container(
+    return IntrinsicHeight(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
