@@ -122,7 +122,7 @@ InternationalPhoneNumberInput({
       this.countries,
       this.defaultCountryCode,
     });
-```|
+```
 
 ```dart
 SelectorConfig({
@@ -132,6 +132,7 @@ SelectorConfig({
     this.backgroundColor,
     this.countryComparator,
     this.setSelectorButtonAsPrefixIcon = false,
+    this.useBottomSheetSafeArea = false,
 });
 ```
 

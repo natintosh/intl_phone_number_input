@@ -33,6 +33,9 @@ class SelectorConfig {
   /// Add white space for short dial code
   final bool trailingSpace;
 
+  /// Use safe area for selectorType=BOTTOM_SHEET
+  final bool useBottomSheetSafeArea;
+
   const SelectorConfig({
     this.selectorType = PhoneInputSelectorType.DROPDOWN,
     this.showFlags = true,
@@ -41,5 +44,6 @@ class SelectorConfig {
     this.setSelectorButtonAsPrefixIcon = false,
     this.leadingPadding,
     this.trailingSpace = true,
+    this.useBottomSheetSafeArea = false,
   });
 }
