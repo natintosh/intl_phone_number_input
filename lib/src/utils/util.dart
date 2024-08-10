@@ -2,12 +2,26 @@ import 'package:intl_phone_number_input/src/models/country_model.dart';
 
 /// [Utils] class contains utility methods for `intl_phone_number_input` library
 class Utils {
-  ///  Returns a [Country] form list of [countries] passed that matches [countryCode].
-  ///  Returns the first [Country] in the list if no match is available.
+  ///  Returns a [Country] from list of [countries] passed that matches [countryCode].
+  ///  Returns a [Country] from list of [countries] passed that matches [defaultCountryCode] if no match for [countryCode] is available.
+  ///  Returns the first [Country] in the list if no match is available for either.
   static Country getInitialSelectedCountry(
-      List<Country> countries, String countryCode) {
-    return countries.firstWhere((country) => country.alpha2Code == countryCode,
-        orElse: () => countries[0]);
+      List<Country> countries, String countryCode,
+      [String? defaultCountryCode]) {
+
+    return countries.firstWhere((element) => element.alpha2Code == countryCode,
+        orElse: () {
+
+      if (defaultCountryCode == null) {
+        return countries[0];
+      } else {
+        return countries.firstWhere(
+            (element) =>
+                element.alpha2Code == defaultCountryCode.toUpperCase() ||
+                element.alpha3Code == defaultCountryCode.toUpperCase(),
+            orElse: () => countries[0]);
+      }
+    });
   }
 
   /// Returns a [String] which will be the unicode of a Flag Emoji,
