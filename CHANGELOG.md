@@ -1,3 +1,6 @@
+## [0.7.5]
+* Fixed bug in `AsYouTypeFormatter` that could throw a `RangeError` if the user typed non digit characters
+
 ## [0.7.4]
 * Updated minimum os version on iOS
 * Updated dependencies
