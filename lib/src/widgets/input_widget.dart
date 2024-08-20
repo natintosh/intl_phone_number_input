@@ -85,6 +85,7 @@ class InternationalPhoneNumberInput extends StatefulWidget {
   final Iterable<String>? autofillHints;
 
   final List<String>? countries;
+  final Widget? indicator;
 
   InternationalPhoneNumberInput(
       {Key? key,
@@ -124,7 +125,8 @@ class InternationalPhoneNumberInput extends StatefulWidget {
       this.focusNode,
       this.cursorColor,
       this.autofillHints,
-      this.countries})
+      this.countries,
+      this.indicator})
       : super(key: key);
 
   @override
@@ -418,6 +420,7 @@ class _InputWidgetView
             ),
             SizedBox(width: widget.spaceBetweenSelectorAndTextField),
           ],
+          widget.indicator ?? SizedBox.shrink(),
           Flexible(
             child: TextFormField(
               key: widget.fieldKey ?? Key(TestHelper.TextInputKeyValue),
