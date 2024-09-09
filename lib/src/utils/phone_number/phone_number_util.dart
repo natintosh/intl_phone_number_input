@@ -1,8 +1,9 @@
+import 'package:dlibphonenumber/dlibphonenumber.dart' as p;
 import 'package:intl_phone_number_input/src/utils/phone_number.dart';
-import 'package:libphonenumber_plugin/libphonenumber_plugin.dart' as p;
 
-/// A wrapper class [PhoneNumberUtil] that basically switch between plugin available for `Web` or `Android or IOS` and `Other platforms` when available.
 class PhoneNumberUtil {
+  static p.PhoneNumberUtil phoneUtil = p.PhoneNumberUtil.instance;
+
   /// [isValidNumber] checks if a [phoneNumber] is valid.
   /// Accepts [phoneNumber] and [isoCode]
   /// Returns [Future<bool>].
@@ -11,7 +12,8 @@ class PhoneNumberUtil {
     if (phoneNumber.length < 2) {
       return false;
     }
-    return p.PhoneNumberUtil.isValidPhoneNumber(phoneNumber, isoCode);
+    final number = phoneUtil.parse(phoneNumber, isoCode.toUpperCase());
+    return phoneUtil.isValidNumber(number);
   }
 
   /// [normalizePhoneNumber] normalizes a string of characters representing a phone number
@@ -19,27 +21,32 @@ class PhoneNumberUtil {
   /// Returns [Future<String>]
   static Future<String?> normalizePhoneNumber(
       {required String phoneNumber, required String isoCode}) async {
-    return p.PhoneNumberUtil.normalizePhoneNumber(phoneNumber, isoCode);
+    final number = phoneUtil.parse(phoneNumber, isoCode.toUpperCase());
+    return phoneUtil.format(number, p.PhoneNumberFormat.e164);
   }
 
   /// Accepts [phoneNumber] and [isoCode]
   /// Returns [Future<RegionInfo>] of all information available about the [phoneNumber]
   static Future<RegionInfo> getRegionInfo(
       {required String phoneNumber, required String isoCode}) async {
-    var response = await p.PhoneNumberUtil.getRegionInfo(phoneNumber, isoCode);
-
+    final number = phoneUtil.parse(phoneNumber, isoCode.toUpperCase());
+    final regionCode = phoneUtil.getRegionCodeForNumber(number);
+    final countryCode = number.countryCode.toString();
+    final formattedNumber =
+        phoneUtil.format(number, p.PhoneNumberFormat.national);
     return RegionInfo(
-        regionPrefix: response.regionPrefix,
-        isoCode: response.isoCode,
-        formattedPhoneNumber: response.formattedPhoneNumber);
+      regionPrefix: countryCode,
+      isoCode: regionCode,
+      formattedPhoneNumber: formattedNumber,
+    );
   }
 
   /// Accepts [phoneNumber] and [isoCode]
   /// Returns [Future<PhoneNumberType>] type of phone number
   static Future<PhoneNumberType> getNumberType(
       {required String phoneNumber, required String isoCode}) async {
-    final dynamic type =
-        await p.PhoneNumberUtil.getNumberType(phoneNumber, isoCode);
+    final p.PhoneNumberType type = phoneUtil
+        .getNumberType(phoneUtil.parse(phoneNumber, isoCode.toUpperCase()));
 
     return PhoneNumberTypeUtil.getType(type.index);
   }
@@ -49,7 +56,12 @@ class PhoneNumberUtil {
   /// Returns [Future<String>]
   static Future<String?> formatAsYouType(
       {required String phoneNumber, required String isoCode}) async {
-    return p.PhoneNumberUtil.formatAsYouType(phoneNumber, isoCode);
+    final asYouTypeFormatter = phoneUtil.getAsYouTypeFormatter(isoCode);
+    String? result;
+    for (int i = 0; i < phoneNumber.length; i++) {
+      result = asYouTypeFormatter.inputDigit(phoneNumber[i]);
+    }
+    return result;
   }
 }
 
@@ -138,7 +150,7 @@ extension phonenumbertypeproperties on PhoneNumberType {
         return 6;
       case PhoneNumberType.PERSONAL_NUMBER:
         return 7;
-      case PhoneNumberType.PREMIUM_RATE:
+      case PhoneNumberType.PAGER:
         return 8;
       case PhoneNumberType.UAN:
         return 9;
