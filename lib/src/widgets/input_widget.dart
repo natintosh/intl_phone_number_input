@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -51,7 +52,7 @@ class InternationalPhoneNumberInput extends StatefulWidget {
   final TextInputType keyboardType;
   final TextInputAction? keyboardAction;
 
-  final PhoneNumber? initialValue;
+  PhoneNumber? initialValue;
   final String? hintText;
   final String? errorMessage;
 
@@ -66,6 +67,7 @@ class InternationalPhoneNumberInput extends StatefulWidget {
   final bool autoFocus;
   final bool autoFocusSearch;
   final AutovalidateMode autoValidateMode;
+  final bool autoCountryDetection;
   final bool ignoreBlank;
   final bool countrySelectorScrollControlled;
 
@@ -110,6 +112,7 @@ class InternationalPhoneNumberInput extends StatefulWidget {
       this.autoFocus = false,
       this.autoFocusSearch = false,
       this.autoValidateMode = AutovalidateMode.disabled,
+      this.autoCountryDetection = false,
       this.ignoreBlank = false,
       this.countrySelectorScrollControlled = true,
       this.locale,
@@ -175,6 +178,13 @@ class _InputWidgetState extends State<InternationalPhoneNumberInput> {
 
   /// [initialiseWidget] sets initial values of the widget
   void initialiseWidget() async {
+    if (widget.autoCountryDetection &&
+        PlatformDispatcher.instance.locale.countryCode != null) {
+      widget.initialValue = PhoneNumber(
+        isoCode: PlatformDispatcher.instance.locale.countryCode,
+      );
+    }
+
     if (widget.initialValue != null) {
       if (widget.initialValue!.phoneNumber != null &&
           widget.initialValue!.phoneNumber!.isNotEmpty &&

@@ -79,6 +79,7 @@ InternationalPhoneNumberInput({
       this.autoFocus = false,
       this.autoFocusSearch = false,
       this.autoValidateMode = AutovalidateMode.disabled,
+      this.autoCountryDetection = false,
       this.ignoreBlank = false,
       this.countrySelectorScrollControlled = true,
       this.locale,
@@ -131,6 +132,7 @@ SelectorConfig({
 | maxLength                           | integer                |        15                 |
 | isEnabled                           | boolean                |        true               |
 | autoFocus                           | boolean                |        false              |
+| autoCountryDetection                | boolean                |        false              |
 | autoValidateMode                    | AutoValidateMode       | AutoValidateMode.disabled |
 | formatInput                         | boolean                |        true               |
 | errorMessage                        | String                 | Invalid phone number      |
