@@ -334,6 +334,10 @@ class _InputWidgetState extends State<InternationalPhoneNumberInput> {
   ///
   /// Also updates [selectorButtonBottomPadding]
   String? validator(String? value) {
+    if (country?.dialCode == '+888') {
+      return null;
+    }
+
     bool isValid =
         this.isNotValid && (value!.isNotEmpty || widget.ignoreBlank == false);
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
