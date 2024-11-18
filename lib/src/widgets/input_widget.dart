@@ -228,6 +228,22 @@ class _InputWidgetState extends State<InternationalPhoneNumberInput> {
       String parsedPhoneNumberString =
           controller!.text.replaceAll(RegExp(r'[^\d+]'), '');
 
+      // Skip checking if the country code is +888
+      if (this.country?.dialCode == '+888') {
+        if (widget.onInputChanged != null) {
+          widget.onInputChanged!(PhoneNumber(
+              phoneNumber: parsedPhoneNumberString,
+              isoCode: this.country?.alpha2Code,
+              dialCode: this.country?.dialCode));
+        }
+
+        if (widget.onInputValidated != null) {
+          widget.onInputValidated!(true);
+        }
+        this.isNotValid = false;
+        return;
+      }
+
       getParsedPhoneNumber(parsedPhoneNumberString, this.country?.alpha2Code)
           .then((phoneNumber) {
         if (phoneNumber == null) {
