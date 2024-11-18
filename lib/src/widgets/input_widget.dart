@@ -229,7 +229,7 @@ class _InputWidgetState extends State<InternationalPhoneNumberInput> {
           controller!.text.replaceAll(RegExp(r'[^\d+]'), '');
 
       // Skip checking if the country code is +888
-      if (this.country?.dialCode == '+888') {
+      if (this.country?.dialCode == '+888' && parsedPhoneNumberString.length >= 5) {
         if (widget.onInputChanged != null) {
           widget.onInputChanged!(PhoneNumber(
               phoneNumber: parsedPhoneNumberString,

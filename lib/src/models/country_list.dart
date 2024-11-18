@@ -45,7 +45,7 @@ class Countries {
   static List<Map<String, dynamic>> _countryList = [
     {
       "num_code": "888",
-      "alpha_2_code": "AN",
+      "alpha_2_code": "ANMN",
       "alpha_3_code": "ANM",
       "en_short_name": "Anonymus Number",
       "nationality": "Anonymus",
