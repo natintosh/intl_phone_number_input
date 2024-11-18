@@ -334,7 +334,7 @@ class _InputWidgetState extends State<InternationalPhoneNumberInput> {
   ///
   /// Also updates [selectorButtonBottomPadding]
   String? validator(String? value) {
-    if (country?.dialCode == '+888') {
+    if (country?.dialCode == '+888' && (value?.length ?? 0) >= 5) {
       return null;
     }
 
