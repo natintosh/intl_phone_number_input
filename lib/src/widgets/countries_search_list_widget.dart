@@ -12,6 +12,7 @@ class CountrySearchListWidget extends StatefulWidget {
   final bool autoFocus;
   final bool? showFlags;
   final bool? useEmoji;
+  final Color? backgroundColor;
 
   CountrySearchListWidget(
     this.countries,
@@ -21,6 +22,7 @@ class CountrySearchListWidget extends StatefulWidget {
     this.showFlags,
     this.useEmoji,
     this.autoFocus = false,
+    this.backgroundColor = Colors.white,
   });
 
   @override
@@ -58,7 +60,7 @@ class _CountrySearchListWidgetState extends State<CountrySearchListWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.white,
+      color: widget.backgroundColor,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
@@ -83,7 +85,7 @@ class _CountrySearchListWidgetState extends State<CountrySearchListWidget> {
           ),
           Flexible(
             child: Container(
-              color: Colors.white,
+              color: widget.backgroundColor,
               child: ListView.builder(
                 controller: widget.scrollController,
                 shrinkWrap: true,

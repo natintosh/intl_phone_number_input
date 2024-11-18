@@ -86,6 +86,8 @@ class InternationalPhoneNumberInput extends StatefulWidget {
 
   final List<String>? countries;
 
+  final Color? searchListBackgroundColor;
+
   InternationalPhoneNumberInput(
       {Key? key,
       this.selectorConfig = const SelectorConfig(),
@@ -124,7 +126,8 @@ class InternationalPhoneNumberInput extends StatefulWidget {
       this.focusNode,
       this.cursorColor,
       this.autofillHints,
-      this.countries})
+      this.countries,
+      this.searchListBackgroundColor = Colors.white,})
       : super(key: key);
 
   @override

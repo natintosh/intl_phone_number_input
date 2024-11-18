@@ -19,6 +19,7 @@ class SelectorButton extends StatelessWidget {
   final bool isScrollControlled;
 
   final ValueChanged<Country?> onCountryChanged;
+  final Color? searchListBackgroundColor;
 
   const SelectorButton({
     Key? key,
@@ -32,6 +33,7 @@ class SelectorButton extends StatelessWidget {
     required this.onCountryChanged,
     required this.isEnabled,
     required this.isScrollControlled,
+    this.searchListBackgroundColor = Colors.white,
   }) : super(key: key);
 
   @override
@@ -134,6 +136,7 @@ class SelectorButton extends StatelessWidget {
               showFlags: selectorConfig.showFlags,
               useEmoji: selectorConfig.useEmoji,
               autoFocus: autoFocusSearchField,
+              backgroundColor: searchListBackgroundColor,
             ),
           ),
         ),
@@ -183,6 +186,7 @@ class SelectorButton extends StatelessWidget {
                       showFlags: selectorConfig.showFlags,
                       useEmoji: selectorConfig.useEmoji,
                       autoFocus: autoFocusSearchField,
+                      backgroundColor: searchListBackgroundColor,
                     ),
                   ),
                 );
