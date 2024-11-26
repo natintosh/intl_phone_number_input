@@ -74,3 +74,8 @@ build/
 !/packages/flutter_tools/test/data/dart_dependencies_test/**/.packages
 
 .metadata
+
+# FVM Version Cache
+.fvm/
+.fvmrc
+settings.json
