@@ -62,9 +62,9 @@ class Item extends StatelessWidget {
 class _Flag extends StatelessWidget {
   final Country? country;
   final bool? showFlag;
-  final bool? useEmoji;
-  final double? flagSize;
   final FlagShape? flagShape;
+  final double? flagSize;
+  final bool? useEmoji;
 
   const _Flag({
     Key? key,
