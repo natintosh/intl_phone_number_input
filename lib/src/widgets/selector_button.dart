@@ -44,6 +44,8 @@ class SelectorButton extends StatelessWidget {
                   hint: Item(
                     country: country,
                     showFlag: selectorConfig.showFlags,
+                    flagShape: selectorConfig.flagShape,
+                    flagSize: selectorConfig.flagSize,
                     useEmoji: selectorConfig.useEmoji,
                     leadingPadding: selectorConfig.leadingPadding,
                     trailingSpace: selectorConfig.trailingSpace,
@@ -107,6 +109,8 @@ class SelectorButton extends StatelessWidget {
           key: Key(TestHelper.countryItemKeyValue(country.alpha2Code)),
           country: country,
           showFlag: selectorConfig.showFlags,
+          flagShape: selectorConfig.flagShape,
+          flagSize: selectorConfig.flagSize,
           useEmoji: selectorConfig.useEmoji,
           textStyle: selectorTextStyle,
           withCountryNames: false,
