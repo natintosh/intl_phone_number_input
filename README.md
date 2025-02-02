@@ -101,6 +101,8 @@ InternationalPhoneNumberInput({
 SelectorConfig({
     this.selectorType = PhoneInputSelectorType.DROPDOWN,
     this.showFlags = true,
+    this.flagShape,
+    this.flagSize,
     this.useEmoji = false,
     this.backgroundColor,
     this.countryComparator,

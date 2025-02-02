@@ -413,7 +413,6 @@ class _InputWidgetView
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
                   SelectorButton(
-                    width: widget.spaceBetweenSelectorAndTextField,
                     country: state.country,
                     countries: state.countries,
                     onCountryChanged: state.onCountryChanged,

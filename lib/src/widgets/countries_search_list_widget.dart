@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl_phone_number_input/src/models/country_model.dart';
+import 'package:intl_phone_number_input/src/utils/selector_config.dart';
 import 'package:intl_phone_number_input/src/utils/test/test_helper.dart';
 import 'package:intl_phone_number_input/src/utils/util.dart';
 
@@ -11,6 +12,8 @@ class CountrySearchListWidget extends StatefulWidget {
   final ScrollController? scrollController;
   final bool autoFocus;
   final bool? showFlags;
+  final FlagShape? flagShape;
+  final double? flagSize;
   final bool? useEmoji;
 
   CountrySearchListWidget(
@@ -19,6 +22,8 @@ class CountrySearchListWidget extends StatefulWidget {
     this.searchBoxDecoration,
     this.scrollController,
     this.showFlags,
+    this.flagShape,
+    this.flagSize,
     this.useEmoji,
     this.autoFocus = false,
   });
@@ -92,6 +97,8 @@ class _CountrySearchListWidgetState extends State<CountrySearchListWidget> {
                 locale: widget.locale,
                 showFlags: widget.showFlags!,
                 useEmoji: widget.useEmoji!,
+                flagShape: widget.flagShape,
+                flagSize: widget.flagSize,
               );
               // return ListTile(
               //   key: Key(TestHelper.countryItemKeyValue(country.alpha2Code)),
@@ -136,12 +143,16 @@ class DirectionalCountryListTile extends StatelessWidget {
   final String? locale;
   final bool showFlags;
   final bool useEmoji;
+  final FlagShape? flagShape;
+  final double? flagSize;
 
   const DirectionalCountryListTile({
     Key? key,
     required this.country,
     required this.locale,
     required this.showFlags,
+    this.flagShape,
+    this.flagSize = 32,
     required this.useEmoji,
   }) : super(key: key);
 
@@ -149,7 +160,14 @@ class DirectionalCountryListTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       key: Key(TestHelper.countryItemKeyValue(country.alpha2Code)),
-      leading: (showFlags ? _Flag(country: country, useEmoji: useEmoji) : null),
+      leading: (showFlags
+          ? _Flag(
+              country: country,
+              useEmoji: useEmoji,
+              flagShape: flagShape,
+              flagSize: flagSize,
+            )
+          : null),
       title: Align(
         alignment: AlignmentDirectional.centerStart,
         child: Text(
@@ -174,9 +192,10 @@ class DirectionalCountryListTile extends StatelessWidget {
 class _Flag extends StatelessWidget {
   final Country? country;
   final bool? useEmoji;
+  final FlagShape? flagShape;
+  final double? flagSize;
 
-  const _Flag({Key? key, this.country, this.useEmoji}) : super(key: key);
-
+  const _Flag({Key? key, this.country, this.useEmoji, this.flagShape, this.flagSize}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return country != null
@@ -187,12 +206,41 @@ class _Flag extends StatelessWidget {
                     style: Theme.of(context).textTheme.headlineSmall,
                   )
                 : country?.flagUri != null
-                    ? CircleAvatar(
-                        backgroundImage: AssetImage(
-                          country!.flagUri,
-                          package: 'intl_phone_number_input',
-                        ),
-                      )
+                    ? switch (flagShape) {
+                        FlagShape.square => Image.asset(
+                            country!.flagUri,
+                            height: flagSize,
+                            width: flagSize ?? 32.0,
+                            fit: BoxFit.cover,
+                            package: 'intl_phone_number_input',
+                            errorBuilder: (context, error, stackTrace) {
+                              return SizedBox.shrink();
+                            },
+                          ),
+                        FlagShape.circle => CircleAvatar(
+                            backgroundImage: AssetImage(
+                              country!.flagUri,
+                              package: 'intl_phone_number_input',
+                            ),
+                            radius: flagSize! / 2,
+                          ),
+                        FlagShape.rectangle => Image.asset(
+                            country!.flagUri,
+                            height: flagSize,
+                            width: flagSize ?? 32.0,
+                            package: 'intl_phone_number_input',
+                            errorBuilder: (context, error, stackTrace) {
+                              return SizedBox.shrink();
+                            },
+                          ),
+                        null => CircleAvatar(
+                            backgroundImage: AssetImage(
+                              country!.flagUri,
+                              package: 'intl_phone_number_input',
+                            ),
+                            radius: flagSize != null ? (flagSize! / 2) : null,
+                          )
+                      }
                     : SizedBox.shrink(),
           )
         : SizedBox.shrink();
