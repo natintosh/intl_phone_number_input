@@ -1,4 +1,5 @@
 import 'package:intl_phone_number_input/src/models/country_model.dart';
+import 'package:intl_phone_number_input/src/utils/formatter/universal_number_formatter.dart';
 
 /// [Utils] class contains utility methods for `intl_phone_number_input` library
 class Utils {
@@ -39,7 +40,7 @@ class Utils {
                 Utils.getCountryName(country, locale)!
                     .toLowerCase()
                     .contains(value.toLowerCase()) ||
-                country.dialCode!.contains(value.toLowerCase()),
+                country.dialCode!.contains(UniversalNumberFormatter.formatNumber(value.toUpperCase())),
           )
           .toList();
     }
