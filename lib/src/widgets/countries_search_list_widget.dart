@@ -127,35 +127,67 @@ class _CountrySearchListWidgetState extends State<CountrySearchListWidget> {
               itemBuilder: (BuildContext context, int index) {
                 Country country = filteredCountries[index];
 
-                return DirectionalCountryListTile(
-                  country: country,
-                  locale: widget.locale,
-                  showFlags: widget.showFlags!,
-                  useEmoji: widget.useEmoji!,
-                );
-                // return ListTile(
-                //   key: Key(TestHelper.countryItemKeyValue(country.alpha2Code)),
-                //   leading: widget.showFlags!
-                //       ? _Flag(country: country, useEmoji: widget.useEmoji)
-                //       : null,
-                //   title: Align(
-                //     alignment: AlignmentDirectional.centerStart,
-                //     child: Text(
-                //       '${Utils.getCountryName(country, widget.locale)}',
-                //       textDirection: Directionality.of(context),
-                //       textAlign: TextAlign.start,
-                //     ),
-                //   ),
-                //   subtitle: Align(
-                //     alignment: AlignmentDirectional.centerStart,
-                //     child: Text(
-                //       '${country.dialCode ?? ''}',
-                //       textDirection: TextDirection.ltr,
-                //       textAlign: TextAlign.start,
-                //     ),
-                //   ),
-                //   onTap: () => Navigator.of(context).pop(country),
+                // return DirectionalCountryListTile(
+                //   country: country,
+                //   locale: widget.locale,
+                //   showFlags: widget.showFlags!,
+                //   useEmoji: widget.useEmoji!,
                 // );
+                return ListTile(
+                  key: Key(TestHelper.countryItemKeyValue(country.alpha2Code)),
+                  // minLeadingWidth: 150,
+                  leading: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text(
+                        '${country.dialCode ?? ''}',
+                        textDirection: TextDirection.ltr,
+                        textAlign: TextAlign.start,
+                        style: TextStyle(
+                          color: Color(0xff8D8D91),
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                          fontFamily: 'assets/fonts/istoria_semibold.otf',
+                        ),
+                      ),
+                      if (widget.showFlags!) ...[
+                        SizedBox(width: 12),
+                        _Flag(country: country, useEmoji: widget.useEmoji),
+                      ],
+                    ],
+                  ),
+                  title: Align(
+                    alignment: AlignmentDirectional.centerStart,
+                    child: Text(
+                      '${Utils.getCountryName(country, widget.locale)}',
+                      textDirection: Directionality.of(context),
+                      textAlign: TextAlign.start,
+                      style: TextStyle(
+                        color: Color(0xff101F29),
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                        fontFamily: 'assets/fonts/istoria_semibold.otf',
+                      ),
+                    ),
+                  ),
+                  // title: Align(
+                  //   alignment: AlignmentDirectional.centerStart,
+                  //   child: Text(
+                  //     '${Utils.getCountryName(country, widget.locale)}',
+                  //     textDirection: Directionality.of(context),
+                  //     textAlign: TextAlign.start,
+                  //   ),
+                  // ),
+                  // subtitle: Align(
+                  //   alignment: AlignmentDirectional.centerStart,
+                  //   child: Text(
+                  //     '${country.dialCode ?? ''}',
+                  //     textDirection: TextDirection.ltr,
+                  //     textAlign: TextAlign.start,
+                  //   ),
+                  // ),
+                  onTap: () => Navigator.of(context).pop(country),
+                );
               },
             ),
           ),
