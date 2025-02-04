@@ -100,7 +100,7 @@ class InternationalPhoneNumberInput extends StatefulWidget {
     this.keyboardAction,
     this.keyboardType = TextInputType.phone,
     this.initialValue,
-    this.hintText = 'Phone number',
+    this.hintText = 'Search by country name or dial code',
     this.errorMessage = 'Invalid phone number',
     this.selectorButtonOnErrorPadding = 24,
     this.spaceBetweenSelectorAndTextField = 12,

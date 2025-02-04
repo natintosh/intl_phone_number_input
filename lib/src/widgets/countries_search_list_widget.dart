@@ -71,7 +71,7 @@ class _CountrySearchListWidgetState extends State<CountrySearchListWidget> {
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
+        mainAxisSize: MainAxisSize.max,
         children: <Widget>[
           Text(
             "Choose Country",
@@ -187,39 +187,42 @@ class DirectionalCountryListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      key: Key(TestHelper.countryItemKeyValue(country.alpha2Code)),
-      children: [
-        if (showFlags) _Flag(country: country, useEmoji: useEmoji),
-        SizedBox(
-          width: 100,
-          child: Text(
-            '${country.dialCode ?? ''}',
-            textDirection: TextDirection.ltr,
-            textAlign: TextAlign.start,
-            style: TextStyle(
-              color: Color(0xff8D8D91),
-              fontSize: 16,
-              fontWeight: FontWeight.w600,
-              fontFamily: 'assets/fonts/istoria_semibold.otf',
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      child: Row(
+        key: Key(TestHelper.countryItemKeyValue(country.alpha2Code)),
+        children: [
+          if (showFlags) _Flag(country: country, useEmoji: useEmoji),
+          SizedBox(
+            width: 100,
+            child: Text(
+              '${country.dialCode ?? ''}',
+              textDirection: TextDirection.ltr,
+              textAlign: TextAlign.start,
+              style: TextStyle(
+                color: Color(0xff8D8D91),
+                fontSize: 16,
+                fontWeight: FontWeight.w600,
+                fontFamily: 'assets/fonts/istoria_semibold.otf',
+              ),
             ),
           ),
-        ),
-        SizedBox(width: 16),
-        Expanded(
-          child: Text(
-            '${Utils.getCountryName(country, locale)}',
-            textDirection: Directionality.of(context),
-            textAlign: TextAlign.start,
-            style: TextStyle(
-              color: Color(0xff101F29),
-              fontSize: 16,
-              fontWeight: FontWeight.w600,
-              fontFamily: 'assets/fonts/istoria_semibold.otf',
+          SizedBox(width: 16),
+          Expanded(
+            child: Text(
+              '${Utils.getCountryName(country, locale)}',
+              textDirection: Directionality.of(context),
+              textAlign: TextAlign.start,
+              style: TextStyle(
+                color: Color(0xff101F29),
+                fontSize: 16,
+                fontWeight: FontWeight.w600,
+                fontFamily: 'assets/fonts/istoria_semibold.otf',
+              ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
     // return ListTile(
     //   key: Key(TestHelper.countryItemKeyValue(country.alpha2Code)),

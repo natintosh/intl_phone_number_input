@@ -55,6 +55,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 useBottomSheetSafeArea: true,
               ),
               ignoreBlank: false,
+              hintText: '',
               autoValidateMode: AutovalidateMode.disabled,
               selectorTextStyle: TextStyle(color: Colors.black),
               initialValue: number,
