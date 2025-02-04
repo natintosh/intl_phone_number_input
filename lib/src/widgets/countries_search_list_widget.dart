@@ -84,40 +84,29 @@ class _CountrySearchListWidgetState extends State<CountrySearchListWidget> {
             ),
           ),
 
-          // child: TextFormField(
-          //   key: Key(TestHelper.CountrySearchInputKeyValue),
-          //   decoration: getSearchBoxDecoration(),
-          //   controller: _searchController,
-          //   autofocus: widget.autoFocus,
-          //   onChanged: (value) {
-          //     final String value = _searchController.text.trim();
-          //     return setState(
-          //       () => filteredCountries = Utils.filterCountries(
-          //         countries: widget.countries,
-          //         locale: widget.locale,
-          //         value: value,
-          //       ),
-          //     );
-          //   },
-          // ),
+          // child:
           TextFormField(
             key: Key(TestHelper.CountrySearchInputKeyValue),
             decoration: getSearchBoxDecoration(),
             controller: _searchController,
             autofocus: widget.autoFocus,
-            // decoration: InputDecoration(
-            //   hintText: widget.hintText,
-            //   hintStyle: TextStyle(color: Color(0xff8D8D91)),
-            //   filled: true,
-            //   fillColor: Color(0xffF8F8F9),
-            //   border: OutlineInputBorder(
-            //     borderRadius: BorderRadius.circular(12.0),
-            //     borderSide: BorderSide.none,
-            //   ),
-            //   contentPadding:
-            //       EdgeInsets.symmetric(vertical: 12, horizontal: 16),
-            // ),
+            onChanged: (value) {
+              final String value = _searchController.text.trim();
+              return setState(
+                () => filteredCountries = Utils.filterCountries(
+                  countries: widget.countries,
+                  locale: widget.locale,
+                  value: value,
+                ),
+              );
+            },
           ),
+          // TextFormField(
+          //   key: Key(TestHelper.CountrySearchInputKeyValue),
+          //   decoration: getSearchBoxDecoration(),
+          //   controller: _searchController,
+          //   autofocus: widget.autoFocus,
+          // ),
 
           Flexible(
             child: ListView.builder(
@@ -135,7 +124,7 @@ class _CountrySearchListWidgetState extends State<CountrySearchListWidget> {
                 // );
                 return ListTile(
                   key: Key(TestHelper.countryItemKeyValue(country.alpha2Code)),
-                  // minLeadingWidth: 150,
+                  minLeadingWidth: 150,
                   leading: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
