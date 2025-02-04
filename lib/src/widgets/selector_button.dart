@@ -173,8 +173,8 @@ class SelectorButton extends StatelessWidget {
                       color: Theme.of(context).canvasColor,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(12),
-                          topRight: Radius.circular(12),
+                          topLeft: Radius.circular(22),
+                          topRight: Radius.circular(2),
                         ),
                       ),
                     ),
