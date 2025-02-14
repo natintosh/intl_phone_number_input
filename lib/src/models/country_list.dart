@@ -44,38 +44,6 @@ class Countries {
 
   static List<Map<String, dynamic>> _countryList = [
     {
-      "num_code": "888",
-      "alpha_2_code": "ANMN",
-      "alpha_3_code": "ANM",
-      "en_short_name": "Anonymus Number",
-      "nationality": "Anonymus",
-      "dial_code": "+888",
-      "nameTranslations": {
-        "sk": "Anonymus",
-        "se": "Anonymus",
-        "pl": "Anonymus",
-        "no": "Anonymus",
-        "ja": "アノニマス",
-        "it": "Anonymus",
-        "zh": "匿名",
-        "nl": "Anonymus",
-        "de": "Anonymus",
-        "fr": "Anonymus",
-        "es": "Anonymus",
-        "en": "Anonymus",
-        "pt_BR": "Anonymus",
-        "sr-Cyrl": "Анонимус",
-        "sr-Latn": "Anonymus",
-        "zh_TW": "匿名",
-        "tr": "Anonymus",
-        "ro": "Anonymus",
-        "ar": "مجهول",
-        "fa": "ناشناس",
-        "yue": "匿名",
-        "el": "Ανώνυμος"
-      }
-    },
-    {
       "num_code": "4",
       "alpha_2_code": "AF",
       "alpha_3_code": "AFG",
@@ -7909,6 +7877,38 @@ class Countries {
         "yue": "津巴布韋",
         "el": "Ζιμπάμπουε",
       }
-    }
+    },
+    {
+      "num_code": "888",
+      "alpha_2_code": "ANMN",
+      "alpha_3_code": "ANM",
+      "en_short_name": "Anonymus Number",
+      "nationality": "Anonymus",
+      "dial_code": "+888",
+      "nameTranslations": {
+        "sk": "Anonymus",
+        "se": "Anonymus",
+        "pl": "Anonymus",
+        "no": "Anonymus",
+        "ja": "アノニマス",
+        "it": "Anonymus",
+        "zh": "匿名",
+        "nl": "Anonymus",
+        "de": "Anonymus",
+        "fr": "Anonymus",
+        "es": "Anonymus",
+        "en": "Anonymus",
+        "pt_BR": "Anonymus",
+        "sr-Cyrl": "Анонимус",
+        "sr-Latn": "Anonymus",
+        "zh_TW": "匿名",
+        "tr": "Anonymus",
+        "ro": "Anonymus",
+        "ar": "مجهول",
+        "fa": "ناشناس",
+        "yue": "匿名",
+        "el": "Ανώνυμος"
+      }
+    },
   ];
 }
