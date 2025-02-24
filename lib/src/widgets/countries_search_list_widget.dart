@@ -63,16 +63,21 @@ class _CountrySearchListWidgetState extends State<CountrySearchListWidget> {
           hintStyle: TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w400,
-            color: Color(0xff8D8D91),
+            color: Theme.of(context).hintColor,
           ),
-          fillColor: Color(0xffF8F8F9),
+          filled: true,
+          fillColor: Theme.of(context).disabledColor,
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12),
-            borderSide: BorderSide(color: Color(0xffF8F8F9)),
+            borderSide: BorderSide(color: Colors.transparent),
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12),
+            borderSide: BorderSide(color: Colors.transparent),
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12),
-            borderSide: BorderSide(color: Color(0xffF8F8F9)),
+            borderSide: BorderSide(color: Colors.transparent),
           ),
         );
   }
@@ -222,7 +227,7 @@ class DirectionalCountryRow extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: 16),
         child: Row(
           children: [
-            if (!showFlags) ...[
+            if (showFlags) ...[
               Container(
                 child: _Flag(country: country, useEmoji: useEmoji),
               ),
