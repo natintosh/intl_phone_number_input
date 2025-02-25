@@ -17,6 +17,10 @@ class SelectorButton extends StatelessWidget {
   final String? locale;
   final bool isEnabled;
   final bool isScrollControlled;
+  final TextStyle? dialCodeTextStyle;
+  final TextStyle? countryNameTextStyle;
+  final TextStyle? titleTextStyle;
+  final String title;
 
   final ValueChanged<Country?> onCountryChanged;
 
@@ -32,6 +36,10 @@ class SelectorButton extends StatelessWidget {
     required this.onCountryChanged,
     required this.isEnabled,
     required this.isScrollControlled,
+    this.dialCodeTextStyle,
+    this.countryNameTextStyle,
+    this.titleTextStyle,
+    required this.title,
   }) : super(key: key);
 
   @override
@@ -130,6 +138,10 @@ class SelectorButton extends StatelessWidget {
             child: CountrySearchListWidget(
               countries,
               locale,
+              title: title,
+              dialCodeTextStyle: dialCodeTextStyle,
+              countryNameTextStyle: countryNameTextStyle,
+              titleTextStyle: titleTextStyle,
               searchBoxDecoration: searchBoxDecoration,
               showFlags: selectorConfig.showFlags,
               useEmoji: selectorConfig.useEmoji,
@@ -178,6 +190,10 @@ class SelectorButton extends StatelessWidget {
                     child: CountrySearchListWidget(
                       countries,
                       locale,
+                      title: title,
+                      dialCodeTextStyle: dialCodeTextStyle,
+                      countryNameTextStyle: countryNameTextStyle,
+                      titleTextStyle: titleTextStyle,
                       searchBoxDecoration: searchBoxDecoration,
                       scrollController: controller,
                       showFlags: selectorConfig.showFlags,
