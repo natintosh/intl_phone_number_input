@@ -20,7 +20,6 @@ class SelectorButton extends StatelessWidget {
   final TextStyle? dialCodeTextStyle;
   final TextStyle? countryNameTextStyle;
   final TextStyle? titleTextStyle;
-  final String title;
 
   final ValueChanged<Country?> onCountryChanged;
 
@@ -39,7 +38,6 @@ class SelectorButton extends StatelessWidget {
     this.dialCodeTextStyle,
     this.countryNameTextStyle,
     this.titleTextStyle,
-    required this.title,
   }) : super(key: key);
 
   @override
@@ -138,7 +136,6 @@ class SelectorButton extends StatelessWidget {
             child: CountrySearchListWidget(
               countries,
               locale,
-              title: title,
               dialCodeTextStyle: dialCodeTextStyle,
               countryNameTextStyle: countryNameTextStyle,
               titleTextStyle: titleTextStyle,
@@ -190,7 +187,6 @@ class SelectorButton extends StatelessWidget {
                     child: CountrySearchListWidget(
                       countries,
                       locale,
-                      title: title,
                       dialCodeTextStyle: dialCodeTextStyle,
                       countryNameTextStyle: countryNameTextStyle,
                       titleTextStyle: titleTextStyle,

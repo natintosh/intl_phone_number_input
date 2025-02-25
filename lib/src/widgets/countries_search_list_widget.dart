@@ -16,6 +16,7 @@ class CountrySearchListWidget extends StatefulWidget {
   final TextStyle? countryNameTextStyle;
   final TextStyle? titleTextStyle;
   final String title;
+  final String labelText;
 
   CountrySearchListWidget(
     this.countries,
@@ -28,7 +29,8 @@ class CountrySearchListWidget extends StatefulWidget {
     this.dialCodeTextStyle,
     this.countryNameTextStyle,
     this.titleTextStyle,
-    required this.title,
+    this.title = 'Choose Country',
+    this.labelText = 'Search by country name or dial code',
   });
 
   @override
@@ -61,7 +63,7 @@ class _CountrySearchListWidgetState extends State<CountrySearchListWidget> {
   InputDecoration getSearchBoxDecoration() {
     return widget.searchBoxDecoration ??
         InputDecoration(
-          labelText: 'Search by country name or dial code',
+          labelText: widget.labelText,
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12),
             borderSide: BorderSide.none,
