@@ -89,7 +89,8 @@ class InternationalPhoneNumberInput extends StatefulWidget {
   final TextStyle? dialCodeTextStyle;
   final TextStyle? countryNameTextStyle;
   final TextStyle? titleTextStyle;
-  final String title;
+  final String? title;
+  final Color searchBarFillColor;
 
   InternationalPhoneNumberInput({
     Key? key,
@@ -133,7 +134,8 @@ class InternationalPhoneNumberInput extends StatefulWidget {
     this.dialCodeTextStyle,
     this.countryNameTextStyle,
     this.titleTextStyle,
-    required this.title,
+    this.title,
+    this.searchBarFillColor = Colors.white,
   }) : super(key: key);
 
   @override

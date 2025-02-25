@@ -15,8 +15,10 @@ class CountrySearchListWidget extends StatefulWidget {
   final TextStyle? dialCodeTextStyle;
   final TextStyle? countryNameTextStyle;
   final TextStyle? titleTextStyle;
+  final TextStyle? labelStyle;
   final String title;
   final String labelText;
+  final Color searchBarFillColor;
 
   CountrySearchListWidget(
     this.countries,
@@ -29,8 +31,10 @@ class CountrySearchListWidget extends StatefulWidget {
     this.dialCodeTextStyle,
     this.countryNameTextStyle,
     this.titleTextStyle,
+    this.labelStyle,
     this.title = 'Choose Country',
     this.labelText = 'Search by country name or dial code',
+    this.searchBarFillColor = Colors.white,
   });
 
   @override
@@ -64,16 +68,16 @@ class _CountrySearchListWidgetState extends State<CountrySearchListWidget> {
     return widget.searchBoxDecoration ??
         InputDecoration(
           labelText: widget.labelText,
+          labelStyle: widget.labelStyle,
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12),
             borderSide: BorderSide.none,
           ),
           filled: true,
           // fillColor: Color(0xFFF8F8F9),
-          fillColor: Theme.of(context).colorScheme.surface,
-          hintStyle: TextStyle(
-            color: Theme.of(context).colorScheme.onSurfaceVariant,
-          ),
+          fillColor: widget.searchBarFillColor,
+          hintStyle:
+              TextStyle(color: Theme.of(context).colorScheme.onSurfaceVariant),
         );
   }
 
@@ -202,28 +206,27 @@ class DirectionalCountryListTile extends StatelessWidget {
     return ListTile(
       key: Key(TestHelper.countryItemKeyValue(country.alpha2Code)),
       // leading: (showFlags ? _Flag(country: country, useEmoji: useEmoji) : null),
-      title: Align(
-        alignment: AlignmentDirectional.centerStart,
-        child: Row(
-          children: [
-            SizedBox(
-              width: 70,
-              child: Text(
-                '${country.dialCode ?? ''}',
-                textDirection: TextDirection.ltr,
-                textAlign: TextAlign.start,
-              ),
+      title: Row(
+        children: [
+          SizedBox(
+            width: 70,
+            child: Text(
+              '${country.dialCode ?? ''}',
+              textDirection: TextDirection.ltr,
+              textAlign: TextAlign.start,
+              style: dialCodeTextStyle,
             ),
-            SizedBox(width: 16),
-            Expanded(
-              child: Text(
-                '${Utils.getCountryName(country, locale)}',
-                textDirection: Directionality.of(context),
-                textAlign: TextAlign.start,
-              ),
+          ),
+          SizedBox(width: 16),
+          Expanded(
+            child: Text(
+              '${Utils.getCountryName(country, locale)}',
+              textDirection: Directionality.of(context),
+              textAlign: TextAlign.start,
+              style: countryNameTextStyle,
             ),
-          ],
-        ),
+          ),
+        ],
       ),
       onTap: () => Navigator.of(context).pop(country),
     );
