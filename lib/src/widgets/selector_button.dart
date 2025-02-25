@@ -20,6 +20,7 @@ class SelectorButton extends StatelessWidget {
   final TextStyle? dialCodeTextStyle;
   final TextStyle? countryNameTextStyle;
   final TextStyle? titleTextStyle;
+  final Color bottomSheetBgColor;
 
   final ValueChanged<Country?> onCountryChanged;
 
@@ -38,6 +39,7 @@ class SelectorButton extends StatelessWidget {
     this.dialCodeTextStyle,
     this.countryNameTextStyle,
     this.titleTextStyle,
+    this.bottomSheetBgColor = Colors.white,
   }) : super(key: key);
 
   @override
@@ -176,7 +178,7 @@ class SelectorButton extends StatelessWidget {
                   textDirection: Directionality.of(inheritedContext),
                   child: Container(
                     decoration: ShapeDecoration(
-                      color: Theme.of(context).canvasColor,
+                      color: bottomSheetBgColor,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(12),
