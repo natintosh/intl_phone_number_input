@@ -17,6 +17,8 @@ class SelectorButton extends StatelessWidget {
   final String? locale;
   final bool isEnabled;
   final bool isScrollControlled;
+  final TextStyle? dialCodeTextStyle;
+  final TextStyle? countryNameTextStyle;
 
   final ValueChanged<Country?> onCountryChanged;
 
@@ -32,6 +34,8 @@ class SelectorButton extends StatelessWidget {
     required this.onCountryChanged,
     required this.isEnabled,
     required this.isScrollControlled,
+    this.dialCodeTextStyle,
+    this.countryNameTextStyle,
   }) : super(key: key);
 
   @override
@@ -72,7 +76,11 @@ class SelectorButton extends StatelessWidget {
                     if (selectorConfig.selectorType ==
                         PhoneInputSelectorType.BOTTOM_SHEET) {
                       selected = await showCountrySelectorBottomSheet(
-                          context, countries);
+                        context,
+                        countries,
+                        countryNameTextStyle: countryNameTextStyle,
+                        dialCodeTextStyle: dialCodeTextStyle,
+                      );
                     } else {
                       selected =
                           await showCountrySelectorDialog(context, countries);
@@ -143,7 +151,11 @@ class SelectorButton extends StatelessWidget {
 
   /// shows a Dialog with list [countries] if the [PhoneInputSelectorType.BOTTOM_SHEET] is selected
   Future<Country?> showCountrySelectorBottomSheet(
-      BuildContext inheritedContext, List<Country> countries) {
+    BuildContext inheritedContext,
+    List<Country> countries, {
+    TextStyle? dialCodeTextStyle,
+    TextStyle? countryNameTextStyle,
+  }) {
     return showModalBottomSheet(
       context: inheritedContext,
       clipBehavior: Clip.hardEdge,
@@ -183,6 +195,8 @@ class SelectorButton extends StatelessWidget {
                       showFlags: selectorConfig.showFlags,
                       useEmoji: selectorConfig.useEmoji,
                       autoFocus: autoFocusSearchField,
+                      countryNameTextStyle: countryNameTextStyle,
+                      dialCodeTextStyle: dialCodeTextStyle,
                     ),
                   ),
                 );
