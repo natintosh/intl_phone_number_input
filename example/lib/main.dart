@@ -62,7 +62,6 @@ class _MyHomePageState extends State<MyHomePage> {
               initialValue: number,
               textFieldController: controller,
               formatInput: true,
-              dialCodeTextStyle: TextStyle(color: Colors.red),
               keyboardType:
                   TextInputType.numberWithOptions(signed: true, decimal: true),
               inputBorder: OutlineInputBorder(),
