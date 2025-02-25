@@ -103,13 +103,19 @@ class _CountrySearchListWidgetState extends State<CountrySearchListWidget> {
             itemBuilder: (BuildContext context, int index) {
               Country country = filteredCountries[index];
 
-              return DirectionalCountryRow(
+              // return DirectionalCountryRow(
+              //   country: country,
+              //   locale: widget.locale,
+              //   showFlags: widget.showFlags!,
+              //   useEmoji: widget.useEmoji!,
+              //   countryNameTextStyle: widget.countryNameTextStyle,
+              //   dialCodeTextStyle: widget.dialCodeTextStyle,
+              // );
+              return DirectionalCountryListTile(
                 country: country,
                 locale: widget.locale,
                 showFlags: widget.showFlags!,
                 useEmoji: widget.useEmoji!,
-                countryNameTextStyle: widget.countryNameTextStyle,
-                dialCodeTextStyle: widget.dialCodeTextStyle,
               );
               // return ListTile(
               //   key: Key(TestHelper.countryItemKeyValue(country.alpha2Code)),
@@ -170,20 +176,35 @@ class DirectionalCountryListTile extends StatelessWidget {
       leading: (showFlags ? _Flag(country: country, useEmoji: useEmoji) : null),
       title: Align(
         alignment: AlignmentDirectional.centerStart,
-        child: Text(
-          '${Utils.getCountryName(country, locale)}',
-          textDirection: Directionality.of(context),
-          textAlign: TextAlign.start,
+        child: Row(
+          children: [
+            SizedBox(
+              width: 60,
+              child: Text(
+                '${country.dialCode ?? ''}',
+                textDirection: TextDirection.ltr,
+                textAlign: TextAlign.start,
+              ),
+            ),
+            SizedBox(width: 16),
+            Expanded(
+              child: Text(
+                '${Utils.getCountryName(country, locale)}',
+                textDirection: Directionality.of(context),
+                textAlign: TextAlign.start,
+              ),
+            ),
+          ],
         ),
       ),
-      subtitle: Align(
-        alignment: AlignmentDirectional.centerStart,
-        child: Text(
-          '${country.dialCode ?? ''}',
-          textDirection: TextDirection.ltr,
-          textAlign: TextAlign.start,
-        ),
-      ),
+      // subtitle: Align(
+      //   alignment: AlignmentDirectional.centerStart,
+      //   child: Text(
+      //     '${country.dialCode ?? ''}',
+      //     textDirection: TextDirection.ltr,
+      //     textAlign: TextAlign.start,
+      //   ),
+      // ),
       onTap: () => Navigator.of(context).pop(country),
     );
   }
@@ -218,11 +239,10 @@ class DirectionalCountryRow extends StatelessWidget {
             Center(
               child: _Flag(country: country, useEmoji: useEmoji),
             ),
-            SizedBox(width: 8),
+            SizedBox(width: 16),
           ],
-          SizedBox(width: 8),
           SizedBox(
-            width: 60,
+            width: 80,
             child: Text(
               '${country.dialCode ?? ''}',
               textDirection: TextDirection.ltr,
