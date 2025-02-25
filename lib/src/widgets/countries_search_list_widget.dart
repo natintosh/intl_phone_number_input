@@ -179,7 +179,7 @@ class DirectionalCountryListTile extends StatelessWidget {
         child: Row(
           children: [
             SizedBox(
-              width: 60,
+              width: 70,
               child: Text(
                 '${country.dialCode ?? ''}',
                 textDirection: TextDirection.ltr,
@@ -197,14 +197,6 @@ class DirectionalCountryListTile extends StatelessWidget {
           ],
         ),
       ),
-      // subtitle: Align(
-      //   alignment: AlignmentDirectional.centerStart,
-      //   child: Text(
-      //     '${country.dialCode ?? ''}',
-      //     textDirection: TextDirection.ltr,
-      //     textAlign: TextAlign.start,
-      //   ),
-      // ),
       onTap: () => Navigator.of(context).pop(country),
     );
   }
