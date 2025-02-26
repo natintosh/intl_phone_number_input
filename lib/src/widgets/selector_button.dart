@@ -165,45 +165,53 @@ class SelectorButton extends StatelessWidget {
               topLeft: Radius.circular(22), topRight: Radius.circular(22))),
       useSafeArea: selectorConfig.useBottomSheetSafeArea,
       builder: (BuildContext context) {
-        return Stack(children: [
-          GestureDetector(
-            onTap: () => Navigator.pop(context),
+        return Container(
+          constraints: BoxConstraints(
+            maxHeight: MediaQuery.of(context).size.height * 0.75,
+            minHeight: MediaQuery.of(context).size.height * 0.75,
           ),
-          Padding(
-            padding: EdgeInsets.only(
-                bottom: MediaQuery.of(context).viewInsets.bottom),
-            child: DraggableScrollableSheet(
-              builder: (BuildContext context, ScrollController controller) {
-                return Directionality(
-                  textDirection: Directionality.of(inheritedContext),
-                  child: Container(
-                    decoration: ShapeDecoration(
-                      color: bottomSheetBgColor,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(12),
-                          topRight: Radius.circular(12),
+          child: Stack(
+            children: [
+              GestureDetector(
+                onTap: () => Navigator.pop(context),
+              ),
+              Padding(
+                padding: EdgeInsets.only(
+                    bottom: MediaQuery.of(context).viewInsets.bottom),
+                child: DraggableScrollableSheet(
+                  builder: (BuildContext context, ScrollController controller) {
+                    return Directionality(
+                      textDirection: Directionality.of(inheritedContext),
+                      child: Container(
+                        decoration: ShapeDecoration(
+                          color: bottomSheetBgColor,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(12),
+                              topRight: Radius.circular(12),
+                            ),
+                          ),
+                        ),
+                        child: CountrySearchListWidget(
+                          countries,
+                          locale,
+                          dialCodeTextStyle: dialCodeTextStyle,
+                          countryNameTextStyle: countryNameTextStyle,
+                          titleTextStyle: titleTextStyle,
+                          searchBoxDecoration: searchBoxDecoration,
+                          scrollController: controller,
+                          showFlags: selectorConfig.showFlags,
+                          useEmoji: selectorConfig.useEmoji,
+                          autoFocus: autoFocusSearchField,
                         ),
                       ),
-                    ),
-                    child: CountrySearchListWidget(
-                      countries,
-                      locale,
-                      dialCodeTextStyle: dialCodeTextStyle,
-                      countryNameTextStyle: countryNameTextStyle,
-                      titleTextStyle: titleTextStyle,
-                      searchBoxDecoration: searchBoxDecoration,
-                      scrollController: controller,
-                      showFlags: selectorConfig.showFlags,
-                      useEmoji: selectorConfig.useEmoji,
-                      autoFocus: autoFocusSearchField,
-                    ),
-                  ),
-                );
-              },
-            ),
+                    );
+                  },
+                ),
+              ),
+            ],
           ),
-        ]);
+        );
       },
     );
   }

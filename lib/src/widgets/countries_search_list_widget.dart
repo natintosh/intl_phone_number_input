@@ -18,7 +18,7 @@ class CountrySearchListWidget extends StatefulWidget {
   final TextStyle? labelStyle;
   final String title;
   final String labelText;
-  final Color searchBarFillColor;
+  final Color? searchBarFillColor;
 
   CountrySearchListWidget(
     this.countries,
@@ -34,7 +34,7 @@ class CountrySearchListWidget extends StatefulWidget {
     this.labelStyle,
     this.title = 'Choose Country',
     this.labelText = 'Search by country name or dial code',
-    this.searchBarFillColor = Colors.white,
+    this.searchBarFillColor,
   });
 
   @override
@@ -68,14 +68,19 @@ class _CountrySearchListWidgetState extends State<CountrySearchListWidget> {
     return widget.searchBoxDecoration ??
         InputDecoration(
           labelText: widget.labelText,
-          labelStyle: widget.labelStyle,
+          labelStyle: widget.labelStyle ??
+              TextStyle(
+                color: Color(0xff8D8D91),
+                fontSize: 16,
+                fontWeight: FontWeight.w400,
+              ),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12),
             borderSide: BorderSide.none,
           ),
           filled: true,
           // fillColor: Color(0xFFF8F8F9),
-          fillColor: widget.searchBarFillColor,
+          fillColor: widget.searchBarFillColor ?? Color(0xffF8F8F9),
           hintStyle:
               TextStyle(color: Theme.of(context).colorScheme.onSurfaceVariant),
         );
@@ -88,17 +93,36 @@ class _CountrySearchListWidgetState extends State<CountrySearchListWidget> {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          SizedBox(height: 8),
+          SizedBox(height: 16),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
                 widget.title,
-                style: widget.titleTextStyle,
+                style: widget.titleTextStyle ??
+                    TextStyle(
+                      color: Color(0xff273443),
+                      fontSize: 18,
+                      fontWeight: FontWeight.w700,
+                    ),
               ),
-              IconButton(
-                  onPressed: () => Navigator.pop(context),
-                  icon: Icon(Icons.close, size: 20, color: Color(0xffC7C7CC))),
+              GestureDetector(
+                onTap: () {
+                  Navigator.pop(context);
+                },
+                child: SizedBox(
+                  height: 32,
+                  width: 32,
+                  child: Center(
+                    child:
+                        Icon(Icons.close, size: 22, color: Color(0xffC7C7CC)),
+                  ),
+                ),
+              ),
+
+              // IconButton(
+              //     onPressed: () => Navigator.pop(context),
+              //     icon: Icon(Icons.close, size: 22, color: Color(0xffC7C7CC))),
             ],
           ),
           Padding(
@@ -214,7 +238,12 @@ class DirectionalCountryListTile extends StatelessWidget {
               '${country.dialCode ?? ''}',
               textDirection: TextDirection.ltr,
               textAlign: TextAlign.start,
-              style: dialCodeTextStyle,
+              style: dialCodeTextStyle ??
+                  TextStyle(
+                    color: Color(0xff8D8D91),
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                  ),
             ),
           ),
           SizedBox(width: 16),
@@ -223,7 +252,12 @@ class DirectionalCountryListTile extends StatelessWidget {
               '${Utils.getCountryName(country, locale)}',
               textDirection: Directionality.of(context),
               textAlign: TextAlign.start,
-              style: countryNameTextStyle,
+              style: countryNameTextStyle ??
+                  TextStyle(
+                    color: Color(0xff101F29),
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                  ),
             ),
           ),
         ],
