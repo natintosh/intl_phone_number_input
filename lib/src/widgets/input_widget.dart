@@ -92,6 +92,8 @@ class InternationalPhoneNumberInput extends StatefulWidget {
   final String? title;
   final Color searchBarFillColor;
 
+  final Widget? verticalLineWidget;
+
   InternationalPhoneNumberInput({
     Key? key,
     this.selectorConfig = const SelectorConfig(),
@@ -136,6 +138,7 @@ class InternationalPhoneNumberInput extends StatefulWidget {
     this.titleTextStyle,
     this.title,
     this.searchBarFillColor = Colors.white,
+    this.verticalLineWidget,
   }) : super(key: key);
 
   @override
@@ -411,30 +414,24 @@ class _InputWidgetView
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           if (!widget.selectorConfig.setSelectorButtonAsPrefixIcon) ...[
-            Column(
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                SelectorButton(
-                  country: state.country,
-                  countries: state.countries,
-                  onCountryChanged: state.onCountryChanged,
-                  selectorConfig: widget.selectorConfig,
-                  selectorTextStyle: widget.selectorTextStyle,
-                  searchBoxDecoration: widget.searchBoxDecoration,
-                  locale: state.locale,
-                  isEnabled: widget.isEnabled,
-                  autoFocusSearchField: widget.autoFocusSearch,
-                  isScrollControlled: widget.countrySelectorScrollControlled,
-                  dialCodeTextStyle: widget.dialCodeTextStyle,
-                  countryNameTextStyle: widget.countryNameTextStyle,
-                  titleTextStyle: widget.titleTextStyle,
-                  title: widget.title ?? '',
-                ),
-                SizedBox(
-                  height: state.selectorButtonBottomPadding,
-                ),
-              ],
+            SelectorButton(
+              country: state.country,
+              countries: state.countries,
+              onCountryChanged: state.onCountryChanged,
+              selectorConfig: widget.selectorConfig,
+              selectorTextStyle: widget.selectorTextStyle,
+              searchBoxDecoration: widget.searchBoxDecoration,
+              locale: state.locale,
+              isEnabled: widget.isEnabled,
+              autoFocusSearchField: widget.autoFocusSearch,
+              isScrollControlled: widget.countrySelectorScrollControlled,
+              dialCodeTextStyle: widget.dialCodeTextStyle,
+              countryNameTextStyle: widget.countryNameTextStyle,
+              titleTextStyle: widget.titleTextStyle,
+              title: widget.title ?? '',
             ),
+            SizedBox(width: widget.spaceBetweenSelectorAndTextField),
+            widget.verticalLineWidget ?? SizedBox.shrink(),
             SizedBox(width: widget.spaceBetweenSelectorAndTextField),
           ],
           Flexible(
