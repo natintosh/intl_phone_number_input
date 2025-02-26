@@ -317,7 +317,7 @@ class _InputWidgetState extends State<InternationalPhoneNumberInput> {
         dialCodeTextStyle: widget.dialCodeTextStyle,
         countryNameTextStyle: widget.countryNameTextStyle,
         titleTextStyle: widget.titleTextStyle,
-        title: widget.title ?? 'Choose Country',
+        title: widget.title ?? '',
       ));
     }
 
@@ -428,7 +428,7 @@ class _InputWidgetView
                   dialCodeTextStyle: widget.dialCodeTextStyle,
                   countryNameTextStyle: widget.countryNameTextStyle,
                   titleTextStyle: widget.titleTextStyle,
-                  title: widget.title ?? 'Choose Country',
+                  title: widget.title ?? '',
                 ),
                 SizedBox(
                   height: state.selectorButtonBottomPadding,

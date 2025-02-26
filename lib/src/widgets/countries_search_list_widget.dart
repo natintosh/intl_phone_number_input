@@ -32,8 +32,8 @@ class CountrySearchListWidget extends StatefulWidget {
     this.countryNameTextStyle,
     this.titleTextStyle,
     this.labelStyle,
-    this.title = 'Choose Country',
-    this.labelText = 'Search by country name or dial code',
+    this.title = '',
+    this.labelText = '',
     this.searchBarFillColor,
   });
 
