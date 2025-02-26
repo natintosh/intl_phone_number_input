@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/services.dart';
-import 'package:intl_phone_number_input/src/utils/phone_number/phone_number_util.dart';
+import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 
 typedef OnInputFormatted<T> = void Function(T value);
 
@@ -14,8 +14,7 @@ class AsYouTypeFormatter extends TextInputFormatter {
   /// The [allowedChars] contains [RegExp] for allowable phone number characters.
   final RegExp allowedChars = RegExp(r'[\d+]');
 
-  final RegExp bracketsBetweenDigitsOrSpace =
-      RegExp(r'(?![\s\d])([()])(?=[\d\s])');
+  final RegExp bracketsBetweenDigitsOrSpace = RegExp(r'(?![\s\d])([()])(?=[\d\s])');
 
   /// The [isoCode] of the [Country] formatting the phone number to
   final String isoCode;
@@ -26,14 +25,10 @@ class AsYouTypeFormatter extends TextInputFormatter {
   /// [onInputFormatted] is a callback that passes the formatted phone number
   final OnInputFormatted<TextEditingValue> onInputFormatted;
 
-  AsYouTypeFormatter(
-      {required this.isoCode,
-      required this.dialCode,
-      required this.onInputFormatted});
+  AsYouTypeFormatter({required this.isoCode, required this.dialCode, required this.onInputFormatted});
 
   @override
-  TextEditingValue formatEditUpdate(
-      TextEditingValue oldValue, TextEditingValue newValue) {
+  TextEditingValue formatEditUpdate(TextEditingValue oldValue, TextEditingValue newValue) {
     int oldValueLength = oldValue.text.length;
     int newValueLength = newValue.text.length;
 
@@ -46,12 +41,8 @@ class AsYouTypeFormatter extends TextInputFormatter {
       int digitsBeforeCursor = 0, digitsAfterCursor = 0;
 
       if (rawCursorPosition > 0 && rawCursorPosition <= newValueText.length) {
-        final rawTextBeforeCursor = newValueText
-            .substring(0, rawCursorPosition)
-            .replaceAll(separatorChars, '');
-        final rawTextAfterCursor = newValueText
-            .substring(rawCursorPosition)
-            .replaceAll(separatorChars, '');
+        final rawTextBeforeCursor = newValueText.substring(0, rawCursorPosition).replaceAll(separatorChars, '');
+        final rawTextAfterCursor = newValueText.substring(rawCursorPosition).replaceAll(separatorChars, '');
 
         digitsBeforeCursor = rawTextBeforeCursor.length;
         digitsAfterCursor = rawTextAfterCursor.length;
@@ -110,8 +101,7 @@ class AsYouTypeFormatter extends TextInputFormatter {
   /// returns a [Future<String>] of the formatted phone number.
   Future<String?> formatAsYouType({required String input}) async {
     try {
-      String? formattedPhoneNumber = await PhoneNumberUtil.formatAsYouType(
-          phoneNumber: input, isoCode: isoCode);
+      String? formattedPhoneNumber = await PhoneNumberUtil.formatAsYouType(phoneNumber: input, isoCode: isoCode);
       return formattedPhoneNumber;
     } on Exception {
       return '';
@@ -121,20 +111,14 @@ class AsYouTypeFormatter extends TextInputFormatter {
   /// Accepts a formatted [phoneNumber]
   /// returns a [String] of `phoneNumber` with the dialCode replaced with an empty String
   String parsePhoneNumber(String? phoneNumber) {
-    final filteredPhoneNumber =
-        phoneNumber?.replaceAll(bracketsBetweenDigitsOrSpace, '');
+    final filteredPhoneNumber = phoneNumber?.replaceAll(bracketsBetweenDigitsOrSpace, '');
 
     if (dialCode.length > 4) {
       if (isPartOfNorthAmericanNumberingPlan(dialCode)) {
         String northAmericaDialCode = '+1';
-        String countryDialCodeWithSpace = northAmericaDialCode +
-            ' ' +
-            dialCode.replaceFirst(northAmericaDialCode, '');
+        String countryDialCodeWithSpace = northAmericaDialCode + ' ' + dialCode.replaceFirst(northAmericaDialCode, '');
 
-        return filteredPhoneNumber!
-            .replaceFirst(countryDialCodeWithSpace, '')
-            .replaceFirst(separatorChars, '')
-            .trim();
+        return filteredPhoneNumber!.replaceFirst(countryDialCodeWithSpace, '').replaceFirst(separatorChars, '').trim();
       }
     }
     return filteredPhoneNumber!.replaceFirst(dialCode, '').trim();
