@@ -78,6 +78,15 @@ class _CountrySearchListWidgetState extends State<CountrySearchListWidget> {
             borderRadius: BorderRadius.circular(12),
             borderSide: BorderSide.none,
           ),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12),
+            borderSide: BorderSide.none,
+          ),
+          disabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12),
+            borderSide: BorderSide.none,
+          ),
+
           filled: true,
           // fillColor: Color(0xFFF8F8F9),
           fillColor: widget.searchBarFillColor ?? Color(0xffF8F8F9),
