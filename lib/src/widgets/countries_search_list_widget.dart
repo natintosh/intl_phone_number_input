@@ -236,6 +236,7 @@ class DirectionalCountryListTile extends StatelessWidget {
     return ListTile(
       key: Key(TestHelper.countryItemKeyValue(country.alpha2Code)),
       // leading: (showFlags ? _Flag(country: country, useEmoji: useEmoji) : null),
+      minLeadingWidth: 0.0,
       title: Row(
         children: [
           SizedBox(
