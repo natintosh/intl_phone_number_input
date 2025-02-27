@@ -154,6 +154,7 @@ class _CountrySearchListWidgetState extends State<CountrySearchListWidget> {
               controller: widget.scrollController,
               shrinkWrap: true,
               itemCount: filteredCountries.length,
+              padding: EdgeInsets.zero,
               itemBuilder: (BuildContext context, int index) {
                 Country country = filteredCountries[index];
 
