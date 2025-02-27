@@ -44,6 +44,12 @@ class _MyHomePageState extends State<MyHomePage> {
                 print(value);
               },
               ignoreBlank: true,
+              hintText: '',
+              title: '',
+              searchBarFillColor: Colors.white,
+              dialCodeTextStyle: null,
+              titleTextStyle: null,
+              countryNameTextStyle: null,
               autoValidateMode: AutovalidateMode.disabled,
               initialValue: PhoneNumber(isoCode: 'NG'),
               textFieldController: controller,

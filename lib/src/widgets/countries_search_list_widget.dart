@@ -114,15 +114,11 @@ class _CountrySearchListWidgetState extends State<CountrySearchListWidget> {
                   height: 32,
                   width: 32,
                   child: Center(
-                    child:
-                        Icon(Icons.close, size: 22, color: Color(0xffC7C7CC)),
+                    child: Icon(Icons.close_rounded,
+                        size: 22, color: Color(0xffC7C7CC)),
                   ),
                 ),
               ),
-
-              // IconButton(
-              //     onPressed: () => Navigator.pop(context),
-              //     icon: Icon(Icons.close, size: 22, color: Color(0xffC7C7CC))),
             ],
           ),
           Padding(
