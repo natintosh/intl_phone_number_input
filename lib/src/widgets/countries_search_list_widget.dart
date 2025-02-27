@@ -131,7 +131,7 @@ class _CountrySearchListWidgetState extends State<CountrySearchListWidget> {
             ],
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+            padding: const EdgeInsets.symmetric(vertical: 16),
             child: TextFormField(
               key: Key(TestHelper.CountrySearchInputKeyValue),
               decoration: getSearchBoxDecoration(),
