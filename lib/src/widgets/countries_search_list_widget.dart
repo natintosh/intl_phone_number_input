@@ -150,7 +150,7 @@ class _CountrySearchListWidgetState extends State<CountrySearchListWidget> {
               );
             },
           ),
-          widget.verticalLineWidget ?? SizedBox.shrink(),
+          // widget.verticalLineWidget ?? SizedBox.shrink(),
           SizedBox(height: 8),
           Flexible(
             child: ListView.builder(
