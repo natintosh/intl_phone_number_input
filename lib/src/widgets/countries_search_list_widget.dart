@@ -19,6 +19,7 @@ class CountrySearchListWidget extends StatefulWidget {
   final String title;
   final String labelText;
   final Color? searchBarFillColor;
+  final Widget? verticalLineWidget;
 
   CountrySearchListWidget(
     this.countries,
@@ -35,6 +36,7 @@ class CountrySearchListWidget extends StatefulWidget {
     this.title = '',
     this.labelText = '',
     this.searchBarFillColor,
+    this.verticalLineWidget,
   });
 
   @override
@@ -67,6 +69,7 @@ class _CountrySearchListWidgetState extends State<CountrySearchListWidget> {
   InputDecoration getSearchBoxDecoration() {
     return widget.searchBoxDecoration ??
         InputDecoration(
+          contentPadding: EdgeInsets.symmetric(horizontal: 8),
           labelText: widget.labelText,
           labelStyle: widget.labelStyle ??
               TextStyle(
@@ -124,7 +127,7 @@ class _CountrySearchListWidgetState extends State<CountrySearchListWidget> {
                   width: 32,
                   child: Center(
                     child: Icon(Icons.close_rounded,
-                        size: 22, color: Color(0xffC7C7CC)),
+                        size: 24, color: Color(0xffC7C7CC)),
                   ),
                 ),
               ),
@@ -149,6 +152,7 @@ class _CountrySearchListWidgetState extends State<CountrySearchListWidget> {
               },
             ),
           ),
+          widget.verticalLineWidget ?? SizedBox.shrink(),
           Flexible(
             child: ListView.builder(
               controller: widget.scrollController,
@@ -158,15 +162,8 @@ class _CountrySearchListWidgetState extends State<CountrySearchListWidget> {
               itemBuilder: (BuildContext context, int index) {
                 Country country = filteredCountries[index];
 
-                // return DirectionalCountryRow(
-                //   country: country,
-                //   locale: widget.locale,
-                //   showFlags: widget.showFlags!,
-                //   useEmoji: widget.useEmoji!,
-                //   countryNameTextStyle: widget.countryNameTextStyle,
-                //   dialCodeTextStyle: widget.dialCodeTextStyle,
-                // );
-                return DirectionalCountryListTile(
+                // return DirectionalCountryListTile(
+                return DirectionalCountryRow(
                   country: country,
                   locale: widget.locale,
                   showFlags: widget.showFlags!,
@@ -174,29 +171,6 @@ class _CountrySearchListWidgetState extends State<CountrySearchListWidget> {
                   dialCodeTextStyle: widget.dialCodeTextStyle,
                   countryNameTextStyle: widget.countryNameTextStyle,
                 );
-                // return ListTile(
-                //   key: Key(TestHelper.countryItemKeyValue(country.alpha2Code)),
-                //   leading: widget.showFlags!
-                //       ? _Flag(country: country, useEmoji: widget.useEmoji)
-                //       : null,
-                //   title: Align(
-                //     alignment: AlignmentDirectional.centerStart,
-                //     child: Text(
-                //       '${Utils.getCountryName(country, widget.locale)}',
-                //       textDirection: Directionality.of(context),
-                //       textAlign: TextAlign.start,
-                //     ),
-                //   ),
-                //   subtitle: Align(
-                //     alignment: AlignmentDirectional.centerStart,
-                //     child: Text(
-                //       '${country.dialCode ?? ''}',
-                //       textDirection: TextDirection.ltr,
-                //       textAlign: TextAlign.start,
-                //     ),
-                //   ),
-                //   onTap: () => Navigator.of(context).pop(country),
-                // );
               },
             ),
           ),
@@ -306,7 +280,7 @@ class DirectionalCountryRow extends StatelessWidget {
             SizedBox(width: 16),
           ],
           SizedBox(
-            width: 80,
+            width: 70,
             child: Text(
               '${country.dialCode ?? ''}',
               textDirection: TextDirection.ltr,

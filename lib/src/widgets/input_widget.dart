@@ -321,6 +321,7 @@ class _InputWidgetState extends State<InternationalPhoneNumberInput> {
         countryNameTextStyle: widget.countryNameTextStyle,
         titleTextStyle: widget.titleTextStyle,
         title: widget.title ?? '',
+        verticalDivider: widget.verticalLineWidget ?? Container(),
       ));
     }
 
@@ -432,6 +433,7 @@ class _InputWidgetView
                   countryNameTextStyle: widget.countryNameTextStyle,
                   titleTextStyle: widget.titleTextStyle,
                   title: widget.title ?? '',
+                  verticalDivider: widget.verticalLineWidget ?? Container(),
                 ),
                 SizedBox(
                   height: state.selectorButtonBottomPadding,

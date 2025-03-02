@@ -22,6 +22,7 @@ class SelectorButton extends StatelessWidget {
   final TextStyle? titleTextStyle;
   final Color bottomSheetBgColor;
   final String title;
+  final Widget? verticalDivider;
 
   final ValueChanged<Country?> onCountryChanged;
 
@@ -42,6 +43,7 @@ class SelectorButton extends StatelessWidget {
     this.titleTextStyle,
     this.bottomSheetBgColor = Colors.white,
     this.title = '',
+    required this.verticalDivider,
   }) : super(key: key);
 
   @override
@@ -148,6 +150,7 @@ class SelectorButton extends StatelessWidget {
               showFlags: selectorConfig.showFlags,
               useEmoji: selectorConfig.useEmoji,
               autoFocus: autoFocusSearchField,
+              verticalLineWidget: verticalDivider,
             ),
           ),
         ),
@@ -207,6 +210,7 @@ class SelectorButton extends StatelessWidget {
                           showFlags: selectorConfig.showFlags,
                           useEmoji: selectorConfig.useEmoji,
                           autoFocus: autoFocusSearchField,
+                          verticalLineWidget: verticalDivider,
                         ),
                       ),
                     );
