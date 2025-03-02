@@ -69,7 +69,7 @@ class _CountrySearchListWidgetState extends State<CountrySearchListWidget> {
   InputDecoration getSearchBoxDecoration() {
     return widget.searchBoxDecoration ??
         InputDecoration(
-          contentPadding: EdgeInsets.symmetric(horizontal: 8),
+          contentPadding: EdgeInsets.symmetric(horizontal: 16),
           labelText: widget.labelText,
           labelStyle: widget.labelStyle ??
               TextStyle(
@@ -162,8 +162,7 @@ class _CountrySearchListWidgetState extends State<CountrySearchListWidget> {
               itemBuilder: (BuildContext context, int index) {
                 Country country = filteredCountries[index];
 
-                // return DirectionalCountryListTile(
-                return DirectionalCountryRow(
+                return DirectionalCountryListTile(
                   country: country,
                   locale: widget.locale,
                   showFlags: widget.showFlags!,
@@ -209,7 +208,6 @@ class DirectionalCountryListTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       key: Key(TestHelper.countryItemKeyValue(country.alpha2Code)),
-      // leading: (showFlags ? _Flag(country: country, useEmoji: useEmoji) : null),
       minLeadingWidth: 0.0,
       title: Row(
         children: [
