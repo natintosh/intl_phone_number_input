@@ -133,6 +133,7 @@ class _CountrySearchListWidgetState extends State<CountrySearchListWidget> {
               ),
             ],
           ),
+          SizedBox(height: 8),
           TextFormField(
             key: Key(TestHelper.CountrySearchInputKeyValue),
             decoration: getSearchBoxDecoration(),
@@ -150,6 +151,7 @@ class _CountrySearchListWidgetState extends State<CountrySearchListWidget> {
             },
           ),
           widget.verticalLineWidget ?? SizedBox.shrink(),
+          SizedBox(height: 8),
           Flexible(
             child: ListView.separated(
               controller: widget.scrollController,
