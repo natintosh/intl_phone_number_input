@@ -440,8 +440,8 @@ class _InputWidgetView
                 ),
               ],
             ),
-            SizedBox(width: widget.spaceBetweenSelectorAndTextField),
-            widget.verticalLineWidget ?? SizedBox.shrink(),
+            // SizedBox(width: widget.spaceBetweenSelectorAndTextField),
+            // widget.verticalLineWidget ?? SizedBox.shrink(),
             SizedBox(width: widget.spaceBetweenSelectorAndTextField),
           ],
           Flexible(

@@ -133,32 +133,30 @@ class _CountrySearchListWidgetState extends State<CountrySearchListWidget> {
               ),
             ],
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 16),
-            child: TextFormField(
-              key: Key(TestHelper.CountrySearchInputKeyValue),
-              decoration: getSearchBoxDecoration(),
-              controller: _searchController,
-              autofocus: widget.autoFocus,
-              onChanged: (value) {
-                final String value = _searchController.text.trim();
-                return setState(
-                  () => filteredCountries = Utils.filterCountries(
-                    countries: widget.countries,
-                    locale: widget.locale,
-                    value: value,
-                  ),
-                );
-              },
-            ),
+          TextFormField(
+            key: Key(TestHelper.CountrySearchInputKeyValue),
+            decoration: getSearchBoxDecoration(),
+            controller: _searchController,
+            autofocus: widget.autoFocus,
+            onChanged: (value) {
+              final String value = _searchController.text.trim();
+              return setState(
+                () => filteredCountries = Utils.filterCountries(
+                  countries: widget.countries,
+                  locale: widget.locale,
+                  value: value,
+                ),
+              );
+            },
           ),
           widget.verticalLineWidget ?? SizedBox.shrink(),
           Flexible(
-            child: ListView.builder(
+            child: ListView.separated(
               controller: widget.scrollController,
               shrinkWrap: true,
               itemCount: filteredCountries.length,
               padding: EdgeInsets.zero,
+              separatorBuilder: (ctx, i) => SizedBox(height: 8),
               itemBuilder: (BuildContext context, int index) {
                 Country country = filteredCountries[index];
 
