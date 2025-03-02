@@ -153,17 +153,17 @@ class _CountrySearchListWidgetState extends State<CountrySearchListWidget> {
           widget.verticalLineWidget ?? SizedBox.shrink(),
           SizedBox(height: 8),
           Flexible(
-            child: ListView.separated(
+            child: ListView.builder(
               controller: widget.scrollController,
               shrinkWrap: true,
               itemCount: filteredCountries.length,
               padding: EdgeInsets.zero,
-              separatorBuilder: (ctx, i) => SizedBox(height: 8),
+              // separatorBuilder: (ctx, i) => SizedBox(height: 8),
               itemBuilder: (BuildContext context, int index) {
                 Country country = filteredCountries[index];
 
-                // return DirectionalCountryListTile(
-                return DirectionalCountryRow(
+                return DirectionalCountryListTile(
+                  // return DirectionalCountryRow(
                   country: country,
                   locale: widget.locale,
                   showFlags: widget.showFlags!,
@@ -210,6 +210,7 @@ class DirectionalCountryListTile extends StatelessWidget {
     return ListTile(
       key: Key(TestHelper.countryItemKeyValue(country.alpha2Code)),
       minLeadingWidth: 0.0,
+      contentPadding: EdgeInsets.symmetric(vertical: 8),
       title: Row(
         children: [
           SizedBox(
@@ -299,30 +300,30 @@ class DirectionalCountryRow extends StatelessWidget {
   }
 }
 
-class _Flag extends StatelessWidget {
-  final Country? country;
-  final bool? useEmoji;
+// class _Flag extends StatelessWidget {
+//   final Country? country;
+//   final bool? useEmoji;
 
-  const _Flag({Key? key, this.country, this.useEmoji}) : super(key: key);
+//   const _Flag({Key? key, this.country, this.useEmoji}) : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
-    return country != null
-        ? Container(
-            child: useEmoji!
-                ? Text(
-                    Utils.generateFlagEmojiUnicode(country?.alpha2Code ?? ''),
-                    style: Theme.of(context).textTheme.headlineSmall,
-                  )
-                : country?.flagUri != null
-                    ? CircleAvatar(
-                        backgroundImage: AssetImage(
-                          country!.flagUri,
-                          package: 'intl_phone_number_input',
-                        ),
-                      )
-                    : SizedBox.shrink(),
-          )
-        : SizedBox.shrink();
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return country != null
+//         ? Container(
+//             child: useEmoji!
+//                 ? Text(
+//                     Utils.generateFlagEmojiUnicode(country?.alpha2Code ?? ''),
+//                     style: Theme.of(context).textTheme.headlineSmall,
+//                   )
+//                 : country?.flagUri != null
+//                     ? CircleAvatar(
+//                         backgroundImage: AssetImage(
+//                           country!.flagUri,
+//                           package: 'intl_phone_number_input',
+//                         ),
+//                       )
+//                     : SizedBox.shrink(),
+//           )
+//         : SizedBox.shrink();
+//   }
+// }
