@@ -162,7 +162,8 @@ class _CountrySearchListWidgetState extends State<CountrySearchListWidget> {
               itemBuilder: (BuildContext context, int index) {
                 Country country = filteredCountries[index];
 
-                return DirectionalCountryListTile(
+                // return DirectionalCountryListTile(
+                return DirectionalCountryRow(
                   country: country,
                   locale: widget.locale,
                   showFlags: widget.showFlags!,
@@ -266,36 +267,34 @@ class DirectionalCountryRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: Row(
-        key: Key(TestHelper.countryItemKeyValue(country.alpha2Code)),
-        children: [
-          if (showFlags) ...[
-            Center(
-              child: _Flag(country: country, useEmoji: useEmoji),
-            ),
-            SizedBox(width: 16),
-          ],
-          SizedBox(
-            width: 70,
-            child: Text(
-              '${country.dialCode ?? ''}',
-              textDirection: TextDirection.ltr,
-              textAlign: TextAlign.start,
-              style: dialCodeTextStyle,
-            ),
+    return Row(
+      key: Key(TestHelper.countryItemKeyValue(country.alpha2Code)),
+      children: [
+        // if (showFlags) ...[
+        //   Center(
+        //     child: _Flag(country: country, useEmoji: useEmoji),
+        //   ),
+        //   SizedBox(width: 16),
+        // ],
+        SizedBox(
+          width: 70,
+          child: Text(
+            '${country.dialCode ?? ''}',
+            textDirection: TextDirection.ltr,
+            textAlign: TextAlign.start,
+            style: dialCodeTextStyle,
           ),
-          Expanded(
-            child: Text(
-              '${Utils.getCountryName(country, locale)}',
-              textDirection: Directionality.of(context),
-              textAlign: TextAlign.start,
-              style: countryNameTextStyle,
-            ),
+        ),
+        SizedBox(width: 16),
+        Expanded(
+          child: Text(
+            '${Utils.getCountryName(country, locale)}',
+            textDirection: Directionality.of(context),
+            textAlign: TextAlign.start,
+            style: countryNameTextStyle,
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
