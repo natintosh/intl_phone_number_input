@@ -150,15 +150,12 @@ class _CountrySearchListWidgetState extends State<CountrySearchListWidget> {
               );
             },
           ),
-          // widget.verticalLineWidget ?? SizedBox.shrink(),
-          SizedBox(height: 8),
           Flexible(
             child: ListView.builder(
               controller: widget.scrollController,
               shrinkWrap: true,
               itemCount: filteredCountries.length,
               padding: EdgeInsets.zero,
-              // separatorBuilder: (ctx, i) => SizedBox(height: 8),
               itemBuilder: (BuildContext context, int index) {
                 Country country = filteredCountries[index];
 
@@ -210,7 +207,7 @@ class DirectionalCountryListTile extends StatelessWidget {
     return ListTile(
       key: Key(TestHelper.countryItemKeyValue(country.alpha2Code)),
       minLeadingWidth: 0.0,
-      contentPadding: EdgeInsets.symmetric(vertical: 8),
+      contentPadding: EdgeInsets.symmetric(vertical: 1),
       title: Row(
         children: [
           SizedBox(
