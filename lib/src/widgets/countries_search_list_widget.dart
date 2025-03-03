@@ -217,7 +217,8 @@ class DirectionalCountryListTile extends StatelessWidget {
             width: 70,
             child: Text(
               '${country.dialCode ?? ''}',
-              textDirection: TextDirection.ltr,
+              textDirection:
+                  locale == 'ar' ? TextDirection.rtl : TextDirection.ltr,
               textAlign: TextAlign.start,
               style: dialCodeTextStyle ??
                   TextStyle(
