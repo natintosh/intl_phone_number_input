@@ -225,7 +225,7 @@ class DirectionalCountryListTile extends StatelessWidget {
                   ),
             ),
           ),
-          SizedBox(width: 16),
+          // SizedBox(width: 16),
           Expanded(
             child: Text(
               '${Utils.getCountryName(country, locale)}',
