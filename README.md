@@ -12,27 +12,16 @@ A simple and customizable flutter package for inputting phone number in intl / i
 
 
 ### What's new
-  - Null Safety Migration
-  - Upgraded dependencies
-  - <b>Breaking Change</b> Depreciated `SelectorConfig.backgroundColor` and replaced with `Theme.of(context).canvasColor`
-  - Fixed Dominican Republic dial_code at country_list.dart #196
-  - Fixed change country when initialValue is set with the widget #170
-  - Fixed PhoneNumberUtil.getNumberType on mobile and web #188
-  - Added translations for Turkish and Romanian #190
-  - Updated Taiwan country name #181
-  - Added style config for selector button #177
-  - Removed any potential duplicates on countries list #175
-  - Fixed ignore selector and text field spacing in prefixIcon mode #161
-  - :sweat_smile: Well, Actually using cursorColor #160
-  - Fixed initialValue should not be formatted if formatInput is false #192
-  - Fixed Bottom Sheet RenderFlex overflow bug #187, similar to Search by Country name or dial code bug #197
-  - Updated README.md file to fix Web release does not recognize the packages #186
-  - Fixed onSaved callback in the InternationalPhoneNumberInput is not synchronous #180
-  - Cherry picked pending fixes and pull request from repo.
+  - Replace libphonenumber_plugin with dlibphonenumber
+  - Updated libphonenumber and PhoneNumberToCarrierMapper on Android
+  - Removed dependency on libphonenumber
+  - Switch from libphonenumber-iOS to PhoneNumberKit on iOS
+  - Update libphonenumber.js file
+  - Depreciating getNameForNumber in future updates
   
   
 ### Features
-  - Web support.
+  - Support all Flutter platforms.
   - Support for RTL languages
   - Selector mode dropdown, bottom sheet and dialog
   - As You Type Formatter: formats inputs to its selected international format
@@ -46,33 +35,6 @@ A simple and customizable flutter package for inputting phone number in intl / i
     String parsableNumber = number.parseNumber();
     `controller reference`.text = parsableNumber
 ```    
-
-### Web Support
-
-In your app directory, edit `web/index.html` to add the following
-
-```html
-
-<!DOCTYPE html>
-<html>
-    <head>
-        ...
-    </head>
-    <body>
-    
-        ...
-
-        <script src="assets/packages/libphonenumber_plugin/js/libphonenumber.js"></script>
-        <script src="assets/packages/libphonenumber_plugin/js/stringbuffer.js"></script>
-
-        ...
-
-        <script src="main.dart.js" type="application/javascript"></script>
-    </body>
-</html>
-```
-
-Or checkout `/example` folder from [Github](https://github.com/natintosh/intl_phone_number_input/tree/develop/example).
 
 
 ### Note
@@ -133,7 +95,7 @@ InternationalPhoneNumberInput({
       this.autofillHints,
       this.countries
     });
-```|
+```
 
 ```dart
 SelectorConfig({
@@ -143,6 +105,7 @@ SelectorConfig({
     this.backgroundColor,
     this.countryComparator,
     this.setSelectorButtonAsPrefixIcon = false,
+    this.useBottomSheetSafeArea = false,
 });
 ```
 
@@ -206,7 +169,7 @@ Made with [contributors-img](https://contributors-img.web.app).
 
 # Dependencies
 
-* [libphonenumber](https://pub.dev/packages/libphonenumber)
+* [dlibphonenumber](https://pub.dev/packages/dlibphonenumber)
 * [equatable](https://pub.dev/packages/equatable)
 
 # Credits

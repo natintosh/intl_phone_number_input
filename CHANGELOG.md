@@ -1,3 +1,26 @@
+## [0.7.5]
+* Fixed bug in `AsYouTypeFormatter` that could throw a `RangeError` if the user typed non digit characters
+
+## [0.7.4]
+* Updated minimum os version on iOS
+* Updated dependencies
+
+## [0.7.3+1]
+* Added pub example
+
+## [0.7.3]
+* Updated dependency in libphonenumber
+* Update AsYouTypeFormatter
+* Replaced `headline` with `headlineSmall` in countries_search_list_widget.dart
+* Totally removed `getNameForNumber`
+
+## [0.7.2]
+* Updated libphonenumber and PhoneNumberToCarrierMapper on Android
+* Removed dependency on libphonenumber
+* Switch from libphonenumber-iOS to PhoneNumberKit on iOS
+* Update libphonenumber.js file
+* Depreciating `getNameForNumber` in future updates
+
 ## [0.7.1]
 * Massive thanks to the community
 
