@@ -20,7 +20,7 @@ class SelectorButton extends StatelessWidget {
   final TextStyle? dialCodeTextStyle;
   final TextStyle? countryNameTextStyle;
   final TextStyle? titleTextStyle;
-  final Color bottomSheetBgColor;
+  final Color? bottomSheetBgColor;
   final String title;
   final Widget? verticalDivider;
 
@@ -41,7 +41,7 @@ class SelectorButton extends StatelessWidget {
     this.dialCodeTextStyle,
     this.countryNameTextStyle,
     this.titleTextStyle,
-    this.bottomSheetBgColor = Colors.white,
+    this.bottomSheetBgColor,
     this.title = '',
     required this.verticalDivider,
   }) : super(key: key);
@@ -175,7 +175,6 @@ class SelectorButton extends StatelessWidget {
         return Container(
           constraints: BoxConstraints(
             maxHeight: MediaQuery.of(context).size.height * 0.55,
-            minHeight: MediaQuery.of(context).size.height * 0.55,
           ),
           color: bottomSheetBgColor,
           child: Stack(
