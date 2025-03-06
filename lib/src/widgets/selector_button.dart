@@ -174,6 +174,7 @@ class SelectorButton extends StatelessWidget {
         return Container(
           constraints: BoxConstraints(
             maxHeight: MediaQuery.of(context).size.height * 0.55,
+            minHeight: MediaQuery.of(context).size.height * 0.55,
           ),
           decoration: BoxDecoration(
             color: bottomSheetBgColor ?? Colors.red,
