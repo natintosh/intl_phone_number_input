@@ -93,7 +93,7 @@ class InternationalPhoneNumberInput extends StatefulWidget {
   final Color searchBarFillColor;
 
   final Widget? verticalLineWidget;
-  final Color? bottomSheetBgColor;
+  final Color bottomSheetColor;
 
   InternationalPhoneNumberInput({
     Key? key,
@@ -140,7 +140,7 @@ class InternationalPhoneNumberInput extends StatefulWidget {
     this.title,
     this.searchBarFillColor = Colors.white,
     this.verticalLineWidget,
-    this.bottomSheetBgColor,
+    required this.bottomSheetColor,
   }) : super(key: key);
 
   @override
@@ -324,7 +324,7 @@ class _InputWidgetState extends State<InternationalPhoneNumberInput> {
         titleTextStyle: widget.titleTextStyle,
         title: widget.title ?? '',
         verticalDivider: widget.verticalLineWidget ?? Container(),
-        bottomSheetBgColor: widget.bottomSheetBgColor!,
+        bottomSheetBgColor: widget.bottomSheetColor,
       ));
     }
 
@@ -437,6 +437,7 @@ class _InputWidgetView
                   titleTextStyle: widget.titleTextStyle,
                   title: widget.title ?? '',
                   verticalDivider: widget.verticalLineWidget ?? Container(),
+                  bottomSheetBgColor: widget.bottomSheetColor,
                 ),
                 SizedBox(
                   height: state.selectorButtonBottomPadding,
