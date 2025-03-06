@@ -175,11 +175,11 @@ class SelectorButton extends StatelessWidget {
       useSafeArea: selectorConfig.useBottomSheetSafeArea,
       builder: (BuildContext context) {
         return Container(
-          height: MediaQuery.of(context).size.height * 0.55,
-          // constraints: BoxConstraints(
-          //   maxHeight: MediaQuery.of(context).size.height * 0.55,
-          //   minHeight: MediaQuery.of(context).size.height * 0.55,
-          // ),
+          // height: MediaQuery.of(context).size.height * 0.55,
+          constraints: BoxConstraints(
+            maxHeight: MediaQuery.of(context).size.height * 0.55,
+            minHeight: MediaQuery.of(context).size.height * 0.55,
+          ),
           decoration: BoxDecoration(
             color: bottomSheetBgColor,
           ),
@@ -192,9 +192,9 @@ class SelectorButton extends StatelessWidget {
                 padding: EdgeInsets.only(
                     bottom: MediaQuery.of(context).viewInsets.bottom),
                 child: DraggableScrollableSheet(
-                  // initialChildSize: 1.0, // يبدأ بالحجم الكامل
-                  // minChildSize: 1.0, // يمنع تصغيره عند السحب
-                  // maxChildSize: 1.0, // يمنع تكبيره زيادة
+                  initialChildSize: 1.0, // يبدأ بالحجم الكامل
+                  minChildSize: 1.0, // يمنع تصغيره عند السحب
+                  maxChildSize: 1.0, // يمنع تكبيره زيادة
 
                   builder: (BuildContext context, ScrollController controller) {
                     return Directionality(
