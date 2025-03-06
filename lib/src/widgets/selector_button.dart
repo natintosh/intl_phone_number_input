@@ -165,7 +165,8 @@ class SelectorButton extends StatelessWidget {
       context: inheritedContext,
       clipBehavior: Clip.hardEdge,
       isScrollControlled: isScrollControlled,
-      backgroundColor: Colors.transparent,
+      backgroundColor: bottomSheetBgColor,
+      // backgroundColor: Colors.transparent,
       shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
               topLeft: Radius.circular(22), topRight: Radius.circular(22))),
@@ -176,6 +177,7 @@ class SelectorButton extends StatelessWidget {
             maxHeight: MediaQuery.of(context).size.height * 0.55,
             minHeight: MediaQuery.of(context).size.height * 0.55,
           ),
+          color: bottomSheetBgColor,
           child: Stack(
             children: [
               GestureDetector(
