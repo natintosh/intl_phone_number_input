@@ -93,6 +93,7 @@ class InternationalPhoneNumberInput extends StatefulWidget {
   final Color searchBarFillColor;
 
   final Widget? verticalLineWidget;
+  final Color? bottomSheetBgColor;
 
   InternationalPhoneNumberInput({
     Key? key,
@@ -139,6 +140,7 @@ class InternationalPhoneNumberInput extends StatefulWidget {
     this.title,
     this.searchBarFillColor = Colors.white,
     this.verticalLineWidget,
+    this.bottomSheetBgColor,
   }) : super(key: key);
 
   @override
@@ -322,6 +324,7 @@ class _InputWidgetState extends State<InternationalPhoneNumberInput> {
         titleTextStyle: widget.titleTextStyle,
         title: widget.title ?? '',
         verticalDivider: widget.verticalLineWidget ?? Container(),
+        bottomSheetBgColor: widget.bottomSheetBgColor!,
       ));
     }
 
