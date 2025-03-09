@@ -172,11 +172,11 @@ class SelectorButton extends StatelessWidget {
       useSafeArea: selectorConfig.useBottomSheetSafeArea,
       builder: (BuildContext context) {
         return Container(
-          height: MediaQuery.of(context).size.height * 0.55,
-          // constraints: BoxConstraints(
-          //   maxHeight: MediaQuery.of(context).size.height * 0.55,
-          //   minHeight: MediaQuery.of(context).size.height * 0.55,
-          // ),
+          // height: MediaQuery.of(context).size.height * 0.55,
+          constraints: BoxConstraints(
+            maxHeight: MediaQuery.of(context).size.height * 0.55,
+            minHeight: MediaQuery.of(context).size.height * 0.55,
+          ),
           decoration: BoxDecoration(
             color: bottomSheetBgColor,
           ),
