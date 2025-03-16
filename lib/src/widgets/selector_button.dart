@@ -21,6 +21,7 @@ class SelectorButton extends StatelessWidget {
   final TextStyle? countryNameTextStyle;
   final TextStyle? titleTextStyle;
   final Color bottomSheetBgColor;
+  final Color? closeButtonColor;
   final String title;
   final Widget? verticalDivider;
 
@@ -42,6 +43,7 @@ class SelectorButton extends StatelessWidget {
     this.countryNameTextStyle,
     this.titleTextStyle,
     required this.bottomSheetBgColor,
+    this.closeButtonColor,
     this.title = '',
     required this.verticalDivider,
   }) : super(key: key);
@@ -154,6 +156,7 @@ class SelectorButton extends StatelessWidget {
               useEmoji: selectorConfig.useEmoji,
               autoFocus: autoFocusSearchField,
               verticalLineWidget: verticalDivider,
+              closeButtonColor: closeButtonColor,
             ),
           ),
         ),
@@ -222,6 +225,7 @@ class SelectorButton extends StatelessWidget {
                           useEmoji: selectorConfig.useEmoji,
                           autoFocus: autoFocusSearchField,
                           verticalLineWidget: verticalDivider,
+                          closeButtonColor: closeButtonColor,
                         ),
                       ),
                     );

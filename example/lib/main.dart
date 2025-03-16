@@ -66,6 +66,7 @@ class _MyHomePageState extends State<MyHomePage> {
               selectorTextStyle: TextStyle(color: Colors.black),
               initialValue: number,
               textFieldController: controller,
+              closeButtonColor: null,
               formatInput: true,
               keyboardType:
                   TextInputType.numberWithOptions(signed: true, decimal: true),

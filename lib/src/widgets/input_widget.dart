@@ -94,6 +94,7 @@ class InternationalPhoneNumberInput extends StatefulWidget {
 
   final Widget? verticalLineWidget;
   final Color bottomSheetColor;
+  final Color? closeButtonColor;
 
   InternationalPhoneNumberInput({
     Key? key,
@@ -141,6 +142,7 @@ class InternationalPhoneNumberInput extends StatefulWidget {
     this.searchBarFillColor = Colors.white,
     this.verticalLineWidget,
     required this.bottomSheetColor,
+    this.closeButtonColor,
   }) : super(key: key);
 
   @override
@@ -308,24 +310,26 @@ class _InputWidgetState extends State<InternationalPhoneNumberInput> {
 
     if (widget.selectorConfig.setSelectorButtonAsPrefixIcon) {
       return value.copyWith(
-          prefixIcon: SelectorButton(
-        country: country,
-        countries: countries,
-        onCountryChanged: onCountryChanged,
-        selectorConfig: widget.selectorConfig,
-        selectorTextStyle: widget.selectorTextStyle,
-        searchBoxDecoration: widget.searchBoxDecoration,
-        locale: locale,
-        isEnabled: widget.isEnabled,
-        autoFocusSearchField: widget.autoFocusSearch,
-        isScrollControlled: widget.countrySelectorScrollControlled,
-        dialCodeTextStyle: widget.dialCodeTextStyle,
-        countryNameTextStyle: widget.countryNameTextStyle,
-        titleTextStyle: widget.titleTextStyle,
-        title: widget.title ?? '',
-        verticalDivider: widget.verticalLineWidget ?? Container(),
-        bottomSheetBgColor: widget.bottomSheetColor,
-      ));
+        prefixIcon: SelectorButton(
+          country: country,
+          countries: countries,
+          onCountryChanged: onCountryChanged,
+          selectorConfig: widget.selectorConfig,
+          selectorTextStyle: widget.selectorTextStyle,
+          searchBoxDecoration: widget.searchBoxDecoration,
+          locale: locale,
+          isEnabled: widget.isEnabled,
+          autoFocusSearchField: widget.autoFocusSearch,
+          isScrollControlled: widget.countrySelectorScrollControlled,
+          dialCodeTextStyle: widget.dialCodeTextStyle,
+          countryNameTextStyle: widget.countryNameTextStyle,
+          titleTextStyle: widget.titleTextStyle,
+          title: widget.title ?? '',
+          verticalDivider: widget.verticalLineWidget ?? Container(),
+          bottomSheetBgColor: widget.bottomSheetColor,
+          closeButtonColor: widget.closeButtonColor,
+        ),
+      );
     }
 
     return value;
@@ -438,6 +442,7 @@ class _InputWidgetView
                   title: widget.title ?? '',
                   verticalDivider: widget.verticalLineWidget ?? Container(),
                   bottomSheetBgColor: widget.bottomSheetColor,
+                  closeButtonColor: widget.closeButtonColor,
                 ),
                 SizedBox(
                   height: state.selectorButtonBottomPadding,

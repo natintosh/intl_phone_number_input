@@ -51,6 +51,7 @@ class _MyHomePageState extends State<MyHomePage> {
               dialCodeTextStyle: null,
               titleTextStyle: null,
               countryNameTextStyle: null,
+              closeButtonColor: null,
               autoValidateMode: AutovalidateMode.disabled,
               initialValue: PhoneNumber(isoCode: 'NG'),
               textFieldController: controller,

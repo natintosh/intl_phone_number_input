@@ -19,6 +19,7 @@ class CountrySearchListWidget extends StatefulWidget {
   final String title;
   final String labelText;
   final Color? searchBarFillColor;
+  final Color? closeButtonColor;
   final Widget? verticalLineWidget;
 
   CountrySearchListWidget(
@@ -36,6 +37,7 @@ class CountrySearchListWidget extends StatefulWidget {
     this.title = '',
     this.labelText = '',
     this.searchBarFillColor,
+    this.closeButtonColor,
     this.verticalLineWidget,
   });
 
@@ -89,9 +91,7 @@ class _CountrySearchListWidgetState extends State<CountrySearchListWidget> {
             borderRadius: BorderRadius.circular(12),
             borderSide: BorderSide.none,
           ),
-
           filled: true,
-          // fillColor: Color(0xFFF8F8F9),
           fillColor: widget.searchBarFillColor ?? Color(0xffF8F8F9),
           hintStyle:
               TextStyle(color: Theme.of(context).colorScheme.onSurfaceVariant),
@@ -126,8 +126,11 @@ class _CountrySearchListWidgetState extends State<CountrySearchListWidget> {
                   height: 32,
                   width: 32,
                   child: Center(
-                    child: Icon(Icons.close_rounded,
-                        size: 24, color: Color(0xffC7C7CC)),
+                    child: Icon(
+                      Icons.close_rounded,
+                      size: 24,
+                      color: widget.closeButtonColor ?? Color(0xffC7C7CC),
+                    ),
                   ),
                 ),
               ),
