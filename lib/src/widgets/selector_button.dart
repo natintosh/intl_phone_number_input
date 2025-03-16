@@ -97,16 +97,13 @@ class SelectorButton extends StatelessWidget {
                     }
                   }
                 : null,
-            child: Padding(
-              padding: const EdgeInsets.only(right: 8.0),
-              child: Item(
-                country: country,
-                showFlag: selectorConfig.showFlags,
-                useEmoji: selectorConfig.useEmoji,
-                leadingPadding: selectorConfig.leadingPadding,
-                trailingSpace: selectorConfig.trailingSpace,
-                textStyle: selectorTextStyle,
-              ),
+            child: Item(
+              country: country,
+              showFlag: selectorConfig.showFlags,
+              useEmoji: selectorConfig.useEmoji,
+              leadingPadding: selectorConfig.leadingPadding,
+              trailingSpace: selectorConfig.trailingSpace,
+              textStyle: selectorTextStyle,
             ),
           );
   }
@@ -178,11 +175,11 @@ class SelectorButton extends StatelessWidget {
       useSafeArea: selectorConfig.useBottomSheetSafeArea,
       builder: (BuildContext context) {
         return Container(
-          // height: MediaQuery.of(context).size.height * 0.55,
-          constraints: BoxConstraints(
-            maxHeight: MediaQuery.of(context).size.height * 0.55,
-            minHeight: MediaQuery.of(context).size.height * 0.55,
-          ),
+          height: MediaQuery.of(context).size.height * 0.55,
+          // constraints: BoxConstraints(
+          //   maxHeight: MediaQuery.of(context).size.height * 0.55,
+          //   minHeight: MediaQuery.of(context).size.height * 0.55,
+          // ),
           decoration: BoxDecoration(
             color: bottomSheetBgColor,
           ),

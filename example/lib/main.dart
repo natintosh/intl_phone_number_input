@@ -59,6 +59,7 @@ class _MyHomePageState extends State<MyHomePage> {
               title: '',
               searchBarFillColor: Colors.white,
               bottomSheetColor: Colors.white,
+              verticalLineWidget: SizedBox(),
               dialCodeTextStyle: null,
               titleTextStyle: null,
               countryNameTextStyle: null,
