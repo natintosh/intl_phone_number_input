@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl_phone_number_input/src/utils/phone_number/phone_number_util.dart';
 
@@ -30,7 +29,6 @@ class AsYouTypeFormatter extends TextInputFormatter {
   @override
   TextEditingValue formatEditUpdate(
       TextEditingValue oldValue, TextEditingValue newValue) {
-    int oldValueLength = oldValue.text.length;
     int newValueLength = newValue.text.length;
 
     if (newValueLength > 0) {

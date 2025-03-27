@@ -92,7 +92,7 @@ class PhoneNumber extends Equatable {
         RegExp('^([\\+]?${phoneNumber.dialCode ?? number.dialCode}[\\s]?)'),
         '',
       ));
-      return formattedNumber!.replaceAll(
+      return formattedNumber.replaceAll(
         RegExp('^([\\+]?${phoneNumber.dialCode ?? number.dialCode}[\\s]?)'),
         '',
       );

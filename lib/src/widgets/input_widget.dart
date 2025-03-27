@@ -290,24 +290,6 @@ class _InputWidgetState extends State<InternationalPhoneNumberInput> {
           hintText: widget.hintText,
         );
     return value;
-
-    // if (widget.selectorConfig.setSelectorButtonAsPrefixIcon) {
-    //   return value.copyWith(
-    //       prefixIcon: SelectorButton(
-    //     country: country,
-    //     countries: countries,
-    //     onCountryChanged: onCountryChanged,
-    //     selectorConfig: widget.selectorConfig,
-    //     selectorTextStyle: widget.selectorTextStyle,
-    //     searchBoxDecoration: widget.searchBoxDecoration,
-    //     locale: locale,
-    //     isEnabled: widget.isEnabled,
-    //     autoFocusSearchField: widget.autoFocusSearch,
-    //     isScrollControlled: widget.countrySelectorScrollControlled,
-    //   ));
-    // }
-
-    return value;
   }
 
   /// Validate the phone number when a change occurs
