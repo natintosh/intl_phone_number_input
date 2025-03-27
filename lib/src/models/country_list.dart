@@ -1320,6 +1320,26 @@ class Countries {
       }
     },
     {
+      "num_code": "599",
+      "alpha_2_code": "CW",
+      "alpha_3_code": "CW",
+      "en_short_name": "Curaçao",
+      "nationality": "Curaçao",
+      "dial_code": "+599",
+      "nameTranslations": {
+      }
+    },
+     {
+      "num_code": "599",
+      "alpha_2_code": "BQ",
+      "alpha_3_code": "BQ",
+      "en_short_name": "Caribbean Netherlands",
+      "nationality": "Caribbean Netherlands",
+      "dial_code": "+599",
+      "nameTranslations": {
+      }
+    },
+    {
       "num_code": "136",
       "alpha_2_code": "KY",
       "alpha_3_code": "CYM",
