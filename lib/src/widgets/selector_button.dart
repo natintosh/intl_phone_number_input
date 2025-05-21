@@ -125,10 +125,12 @@ class SelectorButton extends StatelessWidget {
       context: inheritedContext,
       barrierDismissible: true,
       builder: (BuildContext context) => AlertDialog(
+        backgroundColor: Colors.white,
         content: Directionality(
           textDirection: Directionality.of(inheritedContext),
           child: Container(
-            width: double.maxFinite,
+            width: _getDialogWidth(context),
+            color: Colors.transparent,
             child: CountrySearchListWidget(
               countries,
               locale,
@@ -142,6 +144,13 @@ class SelectorButton extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  double _getDialogWidth(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    if (screenWidth > 1200) return screenWidth * 0.3; // Large desktop: 30%
+    if (screenWidth > 600) return screenWidth * 0.4; // Desktop: 40%
+    return screenWidth * 0.8; // Tablet/Mobile: 80%
   }
 
   /// shows a Dialog with list [countries] if the [PhoneInputSelectorType.BOTTOM_SHEET] is selected
