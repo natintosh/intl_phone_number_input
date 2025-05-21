@@ -64,10 +64,13 @@ class SelectorButton extends StatelessWidget {
                 trailingSpace: selectorConfig.trailingSpace,
                 textStyle: selectorTextStyle,
               )
-        : MaterialButton(
+        : TextButton(
             key: Key(TestHelper.DropdownButtonKeyValue),
-            padding: EdgeInsets.zero,
-            minWidth: 0,
+            style: TextButton.styleFrom(
+              padding: EdgeInsets.zero,
+              minimumSize: Size(0, 0),
+              tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+            ),
             onPressed: countries.isNotEmpty && countries.length > 1 && isEnabled
                 ? () async {
                     Country? selected;
@@ -129,7 +132,7 @@ class SelectorButton extends StatelessWidget {
         content: Directionality(
           textDirection: Directionality.of(inheritedContext),
           child: Container(
-            width: _getDialogWidth(context),
+            width: _getDialogWidth(inheritedContext),
             color: Colors.transparent,
             child: CountrySearchListWidget(
               countries,
@@ -147,7 +150,10 @@ class SelectorButton extends StatelessWidget {
   }
 
   double _getDialogWidth(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
+    final mediaQuery = MediaQuery.maybeOf(context);
+    if (mediaQuery == null) return 300;
+
+    final screenWidth = mediaQuery.size.width;
     if (screenWidth > 1200) return screenWidth * 0.3; // Large desktop: 30%
     if (screenWidth > 600) return screenWidth * 0.4; // Desktop: 40%
     return screenWidth * 0.8; // Tablet/Mobile: 80%
