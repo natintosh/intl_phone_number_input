@@ -66,10 +66,13 @@ class SelectorButton extends StatelessWidget {
               )
         : TextButton(
             key: Key(TestHelper.DropdownButtonKeyValue),
-            style: TextButton.styleFrom(
-              padding: EdgeInsets.zero,
-              minimumSize: Size(0, 0),
+            style: ButtonStyle(
+              padding: MaterialStateProperty.all(EdgeInsets.zero),
+              minimumSize: MaterialStateProperty.all(Size.zero),
               tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+              visualDensity: VisualDensity.compact,
+              overlayColor: MaterialStateProperty.all(Colors.transparent),
+              splashFactory: NoSplash.splashFactory,
             ),
             onPressed: countries.isNotEmpty && countries.length > 1 && isEnabled
                 ? () async {
