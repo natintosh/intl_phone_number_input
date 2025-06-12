@@ -60,7 +60,7 @@ class AsYouTypeFormatter extends TextInputFormatter {
       String textToParse = dialCode + rawText;
 
       formatAsYouType(input: textToParse).then(
-        (String? value) {
+            (String? value) {
           String parsedText = parsePhoneNumber(value);
 
           int newCursorPosition = 0;
