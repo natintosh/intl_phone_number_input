@@ -3,6 +3,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:intl/intl.dart' as intl;
 import 'package:intl_phone_number_input/src/models/country_list.dart';
 import 'package:intl_phone_number_input/src/models/country_model.dart';
 import 'package:intl_phone_number_input/src/providers/country_provider.dart';
@@ -454,7 +455,9 @@ class _InputWidgetView
           Flexible(
             child: TextFormField(
               key: widget.fieldKey ?? Key(TestHelper.TextInputKeyValue),
-              textDirection: TextDirection.ltr,
+              textDirection: intl.Bidi.isRtlLanguage(state.locale ?? Localizations.localeOf(context).languageCode)
+                             ? TextDirection.rtl
+                             : TextDirection.ltr,
               controller: state.controller,
               cursorColor: widget.cursorColor,
               focusNode: widget.focusNode,
