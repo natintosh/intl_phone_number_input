@@ -1325,7 +1325,7 @@ class Countries {
       "alpha_3_code": "CUW",
       "en_short_name": "Curaçao",
       "nationality": "Curaçaoan",
-      "dial_code": "+599",
+      "dial_code": "+5999",
       "nameTranslations": {
         "sk": "Curaçao",
         "se": "Curaçao",
