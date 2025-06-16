@@ -7242,7 +7242,7 @@ class Countries {
       "num_code": "792",
       "alpha_2_code": "TR",
       "alpha_3_code": "TUR",
-      "en_short_name": "Turkey",
+      "en_short_name": "Türkiye",
       "nationality": "Turkish",
       "dial_code": "+90",
       "nameTranslations": {
@@ -7257,7 +7257,7 @@ class Countries {
         "de": "Türkei",
         "fr": "Turquie",
         "es": "Turquía",
-        "en": "Turkey",
+        "en": "Türkiye",
         "pt_BR": "Peru",
         "sr-Cyrl": "Турска",
         "sr-Latn": "Turska",
