@@ -904,6 +904,38 @@ class Countries {
       }
     },
     {
+      "num_code": "535",
+      "alpha_2_code": "BQ",
+      "alpha_3_code": "BES",
+      "en_short_name": "Bonaire",
+      "nationality": "Bonairean",
+      "dial_code": "+599",
+      "nameTranslations": {
+        "sk": "Bonaire",
+        "se": "Bonaire",
+        "pl": "Bonaire",
+        "no": "Bonaire",
+        "ja": "ボネール",
+        "it": "Bonaire",
+        "zh": "博奈尔",
+        "nl": "Bonaire",
+        "de": "Bonaire",
+        "fr": "Bonaire",
+        "es": "Bonaire",
+        "en": "Bonaire",
+        "pt_BR": "Bonaire",
+        "sr-Cyrl": "Бонајре",
+        "sr-Latn": "Bonaire",
+        "zh_TW": "博奈爾",
+        "tr": "Bonaire",
+        "ro": "Bonaire",
+        "ar": "بونير",
+        "fa": "بونیر",
+        "yue": "博奈爾",
+        "el": "Μποναίρ"
+      }
+    },
+    {
       "num_code": "70",
       "alpha_2_code": "BA",
       "alpha_3_code": "BIH",
@@ -1829,6 +1861,38 @@ class Countries {
         "fa": "كوبا",
         "yue": "古巴",
         "el": "Κούβα",
+      }
+    },
+    {
+      "num_code": "531",
+      "alpha_2_code": "CW",
+      "alpha_3_code": "CUW",
+      "en_short_name": "Curaçao",
+      "nationality": "Curaçaoan",
+      "dial_code": "+599",
+      "nameTranslations": {
+        "sk": "Curaçao",
+        "se": "Curaçao",
+        "pl": "Curaçao",
+        "no": "Curaçao",
+        "ja": "キュラソー",
+        "it": "Curaçao",
+        "zh": "库拉索",
+        "nl": "Curaçao",
+        "de": "Curaçao",
+        "fr": "Curaçao",
+        "es": "Curazao",
+        "en": "Curaçao",
+        "pt_BR": "Curaçao",
+        "sr-Cyrl": "Курасао",
+        "sr-Latn": "Kurakao",
+        "zh_TW": "庫拉索",
+        "tr": "Curaçao",
+        "ro": "Curaçao",
+        "ar": "كوراساو",
+        "fa": "کوراسائو",
+        "yue": "庫拉索",
+        "el": "Κουρασάο"
       }
     },
     {
@@ -4227,7 +4291,8 @@ class Countries {
         "ar": "مقدونيا",
         "fa": "مقدونیه",
         "yue": "馬其頓（前南斯拉夫共和國）",
-        "el": "Βόρεια Μακεδονία (πρώην Γιουγκοσλαβική Δημοκρατία της Μακεδονίας)",
+        "el":
+            "Βόρεια Μακεδονία (πρώην Γιουγκοσλαβική Δημοκρατία της Μακεδονίας)",
       }
     },
     {
@@ -7491,7 +7556,8 @@ class Countries {
         "ar": "المملكة المتحدة",
         "fa": "بریتانیا",
         "yue": "大不列顛及北愛爾蘭聯合王國",
-        "el": "Ηνωμένο Βασίλειο της Μεγάλης Βρετανίας και της Βόρειας Ιρλανδίας",
+        "el":
+            "Ηνωμένο Βασίλειο της Μεγάλης Βρετανίας και της Βόρειας Ιρλανδίας",
       }
     },
     {
