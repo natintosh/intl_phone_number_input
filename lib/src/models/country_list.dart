@@ -3842,8 +3842,8 @@ class Countries {
         "ro": "Coreea de Nord",
         "ar": "كوريا الشمالية",
         "fa": "کره شمالی",
-        "yue": "朝鮮（朝鮮民主主義人民共咊囯）",
-        "el": "Βόρεια Κορέα (Λαοκρατική Δημοκρατία της Κορέας)",
+        "yue": "北韓（朝鮮民主主義人民共和國）",
+        "el": "Βόρεια Κορέα (Λαοκρατική Δημοκρατία της Κορέας)"
       }
     },
     {
@@ -7306,7 +7306,7 @@ class Countries {
       "num_code": "792",
       "alpha_2_code": "TR",
       "alpha_3_code": "TUR",
-      "en_short_name": "Turkey",
+      "en_short_name": "Türkiye",
       "nationality": "Turkish",
       "dial_code": "+90",
       "nameTranslations": {
@@ -7321,8 +7321,8 @@ class Countries {
         "de": "Türkei",
         "fr": "Turquie",
         "es": "Turquía",
-        "en": "Turkey",
-        "pt_BR": "Peru",
+        "en": "Türkiye",
+        "pt_BR": "Turquia",
         "sr-Cyrl": "Турска",
         "sr-Latn": "Turska",
         "zh_TW": "土耳其",
@@ -7331,7 +7331,7 @@ class Countries {
         "ar": "تركيا",
         "fa": "ترکیه",
         "yue": "土耳其",
-        "el": "Τουρκία",
+        "el": "Τουρκία"
       }
     },
     {
