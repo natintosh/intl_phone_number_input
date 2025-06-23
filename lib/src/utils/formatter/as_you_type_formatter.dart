@@ -15,7 +15,7 @@ class AsYouTypeFormatter extends TextInputFormatter {
   final RegExp allowedChars = RegExp(r'[\d+]');
 
   final RegExp bracketsBetweenDigitsOrSpace =
-      RegExp(r'(?![\s\d])([()])(?=[\d\s])');
+  RegExp(r'(?![\s\d])([()])(?=[\d\s])');
 
   /// The [isoCode] of the [Country] formatting the phone number to
   final String isoCode;
@@ -28,87 +28,84 @@ class AsYouTypeFormatter extends TextInputFormatter {
 
   AsYouTypeFormatter(
       {required this.isoCode,
-      required this.dialCode,
-      required this.onInputFormatted});
+        required this.dialCode,
+        required this.onInputFormatted});
 
-@override
+  @override
   TextEditingValue formatEditUpdate(
       TextEditingValue oldValue, TextEditingValue newValue) {
     int oldValueLength = oldValue.text.length;
     int newValueLength = newValue.text.length;
 
-    if (newValueLength == 0 || newValueLength <= oldValueLength) {
-      return newValue;
-    }
+    if (newValueLength > 0 && newValueLength > oldValueLength) {
+      String newValueText = newValue.text;
+      String rawText = newValueText.replaceAll(separatorChars, '');
 
-    String newValueText = newValue.text;
-    String rawText = newValueText.replaceAll(separatorChars, '');
+      int rawCursorPosition = newValue.selection.end;
 
-    final originalSelection = newValue.selection;
-    int rawCursorPosition = originalSelection.end;
+      int digitsBeforeCursor = 0, digitsAfterCursor = 0;
 
-    int digitsBeforeCursor = 0, digitsAfterCursor = 0;
+      if (rawCursorPosition > 0 && rawCursorPosition <= newValueText.length) {
+        final rawTextBeforeCursor = newValueText
+            .substring(0, rawCursorPosition)
+            .replaceAll(separatorChars, '');
+        final rawTextAfterCursor = newValueText
+            .substring(rawCursorPosition)
+            .replaceAll(separatorChars, '');
 
-    if (rawCursorPosition > 0 && rawCursorPosition <= newValueText.length) {
-      final rawTextBeforeCursor = newValueText
-          .substring(0, rawCursorPosition)
-          .replaceAll(separatorChars, '');
-      final rawTextAfterCursor = newValueText
-          .substring(rawCursorPosition)
-          .replaceAll(separatorChars, '');
+        digitsBeforeCursor = rawTextBeforeCursor.length;
+        digitsAfterCursor = rawTextAfterCursor.length;
+      }
 
-      digitsBeforeCursor = rawTextBeforeCursor.length;
-      digitsAfterCursor = rawTextAfterCursor.length;
-    }
+      String textToParse = dialCode + rawText;
 
-    String textToParse = dialCode + rawText;
+      formatAsYouType(input: textToParse).then(
+            (String? value) {
+          String parsedText = parsePhoneNumber(value);
 
-    formatAsYouType(input: textToParse).then(
-      (String? value) {
-        String parsedText = parsePhoneNumber(value);
-        int newCursorPosition = 0;
+          int newCursorPosition = 0;
 
-        if (digitsBeforeCursor > 0 || digitsAfterCursor > 0) {
-          for (var i = 0; i < parsedText.length; i++) {
-            final startCursor = i;
+          if (digitsBeforeCursor > 0 || digitsAfterCursor > 0) {
+            for (var i = 0; i < parsedText.length; i++) {
+              final startCursor = i;
 
-            if (allowedChars.hasMatch(parsedText[startCursor])) {
-              if (digitsBeforeCursor > 0) {
-                digitsBeforeCursor--;
-              } else {
-                newCursorPosition = startCursor;
-                break;
+              if (allowedChars.hasMatch(parsedText[startCursor])) {
+                if (digitsBeforeCursor > 0) {
+                  digitsBeforeCursor--;
+                } else {
+                  newCursorPosition = startCursor + 1;
+                  break;
+                }
               }
-            }
 
-            final endCursor = parsedText.length - 1 - i;
+              final endCursor = parsedText.length - 1 - i;
 
-            if (allowedChars.hasMatch(parsedText[endCursor])) {
-              if (digitsAfterCursor > 0) {
-                digitsAfterCursor--;
-              } else {
-                newCursorPosition = endCursor;
-                break;
+              if (allowedChars.hasMatch(parsedText[endCursor])) {
+                if (digitsAfterCursor > 0) {
+                  digitsAfterCursor--;
+                } else {
+                  newCursorPosition = endCursor + 1;
+                  break;
+                }
               }
             }
           }
-        }
 
-        newCursorPosition = min(max(newCursorPosition, 0), parsedText.length);
+          newCursorPosition = min(max(newCursorPosition, 0), parsedText.length);
 
-        final selection = TextSelection.collapsed(offset: newCursorPosition);
-
-        this.onInputFormatted(
-          TextEditingValue(
-            text: parsedText,
-            selection: selection,
-          ),
-        );
-      },
-    );
+          this.onInputFormatted(
+            TextEditingValue(
+              text: parsedText,
+              selection: TextSelection.collapsed(offset: newCursorPosition),
+            ),
+          );
+        },
+      );
+    }
 
     return newValue;
   }
+
   /// Accepts [input], unformatted phone number and
   /// returns a [Future<String>] of the formatted phone number.
   Future<String?> formatAsYouType({required String input}) async {
@@ -125,7 +122,7 @@ class AsYouTypeFormatter extends TextInputFormatter {
   /// returns a [String] of `phoneNumber` with the dialCode replaced with an empty String
   String parsePhoneNumber(String? phoneNumber) {
     final filteredPhoneNumber =
-        phoneNumber?.replaceAll(bracketsBetweenDigitsOrSpace, '');
+    phoneNumber?.replaceAll(bracketsBetweenDigitsOrSpace, '');
 
     if (dialCode.length > 4) {
       if (isPartOfNorthAmericanNumberingPlan(dialCode)) {

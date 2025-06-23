@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:ui';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart' as intl;
@@ -483,7 +484,18 @@ class _InputWidgetView
                         isoCode: countryCode,
                         dialCode: dialCode,
                         onInputFormatted: (TextEditingValue value) {
-                          state.controller!.value = value;
+                          if (kIsWeb) {
+                            WidgetsBinding.instance.addPostFrameCallback((_) {
+                              final newPosition = value.text.length;
+                              state.controller!.value = TextEditingValue(
+                                text: value.text,
+                                selection: TextSelection.collapsed(
+                                    offset: newPosition),
+                              );
+                            });
+                          } else {
+                            state.controller!.value = value;
+                          }
                         },
                       )
                     : FilteringTextInputFormatter.digitsOnly,
