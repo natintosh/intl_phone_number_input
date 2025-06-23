@@ -73,7 +73,18 @@ class AsYouTypeFormatter extends TextInputFormatter {
                 if (digitsBeforeCursor > 0) {
                   digitsBeforeCursor--;
                 } else {
-                  newCursorPosition = startCursor;
+                  newCursorPosition = startCursor + 1;
+                  break;
+                }
+              }
+
+              final endCursor = parsedText.length - 1 - i;
+
+              if (allowedChars.hasMatch(parsedText[endCursor])) {
+                if (digitsAfterCursor > 0) {
+                  digitsAfterCursor--;
+                } else {
+                  newCursorPosition = endCursor + 1;
                   break;
                 }
               }
@@ -82,20 +93,19 @@ class AsYouTypeFormatter extends TextInputFormatter {
 
           newCursorPosition = min(max(newCursorPosition, 0), parsedText.length);
 
-          Future.microtask(() {
-            this.onInputFormatted(
-              TextEditingValue(
-                text: parsedText,
-                selection: TextSelection.collapsed(offset: newCursorPosition),
-              ),
-            );
-          });
+          this.onInputFormatted(
+            TextEditingValue(
+              text: parsedText,
+              selection: TextSelection.collapsed(offset: newCursorPosition),
+            ),
+          );
         },
       );
     }
 
     return newValue;
   }
+
   /// Accepts [input], unformatted phone number and
   /// returns a [Future<String>] of the formatted phone number.
   Future<String?> formatAsYouType({required String input}) async {
