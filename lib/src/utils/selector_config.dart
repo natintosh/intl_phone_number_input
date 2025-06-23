@@ -36,6 +36,11 @@ class SelectorConfig {
   /// Use safe area for selectorType=BOTTOM_SHEET
   final bool useBottomSheetSafeArea;
 
+  // Flag sizes
+  final double emojiFlagSize;
+  final double assetFlagWidth;
+  final double? assetFlagHeight;
+
   const SelectorConfig({
     this.selectorType = PhoneInputSelectorType.DROPDOWN,
     this.showFlags = true,
@@ -45,5 +50,8 @@ class SelectorConfig {
     this.leadingPadding,
     this.trailingSpace = true,
     this.useBottomSheetSafeArea = false,
+    this.emojiFlagSize = 24.0,
+    this.assetFlagWidth = 32.0,
+    this.assetFlagHeight,
   });
 }

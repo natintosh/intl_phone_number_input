@@ -17,6 +17,7 @@ class SelectorButton extends StatelessWidget {
   final String? locale;
   final bool isEnabled;
   final bool isScrollControlled;
+  final BorderRadius? flagBorderRadius;
 
   final ValueChanged<Country?> onCountryChanged;
   final Color? searchListBackgroundColor;
@@ -34,6 +35,7 @@ class SelectorButton extends StatelessWidget {
     required this.isEnabled,
     required this.isScrollControlled,
     this.searchListBackgroundColor = Colors.white,
+    this.flagBorderRadius,
   }) : super(key: key);
 
   @override
@@ -67,11 +69,11 @@ class SelectorButton extends StatelessWidget {
         : TextButton(
             key: Key(TestHelper.DropdownButtonKeyValue),
             style: ButtonStyle(
-              padding: MaterialStateProperty.all(EdgeInsets.zero),
-              minimumSize: MaterialStateProperty.all(Size.zero),
+              padding: WidgetStateProperty.all(EdgeInsets.zero),
+              minimumSize: WidgetStateProperty.all(Size.zero),
               tapTargetSize: MaterialTapTargetSize.shrinkWrap,
               visualDensity: VisualDensity.compact,
-              overlayColor: MaterialStateProperty.all(Colors.transparent),
+              overlayColor: WidgetStateProperty.all(Colors.transparent),
               splashFactory: NoSplash.splashFactory,
             ),
             onPressed: countries.isNotEmpty && countries.length > 1 && isEnabled
@@ -100,6 +102,10 @@ class SelectorButton extends StatelessWidget {
                 leadingPadding: selectorConfig.leadingPadding,
                 trailingSpace: selectorConfig.trailingSpace,
                 textStyle: selectorTextStyle,
+                flagBorderRadius: flagBorderRadius,
+                emojiFlagSize: selectorConfig.emojiFlagSize,
+                assetFlagWidth: selectorConfig.assetFlagWidth,
+                assetFlagHeight: selectorConfig.assetFlagHeight,
               ),
             ),
           );

@@ -53,7 +53,7 @@ class InternationalPhoneNumberInput extends StatefulWidget {
   final TextInputType keyboardType;
   final TextInputAction? keyboardAction;
 
-  PhoneNumber? initialValue;
+  late final PhoneNumber? initialValue;
   final String? hintText;
   final String? errorMessage;
 
@@ -194,7 +194,7 @@ class _InputWidgetState extends State<InternationalPhoneNumberInput> {
           widget.initialValue!.phoneNumber!.isNotEmpty &&
           (await PhoneNumberUtil.isValidNumber(
               phoneNumber: widget.initialValue!.phoneNumber!,
-              isoCode: widget.initialValue!.isoCode!))!) {
+              isoCode: widget.initialValue!.isoCode!))) {
         String phoneNumber =
         await PhoneNumber.getParsableNumber(widget.initialValue!);
 
@@ -424,15 +424,6 @@ class _InputWidgetView
     final countryCode = state.country?.alpha2Code ?? '';
     final dialCode = state.country?.dialCode ?? '';
 
-    final formatter = AsYouTypeFormatter(
-      isoCode: countryCode,
-      dialCode: dialCode,
-      onInputFormatted: (TextEditingValue value) {
-        // Gán lại giá trị đã định dạng
-        state.controller?.value = value;
-      },
-    );
-
     return Container(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -464,8 +455,7 @@ class _InputWidgetView
           Flexible(
             child: TextFormField(
               key: widget.fieldKey ?? Key(TestHelper.TextInputKeyValue),
-              textDirection: intl.Bidi.isRtlLanguage(
-                  state.locale ?? Localizations.localeOf(context).languageCode)
+              textDirection: intl.Bidi.isRtlLanguage(state.locale ?? Localizations.localeOf(context).languageCode)
                   ? TextDirection.rtl
                   : TextDirection.ltr,
               controller: state.controller,
@@ -488,12 +478,17 @@ class _InputWidgetView
               scrollPadding: widget.scrollPadding,
               inputFormatters: [
                 LengthLimitingTextInputFormatter(widget.maxLength),
+                widget.formatInput
+                    ? AsYouTypeFormatter(
+                  isoCode: countryCode,
+                  dialCode: dialCode,
+                  onInputFormatted: (TextEditingValue value) {
+                    state.controller!.value = value;
+                  },
+                )
+                    : FilteringTextInputFormatter.digitsOnly,
               ],
-              onChanged: (text) {
-                final cursorPos = state.controller?.selection.baseOffset ?? text.length;
-                formatter.handleFormat(text, cursorPos);
-                state.onChanged.call(text);
-              },
+              onChanged: state.onChanged,
             ),
           )
         ],

@@ -10,16 +10,27 @@ class Utils {
         orElse: () => countries[0]);
   }
 
+
   /// Returns a [String] which will be the unicode of a Flag Emoji,
   /// from a country [countryCode] passed as a parameter.
-  static String generateFlagEmojiUnicode(String countryCode) {
-    final base = 127397;
+  static final Map<String, String> _flagCache = {};
 
-    return countryCode.codeUnits
+  static String generateFlagEmojiUnicode(String countryCode) {
+    // Return from cache if available
+    if (_flagCache.containsKey(countryCode)) {
+      return _flagCache[countryCode]!;
+    }
+
+    if (countryCode.isEmpty) return '';
+
+    final base = 127397;
+    final flag = countryCode.codeUnits
         .map((e) => String.fromCharCode(base + e))
-        .toList()
-        .reduce((value, element) => value + element)
-        .toString();
+        .join();
+
+    // Store in cache for future use
+    _flagCache[countryCode] = flag;
+    return flag;
   }
 
   /// Filters the list of Country by text from the search box.
