@@ -12,6 +12,7 @@ class CountrySearchListWidget extends StatefulWidget {
   final bool autoFocus;
   final bool? showFlags;
   final bool? useEmoji;
+  final Color? backgroundColor;
 
   CountrySearchListWidget(
     this.countries,
@@ -21,6 +22,7 @@ class CountrySearchListWidget extends StatefulWidget {
     this.showFlags,
     this.useEmoji,
     this.autoFocus = false,
+    this.backgroundColor = Colors.white,
   });
 
   @override
@@ -57,69 +59,75 @@ class _CountrySearchListWidgetState extends State<CountrySearchListWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: <Widget>[
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
-          child: TextFormField(
-            key: Key(TestHelper.CountrySearchInputKeyValue),
-            decoration: getSearchBoxDecoration(),
-            controller: _searchController,
-            autofocus: widget.autoFocus,
-            onChanged: (value) {
-              final String value = _searchController.text.trim();
-              return setState(
-                () => filteredCountries = Utils.filterCountries(
-                  countries: widget.countries,
-                  locale: widget.locale,
-                  value: value,
-                ),
-              );
-            },
+    return Container(
+      color: widget.backgroundColor,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+            child: TextFormField(
+              key: Key(TestHelper.CountrySearchInputKeyValue),
+              decoration: getSearchBoxDecoration(),
+              controller: _searchController,
+              autofocus: widget.autoFocus,
+              onChanged: (value) {
+                final String value = _searchController.text.trim();
+                return setState(
+                  () => filteredCountries = Utils.filterCountries(
+                    countries: widget.countries,
+                    locale: widget.locale,
+                    value: value,
+                  ),
+                );
+              },
+            ),
           ),
-        ),
-        Flexible(
-          child: ListView.builder(
-            controller: widget.scrollController,
-            shrinkWrap: true,
-            itemCount: filteredCountries.length,
-            itemBuilder: (BuildContext context, int index) {
-              Country country = filteredCountries[index];
+          Flexible(
+            child: Container(
+              color: widget.backgroundColor,
+              child: ListView.builder(
+                controller: widget.scrollController,
+                shrinkWrap: true,
+                itemCount: filteredCountries.length,
+                itemBuilder: (BuildContext context, int index) {
+                  Country country = filteredCountries[index];
 
-              return DirectionalCountryListTile(
-                country: country,
-                locale: widget.locale,
-                showFlags: widget.showFlags!,
-                useEmoji: widget.useEmoji!,
-              );
-              // return ListTile(
-              //   key: Key(TestHelper.countryItemKeyValue(country.alpha2Code)),
-              //   leading: widget.showFlags!
-              //       ? _Flag(country: country, useEmoji: widget.useEmoji)
-              //       : null,
-              //   title: Align(
-              //     alignment: AlignmentDirectional.centerStart,
-              //     child: Text(
-              //       '${Utils.getCountryName(country, widget.locale)}',
-              //       textDirection: Directionality.of(context),
-              //       textAlign: TextAlign.start,
-              //     ),
-              //   ),
-              //   subtitle: Align(
-              //     alignment: AlignmentDirectional.centerStart,
-              //     child: Text(
-              //       '${country.dialCode ?? ''}',
-              //       textDirection: TextDirection.ltr,
-              //       textAlign: TextAlign.start,
-              //     ),
-              //   ),
-              //   onTap: () => Navigator.of(context).pop(country),
-              // );
-            },
+                  return DirectionalCountryListTile(
+                    country: country,
+                    locale: widget.locale,
+                    showFlags: widget.showFlags!,
+                    useEmoji: widget.useEmoji!,
+                  );
+                  // return ListTile(
+                  //   key: Key(TestHelper.countryItemKeyValue(country.alpha2Code)),
+                  //   leading: widget.showFlags!
+                  //       ? _Flag(country: country, useEmoji: widget.useEmoji)
+                  //       : null,
+                  //   title: Align(
+                  //     alignment: AlignmentDirectional.centerStart,
+                  //     child: Text(
+                  //       '${Utils.getCountryName(country, widget.locale)}',
+                  //       textDirection: Directionality.of(context),
+                  //       textAlign: TextAlign.start,
+                  //     ),
+                  //   ),
+                  //   subtitle: Align(
+                  //     alignment: AlignmentDirectional.centerStart,
+                  //     child: Text(
+                  //       '${country.dialCode ?? ''}',
+                  //       textDirection: TextDirection.ltr,
+                  //       textAlign: TextAlign.start,
+                  //     ),
+                  //   ),
+                  //   onTap: () => Navigator.of(context).pop(country),
+                  // );
+                },
+              ),
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 
@@ -188,6 +196,7 @@ class _Flag extends StatelessWidget {
                   )
                 : country?.flagUri != null
                     ? CircleAvatar(
+                        backgroundColor: Colors.white,
                         backgroundImage: AssetImage(
                           country!.flagUri,
                           package: 'intl_phone_number_input',

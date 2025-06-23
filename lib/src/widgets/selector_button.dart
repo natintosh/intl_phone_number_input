@@ -19,6 +19,7 @@ class SelectorButton extends StatelessWidget {
   final bool isScrollControlled;
 
   final ValueChanged<Country?> onCountryChanged;
+  final Color? searchListBackgroundColor;
 
   const SelectorButton({
     Key? key,
@@ -32,6 +33,7 @@ class SelectorButton extends StatelessWidget {
     required this.onCountryChanged,
     required this.isEnabled,
     required this.isScrollControlled,
+    this.searchListBackgroundColor = Colors.white,
   }) : super(key: key);
 
   @override
@@ -62,10 +64,16 @@ class SelectorButton extends StatelessWidget {
                 trailingSpace: selectorConfig.trailingSpace,
                 textStyle: selectorTextStyle,
               )
-        : MaterialButton(
+        : TextButton(
             key: Key(TestHelper.DropdownButtonKeyValue),
-            padding: EdgeInsets.zero,
-            minWidth: 0,
+            style: ButtonStyle(
+              padding: MaterialStateProperty.all(EdgeInsets.zero),
+              minimumSize: MaterialStateProperty.all(Size.zero),
+              tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+              visualDensity: VisualDensity.compact,
+              overlayColor: MaterialStateProperty.all(Colors.transparent),
+              splashFactory: NoSplash.splashFactory,
+            ),
             onPressed: countries.isNotEmpty && countries.length > 1 && isEnabled
                 ? () async {
                     Country? selected;
@@ -123,10 +131,12 @@ class SelectorButton extends StatelessWidget {
       context: inheritedContext,
       barrierDismissible: true,
       builder: (BuildContext context) => AlertDialog(
+        backgroundColor: Colors.white,
         content: Directionality(
           textDirection: Directionality.of(inheritedContext),
           child: Container(
-            width: double.maxFinite,
+            width: _getDialogWidth(inheritedContext),
+            color: Colors.transparent,
             child: CountrySearchListWidget(
               countries,
               locale,
@@ -134,11 +144,22 @@ class SelectorButton extends StatelessWidget {
               showFlags: selectorConfig.showFlags,
               useEmoji: selectorConfig.useEmoji,
               autoFocus: autoFocusSearchField,
+              backgroundColor: searchListBackgroundColor,
             ),
           ),
         ),
       ),
     );
+  }
+
+  double _getDialogWidth(BuildContext context) {
+    final mediaQuery = MediaQuery.maybeOf(context);
+    if (mediaQuery == null) return 300;
+
+    final screenWidth = mediaQuery.size.width;
+    if (screenWidth > 1200) return screenWidth * 0.3; // Large desktop: 30%
+    if (screenWidth > 600) return screenWidth * 0.4; // Desktop: 40%
+    return screenWidth * 0.8; // Tablet/Mobile: 80%
   }
 
   /// shows a Dialog with list [countries] if the [PhoneInputSelectorType.BOTTOM_SHEET] is selected
@@ -183,6 +204,7 @@ class SelectorButton extends StatelessWidget {
                       showFlags: selectorConfig.showFlags,
                       useEmoji: selectorConfig.useEmoji,
                       autoFocus: autoFocusSearchField,
+                      backgroundColor: searchListBackgroundColor,
                     ),
                   ),
                 );

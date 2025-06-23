@@ -79,6 +79,7 @@ InternationalPhoneNumberInput({
       this.autoFocus = false,
       this.autoFocusSearch = false,
       this.autoValidateMode = AutovalidateMode.disabled,
+      this.autoCountryDetection = false,
       this.ignoreBlank = false,
       this.countrySelectorScrollControlled = true,
       this.locale,
@@ -109,41 +110,42 @@ SelectorConfig({
 });
 ```
 
-| Parameter                           | Datatype               |    Initial Value          |
-|---------------------------------    |------------------------|---------------------------|
-| onInputChanged                      | function(PhoneNumber)  |        null               |
-| onSaved                             | function(PhoneNumber)  |        null               |
-| onInputValidated                    | function(bool)         |        null               |
-| focusNode                           | FocusNode              |        null               |
-| textFieldController                 | TextEditingController  |   TextEditingController() |
-| onSubmit                            | Function()             |        null               |
-| keyboardAction                      | TextInputAction        |        null               |
-| keyboardType                        | TextInputType          |   TextInputType.phone     |
-| countries                           | List<string>           |        null               |
-| textStyle                           | TextStyle              |        null               |
-| selectorTextStyle                   | TextStyle              |        null               |
-| inputBorder                         | InputBorder            |        null               |
-| inputDecoration                     | InputDecoration        |        null               |
-| initialValue                        | PhoneNumber            |        null               |
-| hintText                            | String                 |     Phone Number          |
-| selectorButtonOnErrorPadding        | double                 |        24                 |
-| spaceBetweenSelectorAndTextField    | double                 |        12                 |
-| maxLength                           | integer                |        15                 |
-| isEnabled                           | boolean                |        true               |
-| autoFocus                           | boolean                |        false              |
-| autoValidateMode                    | AutoValidateMode       | AutoValidateMode.disabled |
-| formatInput                         | boolean                |        true               |
-| errorMessage                        | String                 | Invalid phone number      |
-| selectorConfig                      | SelectorConfig         | SelectorConfig()          |
-| ignoreBlank                         | boolean                |       false               |
-| locale                              | String                 |       null                |
-| searchBoxDecoration                 | InputDecoration        |        null               |
-| textAlign                           | TextAlign              |   TextAlign.start         |
-| textAlignVertical                   | TextAlignVertical      | TextAlignVertical.center  |
-| scrollPadding                       | EdgeInsets             | EdgeInsets.all(20.0)      |
-| countrySelectorScrollControlled     | boolean                |        true               |
-| cursorColor                         | String     \            |       null                |
-| autofillHints                       | Iterable<String>       |       null                |
+| Parameter                            | Datatype               |    Initial Value          |
+|--------------------------------------|------------------------|---------------------------|
+| onInputChanged                       | function(PhoneNumber)  |        null               |
+| onSaved                              | function(PhoneNumber)  |        null               |
+| onInputValidated                     | function(bool)         |        null               |
+| focusNode                            | FocusNode              |        null               |
+| textFieldController                  | TextEditingController  |   TextEditingController() |
+| onSubmit                             | Function()             |        null               |
+| keyboardAction                       | TextInputAction        |        null               |
+| keyboardType                         | TextInputType          |   TextInputType.phone     |
+| countries                            | List<string>           |        null               |
+| textStyle                            | TextStyle              |        null               |
+| selectorTextStyle                    | TextStyle              |        null               |
+| inputBorder                          | InputBorder            |        null               |
+| inputDecoration                      | InputDecoration        |        null               |
+| initialValue                         | PhoneNumber            |        null               |
+| hintText                             | String                 |     Phone Number          |
+| selectorButtonOnErrorPadding         | double                 |        24                 |
+| spaceBetweenSelectorAndTextField     | double                 |        12                 |
+| maxLength                            | integer                |        15                 |
+| isEnabled                            | boolean                |        true               |
+| autoFocus                            | boolean                |        false              |
+| autoCountryDetection                 | boolean                |        false              |
+| autoValidateMode                     | AutoValidateMode       | AutoValidateMode.disabled |
+| formatInput                          | boolean                |        true               |
+| errorMessage                         | String                 | Invalid phone number      |
+| selectorConfig                       | SelectorConfig         | SelectorConfig()          |
+| ignoreBlank                          | boolean                |       false               |
+| locale                               | String                 |       null                |
+| searchBoxDecoration                  | InputDecoration        |        null               |
+| textAlign                            | TextAlign              |   TextAlign.start         |
+| textAlignVertical                    | TextAlignVertical      | TextAlignVertical.center  |
+| scrollPadding                        | EdgeInsets             | EdgeInsets.all(20.0)      |
+| countrySelectorScrollControlled      | boolean                |        true               |
+| cursorColor                          | String     \            |       null                |
+| autofillHints                        | Iterable<String>       |       null                |
 
 ### Selector Types
 | DROPDOWN | BOTTOMSHEET | DIALOG |

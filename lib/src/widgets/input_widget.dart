@@ -1,7 +1,9 @@
 import 'dart:async';
+import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:intl/intl.dart' as intl;
 import 'package:intl_phone_number_input/src/models/country_list.dart';
 import 'package:intl_phone_number_input/src/models/country_model.dart';
 import 'package:intl_phone_number_input/src/providers/country_provider.dart';
@@ -51,7 +53,7 @@ class InternationalPhoneNumberInput extends StatefulWidget {
   final TextInputType keyboardType;
   final TextInputAction? keyboardAction;
 
-  final PhoneNumber? initialValue;
+  PhoneNumber? initialValue;
   final String? hintText;
   final String? errorMessage;
 
@@ -66,6 +68,7 @@ class InternationalPhoneNumberInput extends StatefulWidget {
   final bool autoFocus;
   final bool autoFocusSearch;
   final AutovalidateMode autoValidateMode;
+  final bool autoCountryDetection;
   final bool ignoreBlank;
   final bool countrySelectorScrollControlled;
 
@@ -85,6 +88,8 @@ class InternationalPhoneNumberInput extends StatefulWidget {
   final Iterable<String>? autofillHints;
 
   final List<String>? countries;
+
+  final Color? searchListBackgroundColor;
 
   InternationalPhoneNumberInput(
       {Key? key,
@@ -110,6 +115,7 @@ class InternationalPhoneNumberInput extends StatefulWidget {
       this.autoFocus = false,
       this.autoFocusSearch = false,
       this.autoValidateMode = AutovalidateMode.disabled,
+      this.autoCountryDetection = false,
       this.ignoreBlank = false,
       this.countrySelectorScrollControlled = true,
       this.locale,
@@ -124,7 +130,8 @@ class InternationalPhoneNumberInput extends StatefulWidget {
       this.focusNode,
       this.cursorColor,
       this.autofillHints,
-      this.countries})
+      this.countries,
+      this.searchListBackgroundColor = Colors.white,})
       : super(key: key);
 
   @override
@@ -175,6 +182,13 @@ class _InputWidgetState extends State<InternationalPhoneNumberInput> {
 
   /// [initialiseWidget] sets initial values of the widget
   void initialiseWidget() async {
+    if (widget.autoCountryDetection &&
+        PlatformDispatcher.instance.locale.countryCode != null) {
+      widget.initialValue = PhoneNumber(
+        isoCode: PlatformDispatcher.instance.locale.countryCode,
+      );
+    }
+
     if (widget.initialValue != null) {
       if (widget.initialValue!.phoneNumber != null &&
           widget.initialValue!.phoneNumber!.isNotEmpty &&
@@ -227,6 +241,22 @@ class _InputWidgetState extends State<InternationalPhoneNumberInput> {
     if (this.mounted) {
       String parsedPhoneNumberString =
           controller!.text.replaceAll(RegExp(r'[^\d+]'), '');
+
+      // Skip checking if the country code is +888
+      if (this.country?.dialCode == '+888' && parsedPhoneNumberString.length >= 5) {
+        if (widget.onInputChanged != null) {
+          widget.onInputChanged!(PhoneNumber(
+              phoneNumber: parsedPhoneNumberString,
+              isoCode: this.country?.alpha2Code,
+              dialCode: this.country?.dialCode));
+        }
+
+        if (widget.onInputValidated != null) {
+          widget.onInputValidated!(true);
+        }
+        this.isNotValid = false;
+        return;
+      }
 
       getParsedPhoneNumber(parsedPhoneNumberString, this.country?.alpha2Code)
           .then((phoneNumber) {
@@ -318,6 +348,10 @@ class _InputWidgetState extends State<InternationalPhoneNumberInput> {
   ///
   /// Also updates [selectorButtonBottomPadding]
   String? validator(String? value) {
+    if (country?.dialCode == '+888' && (value?.length ?? 0) >= 5) {
+      return null;
+    }
+
     bool isValid =
         this.isNotValid && (value!.isNotEmpty || widget.ignoreBlank == false);
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
@@ -421,7 +455,9 @@ class _InputWidgetView
           Flexible(
             child: TextFormField(
               key: widget.fieldKey ?? Key(TestHelper.TextInputKeyValue),
-              textDirection: TextDirection.ltr,
+              textDirection: intl.Bidi.isRtlLanguage(state.locale ?? Localizations.localeOf(context).languageCode)
+                             ? TextDirection.rtl
+                             : TextDirection.ltr,
               controller: state.controller,
               cursorColor: widget.cursorColor,
               focusNode: widget.focusNode,
