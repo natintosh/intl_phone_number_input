@@ -31,81 +31,84 @@ class AsYouTypeFormatter extends TextInputFormatter {
       required this.dialCode,
       required this.onInputFormatted});
 
-  @override
+@override
   TextEditingValue formatEditUpdate(
       TextEditingValue oldValue, TextEditingValue newValue) {
     int oldValueLength = oldValue.text.length;
     int newValueLength = newValue.text.length;
 
-    if (newValueLength > 0 && newValueLength > oldValueLength) {
-      String newValueText = newValue.text;
-      String rawText = newValueText.replaceAll(separatorChars, '');
+    if (newValueLength == 0 || newValueLength <= oldValueLength) {
+      return newValue;
+    }
 
-      int rawCursorPosition = newValue.selection.end;
+    String newValueText = newValue.text;
+    String rawText = newValueText.replaceAll(separatorChars, '');
 
-      int digitsBeforeCursor = 0, digitsAfterCursor = 0;
+    final originalSelection = newValue.selection;
+    int rawCursorPosition = originalSelection.end;
 
-      if (rawCursorPosition > 0 && rawCursorPosition <= newValueText.length) {
-        final rawTextBeforeCursor = newValueText
-            .substring(0, rawCursorPosition)
-            .replaceAll(separatorChars, '');
-        final rawTextAfterCursor = newValueText
-            .substring(rawCursorPosition)
-            .replaceAll(separatorChars, '');
+    int digitsBeforeCursor = 0, digitsAfterCursor = 0;
 
-        digitsBeforeCursor = rawTextBeforeCursor.length;
-        digitsAfterCursor = rawTextAfterCursor.length;
-      }
+    if (rawCursorPosition > 0 && rawCursorPosition <= newValueText.length) {
+      final rawTextBeforeCursor = newValueText
+          .substring(0, rawCursorPosition)
+          .replaceAll(separatorChars, '');
+      final rawTextAfterCursor = newValueText
+          .substring(rawCursorPosition)
+          .replaceAll(separatorChars, '');
 
-      String textToParse = dialCode + rawText;
+      digitsBeforeCursor = rawTextBeforeCursor.length;
+      digitsAfterCursor = rawTextAfterCursor.length;
+    }
 
-      formatAsYouType(input: textToParse).then(
-            (String? value) {
-          String parsedText = parsePhoneNumber(value);
+    String textToParse = dialCode + rawText;
 
-          int newCursorPosition = 0;
+    formatAsYouType(input: textToParse).then(
+      (String? value) {
+        String parsedText = parsePhoneNumber(value);
+        int newCursorPosition = 0;
 
-          if (digitsBeforeCursor > 0 || digitsAfterCursor > 0) {
-            for (var i = 0; i < parsedText.length; i++) {
-              final startCursor = i;
+        if (digitsBeforeCursor > 0 || digitsAfterCursor > 0) {
+          for (var i = 0; i < parsedText.length; i++) {
+            final startCursor = i;
 
-              if (allowedChars.hasMatch(parsedText[startCursor])) {
-                if (digitsBeforeCursor > 0) {
-                  digitsBeforeCursor--;
-                } else {
-                  newCursorPosition = startCursor + 1;
-                  break;
-                }
+            if (allowedChars.hasMatch(parsedText[startCursor])) {
+              if (digitsBeforeCursor > 0) {
+                digitsBeforeCursor--;
+              } else {
+                newCursorPosition = startCursor;
+                break;
               }
+            }
 
-              final endCursor = parsedText.length - 1 - i;
+            final endCursor = parsedText.length - 1 - i;
 
-              if (allowedChars.hasMatch(parsedText[endCursor])) {
-                if (digitsAfterCursor > 0) {
-                  digitsAfterCursor--;
-                } else {
-                  newCursorPosition = endCursor + 1;
-                  break;
-                }
+            if (allowedChars.hasMatch(parsedText[endCursor])) {
+              if (digitsAfterCursor > 0) {
+                digitsAfterCursor--;
+              } else {
+                newCursorPosition = endCursor;
+                break;
               }
             }
           }
+        }
 
-          newCursorPosition = min(max(newCursorPosition, 0), parsedText.length);
+        newCursorPosition = min(max(newCursorPosition, 0), parsedText.length);
 
-          this.onInputFormatted(
-            TextEditingValue(
-              text: parsedText,
-              selection: TextSelection.collapsed(offset: newCursorPosition),
-            ),
-          );
-        },
-      );
-    }
+        final selection = TextSelection.collapsed(offset: newCursorPosition);
+
+        this.onInputFormatted(
+          TextEditingValue(
+            text: parsedText,
+            selection: selection,
+          ),
+        );
+      },
+    );
 
     return newValue;
   }
-
   /// Accepts [input], unformatted phone number and
   /// returns a [Future<String>] of the formatted phone number.
   Future<String?> formatAsYouType({required String input}) async {
