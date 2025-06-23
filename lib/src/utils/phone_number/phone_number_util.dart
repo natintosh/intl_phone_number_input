@@ -7,13 +7,17 @@ class PhoneNumberUtil {
   /// [isValidNumber] checks if a [phoneNumber] is valid.
   /// Accepts [phoneNumber] and [isoCode]
   /// Returns [Future<bool>].
-  static Future<bool?> isValidNumber(
+  static Future<bool> isValidNumber(
       {required String phoneNumber, required String isoCode}) async {
     if (phoneNumber.length < 2) {
       return false;
     }
-    final number = phoneUtil.parse(phoneNumber, isoCode.toUpperCase());
-    return phoneUtil.isValidNumber(number);
+    try {
+      final number = phoneUtil.parse(phoneNumber, isoCode.toUpperCase());
+      return phoneUtil.isValidNumber(number);
+    } catch (e) {
+      return false;
+    }
   }
 
   /// [normalizePhoneNumber] normalizes a string of characters representing a phone number

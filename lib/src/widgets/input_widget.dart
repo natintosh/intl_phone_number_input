@@ -301,7 +301,7 @@ class _InputWidgetState extends State<InternationalPhoneNumberInput> {
         bool? isValidPhoneNumber = await PhoneNumberUtil.isValidNumber(
             phoneNumber: phoneNumber, isoCode: isoCode);
 
-        if (isValidPhoneNumber!) {
+        if (isValidPhoneNumber) {
           return await PhoneNumberUtil.normalizePhoneNumber(
               phoneNumber: phoneNumber, isoCode: isoCode);
         }
