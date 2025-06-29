@@ -1,10 +1,10 @@
 name: intl_phone_number_input
 description: A simple and customizable flutter package for inputting phone number in intl / international format uses Google's libphonenumber.
-version: 0.7.5
+version: 0.8.0
 homepage: https://github.com/natintosh/intl-phone-number-input
 
 environment:
-  sdk: '>=3.0.2 <4.0.0'
+  sdk: ">=3.5.4 <4.0.0"
 
 dependencies:
   flutter:
@@ -17,7 +17,6 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
