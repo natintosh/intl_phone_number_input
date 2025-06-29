@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:intl_phone_number_input/src/models/country_model.dart';
+import 'package:intl_phone_number_input/src/utils/selector_config.dart';
 import 'package:intl_phone_number_input/src/utils/util.dart';
 
 /// [Item]
 class Item extends StatelessWidget {
   final Country? country;
   final bool? showFlag;
+  final FlagShape? flagShape;
+  final double? flagSize;
   final bool? useEmoji;
   final TextStyle? textStyle;
   final bool withCountryNames;
@@ -21,6 +24,8 @@ class Item extends StatelessWidget {
     this.withCountryNames = false,
     this.leadingPadding = 12,
     this.trailingSpace = true,
+    this.flagShape,
+    this.flagSize = 32,
   }) : super(key: key);
 
   @override
@@ -38,6 +43,8 @@ class Item extends StatelessWidget {
           _Flag(
             country: country,
             showFlag: showFlag,
+            flagShape: flagShape,
+            flagSize: flagSize,
             useEmoji: useEmoji,
           ),
           SizedBox(width: 12.0),
@@ -55,10 +62,18 @@ class Item extends StatelessWidget {
 class _Flag extends StatelessWidget {
   final Country? country;
   final bool? showFlag;
+  final FlagShape? flagShape;
+  final double? flagSize;
   final bool? useEmoji;
 
-  const _Flag({Key? key, this.country, this.showFlag, this.useEmoji})
-      : super(key: key);
+  const _Flag({
+    Key? key,
+    this.country,
+    this.showFlag,
+    this.useEmoji,
+    this.flagSize,
+    this.flagShape,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -69,14 +84,34 @@ class _Flag extends StatelessWidget {
                     Utils.generateFlagEmojiUnicode(country?.alpha2Code ?? ''),
                     style: Theme.of(context).textTheme.headlineSmall,
                   )
-                : Image.asset(
-                    country!.flagUri,
-                    width: 32.0,
-                    package: 'intl_phone_number_input',
-                    errorBuilder: (context, error, stackTrace) {
-                      return SizedBox.shrink();
-                    },
-                  ),
+                : switch (flagShape) {
+                    FlagShape.square => Image.asset(
+                        country!.flagUri,
+                        height: flagSize,
+                        width: flagSize ?? 32.0,
+                        fit: BoxFit.cover,
+                        package: 'intl_phone_number_input',
+                        errorBuilder: (context, error, stackTrace) {
+                          return SizedBox.shrink();
+                        },
+                      ),
+                    FlagShape.circle => CircleAvatar(
+                        backgroundImage: AssetImage(
+                          country!.flagUri,
+                          package: 'intl_phone_number_input',
+                        ),
+                        radius: flagSize! / 2,
+                      ),
+                    (FlagShape.rectangle || null) => Image.asset(
+                        country!.flagUri,
+                        height: flagSize,
+                        width: flagSize ?? 32.0,
+                        package: 'intl_phone_number_input',
+                        errorBuilder: (context, error, stackTrace) {
+                          return SizedBox.shrink();
+                        },
+                      ),
+                  },
           )
         : SizedBox.shrink();
   }
