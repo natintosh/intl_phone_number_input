@@ -19,6 +19,7 @@ class SelectorButton extends StatelessWidget {
   final bool isScrollControlled;
 
   final ValueChanged<Country?> onCountryChanged;
+  final EdgeInsets buttonPadding;
 
   const SelectorButton({
     Key? key,
@@ -32,6 +33,7 @@ class SelectorButton extends StatelessWidget {
     required this.onCountryChanged,
     required this.isEnabled,
     required this.isScrollControlled,
+    required this.buttonPadding,
   }) : super(key: key);
 
   @override
@@ -84,7 +86,7 @@ class SelectorButton extends StatelessWidget {
                   }
                 : null,
             child: Padding(
-              padding: const EdgeInsets.only(right: 8.0),
+              padding: buttonPadding,
               child: Item(
                 country: country,
                 showFlag: selectorConfig.showFlags,
