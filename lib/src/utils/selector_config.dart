@@ -27,14 +27,14 @@ class SelectorConfig {
   /// [setSelectorButtonAsPrefixIcon], this sets/places the selector button inside the [TextField] as a prefixIcon.
   final bool setSelectorButtonAsPrefixIcon;
 
-  /// Space before the flag icon
-  final double? leadingPadding;
-
   /// Add white space for short dial code
   final bool trailingSpace;
 
   /// Use safe area for selectorType=BOTTOM_SHEET
   final bool useBottomSheetSafeArea;
+
+  /// The padding around the selector.
+  final EdgeInsets? padding;
 
   const SelectorConfig({
     this.selectorType = PhoneInputSelectorType.DROPDOWN,
@@ -42,8 +42,8 @@ class SelectorConfig {
     this.useEmoji = false,
     this.countryComparator,
     this.setSelectorButtonAsPrefixIcon = false,
-    this.leadingPadding,
     this.trailingSpace = true,
     this.useBottomSheetSafeArea = false,
+    this.padding,
   });
 }

@@ -9,7 +9,6 @@ class Item extends StatelessWidget {
   final bool? useEmoji;
   final TextStyle? textStyle;
   final bool withCountryNames;
-  final double? leadingPadding;
   final bool trailingSpace;
 
   const Item({
@@ -19,7 +18,6 @@ class Item extends StatelessWidget {
     this.useEmoji,
     this.textStyle,
     this.withCountryNames = false,
-    this.leadingPadding = 12,
     this.trailingSpace = true,
   }) : super(key: key);
 
@@ -34,7 +32,6 @@ class Item extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          SizedBox(width: leadingPadding),
           _Flag(
             country: country,
             showFlag: showFlag,
