@@ -22,68 +22,323 @@ import 'package:intl_phone_number_input/src/widgets/selector_button.dart';
 ///   * [PhoneInputSelectorType.DIALOG]
 enum PhoneInputSelectorType { DROPDOWN, BOTTOM_SHEET, DIALOG }
 
-/// A [TextFormField] for [InternationalPhoneNumberInput].
+/// A customizable international phone number input widget for Flutter.
 ///
-/// [initialValue] accepts a [PhoneNumber] this is used to set initial values
-/// for phone the input field and the selector button
+/// This widget provides a text field for phone number input with an integrated
+/// country selector that supports multiple display modes (dropdown, bottom sheet, dialog).
+/// It uses Google's libphonenumber for validation and formatting.
 ///
-/// [selectorButtonOnErrorPadding] is a double which is used to align the selector
-/// button with the input field when an error occurs
+/// ## Features
+/// * International phone number formatting as you type
+/// * Country selection with flags (PNG or emoji)
+/// * Multiple selector types: dropdown, bottom sheet, dialog
+/// * Real-time validation
+/// * RTL language support
+/// * Highly customizable appearance
+/// * Form integration with validation support
 ///
-/// [locale] accepts a country locale which will be used to translation, if the
-/// translation exist
+/// ## Basic Usage
+/// ```dart
+/// InternationalPhoneNumberInput(
+///   onInputChanged: (PhoneNumber number) {
+///     print(number.phoneNumber);
+///   },
+///   onInputValidated: (bool value) {
+///     print('Is valid: $value');
+///   },
+///   selectorConfig: SelectorConfig(
+///     selectorType: PhoneInputSelectorType.BOTTOM_SHEET,
+///   ),
+///   ignoreBlank: false,
+///   autoValidateMode: AutovalidateMode.disabled,
+///   selectorTextStyle: TextStyle(color: Colors.black),
+///   initialValue: PhoneNumber(isoCode: 'NG'),
+///   textFieldController: myController,
+///   formatInput: false,
+///   keyboardType: TextInputType.numberWithOptions(signed: true, decimal: true),
+///   inputBorder: OutlineInputBorder(),
+///   onSaved: (PhoneNumber number) {
+///     print('On Saved: $number');
+///   },
+/// )
+/// ```
 ///
-/// [countries] accepts list of string on Country isoCode, if specified filters
-/// available countries to match the [countries] specified.
+/// ## Country Filtering
+/// To limit available countries, provide a list of ISO codes:
+/// ```dart
+/// InternationalPhoneNumberInput(
+///   countries: ['NG', 'US', 'GB', 'CA'],
+///   // ... other parameters
+/// )
+/// ```
+///
+/// ## Validation
+/// The widget provides built-in validation through [onInputValidated] callback.
+/// For form integration, use the [validator] parameter:
+/// ```dart
+/// InternationalPhoneNumberInput(
+///   validator: (String? value) {
+///     if (value == null || value.isEmpty) {
+///       return 'Please enter a phone number';
+///     }
+///     return null;
+///   },
+///   // ... other parameters
+/// )
+/// ```
+///
+/// See also:
+/// * [SelectorConfig] for customizing the country selector appearance
+/// * [PhoneNumber] for the data structure returned by callbacks
+/// * [PhoneInputSelectorType] for available selector display modes
 class InternationalPhoneNumberInput extends StatefulWidget {
+  /// Configuration for the country selector button and popup.
+  ///
+  /// Controls the appearance and behavior of the country selector including
+  /// display type (dropdown/bottom sheet/dialog), flags visibility, and styling.
   final SelectorConfig selectorConfig;
 
+  /// Called whenever the phone number input changes.
+  ///
+  /// This callback is triggered on every keystroke and provides a [PhoneNumber]
+  /// object containing the current phone number, dial code, and ISO country code.
+  ///
+  /// Example:
+  /// ```dart
+  /// onInputChanged: (PhoneNumber number) {
+  ///   print('Phone: ${number.phoneNumber}');
+  ///   print('Country: ${number.isoCode}');
+  ///   print('Dial Code: ${number.dialCode}');
+  /// },
+  /// ```
   final ValueChanged<PhoneNumber>? onInputChanged;
+
+  /// Called when the phone number validation status changes.
+  ///
+  /// Provides a boolean indicating whether the current phone number is valid
+  /// according to international phone number standards.
+  ///
+  /// Example:
+  /// ```dart
+  /// onInputValidated: (bool isValid) {
+  ///   setState(() {
+  ///     _isValidNumber = isValid;
+  ///   });
+  /// },
+  /// ```
   final ValueChanged<bool>? onInputValidated;
 
+  /// Called when the user taps the submit button (if provided).
+  ///
+  /// This is typically triggered by keyboard actions like "done" or "submit".
   final VoidCallback? onSubmit;
+
+  /// Called when the text field is submitted with the current text value.
+  ///
+  /// Similar to [TextFormField.onFieldSubmitted], provides the raw text
+  /// from the input field when submitted.
   final ValueChanged<String>? onFieldSubmitted;
+
+  /// Validator function for form integration.
+  ///
+  /// Should return null if the input is valid, or an error message string
+  /// if validation fails. Used with [Form] widgets for validation.
+  ///
+  /// Example:
+  /// ```dart
+  /// validator: (String? value) {
+  ///   if (value == null || value.isEmpty) {
+  ///     return 'Phone number is required';
+  ///   }
+  ///   if (!isValidPhoneNumber(value)) {
+  ///     return 'Please enter a valid phone number';
+  ///   }
+  ///   return null;
+  /// },
+  /// ```
   final String? Function(String?)? validator;
+
+  /// Called when the form is saved with the current [PhoneNumber].
+  ///
+  /// Used with [Form.save()] for form data collection.
   final ValueChanged<PhoneNumber>? onSaved;
 
+  /// Key for the internal text field widget.
+  ///
+  /// Useful for testing or when you need to directly reference the text field.
   final Key? fieldKey;
+
+  /// Controller for the text field.
+  ///
+  /// If not provided, an internal controller will be created. Use this to
+  /// programmatically control the text field content or to listen to changes.
   final TextEditingController? textFieldController;
+
+  /// The type of keyboard to display for the text input.
+  ///
+  /// Defaults to [TextInputType.phone] which shows a numeric keypad
+  /// optimized for phone number entry.
   final TextInputType keyboardType;
+
+  /// The action button to display in the keyboard.
+  ///
+  /// Examples: [TextInputAction.done], [TextInputAction.next], etc.
   final TextInputAction? keyboardAction;
 
+  /// Initial phone number to display in the widget.
+  ///
+  /// Should include both the phone number and the country ISO code.
+  /// The widget will format and validate this number on initialization.
+  ///
+  /// Example:
+  /// ```dart
+  /// initialValue: PhoneNumber(
+  ///   phoneNumber: '+1234567890',
+  ///   isoCode: 'US',
+  ///   dialCode: '+1',
+  /// ),
+  /// ```
   final PhoneNumber? initialValue;
+
+  /// Placeholder text displayed when the input is empty.
+  ///
+  /// Defaults to 'Phone number'.
   final String? hintText;
+
+  /// Error message displayed when validation fails.
+  ///
+  /// Defaults to 'Invalid phone number'.
   final String? errorMessage;
 
+  /// Bottom padding for the selector button when an error is displayed.
+  ///
+  /// This helps align the selector button with the text field when
+  /// error text causes the text field to shift down. Defaults to 24.0.
   final double selectorButtonOnErrorPadding;
 
-  /// Ignored if [setSelectorButtonAsPrefixIcon = true]
+  /// Horizontal spacing between selector button and text field.
+  ///
+  /// This is ignored when [SelectorConfig.setSelectorButtonAsPrefixIcon] is true.
+  /// Defaults to 12.0.
   final double spaceBetweenSelectorAndTextField;
+
+  /// Maximum number of characters allowed in the input.
+  ///
+  /// Defaults to 15. Set to null for no limit.
   final int maxLength;
 
+  /// Whether the input field is enabled for user interaction.
+  ///
+  /// When false, the field appears greyed out and cannot be edited.
+  /// Defaults to true.
   final bool isEnabled;
+
+  /// Whether to format the input as the user types.
+  ///
+  /// When true, applies international formatting (spaces, dashes) as the user
+  /// types. When false, only digits are allowed. Defaults to true.
   final bool formatInput;
+
+  /// Whether the text field should automatically get focus when created.
+  ///
+  /// Defaults to false.
   final bool autoFocus;
+
+  /// Whether the country search field should automatically get focus.
+  ///
+  /// Applies when the selector popup (bottom sheet/dialog) is opened.
+  /// Defaults to false.
   final bool autoFocusSearch;
+
+  /// When to perform validation automatically.
+  ///
+  /// See [AutovalidateMode] for available options. Defaults to
+  /// [AutovalidateMode.disabled].
   final AutovalidateMode autoValidateMode;
+
+  /// Whether to ignore validation when the input is blank.
+  ///
+  /// When true, empty input is considered valid. Defaults to false.
   final bool ignoreBlank;
+
+  /// Whether the country selector popup should be scroll controlled.
+  ///
+  /// When true, the popup will control its own scrolling behavior.
+  /// Defaults to true.
   final bool countrySelectorScrollControlled;
 
+  /// Locale code for internationalization.
+  ///
+  /// Used for translating country names and other text elements.
+  /// Should be a valid locale code like 'en', 'es', 'fr', etc.
   final String? locale;
 
+  /// Text style for the phone number input field.
+  ///
+  /// If not provided, uses the theme's default text field style.
   final TextStyle? textStyle;
+
+  /// Text style for the country selector button.
+  ///
+  /// Applied to the country code and flag text in the selector button.
   final TextStyle? selectorTextStyle;
+
+  /// Border decoration for the input field.
+  ///
+  /// If not provided, uses the default [InputDecoration] border.
   final InputBorder? inputBorder;
+
+  /// Full decoration for the input field.
+  ///
+  /// Allows complete customization of the text field appearance including
+  /// hint text, labels, icons, borders, etc. Takes precedence over [inputBorder].
   final InputDecoration? inputDecoration;
+
+  /// Decoration for the country search box in selector popups.
+  ///
+  /// Customizes the appearance of the search field in bottom sheet and dialog selectors.
   final InputDecoration? searchBoxDecoration;
+
+  /// Color of the text field cursor.
+  ///
+  /// If not provided, uses the theme's default cursor color.
   final Color? cursorColor;
+
+  /// Horizontal alignment of the text within the input field.
+  ///
+  /// Defaults to [TextAlign.start].
   final TextAlign textAlign;
+
+  /// Vertical alignment of the text within the input field.
+  ///
+  /// Defaults to [TextAlignVertical.center].
   final TextAlignVertical textAlignVertical;
+
+  /// Padding around the text field when scrolled into view.
+  ///
+  /// Defaults to [EdgeInsets.all(20.0)].
   final EdgeInsets scrollPadding;
 
+  /// Focus node for the text field.
+  ///
+  /// Use this to programmatically control focus or listen to focus changes.
   final FocusNode? focusNode;
+
+  /// Autofill hints for the input field.
+  ///
+  /// Helps password managers and autofill services understand the field purpose.
+  /// Example: [AutofillHints.telephoneNumber].
   final Iterable<String>? autofillHints;
 
+  /// List of country ISO codes to filter available countries.
+  ///
+  /// When provided, only countries with these ISO codes will be available
+  /// for selection. Useful for restricting input to specific regions.
+  ///
+  /// Example:
+  /// ```dart
+  /// countries: ['US', 'CA', 'MX'], // North America only
+  /// ```
   final List<String>? countries;
 
   InternationalPhoneNumberInput(

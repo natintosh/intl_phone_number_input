@@ -17,8 +17,10 @@ main() {
     });
 
     tearDownAll(() async {
-      if (driver != null) {
-        driver.close();
+      try {
+        await driver.close();
+      } on LateInitializationError {
+        // driver was not initialized; nothing to close
       }
     });
 
