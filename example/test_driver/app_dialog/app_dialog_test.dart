@@ -17,9 +17,7 @@ main() {
     });
 
     tearDownAll(() async {
-      if (driver != null) {
-        driver.close();
-      }
+      driver.close();
     });
 
     test('Tap On TextField and enter text', () async {

@@ -1,89 +1,131 @@
 import 'package:flutter/material.dart';
-import 'package:intl_phone_number_input/intl_phone_number_input.dart';
+import 'validation_example.dart';
+import 'styling_example.dart';
+import 'advanced_example.dart';
 
-void main() => runApp(MyApp());
+/// Main example app showcasing all the different examples
+void main() => runApp(ExampleNavigatorApp());
 
-class MyApp extends StatelessWidget {
+class ExampleNavigatorApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    var darkTheme = ThemeData.dark().copyWith(primaryColor: Colors.blue);
-
     return MaterialApp(
-      title: 'Demo',
-      themeMode: ThemeMode.dark,
-      darkTheme: darkTheme,
+      title: 'Phone Number Input Examples',
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        useMaterial3: true,
       ),
-      home: Scaffold(
-        appBar: AppBar(title: Text('Demo')),
-        body: MyHomePage(),
-      ),
+      home: ExampleListPage(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
-
-  final TextEditingController controller = TextEditingController();
-  String initialCountry = 'NG';
-  PhoneNumber number = PhoneNumber(isoCode: 'NG');
-
+class ExampleListPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Form(
-      key: formKey,
-      child: Container(
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Phone Number Input Examples'),
+        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+      ),
+      body: Padding(
+        padding: EdgeInsets.all(16),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            InternationalPhoneNumberInput(
-              onInputChanged: (PhoneNumber number) {
-                print(number.phoneNumber);
-              },
-              onInputValidated: (bool value) {
-                print(value);
-              },
-              selectorConfig: SelectorConfig(
-                selectorType: PhoneInputSelectorType.BOTTOM_SHEET,
-                useBottomSheetSafeArea: true,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Explore Different Features',
+              style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                    fontWeight: FontWeight.bold,
+                  ),
+            ),
+            SizedBox(height: 8),
+            Text(
+              'Tap on any example below to see the intl_phone_number_input package in action.',
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                    color: Colors.grey[600],
+                  ),
+            ),
+            SizedBox(height: 24),
+            Expanded(
+              child: ListView(
+                children: [
+                  _buildExampleCard(
+                    context,
+                    icon: Icons.check_circle,
+                    title: 'Validation Example',
+                    description:
+                        'Real-time validation, form integration, and error handling',
+                    color: Colors.green,
+                    onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => ValidationExampleApp()),
+                    ),
+                  ),
+                  SizedBox(height: 16),
+                  _buildExampleCard(
+                    context,
+                    icon: Icons.palette,
+                    title: 'Styling Example',
+                    description:
+                        'Custom themes, colors, borders, and flag displays',
+                    color: Colors.purple,
+                    onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => StylingExampleApp()),
+                    ),
+                  ),
+                  SizedBox(height: 16),
+                  _buildExampleCard(
+                    context,
+                    icon: Icons.settings,
+                    title: 'Advanced Example',
+                    description:
+                        'API usage, controllers, callbacks, and real-time features',
+                    color: Colors.orange,
+                    onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => AdvancedExampleApp()),
+                    ),
+                  ),
+                ],
               ),
-              ignoreBlank: false,
-              autoValidateMode: AutovalidateMode.disabled,
-              selectorTextStyle: TextStyle(color: Colors.black),
-              initialValue: number,
-              textFieldController: controller,
-              formatInput: true,
-              keyboardType:
-                  TextInputType.numberWithOptions(signed: true, decimal: true),
-              inputBorder: OutlineInputBorder(),
-              onSaved: (PhoneNumber number) {
-                print('On Saved: $number');
-              },
             ),
-            ElevatedButton(
-              onPressed: () {
-                formKey.currentState?.validate();
-              },
-              child: Text('Validate'),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                getPhoneNumber('+15417543010');
-              },
-              child: Text('Update'),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                formKey.currentState?.save();
-              },
-              child: Text('Save'),
+            SizedBox(height: 16),
+            Card(
+              child: Padding(
+                padding: EdgeInsets.all(16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        Icon(Icons.info, color: Colors.blue),
+                        SizedBox(width: 8),
+                        Text(
+                          'About this Package',
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 8),
+                    Text(
+                      'The intl_phone_number_input package provides a customizable phone number input widget with built-in validation, formatting, and country selection.',
+                    ),
+                    SizedBox(height: 8),
+                    Text(
+                      'Package Version: 0.7.5',
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: Colors.grey[600],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ),
           ],
         ),
@@ -91,18 +133,67 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  void getPhoneNumber(String phoneNumber) async {
-    PhoneNumber number =
-        await PhoneNumber.getRegionInfoFromPhoneNumber(phoneNumber, 'US');
-
-    setState(() {
-      this.number = number;
-    });
-  }
-
-  @override
-  void dispose() {
-    controller.dispose();
-    super.dispose();
+  Widget _buildExampleCard(
+    BuildContext context, {
+    required IconData icon,
+    required String title,
+    required String description,
+    required Color color,
+    required VoidCallback onTap,
+  }) {
+    return Card(
+      elevation: 2,
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(12),
+        child: Padding(
+          padding: EdgeInsets.all(16),
+          child: Row(
+            children: [
+              Container(
+                padding: EdgeInsets.all(12),
+                decoration: BoxDecoration(
+                  color: color.withValues(alpha: 0.1),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: Icon(
+                  icon,
+                  color: color,
+                  size: 24,
+                ),
+              ),
+              SizedBox(width: 16),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      title,
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16,
+                      ),
+                    ),
+                    SizedBox(height: 4),
+                    Text(
+                      description,
+                      style: TextStyle(
+                        color: Colors.grey[600],
+                        fontSize: 14,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Icon(
+                Icons.arrow_forward_ios,
+                size: 16,
+                color: Colors.grey[400],
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }
