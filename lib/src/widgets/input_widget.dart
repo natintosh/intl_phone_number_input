@@ -340,6 +340,7 @@ class InternationalPhoneNumberInput extends StatefulWidget {
   /// countries: ['US', 'CA', 'MX'], // North America only
   /// ```
   final List<String>? countries;
+  final List<String>? prioritizedCountries;
 
   InternationalPhoneNumberInput(
       {Key? key,
@@ -379,7 +380,8 @@ class InternationalPhoneNumberInput extends StatefulWidget {
       this.focusNode,
       this.cursorColor,
       this.autofillHints,
-      this.countries})
+      this.countries,
+      this.prioritizedCountries})
       : super(key: key);
 
   @override
@@ -419,12 +421,6 @@ class _InputWidgetState extends State<InternationalPhoneNumberInput> {
   @override
   void didUpdateWidget(InternationalPhoneNumberInput oldWidget) {
     loadCountries(previouslySelectedCountry: country);
-    if (oldWidget.initialValue?.hash != widget.initialValue?.hash) {
-      if (country!.alpha2Code != widget.initialValue?.isoCode) {
-        loadCountries();
-      }
-      initialiseWidget();
-    }
     super.didUpdateWidget(oldWidget);
   }
 
@@ -451,8 +447,9 @@ class _InputWidgetState extends State<InternationalPhoneNumberInput> {
   /// loads countries from [Countries.countryList] and selected Country
   void loadCountries({Country? previouslySelectedCountry}) {
     if (this.mounted) {
-      List<Country> countries =
-          CountryProvider.getCountriesData(countries: widget.countries);
+      List<Country> countries = CountryProvider.getCountriesData(
+          countries: widget.countries,
+          prioritizedCountries: widget.prioritizedCountries);
 
       Country country = previouslySelectedCountry ??
           Utils.getInitialSelectedCountry(
