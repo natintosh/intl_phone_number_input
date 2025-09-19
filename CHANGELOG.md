@@ -1,3 +1,10 @@
+## [0.7.6]
+* **Expanded test coverage**: Added 44 comprehensive unit and widget tests
+* **Enhanced documentation**: Complete dartdocs for all public APIs with usage examples
+* **New example apps**: Added validation, styling, and advanced feature demonstrations
+* **Code quality improvements**: Fixed static analysis warnings and deprecated API usage
+* **Better developer experience**: Improved README with troubleshooting guide
+
 ## [0.7.5]
 * Fixed bug in `AsYouTypeFormatter` that could throw a `RangeError` if the user typed non digit characters
 
