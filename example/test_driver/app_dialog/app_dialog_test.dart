@@ -17,7 +17,11 @@ main() {
     });
 
     tearDownAll(() async {
-      driver.close();
+      try {
+        await driver.close();
+      } on LateInitializationError {
+        // driver was not initialized; nothing to close
+      }
     });
 
     test('Tap On TextField and enter text', () async {
