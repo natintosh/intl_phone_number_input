@@ -19,8 +19,9 @@ main() {
     tearDownAll(() async {
       try {
         await driver.close();
-      } on LateInitializationError {
-        // driver was not initialized; nothing to close
+      } catch (e) {
+        // Handle any errors during driver cleanup (including uninitialized driver)
+        print('Error closing driver: $e');
       }
     });
 
