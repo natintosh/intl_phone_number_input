@@ -117,7 +117,7 @@ class ExampleListPage extends StatelessWidget {
                     ),
                     SizedBox(height: 8),
                     Text(
-                      'Package Version: 0.7.5',
+                      'Package Version: 0.7.6',
                       style: TextStyle(
                         fontSize: 12,
                         color: Colors.grey[600],
