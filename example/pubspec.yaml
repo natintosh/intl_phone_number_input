@@ -1,5 +1,5 @@
 name: intlphonenumberinputtest
-description: A new Flutter application.
+description: Example of a simple and customizable flutter package for inputting phone number in intl / international format uses Google's libphonenumber.
 
 # The following defines the version and build number for your application.
 # A version number is three numbers separated by dots, like 1.2.43
