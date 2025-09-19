@@ -540,7 +540,7 @@ Interested in becoming a co-contributors checkout this link for more info [discu
 
 # Contributors 
 <a href="https://github.com/natintosh/intl_phone_number_input/graphs/contributors">
-  <img src="https://contributors-img.web.app/image?repo=natintosh/intl_phone_number_input" />
+  <img src="https://contrib.rocks/image?repo=natintosh/intl_phone_number_input" />
 </a>
 
 Made with [contributors-img](https://contributors-img.web.app).
