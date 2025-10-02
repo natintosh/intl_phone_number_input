@@ -67,6 +67,9 @@ class _CountrySearchListWidgetState extends State<CountrySearchListWidget> {
             decoration: getSearchBoxDecoration(),
             controller: _searchController,
             autofocus: widget.autoFocus,
+            onTapOutside: (event) {
+              FocusManager.instance.primaryFocus?.unfocus();
+            },
             onChanged: (value) {
               final String value = _searchController.text.trim();
               return setState(

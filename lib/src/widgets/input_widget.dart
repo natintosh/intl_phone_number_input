@@ -407,6 +407,9 @@ class _InputWidgetView
                 validator: widget.validator ?? state.validator,
                 onSaved: state.onSaved,
                 scrollPadding: widget.scrollPadding,
+                onTapOutside: (event) {
+                  FocusManager.instance.primaryFocus?.unfocus();
+                },
                 inputFormatters: [
                   LengthLimitingTextInputFormatter(widget.maxLength),
                   widget.formatInput
