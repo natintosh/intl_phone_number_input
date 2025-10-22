@@ -5,9 +5,13 @@ class Utils {
   ///  Returns a [Country] form list of [countries] passed that matches [countryCode].
   ///  Returns the first [Country] in the list if no match is available.
   static Country getInitialSelectedCountry(
-      List<Country> countries, String countryCode) {
-    return countries.firstWhere((country) => country.alpha2Code == countryCode,
-        orElse: () => countries[0]);
+    List<Country> countries,
+    String countryCode,
+  ) {
+    return countries.firstWhere(
+      (country) => country.alpha2Code == countryCode,
+      orElse: () => countries[0],
+    );
   }
 
   /// Returns a [String] which will be the unicode of a Flag Emoji,
@@ -22,6 +26,32 @@ class Utils {
         .toString();
   }
 
+  /// Convert Western digits (0-9) in [input] to locale-specific numerals.
+  /// Currently supports Arabic-Indic digits when [locale] starts with 'ar'.
+  static String localizeDigits(String input, String? locale) {
+    if (locale == null) return input;
+    if (locale.startsWith('ar')) {
+      const arabicIndic = {
+        '0': '٠',
+        '1': '١',
+        '2': '٢',
+        '3': '٣',
+        '4': '٤',
+        '5': '٥',
+        '6': '٦',
+        '7': '٧',
+        '8': '٨',
+        '9': '٩',
+      };
+      final buffer = StringBuffer();
+      for (final ch in input.split('')) {
+        buffer.write(arabicIndic[ch] ?? ch);
+      }
+      return buffer.toString();
+    }
+    return input;
+  }
+
   /// Filters the list of Country by text from the search box.
   static List<Country> filterCountries({
     required List<Country> countries,
@@ -32,13 +62,14 @@ class Utils {
       return countries
           .where(
             (Country country) =>
-                country.alpha3Code!
-                    .toLowerCase()
-                    .startsWith(value.toLowerCase()) ||
+                country.alpha3Code!.toLowerCase().startsWith(
+                  value.toLowerCase(),
+                ) ||
                 country.name!.toLowerCase().contains(value.toLowerCase()) ||
-                Utils.getCountryName(country, locale)!
-                    .toLowerCase()
-                    .contains(value.toLowerCase()) ||
+                Utils.getCountryName(
+                  country,
+                  locale,
+                )!.toLowerCase().contains(value.toLowerCase()) ||
                 country.dialCode!.contains(value.toLowerCase()),
           )
           .toList();
