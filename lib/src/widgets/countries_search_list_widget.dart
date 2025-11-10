@@ -161,7 +161,7 @@ class DirectionalCountryListTile extends StatelessWidget {
       subtitle: Align(
         alignment: AlignmentDirectional.centerStart,
         child: Text(
-          '${country.dialCode ?? ''}',
+          Utils.localizeDigits('${country.dialCode ?? ''}', locale),
           textDirection: TextDirection.ltr,
           textAlign: TextAlign.start,
         ),
@@ -187,13 +187,13 @@ class _Flag extends StatelessWidget {
                     style: Theme.of(context).textTheme.headlineSmall,
                   )
                 : country?.flagUri != null
-                    ? CircleAvatar(
-                        backgroundImage: AssetImage(
-                          country!.flagUri,
-                          package: 'intl_phone_number_input',
-                        ),
-                      )
-                    : SizedBox.shrink(),
+                ? CircleAvatar(
+                    backgroundImage: AssetImage(
+                      country!.flagUri,
+                      package: 'intl_phone_number_input',
+                    ),
+                  )
+                : SizedBox.shrink(),
           )
         : SizedBox.shrink();
   }
