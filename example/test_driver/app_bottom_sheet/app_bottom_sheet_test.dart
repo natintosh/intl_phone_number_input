@@ -18,7 +18,7 @@ main() {
 
     tearDownAll(() async {
       driver.close();
-        });
+    });
 
     test('Tap On TextField and enter text', () async {
       await driver.tap(inputTextFieldFinder);

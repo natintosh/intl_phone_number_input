@@ -106,6 +106,7 @@ SelectorConfig({
     this.countryComparator,
     this.setSelectorButtonAsPrefixIcon = false,
     this.useBottomSheetSafeArea = false,
+    this.useRootNavigator = false,
 });
 ```
 
@@ -477,6 +478,18 @@ SelectorConfig(
   selectorType: PhoneInputSelectorType.BOTTOM_SHEET,
   useBottomSheetSafeArea: true,
   countrySelectorScrollControlled: true,
+)
+```
+
+#### Issue: Bottom sheet not showing when inside nested navigator
+**Solution:**
+- Set `useRootNavigator: true` to display the bottom sheet using the root navigator
+- This is useful when the phone number input is inside a nested navigator or another modal
+
+```dart
+SelectorConfig(
+  selectorType: PhoneInputSelectorType.BOTTOM_SHEET,
+  useRootNavigator: true,
 )
 ```
 

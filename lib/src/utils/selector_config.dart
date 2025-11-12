@@ -118,6 +118,19 @@ class SelectorConfig {
   /// Defaults to false.
   final bool useBottomSheetSafeArea;
 
+  /// Whether to use the root navigator for the bottom sheet selector.
+  ///
+  /// When true and [selectorType] is [PhoneInputSelectorType.BOTTOM_SHEET],
+  /// the bottom sheet will be displayed using the root navigator instead of
+  /// the nearest navigator. This is useful when you need the bottom sheet to
+  /// display above all other navigation contexts (e.g., when used inside a
+  /// nested navigator or inside another modal).
+  ///
+  /// Only applies to bottom sheet selector type.
+  ///
+  /// Defaults to false.
+  final bool useRootNavigator;
+
   /// Creates a new [SelectorConfig] with the specified options.
   ///
   /// All parameters have sensible defaults and can be omitted if not needed.
@@ -144,5 +157,6 @@ class SelectorConfig {
     this.leadingPadding,
     this.trailingSpace = true,
     this.useBottomSheetSafeArea = false,
+    this.useRootNavigator = false,
   });
 }
