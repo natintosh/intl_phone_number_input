@@ -118,6 +118,13 @@ class SelectorConfig {
   /// Defaults to false.
   final bool useBottomSheetSafeArea;
 
+  /// Whether to show the flag in the selector button.
+  ///
+  /// If provided, this overrides [showFlags] specifically for the main
+  /// selector button displayed next to the input field. If null, falls
+  /// back to the value of [showFlags].
+  final bool? showInputFlag;
+
   /// Creates a new [SelectorConfig] with the specified options.
   ///
   /// All parameters have sensible defaults and can be omitted if not needed.
@@ -144,5 +151,6 @@ class SelectorConfig {
     this.leadingPadding,
     this.trailingSpace = true,
     this.useBottomSheetSafeArea = false,
+    this.showInputFlag,
   });
 }
