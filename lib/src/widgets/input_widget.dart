@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:intl_phone_number_input/src/models/country_list.dart';
 import 'package:intl_phone_number_input/src/models/country_model.dart';
 import 'package:intl_phone_number_input/src/providers/country_provider.dart';
+import 'package:intl_phone_number_input/src/utils/country_hints.dart';
 import 'package:intl_phone_number_input/src/utils/formatter/as_you_type_formatter.dart';
 import 'package:intl_phone_number_input/src/utils/phone_number.dart';
 import 'package:intl_phone_number_input/src/utils/phone_number/phone_number_util.dart';
@@ -341,6 +342,17 @@ class InternationalPhoneNumberInput extends StatefulWidget {
   /// ```
   final List<String>? countries;
 
+  /// Character to use as a placeholder in the auto-formatted hint text.
+  ///
+  /// If provided, this character replaces the default placeholder 'x' in
+  /// the country-specific hint text.
+  ///
+  /// Example:
+  /// ```dart
+  /// hintCharacter: '#', // 'xx xxx xxxx' becomes '## ### ####'
+  /// ```
+  final String? hintCharacter;
+
   InternationalPhoneNumberInput(
       {Key? key,
       this.selectorConfig = const SelectorConfig(),
@@ -356,6 +368,7 @@ class InternationalPhoneNumberInput extends StatefulWidget {
       this.keyboardType = TextInputType.phone,
       this.initialValue,
       this.hintText = 'Phone number',
+      this.hintCharacter,
       this.errorMessage = 'Invalid phone number',
       this.selectorButtonOnErrorPadding = 24,
       this.spaceBetweenSelectorAndTextField = 12,
@@ -393,6 +406,7 @@ class _InputWidgetState extends State<InternationalPhoneNumberInput> {
   Country? country;
   List<Country> countries = [];
   bool isNotValid = true;
+  String? _hintText;
 
   @override
   void initState() {
@@ -469,10 +483,33 @@ class _InputWidgetState extends State<InternationalPhoneNumberInput> {
         countries.sort(countryComparator);
       }
 
+      _formatHintText(country: country);
+
       setState(() {
         this.countries = countries;
         this.country = country;
       });
+    }
+  }
+
+  void _formatHintText({Country? country}) {
+    final Country? effectiveCountry = country ?? this.country;
+    if (effectiveCountry != null) {
+      if (CountryHints.hints.containsKey(effectiveCountry.alpha2Code)) {
+        String? hint = CountryHints.hints[effectiveCountry.alpha2Code];
+        if (widget.hintCharacter != null && hint != null) {
+          hint = hint.replaceAll('x', widget.hintCharacter!);
+        }
+        setState(() {
+          _hintText = hint;
+        });
+      } else {
+        if (_hintText != widget.hintText) {
+          setState(() {
+            _hintText = widget.hintText;
+          });
+        }
+      }
     }
   }
 
@@ -542,7 +579,7 @@ class _InputWidgetState extends State<InternationalPhoneNumberInput> {
     InputDecoration value = decoration ??
         InputDecoration(
           border: widget.inputBorder ?? UnderlineInputBorder(),
-          hintText: widget.hintText,
+          hintText: _hintText ?? widget.hintText,
         );
 
     if (widget.selectorConfig.setSelectorButtonAsPrefixIcon) {
@@ -596,6 +633,7 @@ class _InputWidgetState extends State<InternationalPhoneNumberInput> {
     setState(() {
       this.country = country;
     });
+    _formatHintText();
     phoneNumberControllerListener();
   }
 
