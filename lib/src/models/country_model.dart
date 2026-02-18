@@ -37,7 +37,7 @@ class Country {
       dialCode: data['dial_code'],
       flagUri: 'assets/flags/${data['alpha_2_code'].toLowerCase()}.png',
       nameTranslations: data['nameTranslations'] != null
-          ? Map<String, String>.from(data['nameTranslations'])
+          ? Map<String, String>.from(data['nameTranslations']) 
           : null,
     );
   }
