@@ -102,7 +102,6 @@ SelectorConfig({
     this.selectorType = PhoneInputSelectorType.DROPDOWN,
     this.showFlags = true,
     this.useEmoji = false,
-    this.backgroundColor,
     this.countryComparator,
     this.setSelectorButtonAsPrefixIcon = false,
     this.useBottomSheetSafeArea = false,
