@@ -56,7 +56,6 @@ void main() {
               selectorConfig: const SelectorConfig(
                 selectorType: PhoneInputSelectorType.DIALOG,
               ),
-              locale: 'en',
             ),
           ),
         ),
