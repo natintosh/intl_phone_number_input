@@ -213,7 +213,7 @@ class CountryHints {
     'TW': 'xxx xxx xxx',
     'TJ': 'xx xxx xxxx',
     'TZ': 'xxx xxx xxx',
-    'TH': 'xxx xxx xxxx',
+    'TH': 'xx xxx xxxx',
     'TL': 'xxxx xxxx',
     'TG': 'xx xx xx xx',
     'TK': 'xxxx',

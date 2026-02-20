@@ -69,6 +69,30 @@ void main() {
       expect(find.textContaining('Thai'), findsOneWidget);
     });
 
+    testWidgets('Should fallback to English because of a missing translation',
+        (WidgetTester tester) async {
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: InternationalPhoneNumberInput(
+              onInputChanged: (PhoneNumber number) {},
+              selectorConfig: const SelectorConfig(
+                selectorType: PhoneInputSelectorType.DIALOG,
+              ),
+              locale: 'id',
+            ),
+          ),
+        ),
+      );
+
+      await tester.tap(find.byType(SelectorButton));
+      await tester.pumpAndSettle();
+      await tester.enterText(
+          find.byKey(const Key(TestHelper.CountrySearchInputKeyValue)), 'Cura');
+      await tester.pumpAndSettle();
+      expect(find.textContaining('Curaçao'), findsOneWidget);
+    });
+
     testWidgets('Should show correct locale (custom)',
         (WidgetTester tester) async {
       await tester.pumpWidget(
