@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
+import 'package:intl_phone_number_input/src/utils/test/test_helper.dart';
+import 'package:intl_phone_number_input/src/widgets/selector_button.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
@@ -25,20 +27,94 @@ void main() {
     });
 
     testWidgets('Should show hint text', (WidgetTester tester) async {
-      const hintText = 'Enter your phone number';
+      const hintText = 'Enter Your Phone number';
 
+      /// Since hintText has been refactored to InputDecoration,
+      /// we need to pass it through InputDecoration
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
             body: InternationalPhoneNumberInput(
               onInputChanged: (PhoneNumber number) {},
-              hintText: hintText,
+              inputDecoration: InputDecoration(
+                hintText: hintText,
+              ),
             ),
           ),
         ),
       );
 
-      expect(find.text(hintText), findsOneWidget);
+      expect(find.text(hintText), findsOne);
+    });
+
+    testWidgets('Should show correct locale', (WidgetTester tester) async {
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: InternationalPhoneNumberInput(
+              onInputChanged: (PhoneNumber number) {},
+              selectorConfig: const SelectorConfig(
+                selectorType: PhoneInputSelectorType.DIALOG,
+              ),
+            ),
+          ),
+        ),
+      );
+
+      await tester.tap(find.byType(SelectorButton));
+      await tester.pumpAndSettle();
+      await tester.enterText(
+          find.byKey(const Key(TestHelper.CountrySearchInputKeyValue)), 'tha');
+      await tester.pumpAndSettle();
+      expect(find.textContaining('Thai'), findsOneWidget);
+    });
+
+    testWidgets('Should fallback to English because of a missing translation',
+        (WidgetTester tester) async {
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: InternationalPhoneNumberInput(
+              onInputChanged: (PhoneNumber number) {},
+              selectorConfig: const SelectorConfig(
+                selectorType: PhoneInputSelectorType.DIALOG,
+              ),
+              locale: 'id',
+            ),
+          ),
+        ),
+      );
+
+      await tester.tap(find.byType(SelectorButton));
+      await tester.pumpAndSettle();
+      await tester.enterText(
+          find.byKey(const Key(TestHelper.CountrySearchInputKeyValue)), 'Cura');
+      await tester.pumpAndSettle();
+      expect(find.textContaining('Curaçao'), findsOneWidget);
+    });
+
+    testWidgets('Should show correct locale (custom)',
+        (WidgetTester tester) async {
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: InternationalPhoneNumberInput(
+              onInputChanged: (PhoneNumber number) {},
+              selectorConfig: const SelectorConfig(
+                selectorType: PhoneInputSelectorType.DIALOG,
+              ),
+              locale: 'th',
+            ),
+          ),
+        ),
+      );
+
+      await tester.tap(find.byType(SelectorButton));
+      await tester.pumpAndSettle();
+      await tester.enterText(
+          find.byKey(const Key(TestHelper.CountrySearchInputKeyValue)), 'ไท');
+      await tester.pumpAndSettle();
+      expect(find.text('ไทย'), findsOneWidget);
     });
 
     testWidgets('Should handle text input', (WidgetTester tester) async {

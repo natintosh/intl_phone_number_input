@@ -27,6 +27,7 @@ void main() {
         'sr-Latn',
         'zh_TW',
         'tr',
+        'th',
         'ro',
         'ar',
         'fa',

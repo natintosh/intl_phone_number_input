@@ -367,6 +367,8 @@ class InternationalPhoneNumberInput extends StatefulWidget {
       this.keyboardAction,
       this.keyboardType = TextInputType.phone,
       this.initialValue,
+      @Deprecated(
+          'This parameter is deprecated and does nothing. Use [InputDecoration.hintText] instead.')
       this.hintText = 'Phone number',
       this.hintCharacter,
       this.errorMessage = 'Invalid phone number',
