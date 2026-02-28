@@ -21,56 +21,91 @@ class AsYouTypeFormatter extends TextInputFormatter {
   /// [onInputFormatted] is a callback that passes the formatted phone number
   final OnInputFormatted<TextEditingValue> onInputFormatted;
 
-  AsYouTypeFormatter(
-      {required this.isoCode,
-      required this.dialCode,
-      required this.onInputFormatted});
+  /// Guard flag that prevents re-entrant async callbacks from firing
+  /// [onInputFormatted] while a previous formatting pass is still in progress.
+  bool _isFormatting = false;
+
+  /// Tracks the last raw (digits-only) input that was dispatched to the async
+  /// formatter so we can discard stale results from earlier keystrokes.
+  String _lastRawInput = '';
+
+  AsYouTypeFormatter({
+    required this.isoCode,
+    required this.dialCode,
+    required this.onInputFormatted,
+  });
 
   @override
   TextEditingValue formatEditUpdate(
-      TextEditingValue oldValue, TextEditingValue newValue) {
+    TextEditingValue oldValue,
+    TextEditingValue newValue,
+  ) {
     int newValueLength = newValue.text.length;
 
     if (newValueLength > 0) {
+      // Skip if we are already applying a formatted result back to the
+      // controller – this is the spurious re-entry triggered by
+      // `onInputFormatted` writing to the controller externally.
+      if (_isFormatting) {
+        return newValue;
+      }
+
       String newValueText = newValue.text;
       String rawText = newValueText.replaceAll(separatorChars, '');
       String textToParse = dialCode + rawText;
+
+      // Capture the raw input for this keystroke so the async callback can
+      // detect and discard results that are no longer current.
+      _lastRawInput = rawText;
 
       final _ = newValueText
           .substring(0, newValue.selection.end)
           .replaceAll(separatorChars, '');
 
-      formatAsYouType(input: textToParse).then(
-        (String? value) {
-          String parsedText = parsePhoneNumber(value);
+      formatAsYouType(input: textToParse).then((String? value) {
+        // Discard stale results – newer keystrokes have already been typed.
+        if (rawText != _lastRawInput) return;
 
-          int currentOffset =
-              newValue.selection.end == -1 ? 0 : newValue.selection.end;
+        String parsedText = parsePhoneNumber(value);
 
-          int digitOffset = 0;
-          for (var index = 0; index < currentOffset; index++) {
-            if (allowedChars.hasMatch(newValueText[index])) {
-              digitOffset++;
-            }
+        // Nothing actually changed; skip the controller update to avoid a
+        // superfluous rebuild and another (empty) formatEditUpdate round-trip.
+        if (parsedText == newValueText) return;
+
+        int currentOffset = newValue.selection.end == -1
+            ? 0
+            : newValue.selection.end;
+
+        int digitOffset = 0;
+        for (var index = 0; index < currentOffset; index++) {
+          if (allowedChars.hasMatch(newValueText[index])) {
+            digitOffset++;
           }
+        }
 
-          int newOffset = 0;
-          int digitCount = 0;
-          while (digitCount < digitOffset) {
-            if (allowedChars.hasMatch(parsedText[newOffset])) {
-              digitCount++;
-            }
-            newOffset++;
+        int newOffset = 0;
+        int digitCount = 0;
+        while (newOffset < parsedText.length && digitCount < digitOffset) {
+          if (allowedChars.hasMatch(parsedText[newOffset])) {
+            digitCount++;
           }
+          newOffset++;
+        }
 
+        // Set the guard before calling back so that the controller assignment
+        // inside [onInputFormatted] does not recursively trigger formatting.
+        _isFormatting = true;
+        try {
           this.onInputFormatted(
             TextEditingValue(
               text: parsedText,
               selection: TextSelection.collapsed(offset: newOffset),
             ),
           );
-        },
-      );
+        } finally {
+          _isFormatting = false;
+        }
+      });
     }
     return newValue;
   }
@@ -80,7 +115,9 @@ class AsYouTypeFormatter extends TextInputFormatter {
   Future<String?> formatAsYouType({required String input}) async {
     try {
       String? formattedPhoneNumber = await PhoneNumberUtil.formatAsYouType(
-          phoneNumber: input, isoCode: isoCode);
+        phoneNumber: input,
+        isoCode: isoCode,
+      );
       return formattedPhoneNumber;
     } on Exception {
       return '';
@@ -93,7 +130,8 @@ class AsYouTypeFormatter extends TextInputFormatter {
     if (dialCode.length > 4) {
       if (isPartOfNorthAmericanNumberingPlan(dialCode)) {
         String northAmericaDialCode = '+1';
-        String countryDialCodeWithSpace = northAmericaDialCode +
+        String countryDialCodeWithSpace =
+            northAmericaDialCode +
             ' ' +
             dialCode.replaceFirst(northAmericaDialCode, '');
 
