@@ -145,7 +145,8 @@ class AsYouTypeFormatter extends TextInputFormatter {
         this.onInputFormatted(
           TextEditingValue(
             text: locale == "ar" ? arabicText : displayText,
-            selection: TextSelection.collapsed(offset: newCursorPosition),
+            selection: TextSelection.collapsed(
+                offset: locale == "ar" ? arabicText.length : newCursorPosition),
           ),
         );
       });
