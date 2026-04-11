@@ -114,15 +114,37 @@ class AsYouTypeFormatter extends TextInputFormatter {
         }
 
         final displayText = _convertDigitsToLocale(parsedText);
-        // If we couldn't compute a caret position (no digits context), default to end
+        // // If we couldn't compute a caret position (no digits context), default to end
         if (digitsBeforeCursor == 0 && digitsAfterCursor == 0) {
           newCursorPosition = displayText.length;
         }
         newCursorPosition = min(max(newCursorPosition, 0), displayText.length);
 
+        String arabicText = newValueText;
+
+        if (locale == "ar") {
+          // Map Western digits to Eastern Arabic digits
+          final Map<String, String> numbersMap = {
+            '0': '٠',
+            '1': '١',
+            '2': '٢',
+            '3': '٣',
+            '4': '٤',
+            '5': '٥',
+            '6': '٦',
+            '7': '٧',
+            '8': '٨',
+            '9': '٩',
+          };
+
+          numbersMap.forEach((english, arabic) {
+            arabicText = arabicText.replaceAll(english, arabic);
+          });
+        }
+
         this.onInputFormatted(
           TextEditingValue(
-            text: displayText,
+            text: locale == "ar" ? arabicText : displayText,
             selection: TextSelection.collapsed(offset: newCursorPosition),
           ),
         );
@@ -157,8 +179,7 @@ class AsYouTypeFormatter extends TextInputFormatter {
     if (dialCode.length > 4) {
       if (isPartOfNorthAmericanNumberingPlan(dialCode)) {
         String northAmericaDialCode = '+1';
-        String countryDialCodeWithSpace =
-            northAmericaDialCode +
+        String countryDialCodeWithSpace = northAmericaDialCode +
             ' ' +
             dialCode.replaceFirst(northAmericaDialCode, '');
 
