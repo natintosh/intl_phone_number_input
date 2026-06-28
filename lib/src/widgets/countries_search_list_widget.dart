@@ -147,26 +147,29 @@ class DirectionalCountryListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      key: Key(TestHelper.countryItemKeyValue(country.alpha2Code)),
-      leading: (showFlags ? _Flag(country: country, useEmoji: useEmoji) : null),
-      title: Align(
-        alignment: AlignmentDirectional.centerStart,
-        child: Text(
-          '${Utils.getCountryName(country, locale)}',
-          textDirection: Directionality.of(context),
-          textAlign: TextAlign.start,
+    return Material(
+      color: Colors.transparent,
+      child: ListTile(
+        key: Key(TestHelper.countryItemKeyValue(country.alpha2Code)),
+        leading: (showFlags ? _Flag(country: country, useEmoji: useEmoji) : null),
+        title: Align(
+          alignment: AlignmentDirectional.centerStart,
+          child: Text(
+            '${Utils.getCountryName(country, locale)}',
+            textDirection: Directionality.of(context),
+            textAlign: TextAlign.start,
+          ),
         ),
-      ),
-      subtitle: Align(
-        alignment: AlignmentDirectional.centerStart,
-        child: Text(
-          '${country.dialCode ?? ''}',
-          textDirection: TextDirection.ltr,
-          textAlign: TextAlign.start,
+        subtitle: Align(
+          alignment: AlignmentDirectional.centerStart,
+          child: Text(
+            '${country.dialCode ?? ''}',
+            textDirection: TextDirection.ltr,
+            textAlign: TextAlign.start,
+          ),
         ),
+        onTap: () => Navigator.of(context).pop(country),
       ),
-      onTap: () => Navigator.of(context).pop(country),
     );
   }
 }
