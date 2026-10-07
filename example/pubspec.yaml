@@ -1,5 +1,6 @@
 name: intlphonenumberinputtest
 description: Example of a simple and customizable flutter package for inputting phone number in intl / international format uses Google's libphonenumber.
+publish_to: 'none'
 
 # The following defines the version and build number for your application.
 # A version number is three numbers separated by dots, like 1.2.43
@@ -23,6 +24,8 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.6
+  intl_phone_number_input:
+    path: ../
 
 dev_dependencies:
   flutter_test:
@@ -32,8 +35,6 @@ dev_dependencies:
   test: any
 
   libphonenumber: ^2.0.0
-  intl_phone_number_input:
-    path: ../
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -44,9 +45,6 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
-  # Include flag assets locally for better web support
-  assets:
-    - ../assets/flags/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

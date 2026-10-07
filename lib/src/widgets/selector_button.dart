@@ -52,6 +52,11 @@ class SelectorButton extends StatelessWidget {
                   value: country,
                   items: mapCountryToDropdownItem(countries),
                   onChanged: isEnabled ? onCountryChanged : null,
+                  icon: selectorConfig.showDropdownIcon
+                      ? null
+                      : const SizedBox.shrink(),
+                  iconEnabledColor: selectorConfig.dropdownIconColor,
+                  iconDisabledColor: selectorConfig.dropdownIconColor,
                 ),
               )
             : Item(
@@ -85,14 +90,25 @@ class SelectorButton extends StatelessWidget {
                 : null,
             child: Padding(
               padding: const EdgeInsets.only(right: 8.0),
-              child: Item(
-                country: country,
-                showFlag:
-                    selectorConfig.showInputFlag ?? selectorConfig.showFlags,
-                useEmoji: selectorConfig.useEmoji,
-                leadingPadding: selectorConfig.leadingPadding,
-                trailingSpace: selectorConfig.trailingSpace,
-                textStyle: selectorTextStyle,
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  Item(
+                    country: country,
+                    showFlag: selectorConfig.showInputFlag ??
+                        selectorConfig.showFlags,
+                    useEmoji: selectorConfig.useEmoji,
+                    leadingPadding: selectorConfig.leadingPadding,
+                    trailingSpace: selectorConfig.trailingSpace,
+                    textStyle: selectorTextStyle,
+                  ),
+                  if (selectorConfig.showDropdownIcon)
+                    Icon(
+                      Icons.arrow_drop_down,
+                      color: selectorConfig.dropdownIconColor ??
+                          (isEnabled ? null : Theme.of(context).disabledColor),
+                    ),
+                ],
               ),
             ),
           );

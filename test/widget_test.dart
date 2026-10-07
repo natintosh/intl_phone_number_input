@@ -414,6 +414,47 @@ void main() {
       // Should render emoji flags as text instead of images
       expect(find.byType(Text), findsWidgets);
     });
+
+    testWidgets('Should show dropdown icon in bottom sheet selector when showDropdownIcon is true',
+        (WidgetTester tester) async {
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: InternationalPhoneNumberInput(
+              onInputChanged: (PhoneNumber number) {},
+              selectorConfig: const SelectorConfig(
+                selectorType: PhoneInputSelectorType.BOTTOM_SHEET,
+                showDropdownIcon: true,
+                dropdownIconColor: Colors.red,
+              ),
+            ),
+          ),
+        ),
+      );
+
+      expect(find.byIcon(Icons.arrow_drop_down), findsOneWidget);
+      final icon = tester.widget<Icon>(find.byIcon(Icons.arrow_drop_down));
+      expect(icon.color, Colors.red);
+    });
+
+    testWidgets('Should hide dropdown icon in bottom sheet selector when showDropdownIcon is false',
+        (WidgetTester tester) async {
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: InternationalPhoneNumberInput(
+              onInputChanged: (PhoneNumber number) {},
+              selectorConfig: const SelectorConfig(
+                selectorType: PhoneInputSelectorType.BOTTOM_SHEET,
+                showDropdownIcon: false,
+              ),
+            ),
+          ),
+        ),
+      );
+
+      expect(find.byIcon(Icons.arrow_drop_down), findsNothing);
+    });
   });
 
   group('Error Handling Tests', () {

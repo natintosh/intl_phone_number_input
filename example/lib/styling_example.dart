@@ -239,6 +239,8 @@ class PrefixIconExample extends StatelessWidget {
         setSelectorButtonAsPrefixIcon: true,
         leadingPadding: 16,
         trailingSpace: false,
+        showDropdownIcon: true,
+        dropdownIconColor: Colors.green,
       ),
       inputDecoration: InputDecoration(
         labelText: 'Phone Number',

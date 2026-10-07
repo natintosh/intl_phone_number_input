@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:intl_phone_number_input/src/models/country_model.dart';
 import 'package:intl_phone_number_input/src/widgets/input_widget.dart';
 
@@ -54,6 +56,19 @@ class SelectorConfig {
   ///
   /// Defaults to true.
   final bool showFlags;
+
+  /// Whether to show the dropdown arrow icon in the selector button.
+  ///
+  /// This applies to selector types such as [PhoneInputSelectorType.BOTTOM_SHEET]
+  /// and [PhoneInputSelectorType.DIALOG].
+  ///
+  /// Defaults to true.
+  final bool showDropdownIcon;
+
+  /// The color of the dropdown arrow icon.
+  ///
+  /// If null, the selector uses the current theme's icon color.
+  final Color? dropdownIconColor;
 
   /// Whether to use emoji flags instead of PNG image assets.
   ///
@@ -152,5 +167,7 @@ class SelectorConfig {
     this.trailingSpace = true,
     this.useBottomSheetSafeArea = false,
     this.showInputFlag,
+    this.showDropdownIcon = true,
+    this.dropdownIconColor,
   });
 }
